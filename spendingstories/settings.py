@@ -125,9 +125,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'rest_framework',
-    'rest_framework_swagger',
-    'DjangoRestTest.api',
-    'DjangoRestTest.core',
+    'rest_framework_docs',
+    'spendingstories.api',
+    'spendingstories.core',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
