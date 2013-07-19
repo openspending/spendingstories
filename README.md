@@ -13,10 +13,10 @@
 - [Tabs are evil](http://www.emacswiki.org/emacs/TabsAreEvil) use `4` spaces instead
 - Always save in UTF-8;
 - Use UNIX line endings;
-- A code line should be less than `80` caracters and **never** exceed `100` caracters  
-- Empty lines are used to separates blocks of functionnality, don't abuse them
-- Don't comment a line of code without a explanation comment
-- Comments are good as they represents the code commented, watch your old comments 
+- A code line **should be** less than `80` caracters and **never** exceed `100` caracters  
+- Empty lines are used to separates blocks of functionnality (like functions), don't overuse them
+- Don't comment a line of code without a comment explaning why 
+- Comments are good as they are representative of the code commented, in other terms: **watch your old comments**
 - Class names are in `CamelCase`
 - Function and methods are in `underscore_fashion()`
 - Constants are in `UNDERSCORE_UPPERCASE_FASHION`
