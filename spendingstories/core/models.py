@@ -3,7 +3,8 @@ from django.utils.translation import ugettext as _
 from model_utils.managers     import PassThroughManager
 from economics                import Inflation, CPI
 from django.db                import models
-import datetime 
+import datetime
+import fields
 
 
 CPI_DATA_URL = 'http://localhost:8000/static/data/cpi.csv'
@@ -14,24 +15,19 @@ for r in range(1999, (datetime.datetime.now().year)):
 
 
 
-class SpendingQuerySet(models.query.QuerySet):
+class StoriesQuerySet(models.query.QuerySet):
+    relevance_query = "SELECT * FROM core_stories ORDER BY amount_usd_current / %s "
 
     def validated(self): 
         return self.filter(is_validated=true)
 
-    def sortByValue(self):
-        return self.order_by('-value')
 
-    def sortByPopularity(self):
-        return self.order_by('-popularity')
 
-    def between(lower_boundary, upper_boundary):
-        return self.fitler(value__gte=lower_boundary, value__lte=upper_boundary)
 
 
 class InflationWrapper(object):
+    # Simple Singleton wrapper 
     instance = None
-    # Simple Singleton 
     def __new__(klass, *args, **kargs):
         if instance is None:
             instance = object.__new__(klass, *args, **args)
@@ -39,60 +35,91 @@ class InflationWrapper(object):
             instance.inflation = Inflation(source=CPI_DATA_URL)
         return instance
 
-    def inflate(self, reference=None, country=None):
+    def closest_ajustment_year(self, country=None):
+        return self.cpi.closest(
+            country=country, 
+            date=datetime.date.today(), 
+            limit=datetime.timedelta(366*3)).date
+
+
+    def inflate(self, reference=None, country=None, amount=None):
+        '''
+        Inflate the given `amount` to the last available inflation year (see 
+        closest_ajustment_year)
+        '''
         # the target date, i.e the date for which we gonna compute the inflation level 
         # is found by getting the closest date to today having CPI data. 
-        target_date = self.cpi.closest(country=country, date=datetime.date.today(), limit=datetime.timedelta(366*3)).date
+        target_date = self.closest_ajustment_year(country)
         try: 
             closest_ref_date = self.cpi.closest(country=country, date=reference).date # get the closest date for reference date
         except:
             closest_ref_date = target
         # We inflate the given amount to the targeted year (the closent year available)
-        inflated = self.inflation.inflate(target=target_date, reference=closest_ref_date, country=country) 
-        return (inflated, target_date)
+        return self.inflation.inflate(target=target_date, reference=closest_ref_date, country=country) 
 
 
 
-class Spending(models.Model):
+
+class Stories(models.Model):
     '''
     The model representing a spending
     '''
-    value                    = models.DecimalField(_('The spending value'), decimal_places=2, max_digits=15) # The spending amount 
-    value_current            = models.DecimalField(decimal_places=2, max_digits=15) # The spending amount inflated
-    value_usd_current        = models.DecimalField(decimal_places=2, max_digits=15) # The spending amount in USD inflated
-    inflation_reference_year = models.IntegerField()
-    country                  = models.CharField(max_length=3) # ISO code of the country 
-    source                   = models.URLField()
-    name                     = models.CharField(max_length=140)
-    currency                 = models.ForeignKey('Currency')
-    continuous               = models.BooleanField(_('Is a countinuous spending'), default=False) 
-
-    year     = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES)
-    objects  = PassThroughManager.for_queryset_class(SpendingQuerySet)()
     created  = datetime.datetime.now()
     modified = datetime.datetime.now()
 
-    def save(self):
-        inflator =  InflationWrapper()
-        self.value_current = inflator.inflate(reference=self.year, 
-            country=self.country)
-        self.value_usd_current = self.currency.get_rate() * self.value_current
-        self.modified = datetime.datetime.now()
-        super(Spending, self).save()
+    value      = models.DecimalField(_('The spending value'), decimal_places=2, max_digits=15) # The spending amount 
+    title      = models.CharField(_('Story title'), max_length=140)
+    country    = fields.CountryField() # ISO code of the country 
+    source     = models.URLField(_('Story\'s source URL'), max_length=140)
+    currency   = models.ForeignKey('Currency')
+    continuous = models.BooleanField(_('Is a countinuous spending'), default=False)
+    sticky     = models.BooleanField(_('Is a top story'),    default=False)
+    year       = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES)
+    objects    = PassThroughManager.for_queryset_class(StoriesQuerySet)()
+    
+    def _inflate_value(self):
+        '''
+        Used to ajust the value of the story value
+        ''' 
+        return InflationWrapper().inflate(country=self.country, reference=self.year)
+    
+    def _convert_to_usd(self):
+        '''
+        Return the current value converted into USD 
+        ''' 
+        exchange_rate = self.currency.get_exchange_rate()
+        return self.value_current * exchange_rate
 
+    def _get_ajustement_year(self):
+        '''
+        Return the closest available year for inflation ajustement, ideally it 
+        should return the current year - 1 
+        ''' 
+        return InflationWrapper.closest_ajustment_year(country=self.country)
 
-class SpendingSerializer(serializers.Serializer):
+    # all calculated fields
+    value_current            = property(_inflate_value)
+    value_current_usd        = property(_convert_to_usd)
+    inflation_ajustment_year = property(_get_ajustement_year)
+
+class StoriesSerializer(serializers.Serializer):
     class Meta: 
-        model = Spending
+        model = Stories
         fields = ['value', 'value_usd_current', 'value_current','created', 'modified', 'source', 'currency']
 
 
 
-class Currency(models.Model):
+
+
+
+class Currencies(models.Model):
     # The ISO code for currencies, possible values are based on what 
     iso_code = models.CharField(max_length=3)
     # The exchange rate took from OpenExchangeRate
-    rate = models.FloatField()
+    rate     = models.FloatField()
+
+    def get_exchange_rate(self):
+        return self.rate
 
 
 
