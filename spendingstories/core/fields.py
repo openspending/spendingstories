@@ -1,3 +1,7 @@
+from django.utils.translation import ugettext as _
+from django.db                import models
+
+
 '''
 Took from http://djangosnippets.org/snippets/1281/
 '''
