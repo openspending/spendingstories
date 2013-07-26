@@ -15,15 +15,21 @@ for r in range(1999, (datetime.datetime.now().year)):
 
 
 
-class StoriesQuerySet(models.query.QuerySet):
-    relevance_query = "SELECT * FROM core_stories ORDER BY amount_usd_current / %s "
 
-    def validated(self): 
-        return self.filter(is_validated=true)
+class CurrencyQuerySet(models.query.QuerySet):
+    def find(currency=None):
+        return self.filter(iso_code=currency)
 
+class Currency(models.Model):
+    # The ISO code for currencies, possible values are based on what 
+    iso_code = models.CharField(max_length=3)
+    # The exchange rate took from OpenExchangeRate
+    rate     = models.FloatField()
 
+    objects  = PassThroughManager.for_queryset_class(CurrencyQuerySet)()
 
-
+    def get_exchange_rate(self):
+        return self.rate
 
 class InflationWrapper(object):
     # Simple Singleton wrapper 
@@ -59,36 +65,47 @@ class InflationWrapper(object):
 
 
 
+class StoryQuerySet(models.query.QuerySet):
+    relevance_query = "SELECT * FROM core_stories ORDER BY amount_usd_current / %s %s"
 
-class Stories(models.Model):
+    def published(self): 
+        return self.filter(published=True)
+
+    def proximity(self, amount=None, closest_first=True):
+        sort_order = 'ASC' if closest_first else 'DESC'
+        return self.raw(relevance_query % amount, sort_order)
+        
+
+class Story(models.Model):
     '''
     The model representing a spending
     '''
     created  = datetime.datetime.now()
     modified = datetime.datetime.now()
 
-    value      = models.DecimalField(_('The spending value'), decimal_places=2, max_digits=15) # The spending amount 
+    value      = models.IntegerField(_('The spending value')) # The spending amount 
     title      = models.CharField(_('Story title'), max_length=140)
     country    = fields.CountryField() # ISO code of the country 
     source     = models.URLField(_('Story\'s source URL'), max_length=140)
     currency   = models.ForeignKey('Currency')
     continuous = models.BooleanField(_('Is a countinuous spending'), default=False)
-    sticky     = models.BooleanField(_('Is a top story'),    default=False)
-    year       = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES)
-    objects    = PassThroughManager.for_queryset_class(StoriesQuerySet)()
+    published  = models.BooleanField(_('Publish this story'),        default=False)
+    sticky     = models.BooleanField(_('Is a top story'),            default=False)
+    year       = models.IntegerField(_('The spending year'),         choices=YEAR_CHOICES)
+    objects    = PassThroughManager.for_queryset_class(StoryQuerySet)()
     
     def _inflate_value(self):
         '''
         Used to ajust the value of the story value
         ''' 
-        return InflationWrapper().inflate(country=self.country, reference=self.year)
+        return round(InflationWrapper().inflate(country=self.country, reference=self.year))
     
     def _convert_to_usd(self):
         '''
         Return the current value converted into USD 
         ''' 
         exchange_rate = self.currency.get_exchange_rate()
-        return self.value_current * exchange_rate
+        return round(self.value_current * exchange_rate)
 
     def _get_ajustement_year(self):
         '''
@@ -101,25 +118,4 @@ class Stories(models.Model):
     value_current            = property(_inflate_value)
     value_current_usd        = property(_convert_to_usd)
     inflation_ajustment_year = property(_get_ajustement_year)
-
-class StoriesSerializer(serializers.Serializer):
-    class Meta: 
-        model = Stories
-        fields = ['value', 'value_usd_current', 'value_current','created', 'modified', 'source', 'currency']
-
-
-
-
-
-
-class Currencies(models.Model):
-    # The ISO code for currencies, possible values are based on what 
-    iso_code = models.CharField(max_length=3)
-    # The exchange rate took from OpenExchangeRate
-    rate     = models.FloatField()
-
-    def get_exchange_rate(self):
-        return self.rate
-
-
 
