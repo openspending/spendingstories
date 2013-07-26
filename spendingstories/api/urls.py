@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, include, url
-from rest_framework.routers import DefaultRouter
+from rest_framework   import generics
+from spendingstories.core import models
 import views
 
 
-rooter = DefaultRouter() 
-rooter.register(r'^spending', views.SpendingViewSet)
 urlpatterns = patterns('',
-   url(r'^', include(rooter.urls)),
-    # url(r'^spending/(?P<pk>[0-9]+)/compare$', views.SpendingDetailsComparing.as_view()),
+    url(r'^stories/$', views.StoryListAPIView.as_view(), name='stories-list'),
+    url(r'^stories/proximity/?', views.ProximityStoryListAPIView.as_view(), name='proximity-stories-list'), 
+    # url(r'^stories/(?P<pk>[0-9]+)/compare$', views.SpendingDetailsComparing.as_view()),
 )
