@@ -43,12 +43,6 @@
       | css |-other mixins   +feed---->| ng-Models |<-----use----+
       +-----+                          +-----------+
 
-
-
-
-
-[
-
 ## About 
 
 ### Recommended Tools
