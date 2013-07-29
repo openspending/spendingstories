@@ -12,8 +12,8 @@
                           v
  +--------+         +----------+                   +-----------------+
  |Database|         | Core     |    +--------+     | API             |
- |--------|<--SQL-->|----------|    | Create |     |-----------------|-django-filters
- |        |         | Models   |<---| Read   |---->| REST ressources |-django-rest-framework
+ |--------|x--SQL--x|----------|    | Create |     |-----------------|-django-filters
+ |        |         | Models   |x---| Read   |----x| REST ressources |-django-rest-framework
  |        |         | Forms    |    | Update |     | Serializers     | |
  |        |         |          |    +--------+     |                 | +--docs
  +--------+         +----------+                   |                 |
@@ -36,7 +36,7 @@
     | css |-other mixins   |      |-------------+                              |
     +-----+                v      |                                            |-AngularJS
                        +-------+  |        +-----------+       +-------------+ |
-                       | html  |<---feed-->| ng-Models |<-use->|  APIClient  | |
+                       | html  |x---feed--x| ng-Models |x-use-x|  APIClient  | |
                        +-------+  |        +-----------+       +-------------+ |
                                  -|                                            |
                                   |                                            |
