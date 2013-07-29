@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from rest_framework   import generics
-from spendingstories.core import models
 import views
 
 
