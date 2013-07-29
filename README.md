@@ -1,48 +1,49 @@
 # Spending Stories
 ## Architecture 
-    [Backend]                          +----------------+
-                              +------->+ Admin          |
-                              |        |----------------|
-                          +---+---+    | Admin Forms    |-django-contrib-admin
-                          | CRUD  |    |                |
-                          +---+---+    |                |
-                              |        +----------------+
-                              v
-     +--------+         +----------+                   +-----------------+
-     |Database|         | Core     |   +--------+      | API             |
-     |--------|<--SQL-->|----------|   | Create |      |-----------------|
-     |        |         | Models   |<--| Read   |----->| REST ressources |-django-rest-framework
-     |        |         | Forms    |   | Update |      | Serializers     | |
-     |        |         |          |   +--------+      |                 | +--docs
-     +--------+         +----------+                   |                 |
-                                                       |                 |
-     +-------------------+                             |                 |
-     | Static            |                             +-----------------+
-     |-------------------|                                      ^
-     |Templates          |--coffeescript---+                    |
-     |Scripts (coffee+js |                 |                    |
-     |Styles (less+css)  |                 |                    |
-     |Files (img+csv)    |                 |                    |
-     |                   |                 |                HTTP/JSON
-     +-------------------+                 |                    |
-        |             |                    |                    |
-    +---|-------------|--------------------|--------------------|----------------------------------+
-        |             |                    |                    |                          Frontend]
-        |             |                    v                    |
-        |             |               +-------------+-AngularJS |
-       Less     Django Templates      |JavaScript   |-jQuery    |
-        |             |               +----+---+----+           |
-        |             |                    |   |                |
-        |             |                    |   |                |
-        |             v                    |   |                v
-        |         +----------------+       |   |            +-------------+
-        |         | html           |       |   +------------+  APIClient  |
-        |         +----------------+       |                +-------------+
-        v                    ^             |                     ^
-      +-----+-boostrap       |         +---+-------+             |
-      | css |-other mixins   +feed---->| ng-Models |<-----use----+
-      +-----+                          +-----------+
-
+<pre style="line-height:1em; font-size:0.8em">
+  <code>
+[Backend]                          +----------------+
+                          +------->| Admin          |
+                          |        |----------------|
+                      +-------+    | Admin Forms    |-django-contrib-admin
+                      | CRUD  |    |                |
+                      +-------+    |                |
+                          |        +----------------+
+                          v
+ +--------+         +----------+                   +-----------------+
+ |Database|         | Core     |    +--------+     | API             |
+ |--------|<--SQL-->|----------|    | Create |     |-----------------|-django-filters
+ |        |         | Models   |<---| Read   |---->| REST ressources |-django-rest-framework
+ |        |         | Forms    |    | Update |     | Serializers     | |
+ |        |         |          |    +--------+     |                 | +--docs
+ +--------+         +----------+                   |                 |
+                                                   |                 |
+ +-------------------+                             |                 |
+ | Static            |                             +------------- ---+
+ |-------------------|                                           ^
+ |Templates          |--coffeescript---+                         |
+ |Scripts (coffee+js |                 |                         |
+ |Styles (less+css)  |                 |                         |
+ |Files (img+csv)    |-----+           |                     HTTP/JSON
+ |                   |     |           |                         |
+ +-------------------+     |           |                         |
+     |             Django Templates    |                         |
++----|---------------------|-----------|-------------------------|-----------------------------+
+    Less                   |           |                         |                     Frontend]
+     |                     |           v                         v
+     v                     |      +--------------------------------------------+
+    +-----+-boostrap       |      |JavaScript   |                              |-jQuery
+    | css |-other mixins   |      |-------------+                              |
+    +-----+                v      |                                            |-AngularJS
+                       +-------+  |        +-----------+       +-------------+ |
+                       | html  |<---feed-->| ng-Models |<-use->|  APIClient  | |
+                       +-------+  |        +-----------+       +-------------+ |
+                                 -|                                            |
+                                  |                                            |
+                                  |                                            |
+                                  +--------------------------------------------+
+</code>
+</pre>
 ## About 
 
 ### Recommended Tools
