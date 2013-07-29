@@ -1,13 +1,20 @@
 from rest_framework              import status, generics 
 from rest_framework              import serializers
 from rest_framework.views        import APIView
-from rest_framework.decorators   import link
+from rest_framework.decorators   import link, api_view
 from rest_framework.response     import Response
 from spendingstories.core.models import Story
 import django_filters
 
+@api_view(['GET'])
+def api_root_view(request):
+    return Response({'message': 'Welcome to Spending Stories API !'})
 
 class StoryFilter(django_filters.FilterSet):
+    '''
+    Enable the filter on the following fields:
+        - top (Boolean), filter the stories based on their sticky attribute
+    '''
     class Meta:
         filter_fields = ('top', 'tag')
 
@@ -26,9 +33,19 @@ class StorySerializer(serializers.Serializer):
         paginated_by = 10
 
 
-class StoryListAPIView(generics.ListAPIView):
+class StoryListAPIView(generics.ListCreateAPIView):
     '''
     The base API for stories, retrieve all stories paginated
+    ## Pagination
+    Every list you get is paginated, if you want to get results without pagination
+    use the `page_size` parameter set to `0`<br/>
+    > Example: `GET /api/stories/?page_size=0`
+
+    ## Filters
+
+    - **top** 
+    - ****
+
     '''
     queryset         = Story.objects.published()
     filter_class     = StoryFilter
