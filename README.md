@@ -56,53 +56,58 @@
 If you want ton contribute to this projet please follow the [jplusplus styeguide](https://github.com/jplusplus/styleguide).
 
 ## How to install
-### 1. Set up your python environnement 
-a. Install python packages:   
+### 1. Set up your python environnement
 
-     ```bash
-     sudo apt-get install build-essential python python-pip python-dev mysql nodejs npm libapache2-mod-wsgi
-     ```
+**a. Install python packages:**
 
-b. Install virtualenv
+```bash
+sudo apt-get install build-essential python python-pip python-dev mysql nodejs npm libapache2-mod-wsgi
+```
 
-     ```bash
-     sudo pip install virtualenv
-     ```
+**b. Install virtualenv**
 
-c. (optional) use [autoenv](https://github.com/kennethreitz/autoenv) & [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/) to ease your life
+```bash
+sudo pip install virtualenv
+```
 
-d.  Create the virtualenv folder folder for this project:
-  > Every dependencies will be installed in this project to keep your system's environnement clean.
+**c.** *(optional)* **use [autoenv](https://github.com/kennethreitz/autoenv) & [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/) to ease your life**
+
+**d.  Create the virtualenv folder folder for this project:**
+  > Every dependencies will be installed in this folder to keep your system's environnement clean.
+
 At project's root run this command. 
-    ```bash
-    virtualenv venv --distribute --prompt=SpendingStories
-    ```
 
-e. Activate virtualenv
+```bash
+virtualenv venv --distribute --prompt=SpendingStories
+```
+
+**e. Activate virtualenv:**
 If you installed autoenv you just need to reenter the project root: 
 
-    ```bash
-    cd .
-    ```
+```bash
+cd .
+```
 Else you have to run: 
 
-    ```bash
-    source venv/bin/activate 
-    ```
+```bash
+source venv/bin/activate 
+```
 
 
 ### 2. Install dependencies
-a. Install python modules required 
+**a. Install python modules required**
 
-    ```bash 
-    pip install -r requirements.txt
-    ``` 
+```bash
+pip install -r requirements.txt
+``` 
 
-b. Install preprocessors for *Less* and *CoffeeScript*
+**b. Install preprocessors for *Less* and *CoffeeScript***
     
-    ```bash
-    cat npm_requirements.txt | sudo xargs npm -g install
-    ```
+```bash
+cat npm_requirements.txt | sudo xargs npm -g install
+```
+
+
 
 
 
