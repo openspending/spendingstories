@@ -33,6 +33,13 @@ class StorySerializer(serializers.Serializer):
         paginated_by = 10
 
 
+class StoryDetailsAPIView(generics.RetrieveUpdateAPIView):
+    '''
+    API endpoint to retrieve a single story
+    '''
+    queryset         = Story.objects.published()
+    serializer_class = StorySerializer
+
 class StoryListAPIView(generics.ListCreateAPIView):
     '''
     The base API for stories, retrieve all stories paginated
