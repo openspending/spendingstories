@@ -1,0 +1,20 @@
+<html>
+    <head>
+        {% load compress %}
+        {% compress css %}
+            <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}less/base.less"/>
+            {% block extracss %}
+            {% endblock %}
+        {% endcompress %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+
+        {% compress js %}
+            <script type="text/coffeescript", src="{{ STATIC_URL }}coffee/stories.coffee"/>
+            {% block extrajs %}
+            {% endblock %}
+        {% endcompress %}
+    <body>
+</html>
