@@ -53,33 +53,57 @@
 
 ### Code Conventions
 
-- [Tabs are evil](http://www.emacswiki.org/emacs/TabsAreEvil) use `4` spaces instead
-- Always save in UTF-8;
-- Use UNIX line endings;
-- A code line **should be** less than `80` caracters and **never** exceed `100` caracters  
-- Empty lines are used to separates blocks of functionnality (like functions), don't overuse them
-- Don't comment a line of code without a comment explaning why 
-- Comments are good as they are representative of the code commented, in other terms: **watch your old comments**
-- Class names are in `CamelCase`
-- Function and methods are in `underscore_fashion()`
-- Constants are in `UNDERSCORE_UPPERCASE_FASHION`
-- Function scope variables are in `underscore_fashion`
-- [The best code is no code at all](http://www.codinghorror.com/blog/2007/05/the-best-code-is-no-code-at-all.html)
+If you want ton contribute to this projet please follow the [jplusplus styeguide](https://github.com/jplusplus/styleguide).
+
+## How to install
+### 1. Set up your python environnement 
+a. Install python packages:   
+
+     ```bash
+     sudo apt-get install build-essential python python-pip python-dev mysql nodejs npm libapache2-mod-wsgi
+     ```
+
+b. Install virtualenv
+
+     ```bash
+     sudo pip install virtualenv
+     ```
+
+c. (optional) use [autoenv](https://github.com/kennethreitz/autoenv) & [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/) to ease your life
+
+d.  Create the virtualenv folder folder for this project:
+  > Every dependencies will be installed in this project to keep your system's environnement clean.
+At project's root run this command. 
+    ```bash
+    virtualenv venv --distribute --prompt=SpendingStories
+    ```
+
+e. Activate virtualenv
+If you installed autoenv you just need to reenter the project root: 
+
+    ```bash
+    cd .
+    ```
+Else you have to run: 
+
+    ```bash
+    source venv/bin/activate 
+    ```
 
 
-## Install 
+### 2. Install dependencies
+a. Install python modules required 
 
-### Dependencies 
-- Python >= 2.7
-- PostgreSQL 
-- fabric 
+    ```bash 
+    pip install -r requirements.txt
+    ``` 
+
+b. Install preprocessors for *Less* and *CoffeeScript*
+    
+    ```bash
+    cat npm_requirements.txt | sudo xargs npm -g install
+    ```
 
 
 
-
-##### Install PostgreSQL
-
-```bash
-sudo apt-get build-dep python-psycopg2
-```
 
