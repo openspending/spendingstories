@@ -13,10 +13,17 @@ def api_root_view(request):
 class StoryFilter(django_filters.FilterSet):
     '''
     Enable the filter on the following fields:
-        - top (Boolean), filter the stories based on their sticky attribute
+
+    - `top` (Boolean), filter the stories based on their sticky attribute
+    - `country` (String), filter stories for a specific country
+        > must be the 3 caracters code ([ISO 3166-1 alpha 3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3))
+          of the country to filter 
     '''
-    class Meta:
-        filter_fields = ('top', 'tag')
+    class Meta: 
+        model = Story
+        fields = ['country',]
+    tag = django_filters.ModelMultipleChoiceFilter()
+    country = django_filters.ChoiceFilter()
 
 class StorySerializer(serializers.Serializer):
     title             = serializers.CharField(max_length=140)
@@ -29,8 +36,6 @@ class StorySerializer(serializers.Serializer):
     sticky            = serializers.BooleanField(read_only=True)
     created           = serializers.DateTimeField(read_only=True)
     modified          = serializers.DateTimeField(read_only=True)
-    class Meta:
-        paginated_by = 10
 
 
 class StoryDetailsAPIView(generics.RetrieveUpdateAPIView):
@@ -50,30 +55,34 @@ class StoryListAPIView(generics.ListCreateAPIView):
 
     ## Filters
 
-    - **top** 
-    - ****
+    - **top**
+    - ** **
 
     '''
-    queryset         = Story.objects.published()
-    filter_class     = StoryFilter
-    serializer_class = StorySerializer
+    queryset          = Story.objects.published()
+    filter_class      = StoryFilter
+    serializer_class  = StorySerializer
+    paginate_by       = 10
+    paginate_by_param = 'page_size'
 
 
-class ProximityStoryListAPIView(generics.ListAPIView):
+class StoryByRelevanceListAPIView(generics.ListAPIView):
     '''
-    Get the stories filtered by proximity
+    Get the stories sorted by relevance
     ''' 
+    paginate_by = 10
+    paginate_by_param = 'page_size'
+
     queryset         = Story.objects
     serializer_class = StorySerializer
 
     def get_queryset(self):
         query_params  = self.request.QUERY_PARAMS
-        closest_first = True
         currency_code = 'USD'
-        amount        = query_params['amount']
-
-        if 'closest_first' in query_params:
-            closest_first = query_params['closest_first']
+        if 'amount' in query_params: 
+            amount = query_params['amount']
+        else:
+            raise Exception('Missing parameters: amount must be specified')
 
         if 'currency' in query_params:
             currency_code = query_params['currency']
@@ -82,5 +91,5 @@ class ProximityStoryListAPIView(generics.ListAPIView):
             currency = Currency.objects.find(currency=currency_code)
             amount   = currency.rate * amount
 
-        return self.queryset.proximty(amount=amount, closest_first=closest_first)
+        return self.queryset.relevance(amount=amount)
 
