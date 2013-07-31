@@ -20,9 +20,11 @@ class CurrencyQuerySet(models.query.QuerySet):
     def find(currency=None):
         return self.filter(iso_code=currency)
 
+
 class Currency(models.Model):
     # The ISO code for currencies, possible values are based on what 
     iso_code = models.CharField(max_length=3)
+    name     = models.CharField(max_length=120)
     # The exchange rate took from OpenExchangeRate
     rate     = models.FloatField()
 
@@ -30,6 +32,9 @@ class Currency(models.Model):
 
     def get_exchange_rate(self):
         return self.rate
+
+    def __unicode__(self):
+        return "%s - %s" % (self.name, self.iso_code)
 
 class InflationWrapper(object):
     # Simple Singleton wrapper 
@@ -71,9 +76,8 @@ class StoryQuerySet(models.query.QuerySet):
     def published(self): 
         return self.filter(published=True)
 
-    def proximity(self, amount=None, closest_first=True):
-        sort_order = 'ASC' if closest_first else 'DESC'
-        return self.raw(relevance_query % amount, sort_order)
+    def relevance(self, amount):
+        return self.all() 
         
 
 class Story(models.Model):
