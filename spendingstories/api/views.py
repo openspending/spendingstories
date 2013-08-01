@@ -3,7 +3,7 @@ from rest_framework              import serializers
 from rest_framework.views        import APIView
 from rest_framework.decorators   import link, api_view
 from rest_framework.response     import Response
-from spendingstories.core.models import Story
+from spendingstories.core.models import Story, Currency
 import django_filters
 
 @api_view(['GET'])
@@ -25,17 +25,28 @@ class StoryFilter(django_filters.FilterSet):
     tag = django_filters.ModelMultipleChoiceFilter()
     country = django_filters.ChoiceFilter()
 
+class CurrencySerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Currency
+        fields = ('iso_code','name','rate')
+
 class StorySerializer(serializers.Serializer):
+    class Meta:
+        model = Story
+
     title             = serializers.CharField(max_length=140)
+    continuous        = serializers.BooleanField(default=False)
     source            = serializers.URLField()
     value             = serializers.IntegerField()
+    currency          = CurrencySerializer() 
     # Read Only fields:
-    id                = serializers.IntegerField(read_only=True)
-    value_current     = serializers.IntegerField(read_only=True)
-    value_current_usd = serializers.IntegerField(read_only=True)
-    sticky            = serializers.BooleanField(read_only=True)
-    created           = serializers.DateTimeField(read_only=True)
-    modified          = serializers.DateTimeField(read_only=True)
+    id                       = serializers.IntegerField(read_only=True)
+    value_current            = serializers.IntegerField(read_only=True)
+    value_current_usd        = serializers.IntegerField(read_only=True)
+    inflation_ajustment_year = serializers.IntegerField(read_only=True)
+    sticky                   = serializers.BooleanField(read_only=True)
+    created                  = serializers.DateTimeField(read_only=True)
+    modified                 = serializers.DateTimeField(read_only=True)
 
 
 class StoryDetailsAPIView(generics.RetrieveUpdateAPIView):
@@ -59,7 +70,7 @@ class StoryListAPIView(generics.ListCreateAPIView):
     - ** **
 
     '''
-    queryset          = Story.objects.published()
+    queryset          = Story.objects.all()
     filter_class      = StoryFilter
     serializer_class  = StorySerializer
     paginate_by       = 10
