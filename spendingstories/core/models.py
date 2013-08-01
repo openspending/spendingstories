@@ -24,7 +24,7 @@ class CurrencyQuerySet(models.query.QuerySet):
 
 class Currency(models.Model):
     # The ISO code for currencies, possible values are based on what 
-    iso_code = models.CharField(max_length=3)
+    iso_code = models.CharField(primary_key=True, max_length=3)
     name     = models.CharField(max_length=120)
     # The exchange rate took from OpenExchangeRate
     rate     = models.FloatField()
@@ -127,7 +127,7 @@ class Story(models.Model):
         Return the closest available year for inflation ajustement, ideally it 
         should return the current year - 1
         ''' 
-        return InflationWrapper.closest_ajustment_year(country=self.country)
+        return InflationWrapper().closest_ajustment_year(country=self.country)
 
     # all calculated fields
     value_current            = property(_inflate_value)
