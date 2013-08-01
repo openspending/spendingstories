@@ -1,0 +1,1 @@
+from inflation import Inflation
