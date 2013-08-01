@@ -127,7 +127,7 @@ class Story(models.Model):
         Return the closest available year for inflation ajustement, ideally it 
         should return the current year - 1
         ''' 
-        return InflationWrapper().closest_ajustment_year(country=self.country)
+        return InflationWrapper().closest_ajustment_year(country=self.country).year
 
     # all calculated fields
     value_current            = property(_inflate_value)

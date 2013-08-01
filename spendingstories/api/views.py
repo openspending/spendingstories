@@ -4,6 +4,7 @@ from rest_framework.views        import APIView
 from rest_framework.decorators   import link, api_view
 from rest_framework.response     import Response
 from spendingstories.core.models import Story, Currency
+from spendingstories.core.fields import COUNTRIES
 import django_filters
 
 @api_view(['GET'])
@@ -38,6 +39,7 @@ class StorySerializer(serializers.Serializer):
     continuous        = serializers.BooleanField(default=False)
     source            = serializers.URLField()
     value             = serializers.IntegerField()
+    country           = serializers.ChoiceField(choices=COUNTRIES)
     currency          = CurrencySerializer() 
     # Read Only fields:
     id                       = serializers.IntegerField(read_only=True)
