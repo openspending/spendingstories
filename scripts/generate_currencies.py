@@ -182,10 +182,10 @@ def get_rates(app_id):
     return r.json()
 
 
-def create_currency_object(name, iso_code, rate, pk):
+def create_currency_object(name, iso_code, rate):
     model_name = 'core.currency'
     currency = {
-        'pk': pk,
+        'pk': iso_code,
         'model': model_name,
         'fields': {
             'iso_code': iso_code,
@@ -208,10 +208,8 @@ def create_currencies(api_key):
             currency     = create_currency_object(
                 name=name, 
                 iso_code=iso_code, 
-                rate=rate, 
-                pk=currency_id
+                rate=rate
             )
-            currency_id += 1
             currencies.append(currency)
 
     return currencies
