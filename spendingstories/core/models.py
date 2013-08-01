@@ -1,13 +1,14 @@
 from rest_framework           import serializers
 from django.utils.translation import ugettext as _
 from model_utils.managers     import PassThroughManager
-from economics                import Inflation, CPI
+from economics                import CPI
 from django.db                import models
 import datetime
 import fields
 
+from spendingstories.libs.economics import Inflation # changed version of Inflation                       
 
-CPI_DATA_URL = 'http://localhost:8000/static/data/cpi.csv'
+CPI_DATA_URL = 'http://localhost:8000/static/data/datapackage.json'
 
 YEAR_CHOICES = []
 for r in range(1999, (datetime.datetime.now().year)):
@@ -27,7 +28,6 @@ class Currency(models.Model):
     name     = models.CharField(max_length=120)
     # The exchange rate took from OpenExchangeRate
     rate     = models.FloatField()
-
     objects  = PassThroughManager.for_queryset_class(CurrencyQuerySet)()
 
     def get_exchange_rate(self):
@@ -37,20 +37,21 @@ class Currency(models.Model):
         return "%s - %s" % (self.name, self.iso_code)
 
 class InflationWrapper(object):
-    # Simple Singleton wrapper 
     instance = None
+    # Simple Singleton wrapper 
     def __new__(klass, *args, **kargs):
-        if instance is None:
-            instance = object.__new__(klass, *args, **args)
-            instance.cpi = CPI(source=CPI_DATA_URL)
-            instance.inflation = Inflation(source=CPI_DATA_URL)
-        return instance
+        if klass.instance is None:
+            klass.instance = object.__new__(klass, *args, **kargs)
+            klass.instance.cpi = CPI(datapackage=CPI_DATA_URL)
+            klass.instance.inflation = Inflation(source=klass.instance.cpi)
+        return klass.instance
 
     def closest_ajustment_year(self, country=None):
-        return self.cpi.closest(
+        cpi_closest = self.cpi.closest(
             country=country, 
-            date=datetime.date.today(), 
-            limit=datetime.timedelta(366*3)).date
+            date=datetime.date.today(),
+            limit=datetime.timedelta(366*3))
+        return cpi_closest.date
 
 
     def inflate(self, reference=None, country=None, amount=None):
@@ -64,16 +65,21 @@ class InflationWrapper(object):
         try: 
             closest_ref_date = self.cpi.closest(country=country, date=reference).date # get the closest date for reference date
         except:
-            closest_ref_date = target
+            closest_ref_date = target_date
         # We inflate the given amount to the targeted year (the closent year available)
-        return self.inflation.inflate(target=target_date, reference=closest_ref_date, country=country) 
+        return self.inflation.inflate(
+            amount=amount, 
+            target=target_date, 
+            reference=closest_ref_date, 
+            country=country
+        ) 
 
 
 
 class StoryQuerySet(models.query.QuerySet):
     relevance_query = "SELECT * FROM core_stories ORDER BY amount_usd_current / %s %s"
 
-    def published(self): 
+    def published(self):
         return self.filter(published=True)
 
     def relevance(self, amount):
@@ -102,7 +108,12 @@ class Story(models.Model):
         '''
         Used to ajust the value of the story value
         ''' 
-        return round(InflationWrapper().inflate(country=self.country, reference=self.year))
+
+        reference = datetime.date(self.year, 1, 1)
+        return round(InflationWrapper().inflate(
+            amount=self.value,
+            country=self.country,
+            reference=reference))
     
     def _convert_to_usd(self):
         '''
@@ -114,7 +125,7 @@ class Story(models.Model):
     def _get_ajustement_year(self):
         '''
         Return the closest available year for inflation ajustement, ideally it 
-        should return the current year - 1 
+        should return the current year - 1
         ''' 
         return InflationWrapper.closest_ajustment_year(country=self.country)
 
