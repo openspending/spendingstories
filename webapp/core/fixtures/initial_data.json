@@ -1,0 +1,76 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "root", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-08-05T17:06:53.993Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$qKzQc8xLtPQF$pSSdYBvUU5At/VIa9kVgU3sdMc7NXaizBZcMx4t0awM=", 
+        "email": "edou4rd@gmail.com", 
+        "date_joined": "2013-08-05T16:52:35.852Z"
+    }
+},
+{
+    "pk": "aides-sociales", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Aides sociales"
+    }
+},
+{
+    "pk": "banques", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Banques"
+    }
+},
+{
+    "pk": "budget", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Budget"
+    }
+},
+{
+    "pk": "culture", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Culture"
+    }
+},
+{
+    "pk": "education", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Education"
+    }
+},
+{
+    "pk": "recherche", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Recherche"
+    }
+},
+{
+    "pk": "transport", 
+    "model": "core.theme", 
+    "fields": {
+        "description": "", 
+        "title": "Transport"
+    }
+}
+]
