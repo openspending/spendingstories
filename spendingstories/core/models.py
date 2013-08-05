@@ -1,4 +1,16 @@
-from rest_framework           import serializers
+#!/usr/bin/env python
+# Encoding: utf-8
+# -----------------------------------------------------------------------------
+# Project : OKF - Spending Stories
+# -----------------------------------------------------------------------------
+# Author : Edouard Richard                                  <edou4rd@gmail.com>
+# -----------------------------------------------------------------------------
+# License : proprietary journalism++
+# -----------------------------------------------------------------------------
+# Creation : 05-Aug-2013
+# Last mod : 05-Aug-2013
+# -----------------------------------------------------------------------------
+
 from django.utils.translation import ugettext as _
 from model_utils.managers     import PassThroughManager
 from economics                import CPI
@@ -15,10 +27,8 @@ for r in range(1999, (datetime.datetime.now().year)):
     YEAR_CHOICES.append((r,r))
 
 
-
-
 class CurrencyQuerySet(models.query.QuerySet):
-    def find(currency=None):
+    def find(self, currency=None):
         return self.filter(iso_code=currency)
 
 

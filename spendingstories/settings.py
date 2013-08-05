@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# Encoding: utf-8
+# -----------------------------------------------------------------------------
+# Project : OKF - Spending Stories
+# -----------------------------------------------------------------------------
+# Author : Edouard Richard                                  <edou4rd@gmail.com>
+# -----------------------------------------------------------------------------
+# License : proprietary journalism++
+# -----------------------------------------------------------------------------
+# Creation : 05-Aug-2013
+# Last mod : 05-Aug-2013
+# -----------------------------------------------------------------------------
 import os
 
 '''
@@ -12,6 +24,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
+    ('edouard', 'edou4rd@gmail.com'),
     ('pbellon', 'bellon.pierre@gmail.com'),
 )
 
@@ -20,7 +33,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db.sql',                      # Or path to database file if using sqlite3.
+        'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -129,12 +142,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.debug",
     'django.core.context_processors.static',
 )
-# JS/CSS COMPRESSOR SETTINGS
-COMPRESS_PRECOMPILERS = (
-    ('text/coffeescript', 'coffee --compile --stdio --bare'),
-    ('text/less', 'lessc {infile} {outfile}'),
-)
-
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -185,4 +192,10 @@ LOGGING = {
         },
     }
 }
+
+# JS/CSS COMPRESSOR SETTINGS
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio --bare'),
+    ('text/less', 'lessc {infile} {outfile}'),
+)
 
