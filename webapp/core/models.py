@@ -18,7 +18,7 @@ from django.db                import models
 import datetime
 import fields
 
-from spendingstories.libs.economics import Inflation # changed version of Inflation                       
+from webapp.libs.economics import Inflation # changed version of Inflation                       
 
 CPI_DATA_URL = 'http://localhost:8000/static/data/datapackage.json'
 

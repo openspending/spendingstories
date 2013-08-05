@@ -3,8 +3,8 @@ from rest_framework              import serializers
 from rest_framework.views        import APIView
 from rest_framework.decorators   import link, api_view
 from rest_framework.response     import Response
-from spendingstories.core.models import Story, Currency
-from spendingstories.core.fields import COUNTRIES
+from webapp.core.models import Story, Currency
+from webapp.core.fields import COUNTRIES
 import django_filters
 
 @api_view(['GET'])
