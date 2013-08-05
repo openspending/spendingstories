@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 import os, requests, sys
 from django.conf import settings
-from django.core.management import setup_environ
 
 os.environ['PYTHONPATH'] = ROOT_PATH = settings.ROOT_PATH
-from spendingstories.core.models import Currency
 
 names = {
     "AFN":"Afghanistan afghani",
@@ -199,7 +197,6 @@ def create_currencies(api_key):
     json = get_rates(api_key)
     latest_rates = json['rates']
     currencies = []
-    currency_id = 1
 
     for iso_code in latest_rates:
         if iso_code in names:

@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     # Internal applications added 
     'spendingstories.api',  
     'spendingstories.core',
+    'spendingstories.currency',
     # Uncomment the next line to enable admin documentation:
 )
 
