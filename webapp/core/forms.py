@@ -30,9 +30,8 @@ class StoryForm(forms.ModelForm):
 	def clean_year(self):
 		year  = self.cleaned_data['year']
 		years = AVAILABLE_YEAR_PER_COUNTRY[self.cleaned_data['country']]
-		print year, years
 		if not year in years:
-			raise forms.ValidationError("For this country, are available: %s" % ", ".join(years))
+			raise forms.ValidationError("For this country, are available: %s" % years)
 		return year
 
 
