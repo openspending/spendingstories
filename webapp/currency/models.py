@@ -19,3 +19,5 @@ class Currency(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.name, self.iso_code)
+
+# EOF

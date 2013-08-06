@@ -4,5 +4,8 @@ import models
 class ThemeAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
-admin.site.register(models.Story)
+class StoryAdmin(admin.ModelAdmin):
+	readonly_fields=('current_value_usd',)
+
+admin.site.register(models.Story, StoryAdmin)
 admin.site.register(models.Theme, ThemeAdmin)
