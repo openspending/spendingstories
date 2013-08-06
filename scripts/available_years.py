@@ -18,12 +18,12 @@ results = {}
 
 with open("data/cpi/cpi.csv") as cpi_file:
     spamreader = csv.reader(cpi_file, delimiter=',', quotechar='"')
-
+    spamreader.next()
     for row in spamreader:
         country, code, year, cpi = row
     	if not code in results:
     		results[code] = []
-    	results[code].append(year)
+    	results[code].append(int(year))
 print json.dumps(results)
     # 	print row
 
