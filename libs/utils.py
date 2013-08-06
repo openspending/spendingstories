@@ -23,7 +23,7 @@ INFLATION = Inflation(CPI)
 INFLATION_REFERENCE_RETRY = 5
 
 def get_inflation(amount, year, country):
-	def closest_ajustment_date():
+	def closest_ajustment_reference_date():
 	    cpi_closest = CPI.closest(
 	        country = country,
 	        date    = datetime.date.today(),
@@ -31,7 +31,7 @@ def get_inflation(amount, year, country):
 	    return cpi_closest.date
 	_year = year
 	for i in range(INFLATION_REFERENCE_RETRY):
-		reference_date = closest_ajustment_date()
+		reference_date = closest_ajustment_reference_date()
 		try:
 			return (INFLATION.inflate(amount, reference_date, datetime.date(_year, 1, 1), country),
 				reference_date.year )
