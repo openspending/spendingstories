@@ -20,18 +20,23 @@ import datetime
 # -----------------------------------------------------------------------------
 CPI       = CPI()
 INFLATION = Inflation(CPI)
+INFLATION_REFERENCE_RETRY = 5
 
 def get_inflation(amount, year, country):
-	def closest_ajustment_year():
+	def closest_ajustment_date():
 	    cpi_closest = CPI.closest(
 	        country = country,
 	        date    = datetime.date.today(),
-	        limit   = datetime.timedelta(366*3))
+	        limit   = datetime.timedelta(366*5))
 	    return cpi_closest.date
-	try:
-		return (INFLATION.inflate(amount, closest_ajustment_year(), datetime.date(year, 1, 1), country),
-			closest_ajustment_year().year )
-	except KeyError:
-		return get_inflation(amount, year - 1, country)
+	_year = year
+	for i in range(INFLATION_REFERENCE_RETRY):
+		reference_date = closest_ajustment_date()
+		try:
+			return (INFLATION.inflate(amount, reference_date, datetime.date(_year, 1, 1), country),
+				reference_date.year )
+		except KeyError:
+			_year = _year - 1
+	raise Exception("no date found for inflation. Asked for %s and tested up to %s (%s)" % (year, _year + 1, country))
 
 # EOF
