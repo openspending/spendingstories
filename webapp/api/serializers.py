@@ -10,18 +10,20 @@
 # Creation : 06-Aug-2013
 # Last mod : 06-Aug-2013
 # -----------------------------------------------------------------------------
-from django.conf.urls import patterns, url, include
-from rest_framework import routers
-import views
+from rest_framework import serializers
+from webapp.currency.models import Currency
+from webapp.core.models import Story, Theme
 
-router = routers.DefaultRouter()
-router.register(r'stories', views.StoryViewSet)
-router.register(r'themes', views.ThemeViewSet)
-router.register(r'currencies', views.CurrencyViewSet)
+class StorySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Story
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browseable API.
-urlpatterns = patterns('',
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-)
+class ThemeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Theme
+
+class CurrencySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Currency
+
+# EOF

@@ -1,108 +1,39 @@
-from rest_framework              import status, generics 
-from rest_framework              import serializers
-from rest_framework.views        import APIView
-from rest_framework.decorators   import link, api_view
-from rest_framework.response     import Response
-from webapp.core.models import Story, Currency
-from webapp.core.fields import COUNTRIES
-import django_filters
+#!/usr/bin/env python
+# Encoding: utf-8
+# -----------------------------------------------------------------------------
+# Project : OKF - Spending Stories
+# -----------------------------------------------------------------------------
+# Author : Edouard Richard                                  <edou4rd@gmail.com>
+# -----------------------------------------------------------------------------
+# License : proprietary journalism++
+# -----------------------------------------------------------------------------
+# Creation : 06-Aug-2013
+# Last mod : 06-Aug-2013
+# -----------------------------------------------------------------------------
+from webapp.core.models import Story, Theme
+from webapp.currency.models import Currency
+from rest_framework import viewsets
+import serializers
 
-@api_view(['GET'])
-def api_root_view(request):
-    return Response({'message': 'Welcome to Spending Stories API !'})
+class StoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows story to be viewed or edited.
+    """
+    queryset = Story.objects.all()
+    serializer_class = serializers.StorySerializer
 
-class StoryFilter(django_filters.FilterSet):
-    '''
-    Enable the filter on the following fields:
+class ThemeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Theme to be viewed or edited.
+    """
+    queryset = Theme.objects.all()
+    serializer_class = serializers.ThemeSerializer
 
-    - `top` (Boolean), filter the stories based on their sticky attribute
-    - `country` (String), filter stories for a specific country
-        > must be the 3 caracters code ([ISO 3166-1 alpha 3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3))
-          of the country to filter 
-    '''
-    class Meta: 
-        model = Story
-        fields = ['country',]
-    tag = django_filters.ModelMultipleChoiceFilter()
-    country = django_filters.ChoiceFilter()
+class CurrencyViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Currency to be viewed or edited.
+    """
+    queryset = Currency.objects.all()
+    serializer_class = serializers.CurrencySerializer
 
-class CurrencySerializer(serializers.ModelSerializer):
-    class Meta: 
-        model = Currency
-        fields = ('iso_code','name','rate')
-
-class StorySerializer(serializers.Serializer):
-    class Meta:
-        model = Story
-
-    title             = serializers.CharField(max_length=140)
-    continuous        = serializers.BooleanField(default=False)
-    source            = serializers.URLField()
-    value             = serializers.IntegerField()
-    country           = serializers.ChoiceField(choices=COUNTRIES)
-    currency          = CurrencySerializer() 
-    # Read Only fields:
-    id                       = serializers.IntegerField(read_only=True)
-    value_current            = serializers.IntegerField(read_only=True)
-    value_current_usd        = serializers.IntegerField(read_only=True)
-    inflation_ajustment_year = serializers.IntegerField(read_only=True)
-    sticky                   = serializers.BooleanField(read_only=True)
-    created                  = serializers.DateTimeField(read_only=True)
-    modified                 = serializers.DateTimeField(read_only=True)
-
-
-class StoryDetailsAPIView(generics.RetrieveUpdateAPIView):
-    '''
-    API endpoint to retrieve a single story
-    '''
-    queryset         = Story.objects.published()
-    serializer_class = StorySerializer
-
-class StoryListAPIView(generics.ListCreateAPIView):
-    '''
-    The base API for stories, retrieve all stories paginated
-    ## Pagination
-    Every list you get is paginated, if you want to get results without pagination
-    use the `page_size` parameter set to `0`<br/>
-    > Example: `GET /api/stories/?page_size=0`
-
-    ## Filters
-
-    - **top**
-    - ** **
-
-    '''
-    queryset          = Story.objects.all()
-    filter_class      = StoryFilter
-    serializer_class  = StorySerializer
-    paginate_by       = 10
-    paginate_by_param = 'page_size'
-
-
-class StoryByRelevanceListAPIView(generics.ListAPIView):
-    '''
-    Get the stories sorted by relevance
-    ''' 
-    paginate_by = 10
-    paginate_by_param = 'page_size'
-
-    queryset         = Story.objects
-    serializer_class = StorySerializer
-
-    def get_queryset(self):
-        query_params  = self.request.QUERY_PARAMS
-        currency_code = 'USD'
-        if 'amount' in query_params: 
-            amount = query_params['amount']
-        else:
-            raise Exception('Missing parameters: amount must be specified')
-
-        if 'currency' in query_params:
-            currency_code = query_params['currency']
-
-        if currency_code != 'USD':
-            currency = Currency.objects.find(currency=currency_code)
-            amount   = currency.rate * amount
-
-        return self.queryset.relevance(amount=amount)
-
+# EOF
