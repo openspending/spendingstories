@@ -19,7 +19,7 @@ import datetime
 #
 # -----------------------------------------------------------------------------
 CPI       = CPI()
-INFLATION = Inflation()
+INFLATION = Inflation(CPI)
 
 def get_inflation(amount, year, country):
 	def closest_ajustment_year():
