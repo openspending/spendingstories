@@ -54,7 +54,6 @@ COUNTRIES = (
     ('HRV', _('Croatia')),
     ('CYP', _('Cyprus')),
     ('CZE', _('Czech Republic')),
-    ('COD', _('Democratic Republic of the Congo')),
     ('DNK', _('Denmark')),
     ('DJI', _('Djibouti')),
     ('DMA', _('Dominica')),

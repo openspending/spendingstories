@@ -45,11 +45,7 @@ class Story(models.Model):
     '''
     The model representing a spending
     '''
-    created_at          = models.DateTimeField(auto_now_add=True, editable=False)
     value               = models.FloatField(_('The spending value')) # The spending amount
-    current_value       = models.FloatField(_('The current value with the inflation'), editable=False)
-    current_value_usd   = models.FloatField(_('Current value in USD'), editable=False)
-    inflation_last_year = models.IntegerField(max_length=4, editable=False)
     title               = models.CharField(_('Story title'), max_length=240)
     description         = models.TextField(_('Story description'))
     country             = fields.CountryField() # ISO code of the country 
@@ -60,7 +56,13 @@ class Story(models.Model):
     sticky              = models.BooleanField(_('Is a top story'),            default=False)
     year                = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES, max_length=4)
     themes              = models.ManyToManyField(Theme)
+    # auto computed
+    created_at          = models.DateTimeField(auto_now_add=True, editable=False)
+    current_value       = models.FloatField(_('The current value with the inflation'), editable=False)
+    current_value_usd   = models.FloatField(_('Current value in USD'), editable=False)
+    inflation_last_year = models.IntegerField(max_length=4, editable=False)
 
+    
     def __unicode__(self):
         return self.title
 
