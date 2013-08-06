@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 import json
 import os
 from django.conf import settings
+import datetime
 
 AVAILABLE_YEAR_PER_COUNTRY = json.load(file(os.path.join(settings.ROOT_PATH, 'data/years_available_per_country.json')))
 
@@ -29,8 +30,8 @@ class StoryForm(forms.ModelForm):
 
 	def clean_year(self):
 		year  = self.cleaned_data['year']
-		years = AVAILABLE_YEAR_PER_COUNTRY[self.cleaned_data['country']]
-		if not year in years:
+		years = sorted(AVAILABLE_YEAR_PER_COUNTRY[self.cleaned_data['country']])
+		if not year in years and year != datetime.date.today().year:
 			raise forms.ValidationError("For this country, are available: %s" % years)
 		return year
 
