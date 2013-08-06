@@ -22,7 +22,7 @@
 
 import datetime
 import collections
-import economics
+# import economics
 
 class Inflation(object):
     """
