@@ -29,7 +29,8 @@ def get_inflation(amount, year, country):
 	        limit   = datetime.timedelta(366*3))
 	    return cpi_closest.date
 	try:
-		return INFLATION.inflate(amount, closest_ajustment_year(), datetime.date(year, 1, 1), country)
+		return (INFLATION.inflate(amount, closest_ajustment_year(), datetime.date(year, 1, 1), country),
+			closest_ajustment_year().year )
 	except KeyError:
 		return get_inflation(amount, year - 1, country)
 
