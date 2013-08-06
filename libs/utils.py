@@ -18,7 +18,7 @@ import datetime
 #    INFLATION
 #
 # -----------------------------------------------------------------------------
-CPI       = CPI()
+CPI       = CPI(datapackage="data/cpi/")
 INFLATION = Inflation(CPI)
 INFLATION_REFERENCE_RETRY = 5
 
