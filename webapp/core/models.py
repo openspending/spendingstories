@@ -8,11 +8,12 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 05-Aug-2013
-# Last mod : 05-Aug-2013
+# Last mod : 07-Aug-2013
 # -----------------------------------------------------------------------------
 
 from django.utils.translation import ugettext as _
 from webapp.currency.models import Currency
+from django.template.defaultfilters import slugify
 from django.db import models
 import fields
 import datetime
@@ -35,6 +36,12 @@ class Theme(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Newly created object, so set slug
+            self.slug = slugify(self.title)
+        super(Theme, self).save(*args, **kwargs)
 
 # -----------------------------------------------------------------------------
 #

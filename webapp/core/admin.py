@@ -8,7 +8,7 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 06-Aug-2013
+# Last mod : 07-Aug-2013
 # -----------------------------------------------------------------------------
 from django.contrib import admin
 import models
