@@ -200,3 +200,11 @@ COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
 
+if os.environ.get('HEROKU', None):
+    try:
+        HEROKU_SETTINGS
+    except NameError:
+        try:
+            from settings_heroku import *
+        except ImportError:
+            pass
