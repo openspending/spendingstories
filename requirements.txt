@@ -1,2 +1,6 @@
 -r requirements_dev.txt
 psycopg2==2.5.1
+dj-database-url==0.2.2
+gunicorn==0.17.2
+django-storages==1.1.8
+boto==2.9.9
