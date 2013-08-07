@@ -8,12 +8,19 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 06-Aug-2013
+# Last mod : 07-Aug-2013
 # -----------------------------------------------------------------------------
+"""
 
+Create a json file which contains the list of available years for each country
+in the `data/cpi/cpi.csv` file.
+
+This json file will be used in order to check the user entries for dates and
+to show dynamically the available dates if the country is known.
+
+"""
 import csv
 import json
-from pprint import pprint as pp
 results = {}
 
 with open("data/cpi/cpi.csv") as cpi_file:
@@ -24,8 +31,8 @@ with open("data/cpi/cpi.csv") as cpi_file:
     	if not code in results:
     		results[code] = []
     	results[code].append(int(year))
-print json.dumps(results)
-    # 	print row
 
 with open("data/years_available_per_country.json", "w") as output:
 	output.write(json.dumps(results))
+
+# EOF
