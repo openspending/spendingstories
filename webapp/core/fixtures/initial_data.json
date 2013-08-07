@@ -18,62 +18,6 @@
     }
 },
 {
-    "pk": "aides-sociales", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Aides sociales"
-    }
-},
-{
-    "pk": "banques", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Banques"
-    }
-},
-{
-    "pk": "budget", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Budget"
-    }
-},
-{
-    "pk": "culture", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Culture"
-    }
-},
-{
-    "pk": "education", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Education"
-    }
-},
-{
-    "pk": "recherche", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Recherche"
-    }
-},
-{
-    "pk": "transport", 
-    "model": "core.theme", 
-    "fields": {
-        "description": "", 
-        "title": "Transport"
-    }
-},
-{
     "pk": 1, 
     "model": "core.story", 
     "fields": {
