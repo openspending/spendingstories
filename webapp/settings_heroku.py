@@ -19,6 +19,7 @@ BUILDPACK_URL:           git://github.com/vied12/heroku-buildpack-django.git
 HEROKU:                  True
 PATH:                    bin:node_modules/.bin:/app/bin:/usr/local/bin:/usr/bin:/bin
 PYTHONPATH:              webapp/:libs/
+DATABASE_URL             postgres://<POSTGRES_URL>
 """
 HEROKU = True
 from settings import *
