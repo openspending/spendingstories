@@ -106,8 +106,3 @@ pip install -r requirements.txt
 cat npm_requirements.txt | sudo xargs npm -g install
 ```
 
-
-
-
-
-
