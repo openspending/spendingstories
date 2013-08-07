@@ -57,7 +57,7 @@ class Story(models.Model):
     title               = models.CharField(_('Story title'), max_length=240)
     description         = models.TextField(_('Story description'), blank=True, null=True)
     country             = fields.CountryField() # ISO code of the country 
-    source              = models.URLField(_('Story\'s source URL'), null=True, blank=True, max_length=140)
+    source              = models.URLField(_('Story\'s source URL'), max_length=140)
     currency            = models.ForeignKey(Currency)
     continuous          = models.BooleanField(_('Is a countinuous spending'), default=False)
     status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
