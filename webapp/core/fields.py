@@ -200,3 +200,6 @@ class CountryField(models.CharField):
 
     def get_internal_type(self):
         return "CharField"
+
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^webapp\.core\.fields\.CountryField"])
