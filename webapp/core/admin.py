@@ -24,6 +24,7 @@ class StoryAdmin(admin.ModelAdmin):
     readonly_fields = ('current_value', 'current_value_usd', 'inflation_last_year',)
     search_fields   = ('title', 'value', 'current_value_usd', 'country')
     list_editable   = ('sticky',)
+    list_filter     = ('status', 'continuous', 'themes', 'currency', 'country')
     form            = forms.StoryForm
 
 admin.site.register(models.Story, StoryAdmin)
