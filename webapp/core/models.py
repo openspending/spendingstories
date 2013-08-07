@@ -60,7 +60,7 @@ class Story(models.Model):
     source              = models.URLField(_('Story\'s source URL'), null=True, blank=True, max_length=140)
     currency            = models.ForeignKey(Currency)
     continuous          = models.BooleanField(_('Is a countinuous spending'), default=False)
-    published           = models.BooleanField(_('Publish this story'),        default=False)
+    status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
     sticky              = models.BooleanField(_('Is a top story'),            default=False)
     year                = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES, max_length=4)
     themes              = models.ManyToManyField(Theme)
