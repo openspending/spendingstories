@@ -45,11 +45,20 @@ make_pending.short_description = _("Mark selected contributions as pending")
 class StoryAdmin(admin.ModelAdmin):
     actions         = [make_published, make_refused, make_pending]
     list_display    = ('title', 'value', 'currency', 'current_value_usd', 'country', 'sticky', 'created_at', 'status')
-    readonly_fields = ('current_value', 'current_value_usd', 'inflation_last_year',)
+    readonly_fields = ('current_value', 'current_value_usd', 'inflation_last_year', 'created_at')
     search_fields   = ('title', 'value', 'current_value_usd', 'country')
     list_editable   = ('sticky',)
     list_filter     = ('status', 'continuous', 'themes', 'currency', 'country')
     form            = forms.StoryForm
+    fieldsets       = (
+        ("Admin fields", {
+            'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'continuous', 'themes')
+        }),
+        ('Auto computed fields', {
+            # 'classes': ('collapse',),
+            'fields': readonly_fields
+        }),
+    )
 
 admin.site.register(models.Story, StoryAdmin)
 admin.site.register(models.Theme, ThemeAdmin)
