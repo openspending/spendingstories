@@ -20,10 +20,10 @@ class ThemeAdmin(admin.ModelAdmin):
     list_editable       = ('active',)
 
 class StoryAdmin(admin.ModelAdmin):
-    list_display    = ('title', 'value', 'currency', 'current_value_usd', 'continuous', 'country', 'sticky', 'status')
+    list_display    = ('title', 'value', 'currency', 'current_value_usd', 'country', 'sticky', 'created_at', 'status')
     readonly_fields = ('current_value', 'current_value_usd', 'inflation_last_year',)
     search_fields   = ('title', 'value', 'current_value_usd', 'country')
-    list_editable   = ('sticky', 'status')
+    list_editable   = ('sticky',)
     form            = forms.StoryForm
 
 admin.site.register(models.Story, StoryAdmin)
