@@ -28,7 +28,7 @@ for i in range(300):
     story = Story()
 
     story.title               = loremipsum.generate_sentence()[2].rstrip(".")
-    story.description         = loremipsum.generate_sentence()[2].rstrip(".")
+    story.description         = random.choice( [loremipsum.generate_sentence()[2].rstrip("."),""] )
     story.value               = value
     story.year                = year
     story.country             = random.choice(COUNTRIES)[0]
