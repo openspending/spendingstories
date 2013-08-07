@@ -3,3 +3,4 @@ staticfiles/
 *.pyc
 *.db
 *.log
+fabfile.py
