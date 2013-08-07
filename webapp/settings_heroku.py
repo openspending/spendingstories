@@ -10,6 +10,16 @@
 # Creation : 07-Aug-2013
 # Last mod : 07-Aug-2013
 # -----------------------------------------------------------------------------
+"""
+Heroku environment variables:
+AWS_ACCESS_KEY_ID:       <AWS_KEY>
+AWS_SECRET_ACCESS_KEY:   <AWS_PWD>
+AWS_STORAGE_BUCKET_NAME: <BUCKET_NAME>
+BUILDPACK_URL:           git://github.com/vied12/heroku-buildpack-django.git
+HEROKU:                  True
+PATH:                    bin:node_modules/.bin:/app/bin:/usr/local/bin:/usr/bin:/bin
+PYTHONPATH:              webapp/:libs/
+"""
 HEROKU = True
 from settings import *
 
