@@ -55,7 +55,7 @@ class Story(models.Model):
     '''
     value               = models.FloatField(_('The spending value')) # The spending amount
     title               = models.CharField(_('Story title'), max_length=240)
-    description         = models.TextField(_('Story description'))
+    description         = models.TextField(_('Story description'), blank=True, null=True)
     country             = fields.CountryField() # ISO code of the country 
     source              = models.URLField(_('Story\'s source URL'), null=True, blank=True, max_length=140)
     currency            = models.ForeignKey(Currency)
