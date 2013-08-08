@@ -35,6 +35,9 @@ class Theme(models.Model):
     image       = models.FileField(_("theme's image"), upload_to="themes", max_length=300, null=True, blank=True)
     active      = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ("slug",)
+
     def __unicode__(self):
         return self.title
 
