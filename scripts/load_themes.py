@@ -17,12 +17,14 @@ DISABLED = ("EC", "admin", "africa", "anchor", "asia", "dental", "energy2", "fam
 
 
 for theme_name in THEMES:
-	theme = Theme()
-	theme.title = theme_name
-	theme.save()
+    theme = Theme()
+    theme.title  = theme_name
+    theme.image  = "themes/%s.svg" % theme_name
+    theme.save()
 
 for theme_name in DISABLED:
-	theme = Theme()
-	theme.title = theme_name
-	theme.active = False
-	theme.save()
+    theme = Theme()
+    theme.title  = theme_name
+    theme.image  = "themes/%s.svg" % theme_name
+    theme.active = False
+    theme.save()

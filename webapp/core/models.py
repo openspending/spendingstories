@@ -32,10 +32,16 @@ class Theme(models.Model):
     title       = models.CharField(max_length=80)
     slug        = models.SlugField(primary_key=True)
     description = models.CharField(max_length=500, blank=True, null=True)
+    image       = models.FileField(_("theme's image"), upload_to="themes", max_length=300, null=True, blank=True)
     active      = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.title
+
+    def image_tag(self):
+        return u'<img src="%s" />' % self.image.url
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
 
     def save(self, *args, **kwargs):
         # Newly created object, so set slug

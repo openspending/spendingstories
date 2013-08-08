@@ -4,3 +4,4 @@ staticfiles/
 *.db
 *.log
 fabfile.py
+uploaded/

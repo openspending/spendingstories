@@ -1,6 +1,19 @@
+#!/usr/bin/env python
+# Encoding: utf-8
+# -----------------------------------------------------------------------------
+# Project : OKF - Spending Stories
+# -----------------------------------------------------------------------------
+# Author : Edouard Richard                                  <edou4rd@gmail.com>
+# -----------------------------------------------------------------------------
+# License : proprietary journalism++
+# -----------------------------------------------------------------------------
+# Creation : 08-Aug-2013
+# Last mod : 08-Aug-2013
+# -----------------------------------------------------------------------------
 from django.conf.urls import patterns, include, url
-
+from django.conf import settings
 from django.contrib import admin
+from django.conf.urls.static import static
 
 admin.autodiscover()
 
@@ -13,4 +26,4 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/',     include(admin.site.urls)),
     url(r'^',           include(admin.site.urls)),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # serving media folder in debug mode
