@@ -21,9 +21,10 @@ import forms
 #
 # -----------------------------------------------------------------------------
 class ThemeAdmin(admin.ModelAdmin):
-    list_display    = ('title', 'description', 'active')
+    list_display        = ('title', 'description', 'active')
     prepopulated_fields = {"slug": ("title",)}
     list_editable       = ('active',)
+    list_filter         = ('active',)
 
 # -----------------------------------------------------------------------------
 #
