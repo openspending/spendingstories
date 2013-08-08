@@ -42,6 +42,9 @@ class Theme(models.Model):
         if not self.slug:
             # Newly created object, so set slug
             self.slug = slugify(self.title)
+        if self.active is False:
+            for story in self.story_set.all():
+                story.themes.remove(self)
         super(Theme, self).save(*args, **kwargs)
 
 # -----------------------------------------------------------------------------
