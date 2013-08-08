@@ -17,8 +17,7 @@ from django.template.defaultfilters import slugify
 from django.db import models
 import fields
 import datetime
-import utils 
-
+import utils
 
 YEAR_CHOICES = []
 for r in range(1999, (datetime.datetime.now().year + 1)):
@@ -39,9 +38,10 @@ class Theme(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        # Newly created object, so set slug
         if not self.slug:
-            # Newly created object, so set slug
             self.slug = slugify(self.title)
+        # Remove the disabled theme from stories
         if self.active is False:
             for story in self.story_set.all():
                 story.themes.remove(self)
