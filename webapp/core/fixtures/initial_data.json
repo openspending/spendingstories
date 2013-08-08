@@ -9,7 +9,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2013-08-08T09:16:50.467Z", 
+        "last_login": "2013-08-08T14:02:18.667Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$qKzQc8xLtPQF$pSSdYBvUU5At/VIa9kVgU3sdMc7NXaizBZcMx4t0awM=", 
@@ -22,6 +22,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/admin.svg", 
         "description": null, 
         "title": "admin"
     }
@@ -31,6 +32,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/admin-culture.svg", 
         "description": null, 
         "title": "admin-culture"
     }
@@ -40,6 +42,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/admin-order-safety.svg", 
         "description": null, 
         "title": "admin-order-safety"
     }
@@ -49,6 +52,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/africa.svg", 
         "description": null, 
         "title": "africa"
     }
@@ -58,6 +62,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/aid.svg", 
         "description": null, 
         "title": "aid"
     }
@@ -67,6 +72,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/aid-developing-countries.svg", 
         "description": null, 
         "title": "aid-developing-countries"
     }
@@ -76,6 +82,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/airplane.svg", 
         "description": null, 
         "title": "airplane"
     }
@@ -85,6 +92,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/ambulance.svg", 
         "description": null, 
         "title": "ambulance"
     }
@@ -94,6 +102,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/anchor.svg", 
         "description": null, 
         "title": "anchor"
     }
@@ -103,6 +112,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/asia.svg", 
         "description": null, 
         "title": "asia"
     }
@@ -112,6 +122,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/books.svg", 
         "description": null, 
         "title": "books"
     }
@@ -121,6 +132,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/car.svg", 
         "description": null, 
         "title": "car"
     }
@@ -130,6 +142,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/civil-defence.svg", 
         "description": null, 
         "title": "civil-defence"
     }
@@ -139,6 +152,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/civilian-action.svg", 
         "description": null, 
         "title": "civilian-action"
     }
@@ -148,6 +162,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/coal.svg", 
         "description": null, 
         "title": "coal"
     }
@@ -157,6 +172,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/communication.svg", 
         "description": null, 
         "title": "communication"
     }
@@ -166,6 +182,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/community.svg", 
         "description": null, 
         "title": "community"
     }
@@ -175,6 +192,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/construction.svg", 
         "description": null, 
         "title": "construction"
     }
@@ -184,6 +202,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/courts.svg", 
         "description": null, 
         "title": "courts"
     }
@@ -193,6 +212,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/culture.svg", 
         "description": null, 
         "title": "culture"
     }
@@ -202,6 +222,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/defence.svg", 
         "description": null, 
         "title": "defence"
     }
@@ -211,6 +232,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/defence-admin.svg", 
         "description": null, 
         "title": "defence-admin"
     }
@@ -220,6 +242,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/defence-research.svg", 
         "description": null, 
         "title": "defence-research"
     }
@@ -229,6 +252,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/dental.svg", 
         "description": null, 
         "title": "dental"
     }
@@ -238,6 +262,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/dollar.svg", 
         "description": null, 
         "title": "dollar"
     }
@@ -247,6 +272,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/EC.svg", 
         "description": null, 
         "title": "EC"
     }
@@ -256,6 +282,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/economic-aid.svg", 
         "description": null, 
         "title": "economic-aid"
     }
@@ -265,6 +292,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/economy-tourism.svg", 
         "description": null, 
         "title": "economy-tourism"
     }
@@ -274,6 +302,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/education.svg", 
         "description": null, 
         "title": "education"
     }
@@ -283,6 +312,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/electricity.svg", 
         "description": null, 
         "title": "electricity"
     }
@@ -292,6 +322,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/energy.svg", 
         "description": null, 
         "title": "energy"
     }
@@ -301,6 +332,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/energy2.svg", 
         "description": null, 
         "title": "energy2"
     }
@@ -310,6 +342,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/environment.svg", 
         "description": null, 
         "title": "environment"
     }
@@ -319,6 +352,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/environment-admin.svg", 
         "description": null, 
         "title": "environment-admin"
     }
@@ -328,6 +362,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/euro.svg", 
         "description": null, 
         "title": "euro"
     }
@@ -337,6 +372,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/family.svg", 
         "description": null, 
         "title": "family"
     }
@@ -346,6 +382,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/family2.svg", 
         "description": null, 
         "title": "family2"
     }
@@ -355,6 +392,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/farms.svg", 
         "description": null, 
         "title": "farms"
     }
@@ -364,6 +402,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/financial-admin.svg", 
         "description": null, 
         "title": "financial-admin"
     }
@@ -373,6 +412,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/fire-brigade.svg", 
         "description": null, 
         "title": "fire-brigade"
     }
@@ -382,6 +422,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/fishing.svg", 
         "description": null, 
         "title": "fishing"
     }
@@ -391,6 +432,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/foreign-military-aid.svg", 
         "description": null, 
         "title": "foreign-military-aid"
     }
@@ -400,6 +442,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/forest.svg", 
         "description": null, 
         "title": "forest"
     }
@@ -409,6 +452,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/fuel.svg", 
         "description": null, 
         "title": "fuel"
     }
@@ -418,6 +462,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/garbage.svg", 
         "description": null, 
         "title": "garbage"
     }
@@ -427,6 +472,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/government.svg", 
         "description": null, 
         "title": "government"
     }
@@ -436,6 +482,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/government-uk.svg", 
         "description": null, 
         "title": "government-uk"
     }
@@ -445,6 +492,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/harbor.svg", 
         "description": null, 
         "title": "harbor"
     }
@@ -454,6 +502,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/health.svg", 
         "description": null, 
         "title": "health"
     }
@@ -463,6 +512,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/helping-others.svg", 
         "description": null, 
         "title": "helping-others"
     }
@@ -472,6 +522,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/hospital.svg", 
         "description": null, 
         "title": "hospital"
     }
@@ -481,6 +532,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/hospital-specialized.svg", 
         "description": null, 
         "title": "hospital-specialized"
     }
@@ -490,6 +542,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/housing.svg", 
         "description": null, 
         "title": "housing"
     }
@@ -499,6 +552,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/human-resources.svg", 
         "description": null, 
         "title": "human-resources"
     }
@@ -508,6 +562,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/island.svg", 
         "description": null, 
         "title": "island"
     }
@@ -517,6 +572,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/labour.svg", 
         "description": null, 
         "title": "labour"
     }
@@ -526,6 +582,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/legislative.svg", 
         "description": null, 
         "title": "legislative"
     }
@@ -535,6 +592,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/manufactoring-construction.svg", 
         "description": null, 
         "title": "manufactoring-construction"
     }
@@ -544,6 +602,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/media.svg", 
         "description": null, 
         "title": "media"
     }
@@ -553,6 +612,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/medical-supplies.svg", 
         "description": null, 
         "title": "medical-supplies"
     }
@@ -562,6 +622,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/microscope.svg", 
         "description": null, 
         "title": "microscope"
     }
@@ -571,6 +632,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/military.svg", 
         "description": null, 
         "title": "military"
     }
@@ -580,6 +642,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/misc-services.svg", 
         "description": null, 
         "title": "misc-services"
     }
@@ -589,6 +652,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/money.svg", 
         "description": null, 
         "title": "money"
     }
@@ -598,6 +662,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/nuclear.svg", 
         "description": null, 
         "title": "nuclear"
     }
@@ -607,6 +672,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/old-age.svg", 
         "description": null, 
         "title": "old-age"
     }
@@ -616,6 +682,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/order-safety.svg", 
         "description": null, 
         "title": "order-safety"
     }
@@ -625,6 +692,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/other-medical.svg", 
         "description": null, 
         "title": "other-medical"
     }
@@ -634,6 +702,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/our-streets.svg", 
         "description": null, 
         "title": "our-streets"
     }
@@ -643,6 +712,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/petrol.svg", 
         "description": null, 
         "title": "petrol"
     }
@@ -652,6 +722,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/planning.svg", 
         "description": null, 
         "title": "planning"
     }
@@ -661,6 +732,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/police.svg", 
         "description": null, 
         "title": "police"
     }
@@ -670,6 +742,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/police2.svg", 
         "description": null, 
         "title": "police2"
     }
@@ -679,6 +752,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/pollution.svg", 
         "description": null, 
         "title": "pollution"
     }
@@ -688,6 +762,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/post-secondary.svg", 
         "description": null, 
         "title": "post-secondary"
     }
@@ -697,6 +772,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/pound.svg", 
         "description": null, 
         "title": "pound"
     }
@@ -706,6 +782,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/pound2.svg", 
         "description": null, 
         "title": "pound2"
     }
@@ -715,6 +792,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/pre-school.svg", 
         "description": null, 
         "title": "pre-school"
     }
@@ -724,6 +802,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/primary.svg", 
         "description": null, 
         "title": "primary"
     }
@@ -733,6 +812,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/prisons.svg", 
         "description": null, 
         "title": "prisons"
     }
@@ -742,6 +822,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/public-debt.svg", 
         "description": null, 
         "title": "public-debt"
     }
@@ -751,6 +832,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/publicaffairs.svg", 
         "description": null, 
         "title": "publicaffairs"
     }
@@ -760,6 +842,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/railways.svg", 
         "description": null, 
         "title": "railways"
     }
@@ -769,6 +852,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/rd-order-safety.svg", 
         "description": null, 
         "title": "rd-order-safety"
     }
@@ -778,6 +862,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/research.svg", 
         "description": null, 
         "title": "research"
     }
@@ -787,6 +872,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/satellite-dish.svg", 
         "description": null, 
         "title": "satellite-dish"
     }
@@ -796,6 +882,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/schools.svg", 
         "description": null, 
         "title": "schools"
     }
@@ -805,6 +892,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/secondary-lower.svg", 
         "description": null, 
         "title": "secondary-lower"
     }
@@ -814,6 +902,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/secondary-upper.svg", 
         "description": null, 
         "title": "secondary-upper"
     }
@@ -823,6 +912,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/social-systems.svg", 
         "description": null, 
         "title": "social-systems"
     }
@@ -832,6 +922,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/sports.svg", 
         "description": null, 
         "title": "sports"
     }
@@ -841,6 +932,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/street-lights.svg", 
         "description": null, 
         "title": "street-lights"
     }
@@ -850,6 +942,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/toilet.svg", 
         "description": null, 
         "title": "toilet"
     }
@@ -859,6 +952,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/traffic-watersup.svg", 
         "description": null, 
         "title": "traffic-watersup"
     }
@@ -868,6 +962,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/transport.svg", 
         "description": null, 
         "title": "transport"
     }
@@ -877,6 +972,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/tree.svg", 
         "description": null, 
         "title": "tree"
     }
@@ -886,6 +982,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/unemployment.svg", 
         "description": null, 
         "title": "unemployment"
     }
@@ -895,6 +992,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/unknown.svg", 
         "description": null, 
         "title": "unknown"
     }
@@ -904,6 +1002,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/waste.svg", 
         "description": null, 
         "title": "waste"
     }
@@ -913,6 +1012,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/water.svg", 
         "description": null, 
         "title": "water"
     }
@@ -922,6 +1022,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/wheelchair.svg", 
         "description": null, 
         "title": "wheelchair"
     }
@@ -931,6 +1032,7 @@
     "model": "core.theme", 
     "fields": {
         "active": true, 
+        "image": "themes/wind.svg", 
         "description": null, 
         "title": "wind"
     }
@@ -940,6 +1042,7 @@
     "model": "core.theme", 
     "fields": {
         "active": false, 
+        "image": "themes/worldmap.svg", 
         "description": null, 
         "title": "worldmap"
     }
