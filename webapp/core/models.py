@@ -28,12 +28,21 @@ for r in range(1999, (datetime.datetime.now().year + 1)):
 #    THEMES
 #
 # -----------------------------------------------------------------------------
+class ThemeManager(models.Manager):
+    """
+    Manager for Stories
+    """
+    def public(self):
+        return self.get_query_set().filter(active=True)
+
 class Theme(models.Model):
     title       = models.CharField(max_length=80)
     slug        = models.SlugField(primary_key=True)
     description = models.CharField(max_length=500, blank=True, null=True)
     image       = models.FileField(_("theme's image"), upload_to="themes", max_length=300, null=True, blank=True)
     active      = models.BooleanField(default=True)
+    # managers
+    objects     = ThemeManager()
 
     class Meta:
         ordering = ("slug",)
@@ -61,6 +70,13 @@ class Theme(models.Model):
 #    STORY
 #
 # -----------------------------------------------------------------------------
+class StoryManager(models.Manager):
+    """
+    Manager for Stories
+    """
+    def public(self):
+        return self.get_query_set().exclude(status__in=('refused', 'pending'))
+
 class Story(models.Model):
     '''
     The model representing a spending
@@ -81,7 +97,8 @@ class Story(models.Model):
     current_value       = models.FloatField(_('The current value with the inflation'), editable=False)
     current_value_usd   = models.FloatField(_('Current value in USD'), editable=False)
     inflation_last_year = models.IntegerField(max_length=4, editable=False)
-
+    # managers
+    objects             = StoryManager()
     
     def __unicode__(self):
         return self.title

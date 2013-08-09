@@ -19,14 +19,14 @@ class StoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows story to be viewed or edited.
     """
-    queryset = Story.objects.all()
+    queryset = Story.objects.public()
     serializer_class = serializers.StorySerializer
 
 class ThemeViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Theme to be viewed or edited.
     """
-    queryset = Theme.objects.all()
+    queryset = Theme.objects.public()
     serializer_class = serializers.ThemeSerializer
 
 class CurrencyViewSet(viewsets.ModelViewSet):
