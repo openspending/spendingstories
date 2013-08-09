@@ -33,6 +33,7 @@ class StoryForm(forms.ModelForm):
 
 	class Meta:
 		model = Story
+		verbose_name_plural = "stories"
 
 	def clean_year(self):
 		year  = self.cleaned_data['year']
