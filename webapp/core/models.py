@@ -81,16 +81,16 @@ class Story(models.Model):
     '''
     The model representing a spending
     '''
-    value               = models.FloatField(_('The spending value')) # The spending amount
+    value               = models.FloatField(_('The spending value'),help_text=_("Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6")) # The spending amount
     title               = models.CharField(_('Story title'), max_length=240)
     description         = models.TextField(_('Story description'), blank=True, null=True)
-    country             = fields.CountryField() # ISO code of the country 
+    country             = fields.CountryField(_('Country'),help_text=_("Choose the country or zone where the money is spent")) # ISO code of the country 
     source              = models.URLField(_('Story\'s source URL'), max_length=140)
     currency            = models.ForeignKey(Currency)
-    continuous          = models.BooleanField(_('Is a countinuous spending'), default=False)
+    continuous          = models.BooleanField(_('Budget/part of a budget'),help_text=_("Check if the spending is related to an annualy budget or part of a budget.e.g.Budget 2012 of the Department for Transport"),default=False)
     status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
-    sticky              = models.BooleanField(_('Is a top story'),            default=False)
-    year                = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES, max_length=4)
+    sticky              = models.BooleanField(_('Is a top story'),help_text=_("Check if the spending is related to an annualy budget or part of a budget.e.g.Budget 2012 of the Department for Transport"),default=False)
+    year                = models.IntegerField(_('Year'), choices=YEAR_CHOICES, max_length=4, help_text=_("Enter the start year of the spending"))
     themes              = models.ManyToManyField(Theme, limit_choices_to = {'active':True})
     # auto computed
     created_at          = models.DateTimeField(auto_now_add=True, editable=False)
