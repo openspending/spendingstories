@@ -99,9 +99,12 @@ class Story(models.Model):
     inflation_last_year = models.IntegerField(max_length=4, editable=False)
     # managers
     objects             = StoryManager()
-    
+
     def __unicode__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "stories"
 
     def save(self, *args, **kwargs):
         '''
