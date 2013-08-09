@@ -15,25 +15,51 @@ from webapp.currency.models import Currency
 from rest_framework import viewsets
 import serializers
 
+# -----------------------------------------------------------------------------
+#
+#    STORIES
+#
+# -----------------------------------------------------------------------------
 class StoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows story to be viewed or edited.
     """
-    queryset = Story.objects.public()
+    queryset         = Story.objects.public()
     serializer_class = serializers.StorySerializer
+    filter_fields    = ('sticky', 'country', 'currency', 'themes')
+    # def get_queryset(self):
+    #     qs = super(StoryViewSet).
+    #     qs = self.queryset
+    #     return qs
+    #     # params = self.request.QUERY_PARAMS.copy()
+    #     # # params = [()]
+    #     # if "themes" in params:
+    #     #     qs = qs.filter(themes__title__in=params['themes'].split(',')).distinct()
+    #     #     del params['themes']
+    #     # return qs.filter(**params)
 
+# -----------------------------------------------------------------------------
+#
+#    THEME
+#
+# -----------------------------------------------------------------------------
 class ThemeViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Theme to be viewed or edited.
     """
-    queryset = Theme.objects.public()
+    queryset         = Theme.objects.public()
     serializer_class = serializers.ThemeSerializer
 
+# -----------------------------------------------------------------------------
+#
+#    CURRENCY
+#
+# -----------------------------------------------------------------------------
 class CurrencyViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Currency to be viewed or edited.
     """
-    queryset = Currency.objects.all()
+    queryset         = Currency.objects.all()
     serializer_class = serializers.CurrencySerializer
 
 # EOF

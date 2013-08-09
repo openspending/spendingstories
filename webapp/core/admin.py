@@ -57,7 +57,6 @@ class StoryAdmin(admin.ModelAdmin):
             'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'continuous', 'themes')
         }),
         ('Auto computed fields', {
-            # 'classes': ('collapse',),
             'fields': readonly_fields
         }),
     )
