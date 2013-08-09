@@ -31,6 +31,7 @@ jQuery(document).ready(function() {
           },
           select: function( event, ui ) {
             ui.item.option.selected = true;
+            select.trigger('selected', $(ui.item.option).val());
             self._trigger( "selected", event, {
               item: ui.item.option
             });
@@ -54,8 +55,9 @@ jQuery(document).ready(function() {
             }
           }
         })
-        .addClass("ui-widget ui-widget-content ui-corner-left");
+        .addClass("ui-widget-content ui-corner-left");
       input.data("uiAutocomplete")._renderItem = function( ul, item ) {
+        ul.css({'z-index': 1000,});
         return $( "<li></li>" )
           .data( "item.autocomplete", item )
           .append( "<a>" + item.label + "</a>" )

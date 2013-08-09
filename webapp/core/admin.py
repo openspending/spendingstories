@@ -62,6 +62,12 @@ class StoryAdmin(admin.ModelAdmin):
         }),
     )
 
+    class Media:
+        css = {
+            'all': ("css/ui-lightness/jquery-ui-1.10.3.custom.min.css",)
+        }
+        js = ("js/jquery-1.9.1.js", "js/jquery-ui-1.10.3.custom.min.js", "js/admin-story-script.js")
+
 admin.site.register(models.Story, StoryAdmin)
 admin.site.register(models.Theme, ThemeAdmin)
 

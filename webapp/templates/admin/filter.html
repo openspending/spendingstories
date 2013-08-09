@@ -1,8 +1,30 @@
 {% load i18n %}
-<h3>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
-<ul>
-{% for choice in choices %}
-    <li{% if choice.selected %} class="selected"{% endif %}>
-    <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
-{% endfor %}
-</ul>
+
+<h3>{% blocktrans with title as filter_title %} By {{ filter_title }} {% endblocktrans %}</h3>
+
+{% if choices|length > 10 %}
+<div id="{{title|slugify}}_filter_combobox" align="right">
+    <select  class="combobox" style="width:90%; margin-right:5%;">
+        {% for choice in choices %}
+            <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{ choice.display }}</option>
+        {% endfor %}
+    </select>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        $("#{{title|slugify}}_filter_combobox .combobox").bind('selected', function(e, key) {
+            window.location = key;
+        });
+    });
+</script>
+
+{% else %}
+
+    <ul>
+    {% for choice in choices %}
+        <li{% if choice.selected %} class="selected"{% endif %}>
+        <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endif %}
