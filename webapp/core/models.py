@@ -91,7 +91,7 @@ class Story(models.Model):
     status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
     sticky              = models.BooleanField(_('Is a top story'),            default=False)
     year                = models.IntegerField(_('The spending year'), choices=YEAR_CHOICES, max_length=4)
-    themes              = models.ManyToManyField(Theme)
+    themes              = models.ManyToManyField(Theme, limit_choices_to = {'active':True})
     # auto computed
     created_at          = models.DateTimeField(auto_now_add=True, editable=False)
     current_value       = models.FloatField(_('The current value with the inflation'), editable=False)
