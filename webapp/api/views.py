@@ -45,7 +45,7 @@ class ThemeViewSet(viewsets.ModelViewSet):
 #    CURRENCY
 #
 # -----------------------------------------------------------------------------
-class CurrencyViewSet(viewsets.ModelViewSet):
+class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows Currency to be viewed or edited.
     """
