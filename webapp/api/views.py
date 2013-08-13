@@ -26,17 +26,7 @@ class StoryViewSet(viewsets.ModelViewSet):
     """
     queryset         = Story.objects.public()
     serializer_class = serializers.StorySerializer
-    filter_fields    = ('sticky', 'country', 'currency', 'themes')
-    # def get_queryset(self):
-    #     qs = super(StoryViewSet).
-    #     qs = self.queryset
-    #     return qs
-    #     # params = self.request.QUERY_PARAMS.copy()
-    #     # # params = [()]
-    #     # if "themes" in params:
-    #     #     qs = qs.filter(themes__title__in=params['themes'].split(',')).distinct()
-    #     #     del params['themes']
-    #     # return qs.filter(**params)
+    filter_fields    = ('sticky', 'country', 'currency', 'themes', 'continuous')
 
 # -----------------------------------------------------------------------------
 #
