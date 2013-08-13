@@ -33,7 +33,7 @@ class StoryViewSet(viewsets.ModelViewSet):
 #    THEME
 #
 # -----------------------------------------------------------------------------
-class ThemeViewSet(viewsets.ModelViewSet):
+class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows Theme to be viewed or edited.
     """
