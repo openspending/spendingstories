@@ -8,11 +8,13 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 06-Aug-2013
+# Last mod : 13-Aug-2013
 # -----------------------------------------------------------------------------
 from webapp.core.models import Story, Theme
 from webapp.currency.models import Currency
+from rest_framework.views import APIView
 from rest_framework import viewsets
+from rest_framework.response import Response
 import serializers
 
 # -----------------------------------------------------------------------------
@@ -51,5 +53,23 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset         = Currency.objects.all()
     serializer_class = serializers.CurrencySerializer
+
+# -----------------------------------------------------------------------------
+#
+#    META
+#
+# -----------------------------------------------------------------------------
+class MetaView(APIView):
+
+    def get(self, request, format=None):
+        """
+        Provide Meta data about Stories
+        """
+        # TODO
+        meta = {
+            "value_min": 100,
+            "value_max": 10e15
+        }
+        return Response(meta)
 
 # EOF
