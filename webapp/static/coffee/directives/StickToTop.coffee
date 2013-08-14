@@ -17,14 +17,15 @@ angular.module('stories')
 
                 elementHeight     = element.outerHeight()
                 elementTop        = 1*element.css("top").replace("px", "")
-                elementInitialTop = element.data("initial-top") or 0
+                elementInitialTop = element.data("initial-top") or 0                
                 # We go down
                 if delta > 0
                     # Moves the element to the top bu not top high !
-                    offset = if currentScrollTop < elementHeight 
-                        -currentScrollTop 
-                    else
-                        Math.max -elementHeight, elementTop - delta
+                    offset = 
+                        if currentScrollTop < elementHeight + elementInitialTop
+                            -currentScrollTop + elementInitialTop
+                        else
+                            Math.max -elementHeight, elementTop - delta
                 # We go up
                 else
                     # Moves the element to the bottom but not under its initial top
