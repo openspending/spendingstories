@@ -8,11 +8,10 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 13-Aug-2013
+# Last mod : 14-Aug-2013
 # -----------------------------------------------------------------------------
 from webapp.core.models import Story, Theme
 from webapp.currency.models import Currency
-from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django.db.models import Max, Min
@@ -60,9 +59,9 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
 #    META
 #
 # -----------------------------------------------------------------------------
-class MetaView(APIView):
+class MetaViewSet(viewsets.ViewSet):
 
-    def get(self, request, format=None):
+    def list(self, request):
         """
         Provide Meta data about Stories
         """
