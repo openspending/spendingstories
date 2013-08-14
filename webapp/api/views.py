@@ -15,6 +15,7 @@ from webapp.currency.models import Currency
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
+from django.db.models import Max, Min
 import serializers
 
 # -----------------------------------------------------------------------------
@@ -65,11 +66,8 @@ class MetaView(APIView):
         """
         Provide Meta data about Stories
         """
-        # TODO
-        meta = {
-            "value_min": 100,
-            "value_max": 10e15
-        }
+        meta =  {}
+        meta.update(Story.objects.public().aggregate(Max('current_value_usd'), Min('current_value_usd')))
         return Response(meta)
 
 # EOF
