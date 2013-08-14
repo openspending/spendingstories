@@ -1,7 +1,8 @@
 # Services
-angular.module('storiesServices', ['ngResource'])
+angular.module('storiesServices', [])
     # Create a factory dedicated to research
-    .factory("Search", [ '$resource', '$http', ($resource, $http)->
+    .factory("Search", [ 'Restangular', (Restangular)->
         query   : null
-        results : []
+        currency: 'dollars'
+        results : Restangular.all('stories').getList()
     ])

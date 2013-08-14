@@ -1,5 +1,5 @@
 stories = angular
-    .module('stories', ["ui.bootstrap", "storiesServices"])
+    .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters"])
     .run(
         [             
             '$rootScope', 
@@ -13,7 +13,9 @@ stories = angular
         [
             '$interpolateProvider', 
             '$routeProvider', 
-            ($interpolateProvider, $routeProvider)->
+            'RestangularProvider',
+            ($interpolateProvider, $routeProvider, RestangularProvider)->
+                RestangularProvider.setBaseUrl("/api");
                 # Avoid a conflict with Django Template's tags
                 $interpolateProvider.startSymbol '[['
                 $interpolateProvider.endSymbol   ']]'

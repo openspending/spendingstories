@@ -3,10 +3,15 @@
 @import 'bootstrap-overload.less';
 
 
+@zindex-header:1000;
 
 header {
 	
 	padding:0 10px;
+	background:@body-bg;
+	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
+	z-index:@zindex-header;
+	
 	
 	h1 {
 		a, a:hover, a:focus, a:active { 
@@ -52,4 +57,11 @@ header {
 
 #content {
 	margin-top:80px;
+	
+	.scale-strats {
+		
+		h5 {
+			color:@gray-light;
+		}
+	}
 }
