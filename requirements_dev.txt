@@ -10,3 +10,4 @@ markdown==2.3.1
 loremipsum==1.0.2
 requests==1.2.3
 south==0.8.1
+pyquery==1.2.4
