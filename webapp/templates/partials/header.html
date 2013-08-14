@@ -1,10 +1,27 @@
-<header class="reduce">		
+<header ng-controller="HeaderCtrl" ng-class="getHeaderClass()">		
 	<div class="container">
-		<h1>Spending Storie <i>by OKF</i></h1>	
+		<h1>
+			<a ng-href="/">Spending Storie</a>
+			<i>by OKF</i>
+		</h1>	
 		<form  class="form-horizontal" role="form" ng-submit="search()">
 			<div class="input-group">
-				<input type="search" class="form-control" ng-model="query" placeholder="How much is it really?" />		
-				<div class="input-group-btn">
+				<input type="number" ng-required class="form-control" ng-model="query" placeholder="How much is it really?" />		
+				<div class="input-group-btn relative">
+					<div class="dropdown btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle currency" data-toggle="dropdown">
+							[[currency]] <span class="caret"></span>
+						</button>
+					    <ul class="dropdown-menu">
+					     	<li>
+					     		<a ng-click="currency = 'dollars'">Dollars</a>
+					     	</li>
+					     	<li>
+					     		<a ng-click="currency = 'euros'">Euros</a>
+					     	</li>
+					    	<li class="disabled"><a href="#">Yen</a></li>
+					    </ul>
+					</div>
 					<input type="submit" class="btn btn-primary" value="Compare" />
 				</div>
 			</div>

@@ -1,11 +1,18 @@
 @import 'vendor/bootstrap/bootstrap.less';
+@import 'tools.less';
 @import 'bootstrap-overload.less';
 
 
 
 header {
 	
+	padding:0 10px;
+	
 	h1 {
+		a, a:hover, a:focus, a:active { 
+			color:inherit;
+			text-decoration:none;
+		}
 		i {
 			font-size:50%;
 			color:@gray;
@@ -15,6 +22,10 @@ header {
 
 	form {
 		margin-top:60px;
+		
+		.currency:first-letter {
+			text-transform:uppercase;
+		}
 	}
 
 	&.reduce {
@@ -23,7 +34,6 @@ header {
 		left:0; 
 		right:0;
 		width:auto;	
-		height:50px;
 
 		h1 {
 			float:left;
@@ -38,4 +48,8 @@ header {
 			.help-block { display:none; }
 		}	
 	}
+}
+
+#content {
+	margin-top:80px;
 }
