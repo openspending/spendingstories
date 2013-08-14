@@ -15,7 +15,7 @@
 						[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
 					</span>
 					<span class="label">
-						[[d.current_value|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
+						[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
 					</span>
 					<!--ul class="list-unstyled top10 meta">
 						<li>Year :</li>
@@ -27,14 +27,17 @@
 			<div class="top-strat">
 				<h3>Top stories</h3>				
 				<scale-points
-					ng-if="meta && search.results.length"
+					ng-if="search.results.length"
 					data="search.results"
-					min="meta.current_value_usd__min"
-					max="meta.current_value_usd__max"></scale-points>
+					filter="{sticky: true}"></scale-points>
 			</div>
 
 			<div class="other-strat">
 				<h3>Other stories</h3>
+				<scale-points
+					ng-if="search.results.length"
+					data="search.results"
+					filter="{sticky: false}"></scale-points>
 			</div>
 
 		</div>
