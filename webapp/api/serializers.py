@@ -17,6 +17,7 @@ from webapp.core.models import Story, Theme
 class StorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Story
+        depth = 1
 
 class ThemeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
