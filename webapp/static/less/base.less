@@ -1,7 +1,41 @@
 @import 'vendor/bootstrap/bootstrap.less';
+@import 'bootstrap-overload.less';
 
-body {
-    #test {
-        color: #333;
-    }
+
+
+header {
+	
+	h1 {
+		i {
+			font-size:50%;
+			color:@gray;
+			font-style:normal;
+		}
+	}
+
+	form {
+		margin-top:60px;
+	}
+
+	&.reduce {
+		position:fixed;
+		top:0;
+		left:0; 
+		right:0;
+		width:auto;	
+		height:50px;
+
+		h1 {
+			float:left;
+			margin:0;	
+			margin-right:20px;
+			font-size:150%;	
+			line-height:50px;
+		}
+	
+		form {
+			margin-top:5px;
+			.help-block { display:none; }
+		}	
+	}
 }
