@@ -16,5 +16,7 @@ SearchCtrl = ($scope, $routeParams, Search, Restangular)->
 
     # Get the filtered results that are the exact equivalent to the value
     $scope.isEquivalent = (d)-> Math.abs(d.current_value_usd  - $scope.search.query) < 10
+    # Showed equivalent
+    $scope.equivalentIdx = 0
 
 SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Restangular'];

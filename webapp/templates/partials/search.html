@@ -6,22 +6,42 @@
 	<tab heading="Scale visualisation">
 		<div class="scale-strats">
 			
-			<div class="equivalent-start">
-				<div ng-repeat="d in search.results|filter:isEquivalent" class="equivalent" ng-show="$first">
-					<img ng-src="{{ MEDIA_URL }}[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
-					<h5 class="bottom0">equivalent to</h5>
-					<h4 class="top0">[[d.title]]</h4>
-					<span class="label label-info">
-						[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
-					</span>
-					<span class="label">
-						[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
-					</span>
-					<!--ul class="list-unstyled top10 meta">
-						<li>Year :</li>
-						<li>Source : </li>
-						<li>Tags :</li>
-					</ul-->
+			<div class="equivalent-strat">
+				<div ng-repeat="d in search.results|filter:isEquivalent" class="equivalent" ng-show="equivalentIdx == $index">
+					<div>
+						<img ng-src="{{ MEDIA_URL }}[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
+						<h5 class="bottom0">equivalent to</h5>
+						<h4 class="top0">[[d.title]]</h4>
+						<span class="label label-info">
+							[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
+						</span>
+						<span class="label">
+							[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
+						</span>
+						<!--ul class="list-unstyled top10 meta">
+							<li>Year :</li>
+							<li>Source : </li>
+							<li>Tags :</li>
+						</ul-->
+					</div>
+					<div class="btn-nav">
+						<a ng-if="$first" class="disabled btn">
+							&#9664;
+						</a>
+						<a ng-if="$middle || $last" 
+						   class="btn previous"
+						   ng-click="$parent.$parent.equivalentIdx = equivalentIdx-1">
+							&#9664;
+						</a>
+						<a ng-if="$middle || $first" 
+						   class="btn next"
+						   ng-click="$parent.$parent.equivalentIdx = equivalentIdx+1">
+							&#9654;
+						</a>
+						<a ng-if="$last" class="disabled btn">
+							&#9654;
+						</a>
+					</div>
 				</div>
 			</div>			
 			<div class="top-strat">
