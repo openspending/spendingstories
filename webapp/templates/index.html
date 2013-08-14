@@ -15,13 +15,14 @@
 
     <script type="text/coffeescript" src="{% static 'coffee/app.coffee' %}"></script>    
     <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
-    <script type="text/coffeescript" src="{% static 'coffee/services.coffee' %}"></script>
+    <script type="text/coffeescript" src="{% static 'coffee/services/Search.coffee' %}"></script>
     <script type="text/coffeescript" src="{% static 'coffee/controllers/HeaderCtrl.coffee' %}"></script>
+    <script type="text/coffeescript" src="{% static 'coffee/controllers/SearchCtrl.coffee' %}"></script>
 {% endblock %}
 
 {% block content %}
     <div ng-app="stories" id="ng-app">        
         {% include "partials/header.html" %}
-        <div ng-view id="content"></div>
+        <div ng-view id="content" class="container"></div>
     </div>
 {% endblock %}

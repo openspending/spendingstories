@@ -25,5 +25,6 @@ urlpatterns = patterns('',
     url(r'^api-docs/',  include('rest_framework_docs.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/',     include(admin.site.urls)),
-    url(r'^$', 			'webapp.core.views.home', name='home'),
+    url(r'^$', 			'webapp.core.views.home', name='home'),    
+    url(r'^partial/(?P<partial_name>([a-zA-Z0-9_\-/]+))\.html$', 'webapp.core.views.partial', name='partial'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # serving media folder in debug mode
