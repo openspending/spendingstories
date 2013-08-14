@@ -59,9 +59,49 @@ header {
 	margin-top:80px;
 	
 	.scale-strats {
+
+		overflow:hidden;
 		
-		h5 {
-			color:@gray-light;
+		.equivalent-start {
+
+			padding:30px 15px;	
+				
+			h5 {
+				color:@gray-light;
+			}
 		}
-	}
+
+		.top-strat, .other-strat {
+			background:#403F3F;
+			height:400px;
+			margin-top:20px;
+			overflow:hidden;
+			.box-shadow(0 0 30px darken(#403F3F, 50));
+			position:relative;
+			
+			h3 {
+				background:lighten(#403F3F, 5);
+				text-align:center;
+				text-transform:uppercase;
+				word-spacing:0.5em;
+				font-size:110%;
+				position:absolute;
+				top:100%;								
+				left:0;
+				padding:5px;
+				width:400px;
+				
+				margin:0;
+				.origin(0% 0%);				
+				.rotate(-90deg);
+			}
+		}
+
+		.top-strat {
+			.point {			
+				background:#BFBDBC;
+				.box-shadow(3px 0 0 0 darken(#BFBDBC, 20) inset);
+			}
+		}
+	}	
 }

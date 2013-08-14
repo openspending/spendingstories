@@ -14,7 +14,10 @@ SearchCtrl = ($scope, $routeParams, Search, Restangular)->
     # (no filter yet)
     $scope.userFilter = (d)-> true
 
+    # Only returns the "sticky" stories
+    $scope.isTop = (d)-> d.sticky
+
     # Get the filtered results that are the exact equivalent to the value
-    $scope.equivalents = (d)-> Math.abs(d.current_value_usd  - $scope.search.query) < 10
+    $scope.isEquivalent = (d)-> Math.abs(d.current_value_usd  - $scope.search.query) < 10
 
 SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Restangular'];

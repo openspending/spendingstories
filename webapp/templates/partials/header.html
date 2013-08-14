@@ -1,4 +1,4 @@
-<header ng-controller="HeaderCtrl" ng-class="getHeaderClass()">		
+<header ng-controller="HeaderCtrl" ng-class="getHeaderClass()" stick-to-top>		
 	<div class="container">
 		<h1>
 			<a ng-href="/">Spending Stories</a>
@@ -10,7 +10,7 @@
 				<div class="input-group-btn relative">
 					<div class="dropdown btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle currency" data-toggle="dropdown">
-							[[currency]] <span class="caret"></span>
+							<span class="right10">[[currency]]</span><span class="caret"></span>
 						</button>
 					    <ul class="dropdown-menu">
 					     	<li>

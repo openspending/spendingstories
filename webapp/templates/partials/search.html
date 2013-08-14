@@ -6,28 +6,37 @@
 	<tab heading="Scale visualisation">
 		<div class="scale-strats">
 			
-			<div ng-repeat="d in search.results|filter:equivalents" class="equivalent" ng-show="$first">
-				<img ng-src="{{ MEDIA_URL }}[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
-				<h5 class="bottom0">equivalent to</h5>
-				<h4 class="top0">[[d.title]]</h4>
-				<span class="label label-success">
-					[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
-				</span>
-				<span class="label">
-					[[d.current_value|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
-				</span>
-				<!--ul class="list-unstyled top10 meta">
-					<li>Year :</li>
-					<li>Source : </li>
-					<li>Tags :</li>
-				</ul-->
+			<div class="equivalent-start">
+				<div ng-repeat="d in search.results|filter:isEquivalent" class="equivalent" ng-show="$first">
+					<img ng-src="{{ MEDIA_URL }}[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
+					<h5 class="bottom0">equivalent to</h5>
+					<h4 class="top0">[[d.title]]</h4>
+					<span class="label label-success">
+						[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
+					</span>
+					<span class="label">
+						[[d.current_value|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
+					</span>
+					<!--ul class="list-unstyled top10 meta">
+						<li>Year :</li>
+						<li>Source : </li>
+						<li>Tags :</li>
+					</ul-->
+				</div>
+			</div>			
+			<div class="top-strat">
+				<h3>Top stories</h3>				
+				<scale-points
+					ng-if="meta && search.results.length"
+					data="search.results"
+					min="meta.current_value_usd__min"
+					max="meta.current_value_usd__max"></scale-points>
 			</div>
 
-		</div>
+			<div class="other-strat">
+				<h3>Other stories</h3>
+			</div>
 
-		<div class="top-strats" ng-show="false">
-			<div class="min">[[meta.current_value_usd__min]]</div>
-			<div class="max">[[meta.current_value_usd__max]]</div>
 		</div>
 	</tab>
 	<tab heading="Cards visualisation" disabled="true">
