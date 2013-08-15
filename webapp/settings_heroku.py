@@ -22,7 +22,10 @@ PYTHONPATH:              webapp/:libs/
 DATABASE_URL             postgres://<POSTGRES_URL>
 """
 HEROKU = True
+
 from settings import *
+
+DEBUG = False
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -50,7 +53,7 @@ STATIC_URL              = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NA
 COMPRESS_URL            = STATIC_URL
 COMPRESS_STORAGE        = STATICFILES_STORAGE
 
-
+COMPRESS_ENABLED = True
 # Activate CSS minifier in
 COMPRESS_CSS_FILTERS = (
     "compressor.filters.css_default.CssAbsoluteFilter",
