@@ -1,7 +1,7 @@
 HeaderCtrl = ($scope, $location, Search)->
     # Bi-directional edition of the query
-    $scope.query = Search.query
-    $scope.currency = "dollars"
+    $scope.query    = Search.query
+    $scope.currency = Search.currency
     
     # Update the header size according the location
     $scope.getHeaderClass = -> 
@@ -13,6 +13,5 @@ HeaderCtrl = ($scope, $location, Search)->
         if $scope.query?
             # Update path
             $location.path("/search/").search("q", $scope.query).search("c", $scope.currency)
-            # @TODO Load the data 
 
 HeaderCtrl.$inject = ['$scope', '$location', 'Search'];

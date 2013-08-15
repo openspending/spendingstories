@@ -94,7 +94,7 @@ header {
 			overflow:auto;
 			z-index:@zindex-content+50;
 			position:relative;
-		
+			
 			.one-scale-points {				
 
 				min-width:600px;
@@ -107,6 +107,24 @@ header {
 					background:#BFBDBC;
 					border-radius:1px;
 					.box-shadow(0 2px 3px 0 darken(#403F3F, 10));
+					
+					img {
+						max-width:100%;
+						max-height:100%;
+						position:absolute;
+						top:0;
+						left:0;
+					}
+
+					&.equivalent:after {
+						position:absolute;
+						bottom:0;
+						top:0;
+						left:0;
+						right:0;
+						border:3px @brand-warning solid;
+						content:"";
+					}
 				}
 
 				.ruler {
@@ -114,6 +132,7 @@ header {
 					margin-top:-5px;
 					margin-left:-1px/2px;
 					background:@brand-primary;
+					.box-shadow(1px 0 2px 0 mix(@brand-primary, #000));
 					
 					&:before, &:after {
 						content:"";
@@ -122,13 +141,14 @@ header {
 						width:7px;
 						height:7px;
 						border-radius:7px;
-						background:@brand-primary;						
+						background:@brand-primary;		
 					}
 					
 					&:before { bottom:100%; }
 					&:after { top:100%; }
 
 					span {
+						white-space:nowrap;
 						position:absolute;
 						left:15px;
 						top:50%;
