@@ -1,16 +1,17 @@
 angular.module('stories')
-    .directive "scalePoints", ()->     
+    .directive "scalePoints", ["$filter", ($filter)->     
         # Returned object to that defines the directive
         restrict: "EAC"
         template: '<div class="one-scale-points"></div>'
         replace: true
         scope:
-            data       : "="
-            filter     : "&"
-            rulerValue : "&"
-            pointGap   : "&"
-            pointWidth : "&"
-            pointHeight: "&"
+            data        : "="
+            filter      : "&"
+            rulerValue  : "&"
+            pointGap    : "&"
+            pointWidth  : "&"
+            pointHeight : "&"
+            isEquivalent: "&"
         link: (scope, element, attrs)->                               
             # Data must be loaded
             return unless scope.data? and scope.data.length
@@ -25,6 +26,11 @@ angular.module('stories')
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
             workspaceWidth = element.innerWidth()
+            # Equivalent function
+            if typeof scope.isEquivalent() is "function"
+                isEquivalent = scope.isEquivalent() 
+            else
+                isEquivalent = ->false
 
             # Static positioning must be change to relative
             if element.css("position") is "static"
@@ -32,7 +38,8 @@ angular.module('stories')
                 # accoding the top left corner of the workspace
                 element.css("position", "relative")
 
-            data   = scope.data
+
+            data   = scope.data            
             # Filter data if we received a filter
             filter = scope.filter()
             # Filter is a function
@@ -71,12 +78,17 @@ angular.module('stories')
                 .data(data)
                 .enter()
                 .append("div")
-                    .attr("class"    , "point")
+                    .attr("class"    , (d)-> "point " +  if isEquivalent(d) then "equivalent" )
                     .style("position", "absolute")
                     .style("top"     , ypx)
                     .style("left"    , xpr)
                     .style("width"   , pointWidth  + "px")
                     .style("height"  , pointHeight + "px")
+                    .attr("tooltip", "On the Right!")
+                    .append("img")
+                        # Ugly path to /media, to refine
+                        .attr("src", (d)->"/media/#{d.themes[0].image}" if d.themes.length)
+
 
             # Add the ruler to the workspace
             workspace.append("div")
@@ -86,8 +98,9 @@ angular.module('stories')
                 .style("bottom"  , 0)
                 .style("left"    , xpr current_value_usd: rulerValue)
                 .append("span")
-                    .html(rulerValue)
+                    .html($filter("userCurrency")(rulerValue))
 
 
             # Update workspace height
             workspace.style("height", maxY + pointHeight + pointGap + "px")          
+    ]

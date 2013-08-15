@@ -12,7 +12,7 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
     $scope.userFilter = (d)-> true
 
     # Get the filtered results that are the exact equivalent to the value
-    $scope.isEquivalent = (d)-> Math.abs(d.current_value_usd  - $scope.search.query) < 10
+    $scope.isEquivalent = (d)-> Math.abs(d.current_value_usd  - $scope.search.query_usd) < 10
     # Showed equivalent
     $scope.equivalentIdx = 0
 

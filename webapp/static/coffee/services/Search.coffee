@@ -17,5 +17,5 @@ angular.module('storiesServices')
                     Currency.get(currency).then (c)->                         
                         obj.query_usd = if c? then query/c.rate else null
 
-                # @TODO Reload the data    
+                # @TODO Reload data    
     ])

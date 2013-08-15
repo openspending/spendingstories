@@ -1,7 +1,6 @@
 <ul class="breadcrumb">
 	<li>Search</li>
 	<li>Your query for <strong>[[search.query|thousandSeparator]] [[search.currency]]</strong></li>	
-	<li><strong>[[search.query_usd|thousandSeparator]] USD</strong></li>	
 </ul>
 <tabset>
 	<tab heading="Scale visualisation">
@@ -50,7 +49,8 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					ruler-value="search.query"
+					is-equivalent="isEquivalent"
+					ruler-value="search.query_usd"
 					filter="{sticky: true}"></scale-points>
 			</div>
 
@@ -59,7 +59,8 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					ruler-value="search.query"
+					is-equivalent="isEquivalent"
+					ruler-value="search.query_usd"
 					point-height="3"
 					point-width="3"
 					filter="{sticky: false}"></scale-points>
