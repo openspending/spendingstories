@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
 	<li>Search</li>
-	<li>Your query for <strong>[[search.query|thousandSeparator]] [[search.currency]]</strong></li>	
+	<li>Your query for <strong>[[search.query|userCurrency]]</strong></li>	
 </ul>
 <tabset>
 	<tab heading="Scale visualisation">
@@ -18,7 +18,7 @@
 						[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
 					</span>
 					<span class="label">
-						[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
+						[[d.current_value_usd|userCurrency]] converted into query's currency in [[d.inflation_last_year]]
 
 						<i class="icon-large icon-info-sign left10 clickable"
 						tooltip-placement="right"

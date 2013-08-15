@@ -5,14 +5,15 @@ angular.module('stories')
         templateUrl: "/partial/scale-points.html"
         replace: true
         scope:
-            data        : "="
-            current     : "="
-            onClick     : "="
-            rulerValue  : "="
-            filter      : "&"
-            pointGap    : "&"
-            pointWidth  : "&"
-            pointHeight : "&"
+            data         : "="
+            current      : "="
+            onClick      : "="
+            rulerValue   : "="
+            rulerCurrency: "="
+            filter       : "&"
+            pointGap     : "&"
+            pointWidth   : "&"
+            pointHeight  : "&"
         link: (scope, element, attrs)->                               
             # Data must be loaded
             return unless scope.data? and scope.data.length
