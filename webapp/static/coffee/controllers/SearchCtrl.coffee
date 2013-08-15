@@ -10,9 +10,8 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
     # Get the filtered result 
     # (no filter yet)
     $scope.userFilter = (d)-> true
-
-    $scope.pointSelection = (d)-> 
-        $scope.preview.id = d.id
+    # Event triggered when we click on a point
+    $scope.pointSelection = (d)-> $scope.preview.id = d.id
     # Showed equivalent
     $scope.preview = id: 84
 
