@@ -8,15 +8,20 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 06-Aug-2013
+# Last mod : 15-Aug-2013
 # -----------------------------------------------------------------------------
 from rest_framework import serializers
 from webapp.currency.models import Currency
 from webapp.core.models import Story, Theme
 
 class ThemeSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField('get_image')
     class Meta:
         model = Theme
+
+    def get_image(self, obj):
+        """ return the absolute image url """
+        return obj.image.url
 
 class CurrencySerializer(serializers.ModelSerializer):
     class Meta:
