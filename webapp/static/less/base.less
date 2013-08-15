@@ -3,7 +3,8 @@
 @import 'bootstrap-overload.less';
 
 
-@zindex-header:1000;
+@zindex-content: 100;
+@zindex-header : @zindex-content+100;
 
 header {
 	
@@ -57,6 +58,7 @@ header {
 
 #content {
 	margin-top:80px;
+	margin-bottom:40px;
 	
 	.scale-strats {
 
@@ -77,49 +79,106 @@ header {
 				top:0;
 				right:0;
 				a {
+					padding:0;
+					padding-right:10px;
 					color:white;	
 				}
 			}
 		}
 
 		.top-strat, .other-strat {
-			background:#403F3F;
-			min-height:100px;
-			margin-top:20px;
+			clear:left;
+			background:#403F3F;			
+			border-bottom:darken(#403F3F, 10) 3px solid;
+			min-height:10px;
 			overflow:auto;
+			z-index:@zindex-content+50;
 			position:relative;
-			.box-shadow(0 0 30px darken(#403F3F, 50));
-			
-			h3 {
-				background:lighten(#403F3F, 5);
-				text-align:left;
-				text-transform:uppercase;
-				word-spacing:0.3em;
-				font-size:110%;
-				position:absolute;
-				top:100%;								
-				left:0;
-				padding:5px;
-				width:100%;
-				
-				margin:0;
-				.origin(0% 0%);				
-				.rotate(-90deg);
-			}
 		
 			.one-scale-points {				
 
 				min-width:600px;
-				margin-top:10px;
-				margin-bottom:10px;				
+				margin-top:20px;
+				margin-bottom:15px;				
 				margin-left:40px;
 				margin-right:20px;
 				
 				.point {			
 					background:#BFBDBC;
-					.box-shadow(3px 0 0 0 darken(#BFBDBC, 20) inset);
+					border-radius:1px;
+					.box-shadow(0 2px 3px 0 darken(#403F3F, 10));
+				}
+
+				.ruler {
+					width:1px;
+					margin-top:-5px;
+					margin-left:-1px/2px;
+					background:@brand-primary;
+					
+					&:before, &:after {
+						content:"";
+						position:absolute;
+						left:-3px;
+						width:7px;
+						height:7px;
+						border-radius:7px;
+						background:@brand-primary;						
+					}
+					
+					&:before { bottom:100%; }
+					&:after { top:100%; }
+
+					span {
+						position:absolute;
+						left:15px;
+						top:50%;
+						height:20px;
+						line-height:20px;
+						padding:0 5px;
+						font-size:14px;
+						color:#fff;
+						font-weight:bold;
+						margin-top:-20px/2px;
+						background:@brand-primary;
+						border-radius:0 1px 1px 0;
+						
+						&:before {
+							border:20px/2px solid transparent;
+							border-right-color:@brand-primary;
+							position:absolute;
+							right:100%;
+							top:0;
+							content:"";
+						}
+					}
+						
 				}
 			}
+		}
+
+		h3 {
+			z-index:@zindex-content+100;			
+			text-align:center;
+			text-transform:uppercase;			
+			margin-top:20px;
+			margin-bottom:0;
+			margin-left:0;
+			font-size:95%;
+			font-weight:bold;
+			position:relative;			
+			padding:10px;
+			background:transparent;
+			
+			
+			&:after {
+				content:"";
+				position:absolute;
+				top:100%;
+				left:50%;
+				margin-left:-10px;
+				border:transparent 10px solid;				
+				border-top-color:#333232;
+			}		
 		}
 	}	
 
