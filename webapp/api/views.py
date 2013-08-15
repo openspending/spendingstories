@@ -30,6 +30,12 @@ class StoryViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.StorySerializer
     filter_fields    = ('sticky', 'country', 'currency', 'themes', 'continuous')
 
+class StoryNestedViewSet(StoryViewSet):
+    """
+    API endpoint that allows story to be viewed in a nested mode.
+    """
+    serializer_class = serializers.StoryNestedSerializer
+
 # -----------------------------------------------------------------------------
 #
 #    THEME

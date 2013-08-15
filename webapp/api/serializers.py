@@ -14,17 +14,23 @@ from rest_framework import serializers
 from webapp.currency.models import Currency
 from webapp.core.models import Story, Theme
 
-class StorySerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Story
-        depth = 1
-
-class ThemeSerializer(serializers.HyperlinkedModelSerializer):
+class ThemeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Theme
 
-class CurrencySerializer(serializers.HyperlinkedModelSerializer):
+class CurrencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Currency
+
+class StorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Story
+
+class StoryNestedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Story
+        depth = 1
+        # NOTE: because of `depth = 1`. It disalow writing on foreign keys
+        read_only_fields = ('currency', 'themes')
 
 # EOF
