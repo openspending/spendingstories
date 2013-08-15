@@ -1,23 +1,31 @@
 angular.module('stories')
     .directive "scalePoints", ()->     
-        # Constants
-        pointWidth   = 20
-        pointHeight  = 20
-        pointGap     = 5 
         # Returned object to that defines the directive
         restrict: "EAC"
         template: '<div class="one-scale-points"></div>'
         replace: true
         scope:
-            data: "="
-            filter: "&"
+            data       : "="
+            filter     : "&"
+            rulerValue : "&"
+            pointGap   : "&"
+            pointWidth : "&"
+            pointHeight: "&"
         link: (scope, element, attrs)->                               
             # Data must be loaded
             return unless scope.data? and scope.data.length
+
+            # Get optional visualization opt
+            pointWidth     = scope.pointWidth()  or 20
+            pointHeight    = scope.pointHeight() or 20
+            pointGap       = scope.pointGap()    or 7
+            # Ruler that "split" the screen
+            rulerValue     = scope.rulerValue() or -1
             # Where we insert the point
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
             workspaceWidth = element.innerWidth()
+
             # Static positioning must be change to relative
             if element.css("position") is "static"
                 # Using relative position allow us to position points
@@ -69,6 +77,17 @@ angular.module('stories')
                     .style("left"    , xpr)
                     .style("width"   , pointWidth  + "px")
                     .style("height"  , pointHeight + "px")
+
+            # Add the ruler to the workspace
+            workspace.append("div")
+                .attr("class"    , "ruler")
+                .style("position", "absolute")
+                .style("top"     , 0)
+                .style("bottom"  , 0)
+                .style("left"    , xpr current_value_usd: rulerValue)
+                .append("span")
+                    .html(rulerValue)
+
 
             # Update workspace height
             workspace.style("height", maxY + pointHeight + pointGap + "px")          
