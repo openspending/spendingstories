@@ -17,23 +17,26 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from django.db.models import Max, Min
 import serializers
-
+from pprint import pprint as pp
 # -----------------------------------------------------------------------------
 #
 #    STORIES
 #
 # -----------------------------------------------------------------------------
-class IsAdminOrReadOnly(permissions.BasePermission):
+class StoryPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             # Check permissions for read-only request
             return True
-        else:
-            # Check permissions for write request
+        elif request.method == 'DELETE':
+            # Check permissions for delete request
             if request.user and request.user.is_staff:
                 return True
             else:
                 return False
+        else:
+            # Check permissions for write request
+            return True
 
 class StoryViewSet(viewsets.ModelViewSet):
     """
@@ -42,7 +45,16 @@ class StoryViewSet(viewsets.ModelViewSet):
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
     filter_fields      = ('sticky', 'country', 'currency', 'themes', 'continuous')
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (StoryPermission,)
+
+    def create(self, request, pk=None):
+        # reset reserved field if not staff
+        if not request.user or not request.user.is_staff:
+            request.DATA['status'] = "pending"
+            request.DATA['sticky'] = False
+        response = super(StoryViewSet, self).create(request, pk)
+        # print response.__dict__
+        return response
 
 class StoryNestedViewSet(StoryViewSet):
     """
