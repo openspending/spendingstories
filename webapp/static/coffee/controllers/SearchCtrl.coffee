@@ -27,7 +27,7 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
             idx  = _.pluck(data, "id").indexOf $scope.previewedStory.id
             # Set the new previewed story
             $scope.previewedStory = data[idx+1] if data[idx+1]?
-        # Select the next story 
+    # Select the previous story 
     $scope.previousStoryPreview = ()->
         # Get all result from Search service
         Search.results.then (data)->
@@ -38,11 +38,26 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
             # Get the current index of the previewed story
             idx  = _.pluck(data, "id").indexOf $scope.previewedStory.id
             # Set the new previewed story
-            $scope.previewedStory = data[idx-1] if data[idx-1]?
+            $scope.previewedStory = data[idx-1] if data[idx-1]?        
 
-    $scope.previewedStory = 
-        id: 84
-        sticky: true
+    # Select the closest story into the stickies as preview    
+    $scope.$watch "search", ->        
+        # Value to be closed to
+        goal       = Search.query_usd;
+        # Index of the closest value
+        closestIdx = 0;
+        # Get all result from Search service
+        Search.results.then (data)->            
+            # Get only stories that are sticky
+            data = _.where data, sticky: true
+
+            _.each data, (d, idx)->
+                # Current closest value
+                closest    = data[closestIdx].current_value_usd
+                # Update the closest's idx if needed
+                closestIdx = idx if Math.abs(d.current_value_usd - goal) < Math.abs(closest - goal)                
+            # Set the value
+            $scope.previewedStory = data[closestIdx] if data[closestIdx]?
 
 
 SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Currency'];
