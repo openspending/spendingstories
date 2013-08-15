@@ -28,12 +28,12 @@
 						<a ng-if="$first" class="disabled btn">
 							&#9664;
 						</a>
-						<a ng-if="$middle || $last" 
+						<a ng-if="!$first" 
 						   class="btn previous"
 						   ng-click="$parent.$parent.equivalentIdx = equivalentIdx-1">
 							&#9664;
 						</a>
-						<a ng-if="$middle || $first" 
+						<a ng-if="!$last" 
 						   class="btn next"
 						   ng-click="$parent.$parent.equivalentIdx = equivalentIdx+1">
 							&#9654;
