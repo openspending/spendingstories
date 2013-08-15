@@ -32,10 +32,9 @@ class StorySerializer(serializers.ModelSerializer):
         model = Story
 
 class StoryNestedSerializer(serializers.ModelSerializer):
+    themes   = ThemeSerializer(many=True, read_only=True)
+    currency = CurrencySerializer(read_only=True)
     class Meta:
         model = Story
-        depth = 1
-        # NOTE: because of `depth = 1`. It disalow writing on foreign keys
-        read_only_fields = ('currency', 'themes')
 
 # EOF
