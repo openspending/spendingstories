@@ -13,6 +13,5 @@ HeaderCtrl = ($scope, $location, Search)->
         if $scope.query?
             # Update path
             $location.path("/search/").search("q", $scope.query).search("c", $scope.currency)
-            # @TODO Load the data 
 
 HeaderCtrl.$inject = ['$scope', '$location', 'Search'];

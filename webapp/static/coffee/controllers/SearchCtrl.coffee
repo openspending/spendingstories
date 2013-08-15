@@ -1,14 +1,11 @@
-SearchCtrl = ($scope, $routeParams, Search, Restangular)->
+SearchCtrl = ($scope, $routeParams, Search, Currency)->
     
-    $scope.search = Search
-    # Meta value from the server (min, max, etc)
-    $scope.meta   = Restangular.all("meta").getList()
+    $scope.search     = Search
+    $scope.currencies = Currency
     # Watch for route change to update the search
     $scope.$watch $routeParams, ->
         # Update the query property of search according q 
-        $scope.search.query = $routeParams.q if $routeParams.q?
-        # Update the currency property of search according c
-        $scope.search.currency = $routeParams.c if $routeParams.c?
+        $scope.search.set($routeParams.q, $routeParams.c)  if $routeParams.q?
 
     # Get the filtered result 
     # (no filter yet)
@@ -19,4 +16,4 @@ SearchCtrl = ($scope, $routeParams, Search, Restangular)->
     # Showed equivalent
     $scope.equivalentIdx = 0
 
-SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Restangular'];
+SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Currency'];
