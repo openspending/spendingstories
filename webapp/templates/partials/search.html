@@ -9,7 +9,7 @@
 			<div class="preview-strat">
 				<div ng-repeat="d in search.results|orderBy:'current_value_usd'" class="preview" ng-show="d.id == preview.id">	
 					<div>
-						<img ng-src="{{ MEDIA_URL }}[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
+						<img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
 						<h5 class="bottom0">equivalent to</h5>
 						<h4 class="top0">[[d.title]]</h4>
 						<span class="label label-info">

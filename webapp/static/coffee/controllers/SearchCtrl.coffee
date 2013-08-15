@@ -10,6 +10,8 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
     # Get the filtered result 
     # (no filter yet)
     $scope.userFilter = (d)-> true
+    # True if the given value is the equivalent of the query
+    $scope.isEquivalent = (d)-> Math.abs(d.current_value_usd  - $scope.search.query_usd) < 10
     # Event triggered when we click on a point
     $scope.pointSelection = (d)-> $scope.preview.id = d.id
     # Showed equivalent
