@@ -7,7 +7,7 @@
 		<div class="scale-strats">
 			
 			<div class="preview-strat">
-				<div ng-repeat="d in search.results|orderBy:'current_value_usd'" class="preview" ng-show="d.id == preview.id">	
+				<div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="preview" ng-show="d.id == previewedStory.id">	
 				
 					<img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
 				
@@ -37,12 +37,12 @@
 						</a>
 						<a ng-if="!$first" 
 						   class="btn previous"
-						   ng-click="$parent.$parent.preview.id = preview.id-1">
+						   ng-click="previousStoryPreview()">
 							&#9664;
 						</a>
 						<a ng-if="!$last" 
 						   class="btn next"
-						   ng-click="$parent.$parent.preview.id = preview.id+1">
+						   ng-click="nextStoryPreview()">
 							&#9654;
 						</a>
 						<a ng-if="$last" class="disabled btn">
@@ -56,7 +56,7 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					current="preview.id"
+					current="previewedStory.id"
 					on-click="pointSelection"
 					ruler-value="search.query_usd"
 					filter="{sticky: true}"></scale-points>
@@ -68,7 +68,7 @@
 					ng-if="search.results.length"
 					data="search.results"
 					ruler-value="search.query_usd"
-					current="preview.id"
+					current="previewedStory.id"
 					on-click="pointSelection"
 					point-height="7"
 					point-width="7"

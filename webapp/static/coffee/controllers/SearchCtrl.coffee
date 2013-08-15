@@ -12,9 +12,37 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
     $scope.userFilter = (d)-> true
     # True if the given value is the equivalent of the query
     $scope.isEquivalent = (d)-> Math.abs(d.current_value_usd  - $scope.search.query_usd) < 10
+    
     # Event triggered when we click on a point
-    $scope.pointSelection = (d)-> $scope.preview.id = d.id
-    # Showed equivalent
-    $scope.preview = id: 84
+    $scope.pointSelection = (d)-> $scope.previewedStory = d
+    # Select the next story 
+    $scope.nextStoryPreview = ()->
+        # Get all result from Search service
+        Search.results.then (data)->
+            # Get only stories that are in the same group (sticky or not)
+            data = _.where data, sticky: $scope.previewedStory.sticky        
+            # Sort the data by usd
+            data = _.sortBy data, "current_value_usd"
+            # Get the current index of the previewed story
+            idx  = _.pluck(data, "id").indexOf $scope.previewedStory.id
+            # Set the new previewed story
+            $scope.previewedStory = data[idx+1] if data[idx+1]?
+        # Select the next story 
+    $scope.previousStoryPreview = ()->
+        # Get all result from Search service
+        Search.results.then (data)->
+            # Get only stories that are in the same group (sticky or not)
+            data = _.where data, sticky: $scope.previewedStory.sticky        
+            # Sort the data by usd
+            data = _.sortBy data, "current_value_usd"
+            # Get the current index of the previewed story
+            idx  = _.pluck(data, "id").indexOf $scope.previewedStory.id
+            # Set the new previewed story
+            $scope.previewedStory = data[idx-1] if data[idx-1]?
+
+    $scope.previewedStory = 
+        id: 84
+        sticky: true
+
 
 SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Currency'];
