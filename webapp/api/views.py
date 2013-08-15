@@ -53,7 +53,6 @@ class StoryViewSet(viewsets.ModelViewSet):
             request.DATA['status'] = "pending"
             request.DATA['sticky'] = False
         response = super(StoryViewSet, self).create(request, pk)
-        # print response.__dict__
         return response
 
 class StoryNestedViewSet(StoryViewSet):
