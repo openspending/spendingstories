@@ -11,8 +11,8 @@ header {
 	
 	padding:0 10px;
 	background:@body-bg;
-	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
 	z-index:@zindex-header;
+	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
 	
 	
 	h1 {
@@ -74,15 +74,23 @@ header {
 				color:@gray-light;
 			}
 
+			.label {
+				white-space: normal;				
+			}
+
 			.btn-nav {
-				text-align:right;		
-				position:absolute;
-				top:0;
-				right:0;
+				
+				text-align:center;
+				white-space:nowrap;
+				padding:0;
+				
 				a {
 					padding:0;
-					padding-right:10px;
+					margin:0;
+					margin-top:30px;
+					margin-bottom:10px;
 					color:white;	
+					font-size:200%;
 				}
 			}
 		}
