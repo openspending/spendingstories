@@ -1,4 +1,5 @@
 @import 'vendor/bootstrap/bootstrap.less';
+@import 'vendor/font-awesome/font-awesome.less';
 @import 'tools.less';
 @import 'bootstrap-overload.less';
 
@@ -64,7 +65,7 @@ header {
 
 		overflow:hidden;
 		
-		.equivalent-strat {
+		.preview-strat {
 
 			padding:30px 15px;	
 			position:relative;
@@ -106,6 +107,7 @@ header {
 				.point {			
 					background:#BFBDBC;
 					border-radius:1px;
+					cursor:pointer;
 					.box-shadow(0 2px 3px 0 darken(#403F3F, 10));
 					
 					img {
@@ -116,7 +118,7 @@ header {
 						left:0;
 					}
 
-					&.equivalent:after {
+					&.current:after {
 						position:absolute;
 						bottom:0;
 						top:0;
