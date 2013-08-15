@@ -8,27 +8,29 @@
 			
 			<div class="preview-strat">
 				<div ng-repeat="d in search.results|orderBy:'current_value_usd'" class="preview" ng-show="d.id == preview.id">	
-					<div>
-						<img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
-						<h5 class="bottom0">equivalent to</h5>
-						<h4 class="top0">[[d.title]]</h4>
-						<span class="label label-info">
-							[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
-						</span>
-						<span class="label">
-							[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
+				
+					<img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
+				
+					<h5 ng-if="isEquivalent(d)" class="bottom0">equivalent to</h5>
 
-							<i class="icon-large icon-info-sign left10 clickable"
-							tooltip-placement="right"
-							tooltip-trigger="click"
-							tooltip-html-unsafe='
-							<ul class="list-unstyled tl">
-								<li ng-if="d.year">Year : [[d.year]]</li>
-								<li ng-if="d.source">Source : [[d.source]]</li>
-							</ul>
-							'></i>
-						</span>
-					</div>
+					<h4 class="top0">[[d.title]]</h4>
+					<span class="label label-warning">
+						[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
+					</span>
+					<span class="label">
+						[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
+
+						<i class="icon-large icon-info-sign left10 clickable"
+						tooltip-placement="right"
+						tooltip-trigger="click"
+						tooltip-html-unsafe='
+						<ul class="list-unstyled tl">
+							<li ng-if="d.year">Year : [[d.year]]</li>
+							<li ng-if="d.source">Source : [[d.source]]</li>
+						</ul>
+						'></i>
+					</span>
+				
 					<div class="btn-nav">
 						<a ng-if="$first" class="disabled btn">
 							&#9664;
