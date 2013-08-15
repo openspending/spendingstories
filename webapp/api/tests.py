@@ -101,7 +101,9 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.data['sticky'], True)
         # no-auth
         response = self.client.post('/api/stories/', story)
-        self.assertEquals(response.status_code, 401)
+        self.assertEquals(response.status_code, 201)
+        self.assertEquals(response.data['status'], 'pending')
+        self.assertEquals(response.data['sticky'], False)
         # regular user
         user, created = User.objects.get_or_create(username="pouet", email="pouet@pouet.org")
         regular_token, created = Token.objects.get_or_create(user=user)
