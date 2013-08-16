@@ -40,10 +40,10 @@ angular.module('stories')
             filter  = scope.filter()
             # Filter is a function
             dataset = _.filter(dataset, filter) if typeof filter is "function"                   
-            # Not more data after filtering ?
-            return unless dataset.length
             # Filter is an object
             dataset = _.where(dataset, filter) if typeof filter is "object"            
+            # Not more data after filtering ?
+            return unless dataset.length
             # Order dataset to avoid caothic stacking
             dataset = _.sortBy dataset, "current_value_usd" 
             # Put the processed data into a dedicated field
