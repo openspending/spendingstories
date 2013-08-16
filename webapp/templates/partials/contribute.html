@@ -18,7 +18,7 @@
 		</li>
 	</div>
 	
-	<div class="step" ng-if="step == 1">			
+	<div class="step" ng-show="step == 1">			
 		<div class="form-group">
 			<label class="control-label" for="input-currency">Currency</label>
 			<select ng-options="iso_code as c.name for (iso_code, c) in currencies" 
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 
-	<div class="step" ng-if="step == 2">
+	<div class="step" ng-show="step == 2">
 		<div class="breadcrumb">
 			<strong>[[amount|toQueryCurrency:currency:currency]]</strong> is ...
 		</div>
@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	
-	<div class="step" ng-if="step == 3">
+	<div class="step" ng-show="step == 3">
 		<div class="breadcrumb">
 			<strong>[[amount|toQueryCurrency:currency:currency]]</strong> is the cost of <strong>[[title]]</strong>. Could you tell us more?
 		</div>
