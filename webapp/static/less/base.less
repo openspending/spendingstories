@@ -1,4 +1,5 @@
 @import 'vendor/bootstrap/bootstrap.less';
+@import 'vendor/font-awesome/font-awesome.less';
 @import 'tools.less';
 @import 'bootstrap-overload.less';
 
@@ -10,8 +11,8 @@ header {
 	
 	padding:0 10px;
 	background:@body-bg;
-	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
 	z-index:@zindex-header;
+	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
 	
 	
 	h1 {
@@ -27,7 +28,7 @@ header {
 	}
 
 	form {
-		margin-top:60px;
+		margin-top:60px;		
 		
 		.currency:first-letter {
 			text-transform:uppercase;
@@ -51,6 +52,7 @@ header {
 	
 		form {
 			margin-top:5px;
+			margin-bottom:5px;
 			.help-block { display:none; }
 		}	
 	}
@@ -64,7 +66,7 @@ header {
 
 		overflow:hidden;
 		
-		.equivalent-strat {
+		.preview-strat {
 
 			padding:30px 15px;	
 			position:relative;
@@ -73,15 +75,23 @@ header {
 				color:@gray-light;
 			}
 
+			.label {
+				white-space: normal;				
+			}
+
 			.btn-nav {
-				text-align:right;		
-				position:absolute;
-				top:0;
-				right:0;
+				
+				text-align:center;
+				white-space:nowrap;
+				padding:0;
+				
 				a {
 					padding:0;
-					padding-right:10px;
+					margin:0;
+					margin-top:30px;
+					margin-bottom:10px;
 					color:white;	
+					font-size:200%;
 				}
 			}
 		}
@@ -106,6 +116,7 @@ header {
 				.point {			
 					background:#BFBDBC;
 					border-radius:1px;
+					cursor:pointer;
 					.box-shadow(0 2px 3px 0 darken(#403F3F, 10));
 					
 					img {
@@ -116,7 +127,7 @@ header {
 						left:0;
 					}
 
-					&.equivalent:after {
+					&.current:after {
 						position:absolute;
 						bottom:0;
 						top:0;

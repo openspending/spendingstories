@@ -1,0 +1,12 @@
+<div class="one-scale-points">
+    <div class="point"
+    	 ng-repeat="d in dataset"     	 
+    	 ng-style="pointStyle(d)" 
+    	 ng-click="onClick(d)" 
+    	 ng-class="{'current': d.id == current}">
+        <img src="[[d.themes[0].image]]" ng-if="d.themes.length" />
+    </div>
+    <div class="ruler" ng-style="rulerStyle()">
+    	<span>[[rulerValue|userCurrency]]</span>
+    </div>
+</div>

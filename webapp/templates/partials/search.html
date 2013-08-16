@@ -1,47 +1,64 @@
 <ul class="breadcrumb">
 	<li>Search</li>
-	<li>Your query for <strong>[[search.query|thousandSeparator]] [[search.currency]]</strong></li>	
+	<li>Your query for <strong>[[search.query|userCurrency]]</strong></li>	
 </ul>
 <tabset>
 	<tab heading="Scale visualisation">
 		<div class="scale-strats">
 			
-			<div class="equivalent-strat">
-				<div ng-repeat="d in search.results|filter:isEquivalent" class="equivalent" ng-show="equivalentIdx == $index">
-					<div>
-						<img ng-src="{{ MEDIA_URL }}[[d.themes[0].image]]" ng-if="d.themes.length > 0" class="pull-left right20" />				
-						<h5 class="bottom0">equivalent to</h5>
-						<h4 class="top0">[[d.title]]</h4>
-						<span class="label label-info">
-							[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
-						</span>
-						<span class="label">
-							[[d.current_value_usd|number:2|thousandSeparator]] USD converted into query's currency in [[d.inflation_last_year]]
-						</span>
-						<!--ul class="list-unstyled top10 meta">
-							<li>Year :</li>
-							<li>Source : </li>
-							<li>Tags :</li>
-						</ul-->
-					</div>
-					<div class="btn-nav">
+			<div class="preview-strat">
+				<div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">	
+								
+					<div class="btn-nav col-xs-1">
 						<a ng-if="$first" class="disabled btn">
 							&#9664;
 						</a>
 						<a ng-if="!$first" 
 						   class="btn previous"
-						   ng-click="$parent.$parent.equivalentIdx = equivalentIdx-1">
+						   ng-click="previousStoryPreview()">
 							&#9664;
 						</a>
+					</div>
+
+					<div class="col-xs-10">
+						<div class="col-sm-3 col-md-2 tc bottom20">
+							<img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length > 0" />				
+						</div>					
+
+						<div class="col-sm-9 col-md-10">
+							<h5 ng-if="isEquivalent(d)" class="bottom0">equivalent to</h5>
+
+							<h4 class="top0">[[d.title]]</h4>
+							<span class="label label-warning">
+								[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
+							</span>
+							<span class="label">
+								[[d.current_value_usd|userCurrency]] converted into query's currency in [[d.inflation_last_year]]
+
+								<i class="icon-large icon-info-sign left10 clickable"
+								tooltip-placement="right"
+								tooltip-trigger="click"
+								tooltip-html-unsafe='
+								<ul class="list-unstyled tl">
+									<li ng-if="d.year">Year : [[d.year]]</li>
+									<li ng-if="d.source">Source : [[d.source]]</li>
+								</ul>
+								'></i>
+							</span>
+						</div>
+					</div>
+				
+					<div class="btn-nav col-xs-1">
 						<a ng-if="!$last" 
 						   class="btn next"
-						   ng-click="$parent.$parent.equivalentIdx = equivalentIdx+1">
+						   ng-click="nextStoryPreview()">
 							&#9654;
 						</a>
 						<a ng-if="$last" class="disabled btn">
 							&#9654;
 						</a>
 					</div>
+
 				</div>
 			</div>			
 			<h3>Top stories</h3>				
@@ -49,7 +66,8 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					is-equivalent="isEquivalent"
+					current="previewedStory.id"
+					on-click="pointSelection"
 					ruler-value="search.query_usd"
 					filter="{sticky: true}"></scale-points>
 			</div>
@@ -59,10 +77,11 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					is-equivalent="isEquivalent"
 					ruler-value="search.query_usd"
-					point-height="3"
-					point-width="3"
+					current="previewedStory.id"
+					on-click="pointSelection"
+					point-height="7"
+					point-width="7"
 					filter="{sticky: false}"></scale-points>
 			</div>
 
