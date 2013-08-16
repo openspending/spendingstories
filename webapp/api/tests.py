@@ -41,34 +41,6 @@ class APIStoryTestCase(TestCase):
         response = self.client.get('/api/stories/%s/' % story.pk)
         self.assertEquals(response.status_code, 200, response)
 
-    # def test_api_story_create(self):
-    #     YEARS     = range(2003, 2013)
-    #     CURRENCY  = Currency.objects.all()
-    #     THEMES    = list(Theme.objects.public())
-
-    #     for i in range(20):
-    #         story = {}
-    #         story['title']       = loremipsum.generate_sentence()[2].rstrip(".")
-    #         story['description'] = random.choice( [loremipsum.generate_sentence()[2].rstrip("."),"", None] )
-    #         story['value']       = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
-    #         story['year']        = random.choice(YEARS)
-    #         story['country']     = random.choice(COUNTRIES)[0]
-    #         story['currency']    = random.choice(CURRENCY).pk
-    #         story['status']      = random.choice(('published', 'refused', 'pending'))
-    #         story['continuous']  = random.randint(0,1) == 0
-    #         story['source']      = "http://www.okf.org"
-    #         story['sticky']      = random.randint(0,1) == 0
-    #         story['themes']      = []
-    #         for i in range(0, random.randint(1,4)):
-    #             story['themes'].append(random.choice(THEMES).pk)
-
-    #         response = self.staff_client.post('/api/stories/', story)
-    #         self.assertEquals(response.status_code, 201, response)
-    #         self.assertNotEquals(response.data['inflation_last_year'], "")
-    #         self.assertNotEquals(response.data['current_value_usd']  , "")
-    #         self.assertNotEquals(response.data['current_value']      , "")
-
-
     def test_api_story_nested_list(self):
         response = self.client.get('/api/stories-nested/')
         self.assertEquals(response.status_code, 200, response)
@@ -82,6 +54,12 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.status_code, 200, response)
 
     def test_api_permissions(self):
+        """
+        PERMISSIONS TESTED :
+            [ ]  staff        POST
+            [ ]  no-auth      POST
+            [ ]  regular user POST
+        """
         story = {
             'continuous' : False,
             'country'    : 'BGR',
