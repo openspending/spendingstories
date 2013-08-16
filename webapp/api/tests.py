@@ -8,19 +8,14 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 14-Aug-2013
-# Last mod : 15-Aug-2013
+# Last mod : 16-Aug-2013
 # -----------------------------------------------------------------------------
 
 from django.test import TestCase
 from django.test.client import Client
 from webapp.core.models import Story
-from webapp.core.models import Theme
-from webapp.currency.models import Currency
-from webapp.core.fields import COUNTRIES
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-import random
-import loremipsum
 
 class APIStoryTestCase(TestCase):
     def setUp(self):
@@ -89,5 +84,39 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.status_code, 201)
         self.assertEquals(response.data['status'], 'pending')
         self.assertEquals(response.data['sticky'], False)
+
+    # def test_api_relevance(self):
+    #     import random
+    #     from pprint import pprint as pp
+    #     count = {}
+    #     for x in range():
+    #         relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
+    #         if relevance_for in count:
+    #             continue
+    #         count[relevance_for] = 0
+    #         response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
+    #         self.assertEquals(response.status_code, 200)
+    #         assert len(response.data) > 0
+    #         for story in response.data:
+    #             self.assertIsNotNone(story['relevance_score'])
+    #             if story['relevance_score'] != 0:
+    #                 count[relevance_for] += 1
+    #             # print story['relevance_score']
+    #     pp(count)
+
+    def test_api_relevance(self):
+        relevance_for = 19400
+        response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
+        self.assertEquals(response.status_code, 200)
+        assert len(response.data) > 0
+        for story in response.data:
+            self.assertIsNotNone(story['relevance_score'])
+            self.assertTrue('relevance_value' in story)
+            # if story['relevance_score'] > 0:
+            #     print "story value:", story['current_value_usd']
+            #     print "user query:" , relevance_for
+            #     print "score:"      , story['relevance_score']
+            #     print "value:"      , story['relevance_value']
+            #     print "--------------------------------------"
 
 # EOF
