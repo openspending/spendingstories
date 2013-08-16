@@ -7,6 +7,6 @@
         <img src="[[d.themes[0].image]]" ng-if="d.themes.length" />
     </div>
     <div class="ruler" ng-style="rulerStyle()">
-    	<span>[[rulerValue|userCurrency]]</span>
+    	<span>[[rulerValue|toQueryCurrency:'USD']]</span>
     </div>
 </div>

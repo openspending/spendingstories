@@ -10,7 +10,7 @@ thousandSeparator = (nStr, sep=",")->
 angular
     .module('storiesFilters', [])
     .filter("thousandSeparator", ->thousandSeparator)
-    .filter("userCurrency", ["Search", "Currency", (Search, Currency)->  
+    .filter("toQueryCurrency", ["Search", "Currency", (Search, Currency)->  
 
             currencies = {}
             # Records currencies as a dictionary for synchronimous lookup
@@ -30,11 +30,11 @@ angular
                         # Initial value must be converted to dollars
                         if fromCurrency isnt 'USD'
                             # Initial value is now converted to dollar
-                            conveted = value/fromCurrency.rate
+                            converted = converted/fromCurrency.rate
                         # If the final currency isn't dollar
                         if toCurrency isnt 'USD'
                             # The value is now into the targeted currency
-                            conveted = value/toCurrency.rate
+                            converted = converted*toCurrency.rate
 
                     thousandSeparator(
                         # Round the value 

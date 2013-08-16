@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
 	<li>Search</li>
-	<li>Your query for <strong>[[search.query|userCurrency]]</strong></li>	
+	<li>Your query for <strong>[[search.query|toQueryCurrency:search.currency]]</strong></li>	
 </ul>
 <tabset>
 	<tab heading="Scale visualisation">
@@ -26,14 +26,14 @@
 						</div>					
 
 						<div class="col-sm-9 col-md-10">
-							<h5 ng-if="isEquivalent(d)" class="bottom0">equivalent to</h5>
+							<h5 ng-if="isEquivalent(d)" class="bottom0">[[search.query_usd|toQueryCurrency]] are equivalent to</h5>
 
 							<h4 class="top0">[[d.title]]</h4>
 							<span class="label label-warning">
-								[[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]]
+								Cost: [[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]] in [[d.year]]
 							</span>
 							<span class="label">
-								[[d.current_value_usd|userCurrency]] converted into query's currency in [[d.inflation_last_year]]
+								(≈[[d.current_value_usd|toQueryCurrency]] in [[d.inflation_last_year]])
 
 								<i class="icon-large icon-info-sign left10 clickable"
 								tooltip-placement="right"
@@ -69,6 +69,7 @@
 					current="previewedStory.id"
 					on-click="pointSelection"
 					ruler-value="search.query_usd"
+					ruler-currency="'USD'"
 					filter="{sticky: true}"></scale-points>
 			</div>
 
@@ -80,8 +81,8 @@
 					ruler-value="search.query_usd"
 					current="previewedStory.id"
 					on-click="pointSelection"
-					point-height="7"
-					point-width="7"
+					point-height="16"
+					point-width="16"
 					filter="{sticky: false}"></scale-points>
 			</div>
 

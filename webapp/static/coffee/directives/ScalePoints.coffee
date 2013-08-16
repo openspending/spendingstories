@@ -19,8 +19,8 @@ angular.module('stories')
             return unless scope.data? and scope.data.length
 
             # Get optional visualization opt
-            pointWidth     = scope.pointWidth()  or 20
-            pointHeight    = scope.pointHeight() or 20
+            pointWidth     = scope.pointWidth()  or 25
+            pointHeight    = scope.pointHeight() or 25
             pointGap       = scope.pointGap()    or 7
             # Ruler that "split" the screen
             rulerValue     = scope.rulerValue or -1
