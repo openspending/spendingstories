@@ -16,7 +16,7 @@ SPENDING STORIES sub module
 
 * Compute a grade of relevance to an amount based on a reference.
 
-* Support two types of reference: discrete and continuous value
+* Support two types of reference: discrete and continuous values
     Discrete is an amount fixed, timeless. Continous represents more a buget, an annual cost.
 
 For more informations, see https://github.com/jplusplus/okf-spending-stories/wiki/The-cards-visualization
