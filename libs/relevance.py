@@ -68,9 +68,10 @@ class Relevance:
         amount      = amount      or self._amount
         compared_to = compared_to or self._compared_to
         if discrete:
-            return self.__compute_discrete_relevance(float(amount), float(compared_to))
+            self.__compute_discrete_relevance(float(amount), float(compared_to))
         else:
-            return self.__compute_continuous_relevance(float(amount), float(compared_to))
+            self.__compute_continuous_relevance(float(amount), float(compared_to))
+        return self
 
     def __compute_discrete_relevance(self, amount, compared_to):
         """ compute the relevance for a discrete reference """
