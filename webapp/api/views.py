@@ -131,6 +131,6 @@ class CountryViewSet(viewsets.ViewSet):
         """
         Provide Countries
         """
-        return Response(webapp.core.fields.COUNTRIES)
+        return Response([{"iso_code": c[0], "name": c[1]} for c in webapp.core.fields.COUNTRIES])
 
 # EOF
