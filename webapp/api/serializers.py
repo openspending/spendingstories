@@ -31,7 +31,7 @@ class StorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
 
-class StoryNestedSerializer(serializers.ModelSerializer):
+class StoryNestedSerializer(StorySerializer):
     themes   = ThemeSerializer(many=True, read_only=True)
     currency = CurrencySerializer(read_only=True)
     class Meta:
