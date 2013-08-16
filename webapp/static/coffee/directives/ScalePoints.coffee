@@ -39,7 +39,9 @@ angular.module('stories')
             # Filter dataset if we received a filter
             filter  = scope.filter()
             # Filter is a function
-            dataset = _.filter(dataset, filter) if typeof filter is "function"
+            dataset = _.filter(dataset, filter) if typeof filter is "function"                   
+            # Not more data after filtering ?
+            return unless dataset.length
             # Filter is an object
             dataset = _.where(dataset, filter) if typeof filter is "object"            
             # Order dataset to avoid caothic stacking
