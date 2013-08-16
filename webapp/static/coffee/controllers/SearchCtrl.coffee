@@ -1,7 +1,6 @@
-SearchCtrl = ($scope, $routeParams, Search, Currency)->
+SearchCtrl = ($scope, $routeParams, Search)->
     
     $scope.search     = Search
-    $scope.currencies = Currency
     # Watch for route change to update the search
     $scope.$watch $routeParams, ->
         # Update the query property of search according q 
@@ -60,4 +59,4 @@ SearchCtrl = ($scope, $routeParams, Search, Currency)->
             $scope.previewedStory = data[closestIdx] if data[closestIdx]?
 
 
-SearchCtrl.$inject = ['$scope', '$routeParams', 'Search', 'Currency'];
+SearchCtrl.$inject = ['$scope', '$routeParams', 'Search'];

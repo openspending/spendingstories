@@ -1,7 +1,7 @@
 HeaderCtrl = ($scope, $location, Search)->
     # Bi-directional edition of the query
-    $scope.query    = Search.query
-    $scope.currency = Search.currency
+    $scope.query    = _.clone Search.query
+    $scope.currency = _.clone Search.currency
     
     # Update the header size according the location
     $scope.getHeaderClass = -> 

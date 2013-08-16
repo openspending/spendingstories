@@ -13,12 +13,14 @@ header {
 	background:@body-bg;
 	z-index:@zindex-header;	
 	margin:auto;	
-	.transition(padding 1s);
+	.transition(padding-top 1s);
 	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
 	
 	
 	h1 {
+		margin-bottom:15px;	
 		.transition(1s);
+		
 		a, a:hover, a:focus, a:active { 
 			color:inherit;
 			text-decoration:none;
@@ -32,11 +34,18 @@ header {
 
 	form {
 		.transition(1s);
-		margin-top:30px;		
+		margin-top:15px;		
 		
 		.currency:first-letter {
 			text-transform:uppercase;
 		}
+	}
+
+	.links {
+		font-size:80%;
+		margin:10px;
+		font-weight:bold;
+		text-shadow:1px 1px 0 white;
 	}
 
 	&.reduce {
@@ -60,6 +69,11 @@ header {
 			margin-bottom:5px;
 			.help-block { display:none; }
 		}	
+
+		.links {
+			margin-top:15px;
+		}
+
 	}
 }
 
@@ -243,6 +257,19 @@ header {
 			}		
 		}
 	}	
+
+
+	.contribute {
+		
+		.steps-nav {
+			
+			margin-bottom:50px;
+			
+			li.disabled {				
+				color:#aaa;
+			}
+		}
+	}
 
 }
 

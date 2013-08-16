@@ -4,6 +4,16 @@
 			<a ng-href="/">Spending Stories</a>
 			<i>by <a href="http://www.okf.org/" target="_blank">OKF</a></i>
 		</h1>	
+	
+		<ul class="list-inline links pull-right">
+			<li>
+				<a ng-href="#/contribute/">
+					<i class="icon-edit"></i>
+					Contribute
+				</a>
+			</li>
+		</ul>
+
 		<form  class="form-horizontal" role="form" ng-submit="search()">
 			<div class="input-group">
 				<input type="number" ng-required class="form-control" ng-model="query" placeholder="How much is it really?" />		
@@ -30,5 +40,6 @@
 			</div>
 			<span class="help-block">Example queries: 15 million euros, 12 billion yens, 4500000 PLN</span>
 		</form>
+
 	</div>
 </header>

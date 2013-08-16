@@ -11,20 +11,12 @@ angular
     .module('storiesFilters', [])
     .filter("thousandSeparator", ->thousandSeparator)
     .filter("toQueryCurrency", ["Search", "Currency", (Search, Currency)->  
-
-            currencies = {}
-            # Records currencies as a dictionary for synchronimous lookup
-            Currency.then (data)->       
-                # Some objects aren't a currency object                   
-                objects = _.filter data, (currency)-> currency and currency.iso_code? 
-                # The array is converted to an object where iso_code i
-                currencies = _.object _.map(objects, (currency)-> [currency.iso_code, currency]) 
-
-            return (value, fromCurrency='USD', decimals=2)->
-                toCurrency   = currencies[Search.currency]
-                fromCurrency = currencies[fromCurrency]                
-                converted    = value
-                if toCurrency? and fromCurrency?
+            return (value, fromCurrency='USD', toCurrency=Search.currency, decimals=2)->                 
+                fromCurrency = Currency.list[fromCurrency]      
+                toCurrency   = Currency.list[toCurrency]
+                converted = value
+                
+                if fromCurrency? and toCurrency?                             
                     # Convertion needed
                     if toCurrency.iso_code isnt fromCurrency.iso_code
                         # Initial value must be converted to dollars
