@@ -6,7 +6,7 @@
     	 ng-class="{'current': d.id == current}">
         <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
     </div>
-    <div class="ruler" ng-style="rulerStyle()">
+    <div class="ruler" ng-style="rulerStyle()" ng-class="rulerClass()">
     	<span>[[rulerValue|toQueryCurrency]]</span>
     </div>
 </div>

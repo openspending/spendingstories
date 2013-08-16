@@ -23,7 +23,7 @@ angular.module('stories')
             pointHeight    = scope.pointHeight() or 25
             pointGap       = scope.pointGap()    or 7
             # Ruler that "split" the screen
-            rulerValue     = scope.rulerValue or -1
+            rulerValue     = 1*scope.rulerValue or -1
             # Where we insert the point
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
@@ -35,7 +35,7 @@ angular.module('stories')
                 # accoding the top left corner of the workspace
                 element.css("position", "relative")
 
-            dataset = scope.data          
+            dataset = scope.data
             # Filter dataset if we received a filter
             filter  = scope.filter()
             # Filter is a function
@@ -50,8 +50,8 @@ angular.module('stories')
             scope.dataset = dataset
 
             # Bounds values (using sorted list)            
-            min = dataset[0].current_value_usd 
-            max = dataset[dataset.length-1].current_value_usd                
+            min = Math.min dataset[0].current_value_usd, rulerValue 
+            max = Math.max dataset[dataset.length-1].current_value_usd, rulerValue          
             # And extend the scale with the bounds                    
             scale = d3.scale.log().domain [ min, max ]
             # these variables help us to know if we have to go to the next line
@@ -83,6 +83,14 @@ angular.module('stories')
                 top: 0
                 bottom: 0
                 left: xpr(current_value_usd: rulerValue)
+
+            # Sets a class that determines
+            # the direction of the ruler's label (left or right)
+            scope.rulerClass = ->
+                xp = x(current_value_usd: rulerValue)
+                # 2 half of the screen?
+                if xp/workspaceWidth > 0.5 then "to-left" else "to-right"
+
 
             # Find the maximum Y of this serie
             maxY = Math.max.apply null, _.map(dataset, y)

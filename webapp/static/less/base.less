@@ -145,13 +145,13 @@ header {
 			clear:left;
 			background:#403F3F;			
 			border-bottom:darken(#403F3F, 10) 3px solid;
-			min-height:100px;
 			overflow:auto;
 			z-index:@zindex-content+50;
 			position:relative;
 			
 			.one-scale-points {				
 
+				min-height:70px;
 				min-width:600px;
 				margin-top:20px;
 				margin-bottom:15px;				
@@ -227,6 +227,20 @@ header {
 							content:"";
 						}
 					}
+
+					&.to-left span {
+
+						right:15px;
+						left:auto;
+						
+						&:before {
+							border-color:transparent;
+							border-left-color:@brand-primary;
+							position:absolute;
+							left:100%;
+							right:auto;
+						}
+					}	
 						
 				}
 			}
