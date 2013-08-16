@@ -59,7 +59,7 @@ angular.module('stories')
             # Create position functions 
             x  = (d)-> scale(d.current_value_usd)*workspaceWidth            
             y  = (d)->                   
-                if x(d) - lastX >= pointWidth + pointGap       
+                if Math.abs(x(d) - lastX) >= pointWidth + pointGap       
                     lastY = 0
                 else                    
                     lastY = lastY + pointHeight + pointGap
