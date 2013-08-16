@@ -66,7 +66,7 @@ class StoryViewSet(viewsets.ModelViewSet):
                 score, value = Relevance(
                     amount      = relevance_for,
                     compared_to = story['current_value_usd'],
-                    discrete    = True).values()
+                    discrete    = not story['continuous']).values()
                 story['relevance_score'] = score
                 story['relevance_value'] = value
                 response.data[i] = story
@@ -118,5 +118,19 @@ class MetaViewSet(viewsets.ViewSet):
         meta =  {}
         meta.update(Story.objects.public().aggregate(Max('current_value_usd'), Min('current_value_usd')))
         return Response(meta)
+
+# -----------------------------------------------------------------------------
+#
+#    COUNTRIES
+#
+# -----------------------------------------------------------------------------
+import webapp.core.fields
+class CountryViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        """
+        Provide Countries
+        """
+        return Response(webapp.core.fields.COUNTRIES)
 
 # EOF
