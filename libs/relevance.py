@@ -23,6 +23,8 @@ For more informations, see https://github.com/jplusplus/okf-spending-stories/wik
 
 """
 
+__version__ = '0.5'
+
 class Relevance:
     """
 
