@@ -29,22 +29,24 @@
 							<h5 ng-if="isEquivalent(d)" class="bottom0">[[search.query_usd|toQueryCurrency]] are equivalent to</h5>
 
 							<h4 class="top0">[[d.title]]</h4>
-							<span class="label label-warning">
-								Cost: [[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]] in [[d.year]]
-							</span>
-							<span class="label">
-								(≈[[d.current_value_usd|toQueryCurrency]] in [[d.inflation_last_year]])
-
-								<i class="icon-large icon-info-sign left10 clickable"
-								tooltip-placement="right"
-								tooltip-trigger="click"
-								tooltip-html-unsafe='
-								<ul class="list-unstyled tl">
-									<li ng-if="d.year">Year : [[d.year]]</li>
-									<li ng-if="d.source">Source : [[d.source]]</li>
-								</ul>
-								'></i>
-							</span>
+							<p>
+								<span class="label label-warning">
+									Cost: [[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]] in [[d.year]]
+								</span>
+								<span class="label">
+									(≈[[d.current_value_usd|toQueryCurrency]] in [[d.inflation_last_year]])									
+									<a href="[[d.source]]" ng-if="d.source" tooltip="[[d.source]]" class="source left05" target="_blank">
+										<i class="icon-info-sign"></i>
+										<span class="sr-only">source</span>
+									</a>
+								</span>
+							</p>
+							<ul class="list-inline" ng-if="d.themes">								
+								<li ng-repeat="theme in d.themes" class="theme">								
+									<img ng-src="[[theme.image]]" ng-if="theme.image" />
+									[[theme.title]]
+								</li>
+							</ul>
 						</div>
 					</div>
 				
@@ -69,7 +71,6 @@
 					current="previewedStory.id"
 					on-click="pointSelection"
 					ruler-value="search.query_usd"
-					ruler-currency="'USD'"
 					filter="{sticky: true}"></scale-points>
 			</div>
 
