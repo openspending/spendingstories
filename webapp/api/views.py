@@ -8,7 +8,7 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 14-Aug-2013
+# Last mod : 16-Aug-2013
 # -----------------------------------------------------------------------------
 from webapp.core.models import Story, Theme
 from webapp.currency.models import Currency
@@ -16,6 +16,8 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import permissions
 from django.db.models import Max, Min
+from relevance import Relevance
+
 import serializers
 
 # -----------------------------------------------------------------------------
@@ -53,6 +55,23 @@ class StoryViewSet(viewsets.ModelViewSet):
             request.DATA['status'] = "pending"
             request.DATA['sticky'] = False
         response = super(StoryViewSet, self).create(request, pk)
+        return response
+
+    def list(self, request, *args, **kwargs):
+        """ Contains the code to add the relevance if needed """
+        response      = super(StoryViewSet, self).list(request, *args, **kwargs)
+        relevance_for = request.QUERY_PARAMS.get('relevance_for')
+        if relevance_for:
+            for i, story in enumerate(response.data):
+                score, value = Relevance(
+                    amount      = relevance_for,
+                    compared_to = story['current_value_usd'],
+                    discrete    = True).values()
+                story['relevance_score'] = score
+                story['relevance_value'] = value
+                response.data[i] = story
+            # order by relevance score
+            response.data = sorted(response.data, cmp=lambda x,y: cmp(y['relevance_score'], x['relevance_score']))
         return response
 
 class StoryNestedViewSet(StoryViewSet):
