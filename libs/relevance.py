@@ -97,7 +97,9 @@ class Relevance:
 
     def __compute_continuous_relevance(self, amount, compared_to):
         """ compute the relevance for a continuous reference """
-        raise Exception("To be implemented")
+        # TODO
+        return self.__set_values(0)
+
 
     def __set_values(self, score, value=None):
         self.score = score
