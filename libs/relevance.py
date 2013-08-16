@@ -16,7 +16,7 @@ SPENDING STORIES sub module
 
 * Compute a grade of relevance to an amount based on a reference.
 
-* Support two types of reference: discrete and continuous value
+* Support two types of reference: discrete and continuous values
     Discrete is an amount fixed, timeless. Continous represents more a buget, an annual cost.
 
 For more informations, see https://github.com/jplusplus/okf-spending-stories/wiki/The-cards-visualization
@@ -68,9 +68,10 @@ class Relevance:
         amount      = amount      or self._amount
         compared_to = compared_to or self._compared_to
         if discrete:
-            return self.__compute_discrete_relevance(float(amount), float(compared_to))
+            self.__compute_discrete_relevance(float(amount), float(compared_to))
         else:
-            return self.__compute_continuous_relevance(float(amount), float(compared_to))
+            self.__compute_continuous_relevance(float(amount), float(compared_to))
+        return self
 
     def __compute_discrete_relevance(self, amount, compared_to):
         """ compute the relevance for a discrete reference """
@@ -96,7 +97,9 @@ class Relevance:
 
     def __compute_continuous_relevance(self, amount, compared_to):
         """ compute the relevance for a continuous reference """
-        raise Exception("To be implemented")
+        # TODO
+        return self.__set_values(0)
+
 
     def __set_values(self, score, value=None):
         self.score = score
