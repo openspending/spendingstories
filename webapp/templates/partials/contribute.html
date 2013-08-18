@@ -4,11 +4,25 @@
 	  	'panel-success': isDone()
 	  }"	  
 	  role="form" 
-	  name="contribForm">
+	  name="contribForm"
+	  ng-submit="submit()">
 
 	<div class="panel-heading">
 		<h2>Contribute</h2>
-		<p>If you have a spending or budget dataset that you can contribute, please give some basic information here.</p>
+
+		<div ng-show="isDone()">
+			<p class="bottom0">
+				Thanks for your contribution!
+			</p>
+			<p class="bottom20">
+				Your story is now waiting for approving.
+			</p>
+			 <button type="button" class="btn btn-default" ng-click="reset()">Contribute again!</button>	
+		</div>
+
+		<p ng-hide="isDone()">
+			If you have a spending or budget dataset that you can contribute, please give some basic information here.
+		</p>
 	</div>
 
 	<div class="row list-unstyled text-center steps-nav" ng-hide="isDone()">
@@ -100,36 +114,27 @@
 		</div>
 	</fieldset>
 
-	<fieldset class="row" ng-disabled="loading" ng-hide="isDone()">
-		<div class="col-xs-6 col-sm-3 text-left">
-			<button type="button" class="btn btn-default" ng-show="step > 0 && step < stepCount" ng-click="step = step - 1">
-				Previous
-			</button>
+	<div class="panel-footer" ng-hide="isDone()">
+		<div class="row top10">
+			<div class="col-xs-6 col-sm-3 text-left">
+				<button type="button" class="btn btn-default" ng-show="step > 0 && step < stepCount" ng-click="step = step - 1">
+					Previous
+				</button>
+			</div>
+			<div class="hidden-xs col-sm-6">
+				<div class="progress top05">
+	 				<div class="progress-bar" role="progressbar" ng-style="progressStyle()"></div>
+	 			</div>
+			</div>
+			<div class="col-xs-6 col-sm-3 text-right">
+				<button type="button" class="btn btn-primary" ng-disabled="!getForm().$valid" ng-show="step < stepCount-1" ng-click="step = step + 1">
+					Continue
+				</button>
+				<button type="submit" class="btn btn-primary" ng-disabled="!contribForm.$valid" ng-show="step == stepCount-1">
+					Submit
+				</button>
+			</div>
 		</div>
-		<div class="hidden-xs col-sm-6">
-			<div class="progress top05">
- 				<div class="progress-bar" role="progressbar" ng-style="{ width: (step/stepCount)*100 + '%' }"></div>
- 			</div>
-		</div>
-		<div class="col-xs-6 col-sm-3 text-right">
-			<button type="button" class="btn btn-primary" ng-disabled="!getForm().$valid" ng-show="step < stepCount-1" ng-click="step = step + 1">
-				Continue
-			</button>
-			<button type="submit" class="btn btn-primary" ng-disabled="!contribForm.$valid" ng-show="step == stepCount-1" ng-click="submit()">
-				Submit
-			</button>
-		</div>
-	</fieldset>
-
-
-	<fieldset ng-show="isDone()">
-		<p class="bottom0">
-			Thanks for your contribution!
-		</p>
-		<p class="help-block bottom20">
-			Your story is now waiting for approving.
-		</p>
-		 <button type="button" class="btn btn-default" ng-click="reset()">Contribute again!</button>	
-	</fieldset>
+	</div>
 
 </form>
