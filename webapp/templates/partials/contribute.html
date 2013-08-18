@@ -1,115 +1,135 @@
-<form class="contribute panel padding20" role="form">
-	<h2>Contribute</h2>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
-	<p>If you have a spending or budget dataset that you can contribute, please give some basic information here.</p>
-	<hr />
-	<div class="row list-unstyled text-center steps-nav">
-		<li class="col-xs-4" ng-class="{ disabled: step != 1 }">
+<form class="contribute panel" 
+	  ng-class="{
+	  	'loading': loading,
+	  	'panel-success': isDone()
+	  }"	  
+	  role="form" 
+	  name="contribForm">
+
+	<div class="panel-heading">
+		<h2>Contribute</h2>
+		<p>If you have a spending or budget dataset that you can contribute, please give some basic information here.</p>
+	</div>
+
+	<div class="row list-unstyled text-center steps-nav" ng-hide="isDone()">
+		<li class="col-xs-4" ng-class="{ disabled: step != 0 }">
 			<strong>Step 1</strong><br />
 			What is the spending of your story?
 		</li>
-		<li class="col-xs-4" ng-class="{ disabled: step != 2 }">
+		<li class="col-xs-4" ng-class="{ disabled: step != 1 }">
 			<strong>Step 2</strong><br />
 			What is your story about? 
 		</li>
-		<li class="col-xs-4" ng-class="{ disabled: step != 3 }">
+		<li class="col-xs-4" ng-class="{ disabled: step != 2 }">
 			<strong>Step 3</strong><br />
 			Describe your story
 		</li>
 	</div>
 	
-	<div class="step" ng-show="step == 1">			
+	<fieldset class="step" ng-disabled="loading" ng-show="step == 0" ng-form="stepForm0">
 		<div class="form-group">
 			<label class="control-label" for="input-currency">Currency</label>
 			<select ng-options="iso_code as c.name for (iso_code, c) in currencies" 
 					class="form-control" 
-					id="input-amount" 
-					ng-model="currency" 
+					id="input-currency" 
+					ng-model="story.currency" 
 					required></select>
 		</div>	
 		<div class="form-group">
-			<label class="control-label" for="input-ammout">Amount</label>
-			<p class="pull-right">[[amount|toQueryCurrency:currency:currency]]</p>
-			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-amount" ng-model="amount" />
+			<label class="control-label" for="input-value">Amount</label>
+			<p class="pull-right">[[story.value|toQueryCurrency:currency:currency]]</p>
+			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block">
 				Insert a round number without any space or separator
 			</p>
 		</div>
-	</div>
+	</fieldset>
 
-	<div class="step" ng-show="step == 2">
+	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
 		<div class="breadcrumb">
-			<strong>[[amount|toQueryCurrency:currency:currency]]</strong> is ...
+			<strong>[[story.amount|toQueryCurrency:story.currency:story.currency]]</strong> is ...
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-title">Give a title to your story</label>
-			<input required type="text" class="form-control" id="input-title" ng-model="title" />			
+			<input required type="text" class="form-control" id="input-title" ng-model="story.title" />			
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-country">To which country/zone is it related?</label>	
 			<select ng-options="c.iso_code as c.name for c in countries" 
 					class="form-control" 
 					id="input-country" 
-					ng-model="country" 
+					ng-model="story.country" 
 					required></select>	
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-year">In which year?</label>
-			<input required type="number" class="form-control" id="input-year" ng-model="year" />			
+			<input required type="number" class="form-control" id="input-year" ng-model="story.year" />			
 		</div>
-	</div>
+	</fieldset>
 	
-	<div class="step" ng-show="step == 3">
+	<fieldset class="step" ng-disabled="loading" ng-show="step == 2"  ng-form="stepForm2">
 		<div class="breadcrumb">
-			<strong>[[amount|toQueryCurrency:currency:currency]]</strong> is the cost of <strong>[[title]]</strong>. Could you tell us more?
+			<strong>[[story.amount|toQueryCurrency:story.currency:story.currency]]</strong> is the cost of <strong>[[story.title]]</strong>. Could you tell us more?
 		</div>
 		<div class="form-group">
 			<label class="control-label">Is this story unique or reccurring?</label>
 			<div class="radio">
 				<label>
-					<input type="radio" ng-model="continuous" name="continuous" value="false"/>
+					<input type="radio" ng-model="story.continuous" name="continuous" ng-value="false" />
 					Unique event (e.g construction of a building)
 				</label>
 			</div>
 			<div class="radio">
 				<label>
-					<input type="radio" ng-model="continuous" name="continuous" value="true"/>
+					<input type="radio" ng-model="story.continuous" name="continuous" ng-value="true"/>
 					Annually recurring event (e.g budgets)
 				</label>
 			</div>
 		</div>		
 		<div class="form-group">
 			<label class="control-label" for="input-category">Choose a category to describe it</label>
-			<input type="text" class="form-control" ng-model="theme" id="input-theme" />
+			<input type="text" class="form-control" ng-model="story.theme" id="input-theme" />
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-type">What kind of spending is it?</label>
-			<input type="text" class="form-control" ng-model="type" id="input-type" />
+			<input type="text" class="form-control" ng-model="story.type" id="input-type" />
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-source">Insert your source</label>
-			<input type="text" class="form-control" ng-model="source" id="input-source" placeholder="http://..." />
+			<input type="text" required class="form-control" ng-model="story.source" id="input-source" placeholder="http://..." />
 		</div>
-	</div>
+	</fieldset>
 
-	<div class="row">
+	<fieldset class="row" ng-disabled="loading" ng-hide="isDone()">
 		<div class="col-xs-6 col-sm-3 text-left">
-			<button type="button" class="btn btn-default" ng-show="step > 1" ng-click="step = step - 1">
+			<button type="button" class="btn btn-default" ng-show="step > 0 && step < stepCount" ng-click="step = step - 1">
 				Previous
 			</button>
 		</div>
 		<div class="hidden-xs col-sm-6">
 			<div class="progress top05">
- 				<div class="progress-bar" role="progressbar" ng-style="{ width: ((step-1)/3)*100 + '%' }"></div>
+ 				<div class="progress-bar" role="progressbar" ng-style="{ width: (step/stepCount)*100 + '%' }"></div>
  			</div>
 		</div>
 		<div class="col-xs-6 col-sm-3 text-right">
-			<button type="button" class="btn btn-primary"  ng-show="step <= 2" ng-click="step = step + 1">
+			<button type="button" class="btn btn-primary" ng-disabled="!getForm().$valid" ng-show="step < stepCount-1" ng-click="step = step + 1">
 				Continue
 			</button>
-			<button type="submit" class="btn btn-primary"  ng-show="step > 2">
+			<button type="submit" class="btn btn-primary" ng-disabled="!contribForm.$valid" ng-show="step == stepCount-1" ng-click="submit()">
 				Submit
 			</button>
 		</div>
-	</div>
+	</fieldset>
+
+
+	<fieldset ng-show="isDone()">
+		<p class="bottom0">
+			Thanks for your contribution!
+		</p>
+		<p class="help-block bottom20">
+			Your story is now waiting for approving.
+		</p>
+		 <button type="button" class="btn btn-default" ng-click="reset()">Contribute again!</button>	
+	</fieldset>
+
 </form>

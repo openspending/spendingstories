@@ -32,3 +32,20 @@
 		margin:0;
 	}
 }
+
+.panel.loading {
+	position:relative;
+	&:after {
+		content:"";
+		display:block;
+		position:absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		.progress-striped .progress-bar();
+		.progress-bar-variant(@body-bg);
+		.progress.active .progress-bar();
+		.opacity(0.6);
+	}
+}
