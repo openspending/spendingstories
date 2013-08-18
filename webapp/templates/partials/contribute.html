@@ -51,7 +51,7 @@
 		</div>	
 		<div class="form-group">
 			<label class="control-label" for="input-value">Amount</label>
-			<p class="pull-right">[[story.value|toQueryCurrency:currency:currency]]</p>
+			<p class="pull-right">[[story.value|currency:story.currency]]</p>
 			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block">
 				Insert a round number without any space or separator
@@ -61,7 +61,7 @@
 
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
 		<div class="breadcrumb">
-			<strong>[[story.amount|toQueryCurrency:story.currency:story.currency]]</strong> is ...
+			<strong>[[story.value|currency:story.currency]]</strong> is ...
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-title">Give a title to your story</label>
@@ -83,7 +83,7 @@
 	
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 2"  ng-form="stepForm2">
 		<div class="breadcrumb">
-			<strong>[[story.amount|toQueryCurrency:story.currency:story.currency]]</strong> is the cost of <strong>[[story.title]]</strong>. Could you tell us more?
+			<strong>[[story.value|currency:story.currency]]</strong> is the cost of <strong>[[story.title]]</strong>. Could you tell us more?
 		</div>
 		<div class="form-group">
 			<label class="control-label">Is this story unique or reccurring?</label>
@@ -110,7 +110,7 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-source">Insert your source</label>
-			<input type="text" required class="form-control" ng-model="story.source" id="input-source" placeholder="http://..." />
+			<input type="url" required class="form-control" ng-model="story.source" id="input-source" placeholder="http://..." />
 		</div>
 	</fieldset>
 
