@@ -62,15 +62,16 @@
 					</div>
 
 				</div>
-			</div>			
+			</div>	
 			<h3>Top stories</h3>				
 			<div class="top-strat">
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					current="previewedStory.id"
-					on-click="pointSelection"
-					ruler-value="search.query_usd"
+					story="previewedStory.id"
+					click="pointSelection"
+					ruler="search.query_usd"
+					overview="true"
 					filter="{sticky: true}"></scale-points>
 			</div>
 
@@ -79,11 +80,12 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					ruler-value="search.query_usd"
-					current="previewedStory.id"
-					on-click="pointSelection"
+					ruler="search.query_usd"
+					story="previewedStory.id"
+					click="pointSelection"
 					point-height="16"
 					point-width="16"
+					overview="true"
 					filter="{sticky: false}"></scale-points>
 			</div>
 

@@ -1,11 +1,15 @@
 SearchCtrl = ($scope, $routeParams, Search)->
     
     $scope.search     = Search
+    # Visualization mode
+    $scope.overview   = false
     # Watch for route change to update the search
     $scope.$watch $routeParams, ->
         # Update the query property of search according q 
         $scope.search.set($routeParams.q, $routeParams.c) if $routeParams.q?
 
+    # Toggle overview mode
+    $scope.toggleOverview = -> $scope.overview = not $scope.overview
     # Get the filtered result 
     # (no filter yet)
     $scope.userFilter = (d)-> true

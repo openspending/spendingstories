@@ -2,7 +2,7 @@
     <div class="point"
     	 ng-repeat="d in dataset"     	 
     	 ng-style="pointStyle(d)" 
-    	 ng-click="onClick(d)" 
+    	 ng-click="click(d)" 
     	 ng-class="{'current': d.id == current}">
         <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
     </div>
