@@ -20,28 +20,27 @@ angular.module('stories')
             overview       : "&"     
         link: (scope, element, attrs)->  
             
-            scope.$watch "data", ->update()
-            scope.$watch "rulerValue", ->update()
-            scope.$watch "rulerCurrency", ->update()
-            
-            # Isolate the scale initialization to allow dynamique updating
-            update = ->                             
-                # Data must be loaded
-                return unless scope.data? and scope.data.length
+            # Where we insert the point
+            workspace      = d3.select(element[0])            
+            # Width of the workspace according to its parent
+            workspaceWidth = if scope.overview() then element.innerWidth() else 6000
+            # Get optional visualization opt
+            pointWidth  = if scope.overview() then scope.pointWidth()  or 25 else scope.pointWidthBig()  or 200
+            pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
+            pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
 
-                # Get optional visualization opt
-                pointWidth     = scope.pointWidth()     or 25
-                pointHeight    = scope.pointHeight()    or 25
-                pointWidthBig  = scope.pointWidthBig()  or 200
-                pointHeightBig = scope.pointHeightBig() or 60
-                pointGap       = scope.pointGap()       or 7
-                pointGapBig    = scope.pointGapBig()    or 7
+            # Scope values to monitor            
+            monitored = ["rulerValue"] #, "rulerCurrency", "data"]
+            # Watch those values
+            scope.$watch monitored.join("||"), ->update()
+
+            # Isolate the scale initialization to allow dynamique updating
+            update = ->        
+                # Data must be loaded
+                return unless scope.data? and scope.data.length                                 
+
                 # Ruler that "split" the screen
                 rulerValue     = 1*scope.rulerValue or -1
-                # Where we insert the point
-                workspace      = d3.select(element[0])
-                # Width of the workspace according to its parent
-                workspaceWidth = if scope.overview() then element.innerWidth() else 6000
 
                 # Static positioning must be change to relative
                 if element.css("position") is "static"
@@ -72,11 +71,7 @@ angular.module('stories')
                 lastY = lastX = -(pointWidth+pointGap)
                 # Create position functions 
                 x  = (d)-> scale(d.current_value_usd)*workspaceWidth            
-                y  = (d)->                   
-                    pointWidth  = if scope.overview() then pointWidth  else pointWidthBig
-                    pointHeight = if scope.overview() then pointHeight else pointHeightBig
-                    pointGap    = if scope.overview() then pointGap    else pointGapBig
-
+                y  = (d)->        
                     if Math.abs(x(d) - lastX) >= pointWidth + pointGap       
                         lastY = 0
                     else                    
@@ -92,8 +87,8 @@ angular.module('stories')
                     position: "absolute"
                     top     : y(d)
                     left    : xpr(d)
-                    width   : if scope.overview() then pointWidth else pointWidthBig
-                    height  : if scope.overview() then pointHeight else pointHeightBig
+                    width   : pointWidth
+                    height  : pointHeight
 
                 # Add the ruler to the workspace
                 scope.rulerStyle = ->
@@ -108,7 +103,6 @@ angular.module('stories')
                     xp = x(current_value_usd: rulerValue)
                     # 2 half of the screen?
                     if xp/workspaceWidth > 0.5 then "to-left" else "to-right"
-
 
                 # Find the maximum Y of this serie
                 maxY = Math.max.apply null, _.map(dataset, y)
