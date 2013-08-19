@@ -97,7 +97,29 @@ class Relevance:
 
     def __compute_continuous_relevance(self, amount, compared_to):
         """ compute the relevance for a continuous reference """
-        # TODO
+        ratio = amount/compared_to * 100
+        if 90 <= ratio <= 110:
+            return self.__set_values(10, "equivalent")
+        else:
+            if ratio < 100:
+                if 49 < ratio < 51:
+                    return self.__set_values(9, "half")
+                else:
+                    # compute the story amount equivalence for 1 day
+                    one_day = compared_to / 365.25
+                    if amount < 30 * one_day:
+                        # compute into weeks
+                        if round(amount) % (7 * one_day) == 0:
+                            return self.__set_values(8, "weeks")
+                    else:
+                        # compute into month
+                        if round(amount) % (30 * one_day) == 0:
+                            return self.__set_values(8, "months")
+            else:
+                if ratio < 1000:
+                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
+                        # x200, x500, x1000. For instance: the query is twice the amount
+                        return self.__set_values(8, "multiple")
         return self.__set_values(0)
 
 
