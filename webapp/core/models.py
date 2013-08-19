@@ -8,7 +8,7 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 05-Aug-2013
-# Last mod : 07-Aug-2013
+# Last mod : 19-Aug-2013
 # -----------------------------------------------------------------------------
 
 from django.utils.translation import ugettext as _
@@ -87,7 +87,7 @@ class Story(models.Model):
     country             = fields.CountryField(_('Country'),help_text=_("Choose the country or zone where the money is spent")) # ISO code of the country 
     source              = models.URLField(_('Story\'s source URL'), max_length=140)
     currency            = models.ForeignKey(Currency)
-    continuous          = models.BooleanField(_('Budget/part of a budget'),help_text=_("Check if the spending is related to an annualy budget or part of a budget.e.g.Budget 2012 of the Department for Transport"),default=False)
+    continuous          = models.BooleanField(_('Budget/Spending over one year'),help_text=_("This story's amount concerns one specific year (The amount will be cut into time equivalence). For instance: Budget 2012 of the Department for Transport"),default=False)
     status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
     sticky              = models.BooleanField(_('Is a top story'),help_text=_("Check if the story is a tabloid"),default=False)
     year                = models.IntegerField(_('Year'), choices=YEAR_CHOICES, max_length=4, help_text=_("Enter the start year of the spending"))
