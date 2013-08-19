@@ -91,7 +91,7 @@ class Relevance:
                 if not ratio < 1:
                     if 49 < ratio < 51:
                         # near
-                        return self.__set_values(9, Relevance.TYPE_HALF)
+                        return self.__set_values(9, Relevance.TYPE_HALF, 0.5)
                     else:
                         if round(ratio) % 10 == 0:
                             # multiple of 10
@@ -112,7 +112,7 @@ class Relevance:
         else:
             if ratio < 100:
                 if 49 < ratio < 51:
-                    return self.__set_values(9, Relevance.TYPE_HALF)
+                    return self.__set_values(9, Relevance.TYPE_HALF, 0.5)
                 else:
                     # compute the story amount equivalence for 1 day
                     one_day = compared_to / 365.25
@@ -132,15 +132,15 @@ class Relevance:
                         return self.__set_values(8, Relevance.TYPE_MULTIPLE, nice_multiple)
         return self.__set_values(0)
 
-    def __nice_multiple_for(self, number):
+    def __nice_multiple_for(self, ratio):
         """ x200, x500, x1000. For instance: the query is twice the amount """
-        number_rounded = round(number)
-        if number_rounded in range(198, 202):
-            return 200
-        elif number_rounded in range(498, 502):
-            return 500
-        elif number_rounded in range(996, 1000):
-            return 1000
+        ratio_rounded = round(ratio)
+        if ratio_rounded in range(198, 202):
+            return 2
+        elif ratio_rounded in range(498, 502):
+            return 5
+        elif ratio_rounded in range(996, 1000):
+            return 10
         return False
 
     def __set_values(self, score, _type=None, value=None):
