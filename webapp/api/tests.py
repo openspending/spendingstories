@@ -18,6 +18,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from operator import itemgetter
 from pprint import pprint as pp
+from relevance import Relevance
 import random
 
 class APIStoryTestCase(SimpleTestCase):
@@ -89,8 +90,9 @@ class APIStoryTestCase(SimpleTestCase):
         self.assertEquals(response.data['sticky'], False)
 
     def test_api_relevances(self):
-        count = {}
-        for x in range(10):
+        TOLERENCE = 95
+        count     = {}
+        for x in range(30):
             relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
             if relevance_for in count:
                 continue
@@ -102,25 +104,38 @@ class APIStoryTestCase(SimpleTestCase):
                 self.assertIsNotNone(story['relevance_score'])
                 if story['relevance_score'] != 0:
                     count[relevance_for] += 1
-                    # print story['relevance_score'], story['relevance_type'], story['relevance_value']
+                    if story['relevance_type'] in (Relevance.TYPE_MULTIPLE, Relevance.TYPE_HALF) :
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']
+                        accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+                        debug = "\n"
+                        debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
+                        debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
+                        debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
+                        debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
+                        debug += "\n--------------------------------------"
+                        self.assertTrue(accuracy > TOLERENCE, debug)
         count = sorted(count.iteritems(), key=itemgetter(1), reverse=True)
         # pp(count[:5])
 
-    def test_api_relevance(self):
-        relevance_for = 530000000
-        response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
-        self.assertEquals(response.status_code, 200)
-        assert len(response.data) > 0
-        for story in response.data:
-            self.assertIsNotNone(story['relevance_score'])
-            self.assertTrue('relevance_value' in story)
-            # if story['relevance_score'] > 0:
-            #     print 
-            #     print "{0:12}: {1}"          .format('user query' , relevance_for)
-            #     print "{0:12}: {1} (id: {2})".format('story value', story['current_value_usd'], story['id'])
-            #     print "{0:12}: {1}"          .format('score'      , story['relevance_score'])
-            #     print "{0:12}: {1}"          .format('type'       , story['relevance_type'])
-            #     print "{0:12}: {1}"          .format('value'      , story['relevance_value'])
-            #     print "--------------------------------------"
+    # def test_api_relevance(self):
+    #     relevance_for = 4800000000
+    #     response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
+    #     self.assertEquals(response.status_code, 200)
+    #     assert len(response.data) > 0
+    #     for story in response.data:
+    #         self.assertIsNotNone(story['relevance_score'])
+    #         self.assertTrue('relevance_value' in story)
+    #         if story['relevance_score'] > 0:
+    #             print 
+    #             print "{0:12}: {1}"              .format('user query' , relevance_for)
+    #             print "{0:12}: {1} (id: {2} {3})".format('story value', 
+    #                 story['current_value_usd'], story['id'], "continuous" if story['continuous'] else "discrete")
+    #             print "{0:12}: {1}"              .format('score'      , story['relevance_score'])
+    #             print "{0:12}: {1}"              .format('type'       , story['relevance_type'])
+    #             print "{0:12}: {1}"              .format('value'      , story['relevance_value'])
+    #             print "--------------------------------------"
 
 # EOF
