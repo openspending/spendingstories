@@ -98,9 +98,10 @@ class Relevance:
                             return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio))
             else:
                 if ratio < 1000:
-                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
-                        # x200, x500, x1000. For instance: the query is twice the amount
-                        return self.__set_values(8, Relevance.TYPE_MULTIPLE)
+                    # x200, x500, x1000. For instance: the query is twice the amount
+                    nice_multiple = self.__nice_multiple_for(ratio)
+                    if nice_multiple:
+                        return self.__set_values(8, Relevance.TYPE_MULTIPLE, nice_multiple)
         return self.__set_values(0)
 
     def __compute_continuous_relevance(self, amount, compared_to):
@@ -125,10 +126,22 @@ class Relevance:
                             return self.__set_values(8, Relevance.TYPE_MONTH)
             else:
                 if ratio < 1000:
-                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
-                        # x200, x500, x1000. For instance: the query is twice the amount
-                        return self.__set_values(8, Relevance.TYPE_MULTIPLE)
+                    # x200, x500, x1000. For instance: the query is twice the amount
+                    nice_multiple = self.__nice_multiple_for(ratio)
+                    if nice_multiple:
+                        return self.__set_values(8, Relevance.TYPE_MULTIPLE, nice_multiple)
         return self.__set_values(0)
+
+    def __nice_multiple_for(self, number):
+        """ x200, x500, x1000. For instance: the query is twice the amount """
+        number_rounded = round(number)
+        if number_rounded in range(198, 202):
+            return 200
+        elif number_rounded in range(498, 502):
+            return 500
+        elif number_rounded in range(996, 1000):
+            return 1000
+        return False
 
     def __set_values(self, score, _type=None, value=None):
         self.score = score
