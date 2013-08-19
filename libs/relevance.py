@@ -90,8 +90,8 @@ class Relevance:
                             return self.__set_values(8, "multiple")
             else:
                 if ratio < 1000:
-                    if round(ratio) in (200, 500, 1000):
-                        # for instance: the query is twice the amount
+                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
+                        # x200, x500, x1000. For instance: the query is twice the amount
                         return self.__set_values(8, "multiple")
         return self.__set_values(0)
 
