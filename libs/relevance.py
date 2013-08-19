@@ -95,7 +95,7 @@ class Relevance:
                     else:
                         if round(ratio) % 10 == 0:
                             # multiple of 10
-                            return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio))
+                            return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio)/100)
             else:
                 if ratio < 1000:
                     # x200, x500, x1000. For instance: the query is twice the amount
