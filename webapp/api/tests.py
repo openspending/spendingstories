@@ -11,18 +11,21 @@
 # Last mod : 16-Aug-2013
 # -----------------------------------------------------------------------------
 
-from django.test import TestCase
+from django.test import SimpleTestCase
 from django.test.client import Client
 from webapp.core.models import Story
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from operator import itemgetter
+from pprint import pprint as pp
+import random
 
-class APIStoryTestCase(TestCase):
+class APIStoryTestCase(SimpleTestCase):
     def setUp(self):
         # Every test needs a client.
-        staff_token = Token.objects.create(user=User.objects.filter(is_staff=True)[0])
-        self.staff_client = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
-        self.client       = Client()
+        staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
+        self.staff_client    = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
+        self.client          = Client()
 
     def test_api_story_list(self):
         response = self.client.get('/api/stories/')
@@ -85,27 +88,26 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.data['status'], 'pending')
         self.assertEquals(response.data['sticky'], False)
 
-    # def test_api_relevance(self):
-    #     import random
-    #     from pprint import pprint as pp
-    #     count = {}
-    #     for x in range():
-    #         relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
-    #         if relevance_for in count:
-    #             continue
-    #         count[relevance_for] = 0
-    #         response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
-    #         self.assertEquals(response.status_code, 200)
-    #         assert len(response.data) > 0
-    #         for story in response.data:
-    #             self.assertIsNotNone(story['relevance_score'])
-    #             if story['relevance_score'] != 0:
-    #                 count[relevance_for] += 1
-    #             # print story['relevance_score']
-    #     pp(count)
+    def test_api_relevances(self):
+        count = {}
+        for x in range(10):
+            relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
+            if relevance_for in count:
+                continue
+            count[relevance_for] = 0
+            response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
+            self.assertEquals(response.status_code, 200)
+            assert len(response.data) > 0
+            for story in response.data:
+                self.assertIsNotNone(story['relevance_score'])
+                if story['relevance_score'] != 0:
+                    count[relevance_for] += 1
+                    # print story['relevance_score'], story['relevance_type'], story['relevance_value']
+        count = sorted(count.iteritems(), key=itemgetter(1), reverse=True)
+        # pp(count[:5])
 
     def test_api_relevance(self):
-        relevance_for = 19400
+        relevance_for = 530000000
         response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
         self.assertEquals(response.status_code, 200)
         assert len(response.data) > 0
@@ -113,10 +115,12 @@ class APIStoryTestCase(TestCase):
             self.assertIsNotNone(story['relevance_score'])
             self.assertTrue('relevance_value' in story)
             # if story['relevance_score'] > 0:
-            #     print "story value:", story['current_value_usd']
-            #     print "user query:" , relevance_for
-            #     print "score:"      , story['relevance_score']
-            #     print "value:"      , story['relevance_value']
+            #     print 
+            #     print "{0:12}: {1}"          .format('user query' , relevance_for)
+            #     print "{0:12}: {1} (id: {2})".format('story value', story['current_value_usd'], story['id'])
+            #     print "{0:12}: {1}"          .format('score'      , story['relevance_score'])
+            #     print "{0:12}: {1}"          .format('type'       , story['relevance_type'])
+            #     print "{0:12}: {1}"          .format('value'      , story['relevance_value'])
             #     print "--------------------------------------"
 
 # EOF
