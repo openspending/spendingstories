@@ -115,8 +115,10 @@ class MetaViewSet(viewsets.ViewSet):
         """
         Provide Meta data about Stories
         """
-        meta =  {}
-        meta.update(Story.objects.public().aggregate(Max('current_value_usd'), Min('current_value_usd')))
+        stories = Story.objects.public()
+        meta    =  {}
+        meta.update(stories.aggregate(Max('current_value_usd'), Min('current_value_usd')))
+        meta['count'] = stories.count()
         return Response(meta)
 
 # -----------------------------------------------------------------------------
