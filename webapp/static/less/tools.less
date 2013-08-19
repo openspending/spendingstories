@@ -122,3 +122,20 @@ html body .gray-dark { color:#808080; }
 html body .gray-darker { color:#404040; }
 html body .black { color:#000; }
 html body .bold { font-weight:bold; }
+
+.loading {
+    position:relative;
+    &:after {
+        content:"";
+        display:block;
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        .progress-striped .progress-bar();
+        .progress-bar-variant(@body-bg);
+        .progress.active .progress-bar();
+        .opacity(0.6);
+    }
+}
