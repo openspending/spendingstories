@@ -115,15 +115,17 @@ class Relevance:
                     return self.__set_values(9, Relevance.TYPE_HALF, 0.5)
                 else:
                     # compute the story amount equivalence for 1 day
-                    one_day = compared_to / 365.25
-                    if amount < 30 * one_day:
+                    one_day   = compared_to / 365.25
+                    one_week  = compared_to / 52
+                    one_month = compared_to / 12
+                    if amount < one_month:
                         # compute into weeks
-                        if round(amount) % (7 * one_day) == 0:
-                            return self.__set_values(8, Relevance.TYPE_WEEK)
-                    else:
+                        if amount >= one_week and amount % one_week <= one_day * 0.25:
+                            return self.__set_values(8, Relevance.TYPE_WEEK, int(amount / one_week))
+                    elif amount < compared_to:
                         # compute into month
-                        if round(amount) % (30 * one_day) == 0:
-                            return self.__set_values(8, Relevance.TYPE_MONTH)
+                        if amount % one_month < one_week * 0.25:
+                            return self.__set_values(8, Relevance.TYPE_MONTH, int(amount / one_month))
             else:
                 if ratio < 1000:
                     # x200, x500, x1000. For instance: the query is twice the amount
