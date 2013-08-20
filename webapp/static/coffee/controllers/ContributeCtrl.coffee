@@ -11,14 +11,7 @@ ContributeCtrl = ($scope, Currency, Restangular)->
     $scope.countries  = Restangular.all("countries").getList()    
     $scope.themes     = Restangular.all("themes").getList()    
     # The story to build
-    $scope.story      = 
-        currency: 'USD'
-        value: 12344
-        title: "Test"
-        country: "FRA"
-        year: 20012
-        source: "http://google.com"
-        continuous: false
+    $scope.story      = currency: 'USD'
 
     # Send the data to the API
     $scope.submit = ->
