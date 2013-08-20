@@ -85,10 +85,6 @@ class Relevance:
         assert amount and compared_to and story_type
         if story_type in Relevance.STORIES_TYPES:
             getattr(self, "_compute_%s_relevance" % story_type)(float(amount), float(compared_to))
-        # if discrete:
-        #     self.__compute_discrete_relevance(float(amount), float(compared_to))
-        # else:
-        #     self.__compute_continuous_relevance(float(amount), float(compared_to))
         return self
 
     def _compute_discrete_relevance(self, amount, compared_to):
