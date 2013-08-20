@@ -13,6 +13,8 @@
     <script type="text/javascript"   src="{% static 'js/vendor/angular/ui-bootstrap-custom-tpls-0.5.0.js' %}"></script>
     <script type="text/javascript"   src="{% static 'js/vendor/angular/restangular.js' %}"></script>
     <script type="text/javascript"   src="{% static 'js/vendor/underscore-min.js' %}"></script>
+    <script type="text/javascript"   src="{% static 'js/vendor/bootstrap.js' %}"></script>
+    <script type="text/javascript"   src="{% static 'js/vendor/bootstrap-select.js' %}"></script>
     <script type="text/javascript"   src="{% static 'js/vendor/d3.v3.js' %}"></script>
 
     <script type="text/coffeescript" src="{% static 'coffee/app.coffee' %}"></script>    
@@ -25,6 +27,7 @@
     <script type="text/coffeescript" src="{% static 'coffee/controllers/ContributeCtrl.coffee' %}"></script>
     <script type="text/coffeescript" src="{% static 'coffee/directives/ScalePoints.coffee' %}"></script>
     <script type="text/coffeescript" src="{% static 'coffee/directives/StickToTop.coffee' %}"></script>
+    <script type="text/coffeescript" src="{% static 'coffee/directives/SelectPicker.coffee' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -32,7 +35,7 @@
         {% include "partials/header.html" %}
         <div ng-view id="content" class="container"></div>
         <footer>            
-            <div class="container">
+            <div class="container">            
                 <div class="row">
                     <div class="col-sm-6 col-md-3 col-md-offset-6 col">
                         <a href="http://okfn.org" target="_blank">
