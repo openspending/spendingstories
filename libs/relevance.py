@@ -31,7 +31,7 @@ class Relevance:
     How to use it
     -------------
 
-        score, value = Relevance(
+        score, type, value = Relevance(
             amount      = 10000,
             compared_to = 1234567890e+2,
             discrete    = True).values()
@@ -43,6 +43,7 @@ class Relevance:
             compared_to = 1234567890e+2,
             discrete    = True)
         score = relevance.score
+        type  = relevance.type
         value = relevance.value
 
     * or *
@@ -51,9 +52,16 @@ class Relevance:
             compared_to = 1234567890e+2,
             discrete    = True)
         relevance.compute(amount=10000)
-        score, value = relevance.values()
+        score, type, value = relevance.values()
 
     """
+
+    # CONSTANTES
+    TYPE_HALF       = "half"
+    TYPE_EQUIVALENT = "equivalent"
+    TYPE_MULTIPLE   = "multiple"
+    TYPE_WEEK       = "weeks"
+    TYPE_MONTH      = "months"
 
     def __init__(self, amount=None, compared_to=None, discrete=True):
         self.score = None
@@ -77,36 +85,58 @@ class Relevance:
         """ compute the relevance for a discrete reference """
         ratio = amount/compared_to * 100
         if 90 <= ratio <= 110:
-            return self.__set_values(10, "equivalent")
+            return self.__set_values(10, Relevance.TYPE_EQUIVALENT)
         else:
             if ratio < 100:
                 if not ratio < 1:
                     if 49 < ratio < 51:
                         # near
-                        return self.__set_values(9, "half")
+                        return self.__set_values(9, Relevance.TYPE_HALF)
                     else:
                         if round(ratio) % 10 == 0:
                             # multiple of 10
-                            return self.__set_values(8, "multiple")
+                            return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio))
             else:
                 if ratio < 1000:
-                    if round(ratio) in (200, 500, 1000):
-                        # for instance: the query is twice the amount
-                        return self.__set_values(8, "multiple")
+                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
+                        # x200, x500, x1000. For instance: the query is twice the amount
+                        return self.__set_values(8, Relevance.TYPE_MULTIPLE)
         return self.__set_values(0)
 
     def __compute_continuous_relevance(self, amount, compared_to):
         """ compute the relevance for a continuous reference """
-        # TODO
+        ratio = amount/compared_to * 100
+        if 90 <= ratio <= 110:
+            return self.__set_values(10, Relevance.TYPE_EQUIVALENT)
+        else:
+            if ratio < 100:
+                if 49 < ratio < 51:
+                    return self.__set_values(9, Relevance.TYPE_HALF)
+                else:
+                    # compute the story amount equivalence for 1 day
+                    one_day = compared_to / 365.25
+                    if amount < 30 * one_day:
+                        # compute into weeks
+                        if round(amount) % (7 * one_day) == 0:
+                            return self.__set_values(8, Relevance.TYPE_WEEK)
+                    else:
+                        # compute into month
+                        if round(amount) % (30 * one_day) == 0:
+                            return self.__set_values(8, Relevance.TYPE_MONTH)
+            else:
+                if ratio < 1000:
+                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
+                        # x200, x500, x1000. For instance: the query is twice the amount
+                        return self.__set_values(8, Relevance.TYPE_MULTIPLE)
         return self.__set_values(0)
 
-
-    def __set_values(self, score, value=None):
+    def __set_values(self, score, _type=None, value=None):
         self.score = score
+        self.type  = _type
         self.value = value
 
     def values(self):
         """ return the score and the value as a tuple """
-        return (self.score, self.value)
+        return (self.score, self.type, self.value)
 
 # EOF

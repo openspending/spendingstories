@@ -63,11 +63,12 @@ class StoryViewSet(viewsets.ModelViewSet):
         relevance_for = request.QUERY_PARAMS.get('relevance_for')
         if relevance_for:
             for i, story in enumerate(response.data):
-                score, value = Relevance(
+                score, _type, value = Relevance(
                     amount      = relevance_for,
                     compared_to = story['current_value_usd'],
                     discrete    = not story['continuous']).values()
                 story['relevance_score'] = score
+                story['relevance_type']  = _type
                 story['relevance_value'] = value
                 response.data[i] = story
             # order by relevance score
@@ -115,8 +116,10 @@ class MetaViewSet(viewsets.ViewSet):
         """
         Provide Meta data about Stories
         """
-        meta =  {}
-        meta.update(Story.objects.public().aggregate(Max('current_value_usd'), Min('current_value_usd')))
+        stories = Story.objects.public()
+        meta    =  {}
+        meta.update(stories.aggregate(Max('current_value_usd'), Min('current_value_usd')))
+        meta['count'] = stories.count()
         return Response(meta)
 
 # -----------------------------------------------------------------------------
