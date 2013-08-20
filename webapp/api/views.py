@@ -46,7 +46,7 @@ class StoryViewSet(viewsets.ModelViewSet):
     """
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
-    filter_fields      = ('sticky', 'country', 'currency', 'themes', 'continuous')
+    filter_fields      = ('sticky', 'country', 'currency', 'themes', 'type')
     permission_classes = (StoryPermission,)
 
     def create(self, request, pk=None):
@@ -66,7 +66,7 @@ class StoryViewSet(viewsets.ModelViewSet):
                 score, _type, value = Relevance(
                     amount      = relevance_for,
                     compared_to = story['current_value_usd'],
-                    discrete    = not story['continuous']).values()
+                    story_type  = story['type']).values()
                 story['relevance_score'] = score
                 story['relevance_type']  = _type
                 story['relevance_value'] = value
