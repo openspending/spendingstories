@@ -30,6 +30,7 @@ angular
                     .when('/search/', 
                         controller: SearchCtrl
                         templateUrl: "./partial/search.html"
+                        reloadOnSearch: false
                     )
                     .when('/contribute/',
                         controller: ContributeCtrl
