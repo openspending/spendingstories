@@ -136,14 +136,15 @@ class Relevance:
 
     def __nice_multiple_for(self, ratio):
         """ x200, x500, x1000. For instance: the query is twice the amount """
+        nice_multiple = False
         ratio_rounded = round(ratio)
         if ratio_rounded in range(198, 202):
-            return 2
+            nice_multiple = 2
         elif ratio_rounded in range(498, 502):
-            return 5
+            nice_multiple = 5
         elif ratio_rounded in range(996, 1002):
-            return 10
-        return False
+            nice_multiple = 10
+        return nice_multiple
 
     def __set_values(self, score, _type=None, value=None):
         self.score = score
