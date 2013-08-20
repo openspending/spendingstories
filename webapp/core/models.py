@@ -87,7 +87,10 @@ class Story(models.Model):
     country             = fields.CountryField(_('Country'),help_text=_("Choose the country or zone where the money is spent")) # ISO code of the country 
     source              = models.URLField(_('Story\'s source URL'), max_length=140)
     currency            = models.ForeignKey(Currency)
-    continuous          = models.BooleanField(_('Budget/Spending over one year'),help_text=_("This story's amount concerns one specific year (The amount will be cut into time equivalence). For instance: Budget 2012 of the Department for Transport"),default=False)
+    type                = models.CharField(_("Story type"), choices=(('discrete', _('discrete')), ('continuous', _('continuous')), ('1_year_based', _('one year based'))),
+        default='discrete',
+        help_text=_("The way you want that we compare this story. If this story's amount concerns one specific year, choose continuous (The amount will be cut into time equivalence)."),
+        max_length=10)
     status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
     sticky              = models.BooleanField(_('Is a top story'),help_text=_("Check if the story is a tabloid"),default=False)
     year                = models.IntegerField(_('Year'), choices=YEAR_CHOICES, max_length=4, help_text=_("Enter the start year of the spending"))

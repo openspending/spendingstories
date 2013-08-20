@@ -49,12 +49,12 @@ class StoryAdmin(admin.ModelAdmin):
     readonly_fields   = ('current_value', 'current_value_usd', 'inflation_last_year', 'created_at')
     search_fields     = ('title', 'value', 'current_value_usd', 'country')
     list_editable     = ('sticky',)
-    list_filter       = ('status', 'sticky', 'continuous', 'themes', 'currency', 'country')
+    list_filter       = ('status', 'sticky', 'type', 'themes', 'currency', 'country')
     filter_horizontal = ('themes',)
     form              = forms.StoryForm
     fieldsets         = (
         ("Admin fields", {
-            'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'continuous', 'themes')
+            'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'type', 'themes')
         }),
         ('Auto computed fields', {
             'fields': readonly_fields
