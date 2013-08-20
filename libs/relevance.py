@@ -91,16 +91,17 @@ class Relevance:
                 if not ratio < 1:
                     if 49 < ratio < 51:
                         # near
-                        return self.__set_values(9, Relevance.TYPE_HALF)
+                        return self.__set_values(9, Relevance.TYPE_HALF, 0.5)
                     else:
                         if round(ratio) % 10 == 0:
                             # multiple of 10
-                            return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio))
+                            return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio)/100)
             else:
                 if ratio < 1000:
-                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
-                        # x200, x500, x1000. For instance: the query is twice the amount
-                        return self.__set_values(8, Relevance.TYPE_MULTIPLE)
+                    # x200, x500, x1000. For instance: the query is twice the amount
+                    nice_multiple = self.__nice_multiple_for(ratio)
+                    if nice_multiple:
+                        return self.__set_values(8, Relevance.TYPE_MULTIPLE, nice_multiple)
         return self.__set_values(0)
 
     def __compute_continuous_relevance(self, amount, compared_to):
@@ -111,24 +112,38 @@ class Relevance:
         else:
             if ratio < 100:
                 if 49 < ratio < 51:
-                    return self.__set_values(9, Relevance.TYPE_HALF)
+                    return self.__set_values(9, Relevance.TYPE_HALF, 0.5)
                 else:
                     # compute the story amount equivalence for 1 day
-                    one_day = compared_to / 365.25
-                    if amount < 30 * one_day:
+                    one_day   = compared_to / 365.25
+                    one_week  = compared_to / 52
+                    one_month = compared_to / 12
+                    if amount < one_month:
                         # compute into weeks
-                        if round(amount) % (7 * one_day) == 0:
-                            return self.__set_values(8, Relevance.TYPE_WEEK)
-                    else:
+                        if amount >= one_week and amount % one_week <= one_day * 0.25:
+                            return self.__set_values(8, Relevance.TYPE_WEEK, int(amount / one_week))
+                    elif amount < compared_to:
                         # compute into month
-                        if round(amount) % (30 * one_day) == 0:
-                            return self.__set_values(8, Relevance.TYPE_MONTH)
+                        if amount % one_month < one_week * 0.25:
+                            return self.__set_values(8, Relevance.TYPE_MONTH, int(amount / one_month))
             else:
                 if ratio < 1000:
-                    if round(ratio) in range(198, 202) + range(498, 502) + range(996, 1000):
-                        # x200, x500, x1000. For instance: the query is twice the amount
-                        return self.__set_values(8, Relevance.TYPE_MULTIPLE)
+                    # x200, x500, x1000. For instance: the query is twice the amount
+                    nice_multiple = self.__nice_multiple_for(ratio)
+                    if nice_multiple:
+                        return self.__set_values(8, Relevance.TYPE_MULTIPLE, nice_multiple)
         return self.__set_values(0)
+
+    def __nice_multiple_for(self, ratio):
+        """ x200, x500, x1000. For instance: the query is twice the amount """
+        ratio_rounded = round(ratio)
+        if ratio_rounded in range(198, 202):
+            return 2
+        elif ratio_rounded in range(498, 502):
+            return 5
+        elif ratio_rounded in range(996, 1000):
+            return 10
+        return False
 
     def __set_values(self, score, _type=None, value=None):
         self.score = score

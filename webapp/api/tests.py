@@ -11,18 +11,23 @@
 # Last mod : 16-Aug-2013
 # -----------------------------------------------------------------------------
 
-from django.test import TestCase
+from django.test import SimpleTestCase
 from django.test.client import Client
 from webapp.core.models import Story
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from operator import itemgetter
+from pprint import pprint as pp
+from relevance import Relevance
+import random
+import warnings
 
-class APIStoryTestCase(TestCase):
+class APIStoryTestCase(SimpleTestCase):
     def setUp(self):
         # Every test needs a client.
-        staff_token = Token.objects.create(user=User.objects.filter(is_staff=True)[0])
-        self.staff_client = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
-        self.client       = Client()
+        staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
+        self.staff_client    = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
+        self.client          = Client()
 
     def test_api_story_list(self):
         response = self.client.get('/api/stories/')
@@ -85,38 +90,53 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.data['status'], 'pending')
         self.assertEquals(response.data['sticky'], False)
 
-    # def test_api_relevance(self):
-    #     import random
-    #     from pprint import pprint as pp
-    #     count = {}
-    #     for x in range():
-    #         relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
-    #         if relevance_for in count:
-    #             continue
-    #         count[relevance_for] = 0
-    #         response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
-    #         self.assertEquals(response.status_code, 200)
-    #         assert len(response.data) > 0
-    #         for story in response.data:
-    #             self.assertIsNotNone(story['relevance_score'])
-    #             if story['relevance_score'] != 0:
-    #                 count[relevance_for] += 1
-    #             # print story['relevance_score']
-    #     pp(count)
-
-    def test_api_relevance(self):
-        relevance_for = 19400
-        response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
-        self.assertEquals(response.status_code, 200)
-        assert len(response.data) > 0
-        for story in response.data:
-            self.assertIsNotNone(story['relevance_score'])
-            self.assertTrue('relevance_value' in story)
-            # if story['relevance_score'] > 0:
-            #     print "story value:", story['current_value_usd']
-            #     print "user query:" , relevance_for
-            #     print "score:"      , story['relevance_score']
-            #     print "value:"      , story['relevance_value']
-            #     print "--------------------------------------"
+    def test_api_relevances(self):
+        TOLERENCE = 95
+        count     = {}
+        for x in range(100):
+            relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
+            if relevance_for in count:
+                continue
+            count[relevance_for] = 0
+            response = self.client.get("/api/stories-nested/?relevance_for=%s" % (relevance_for))
+            self.assertEquals(response.status_code, 200)
+            assert len(response.data) > 0
+            for story in response.data:
+                self.assertIsNotNone(story['relevance_score'])
+                if story['relevance_score'] != 0:
+                    count[relevance_for] += 1
+                    if story['relevance_type'] in (Relevance.TYPE_WEEK, Relevance.TYPE_MONTH) :
+                        if story['relevance_type'] == Relevance.TYPE_WEEK:
+                            reverse_computing = float(story['relevance_value']) * story['current_value_usd']/52
+                        elif story['relevance_type'] == Relevance.TYPE_MONTH:
+                            reverse_computing = float(story['relevance_value']) * story['current_value_usd']/12
+                        accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+                        debug = "\n"
+                        debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
+                        debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
+                        debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
+                        debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
+                        debug += "\n--------------------------------------"
+                        if accuracy < TOLERENCE:
+                            warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
+                    if story['relevance_type'] in (Relevance.TYPE_MULTIPLE, Relevance.TYPE_HALF) :
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']
+                        accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+                        debug = "\n"
+                        debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
+                        debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
+                        debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
+                        debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
+                        debug += "\n--------------------------------------"
+                        if accuracy < TOLERENCE:
+                            warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
+        count = sorted(count.iteritems(), key=itemgetter(1), reverse=True)
+        # pp(count[:5])
 
 # EOF
