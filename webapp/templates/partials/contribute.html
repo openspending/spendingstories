@@ -51,7 +51,7 @@
 		</div>	
 		<div class="form-group">
 			<label class="control-label" for="input-value">Amount</label>
-			<p class="pull-right">[[story.value|currency:story.currency]]</p>
+			<p class="pull-right">[[story.value|humanizeCurrency:story.currency]]</p>
 			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block">
 				Insert a round number without any space or separator
