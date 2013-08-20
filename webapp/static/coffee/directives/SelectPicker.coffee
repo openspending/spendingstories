@@ -11,20 +11,20 @@ angular.module('stories').directive 'selectpicker', ['$timeout', ($timeout) ->
       return false for key in value when value.hasOwnProperty(key)
     true
 
-  chosen =
+  selectpicker =
     restrict: 'A'
     link: (scope, element, attr) ->
 
-      # Take a hash of options from the chosen directive
-      options = scope.$eval(attr.chosen) or {}
+      # Take a hash of options from the selectpicker directive
+      options = scope.$eval(attr.selectpicker) or {}
 
       startLoading = -> element.addClass('loading disabled').attr('disabled', true)
       stopLoading  = -> element.removeClass('loading disabled').attr('disabled', false)
 
-      # Init chosen on the next loop so ng-options can populate the select
+      # Init selectpicker on the next loop so ng-options can populate the select
       $timeout -> element.selectpicker options
 
-      # Watch the collection in ngOptions and update chosen when it changes.  This works with promises!
+      # Watch the collection in ngOptions and update selectpicker when it changes.  This works with promises!
       if attr.ngOptions
         match = attr.ngOptions.match(NG_OPTIONS_REGEXP)
         valuesExpr = match[7]
