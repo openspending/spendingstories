@@ -97,7 +97,7 @@ class Relevance:
                             # multiple of 10
                             return self.__set_values(8, Relevance.TYPE_MULTIPLE, round(ratio)/100)
             else:
-                if ratio < 1000:
+                if ratio < 1002:
                     # x200, x500, x1000. For instance: the query is twice the amount
                     nice_multiple = self.__nice_multiple_for(ratio)
                     if nice_multiple:
@@ -127,7 +127,7 @@ class Relevance:
                         if amount % one_month < one_week * 0.25:
                             return self.__set_values(8, Relevance.TYPE_MONTH, int(amount / one_month))
             else:
-                if ratio < 1000:
+                if ratio < 1002:
                     # x200, x500, x1000. For instance: the query is twice the amount
                     nice_multiple = self.__nice_multiple_for(ratio)
                     if nice_multiple:
@@ -141,7 +141,7 @@ class Relevance:
             return 2
         elif ratio_rounded in range(498, 502):
             return 5
-        elif ratio_rounded in range(996, 1000):
+        elif ratio_rounded in range(996, 1002):
             return 10
         return False
 
