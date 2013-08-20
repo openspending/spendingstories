@@ -101,18 +101,26 @@
 			</div>
 		</div>		
 		<div class="form-group">
-			<label class="control-label" for="input-category">Choose a category to describe it</label>
-			<input type="text" class="form-control" ng-model="story.theme" id="input-theme" />
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="input-type">What kind of spending is it?</label>
-			<input type="text" class="form-control" ng-model="story.type" id="input-type" />
+			<label class="control-label" for="input-themes">What kind of spending is it?</label>
+			<select ng-options="c.slug as c.title for c in themes" 
+					class="form-control" 
+					id="input-themes" 
+					ng-model="story.themes" 
+					multiple></select>	
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-source">Insert your source</label>
 			<input type="url" required class="form-control" ng-model="story.source" id="input-source" placeholder="http://..." />
 		</div>
 	</fieldset>
+
+
+	<ul ng-if="errors" class="alert alert-danger list-unstyled">
+		<li ng-repeat="(field,error) in errors">
+			<h4 class="bottom0"><strong>[[field]]</strong></h4>
+			[[error.join(" ")]]
+		</li>
+	</ul>
 
 	<div class="panel-footer" ng-hide="isDone()">
 		<div class="row top10">

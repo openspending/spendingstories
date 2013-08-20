@@ -24,6 +24,7 @@ angular.module('stories')
             workspace      = d3.select(element[0])            
             # Width of the workspace according to its parent
             workspaceWidth = if scope.overview() then element.innerWidth() else 6000
+            
             # Get optional visualization opt
             pointWidth  = if scope.overview() then scope.pointWidth()  or 25 else scope.pointWidthBig()  or 200
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
