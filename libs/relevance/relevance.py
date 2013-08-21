@@ -67,11 +67,11 @@ class Relevance:
         self.value = value
         self.type  = relevance_type
 
-    def compute(self, amount, compared_to, story_type):
+    def compute(self, amount, compared_to, story_type, **extra_fields):
         """ choose the right processor related to the nature of the reference (discrete or over_one_year etc...) """
         import processors
         processor = eval("processors.%s.Processor()" % story_type)
-        self.__set_values(*processor.compute(float(amount), float(compared_to)).values())
+        self.__set_values(*processor.compute(float(amount), float(compared_to), **extra_fields).values())
         return self.values()
 
     def values(self):
