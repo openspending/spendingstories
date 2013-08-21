@@ -68,6 +68,10 @@
 			<input required type="text" class="form-control" id="input-title" ng-model="story.title" />			
 		</div>
 		<div class="form-group">
+			<label class="control-label" for="input-title">Give a description to your story</label>
+			<textarea required class="form-control" id="input-description" ng-maxlength="500" ng-model="story.description" />			
+		</div>
+		<div class="form-group">
 			<label class="control-label" for="input-country">To which country/zone is it related?</label>	
 			<select ng-options="c.iso_code as c.name for c in countries" 					
 					id="input-country" 

@@ -29,15 +29,18 @@
 							<h5 ng-if="isEquivalent(d)" class="bottom0">[[search.query_usd|toQueryCurrency]] are equivalent to</h5>
 
 							<h4 class="top0">[[d.title]]</h4>
+							<p class="top10">[[d.description]]</p>
 							<p>
 								<span class="label label-warning">
-									Cost: [[d.value|number:2|thousandSeparator]]&nbsp;[[d.currency.iso_code]] in [[d.year]]
+									Cost: [[d.value|humanize]]&nbsp;[[d.currency.iso_code]] in [[d.year]]
 								</span>
+
 								<span class="label">
 									(≈[[d.current_value_usd|toQueryCurrency]] in [[d.inflation_last_year]])									
-									<a href="[[d.source]]" ng-if="d.source" tooltip="[[d.source]]" class="source left05" target="_blank" tooltip-append-to-body="true">
-										<i class="icon-info-sign"></i>
-										<span class="sr-only">source</span>
+									<span class="left05" ng-if="d.source">&#8212;</span>
+									<a href="[[d.source]]" ng-if="d.source" tooltip="[[d.source]]" class="left05" target="_blank" tooltip-append-to-body="true">
+										<span>Read the story</span>
+										<!-- <span class="sr-only">source</span> -->
 									</a>
 								</span>
 							</p>
