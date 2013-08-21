@@ -8,7 +8,7 @@
 # License : proprietary journalism++
 # -----------------------------------------------------------------------------
 # Creation : 16-Aug-2013
-# Last mod : 16-Aug-2013
+# Last mod : 21-Aug-2013
 # -----------------------------------------------------------------------------
 """
 
@@ -28,16 +28,17 @@ class Relevance:
     How to use it
     -------------
 
-        score, type, value = Relevance(
+        score, type, value = Relevance().compute(
             amount      = 10000,
             compared_to = 50000,
-            story_type  = "discrete").values()
+            story_type  = "discrete")
 
     * or *
 
-        relevance = Relevance(
+        relevance = Relevance()
+        relevance.compute(
             amount      = 10000,
-            compared_to = 1234567890e+2,
+            compared_to = 50000,
             story_type  = "discrete")
         score = relevance.score
         type  = relevance.type
@@ -45,18 +46,16 @@ class Relevance:
 
     * or *
 
-        relevance = Relevance(
-            compared_to = 1234567890e+2,
+        relevance = Relevance()
+        relevance.compute(
+            amount      = 10000,
+            compared_to = 50000,
             story_type  = "discrete")
-        relevance.compute(amount=10000)
         score, type, value = relevance.values()
 
     """
 
     # CONSTANTES
-    # input
-    # STORIES_TYPES = ("discrete", "over_one_year", "per_population")
-    # output
     RELEVANCE_TYPE_HALF       = "half"
     RELEVANCE_TYPE_EQUIVALENT = "equivalent"
     RELEVANCE_TYPE_MULTIPLE   = "multiple"
@@ -65,13 +64,11 @@ class Relevance:
 
     def __init__(self, score=None, relevance_type=None, value=None):
         self.score = score
-        self.value = relevance_type
-        self.type  = value
+        self.value = value
+        self.type  = relevance_type
 
     def compute(self, amount, compared_to, story_type):
-        """ choose the right method related to the nature of the reference (discrete or over_one_year) """
-        # FIXME
-        # if story_type in Relevance.STORIES_TYPES:
+        """ choose the right processor related to the nature of the reference (discrete or over_one_year etc...) """
         import processors
         processor = eval("processors.%s.Processor()" % story_type)
         self.__set_values(*processor.compute(float(amount), float(compared_to)).values())
@@ -85,22 +82,5 @@ class Relevance:
         self.score = score
         self.type  = relevance_type
         self.value = value
-
-class Processor:
-
-    def compute(self, amount, compared_to, *args, **kwargs):
-        raise Exception("do be implemented")
-
-    def __nice_multiple_for(self, ratio):
-        """ x200, x500, x1000. For instance: the query is twice the amount """
-        nice_multiple = False
-        ratio_rounded = round(ratio)
-        if ratio_rounded in range(198, 202):
-            nice_multiple = 2
-        elif ratio_rounded in range(498, 502):
-            nice_multiple = 5
-        elif ratio_rounded in range(996, 1002):
-            nice_multiple = 10
-        return nice_multiple
 
 # EOF

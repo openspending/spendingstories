@@ -11,6 +11,10 @@
 # Last mod : 21-Aug-2013
 # -----------------------------------------------------------------------------
 
+"""
+Listing of available processors
+"""
+
 import discrete
 import over_one_year
 

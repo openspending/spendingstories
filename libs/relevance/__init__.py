@@ -11,6 +11,6 @@
 # Last mod : 21-Aug-2013
 # -----------------------------------------------------------------------------
 
-from relevance import Relevance, Processor
-
+from relevance import Relevance
+from processor import Processor
 # EOF
