@@ -1,17 +1,9 @@
-thousandSeparator = (nStr, sep=",")->
-    nStr = "" + (nStr or "")
-    x = nStr.split(".")
-    x1 = x[0]
-    x2 = (if x.length > 1 then "." + x[1] else "")
-    rgx = /(\d+)(\d{3})/
-    x1 = x1.replace(rgx, "$1" + sep + "$2") while rgx.test(x1)
-    x1 + x2
-
 angular
     .module('storiesFilters', [])
-    .filter("thousandSeparator", ->thousandSeparator)
+    .filter("thousandSeparator", -> Humanize.intcomma)
     .filter("toQueryCurrency", ["Search", "Currency", (Search, Currency)->  
-            return (value, fromCurrency='USD', toCurrency=Search.currency, decimals=2)->                 
+            return (value, fromCurrency='USD', toCurrency=Search.currency, decimals=2)->    
+                return null unless angular.isNumber value
                 fromCurrency = Currency.list[fromCurrency]      
                 toCurrency   = Currency.list[toCurrency]
                 converted = value
@@ -28,13 +20,22 @@ angular
                             # The value is now into the targeted currency
                             converted = converted*toCurrency.rate
 
-                    thousandSeparator(
-                        # Round the value 
-                        Math.round(
-                            converted * Math.pow(10, decimals)
-                        ) / Math.pow(10, decimals) 
-                    # Add the currency code as prefix
-                    ) + " " + toCurrency.name
+                if converted < Math.pow(10, 6) || converted > Math.pow(10, 15)
+                    Humanize.intcomma(converted) + " " + toCurrency.name
+                else
+                    Humanize.intword(converted) + " " + toCurrency.name
+        ]
+    )
+    .filter("humanizeCurrency", ["Currency", (Currency)->
+            return (value, currency="USD")->
+                return null unless angular.isNumber value
+                toCurrency = Currency.list[currency]            
+                suffix = if toCurrency? then toCurrency.name else currency
+
+                if value < Math.pow(10, 6) || value > Math.pow(10, 15)
+                    Humanize.intcomma(value) + " " + suffix
+                else
+                    Humanize.intword(value) + " " + suffix
         ]
     )
     .filter("nl2br", ->

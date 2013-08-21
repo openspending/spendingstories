@@ -2,7 +2,7 @@
 angular.module('storiesServices', [])
 
 angular
-    .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters"])
+    .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters", "ngCookies"])
     .run(
         [             
             '$rootScope', 
@@ -17,11 +17,15 @@ angular
             '$interpolateProvider', 
             '$routeProvider', 
             'RestangularProvider',
-            ($interpolateProvider, $routeProvider, RestangularProvider)->
+            '$httpProvider',
+            '$cookiesProvider',
+            ($interpolateProvider, $routeProvider, RestangularProvider, $http, $cookies)->
                 RestangularProvider.setBaseUrl("/api")
                 RestangularProvider.setRequestSuffix('/')
                 # All services will be cached
-                RestangularProvider.setDefaultHttpFields cache: false   
+                RestangularProvider.setDefaultHttpFields cache: true   
+                # Add csrf token into default post headers
+                $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken                
                 # Avoid a conflict with Django Template's tags
                 $interpolateProvider.startSymbol '[['
                 $interpolateProvider.endSymbol   ']]'

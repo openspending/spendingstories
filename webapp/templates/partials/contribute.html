@@ -1,4 +1,4 @@
-<form class="contribute panel" 
+<form class="contribute panel panel-default" 
 	  ng-class="{
 	  	'loading': loading,
 	  	'panel-success': isDone()
@@ -43,15 +43,15 @@
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 0" ng-form="stepForm0">
 		<div class="form-group">
 			<label class="control-label" for="input-currency">Currency</label>
-			<select ng-options="iso_code as c.name for (iso_code, c) in currencies" 
-					class="form-control" 
+			<select ng-options="c.iso_code as c.name for (iso_code, c) in currencies" 					
 					id="input-currency" 
-					ng-model="story.currency" 
+					ng-model="story.currency"
+			        selectpicker
 					required></select>
 		</div>	
 		<div class="form-group">
 			<label class="control-label" for="input-value">Amount</label>
-			<p class="pull-right">[[story.value|currency:story.currency]]</p>
+			<p class="pull-right">[[story.value|humanizeCurrency:story.currency]]</p>
 			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block">
 				Insert a round number without any space or separator
@@ -69,10 +69,10 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-country">To which country/zone is it related?</label>	
-			<select ng-options="c.iso_code as c.name for c in countries" 
-					class="form-control" 
+			<select ng-options="c.iso_code as c.name for c in countries" 					
 					id="input-country" 
 					ng-model="story.country" 
+			        selectpicker
 					required></select>	
 		</div>
 		<div class="form-group">
@@ -103,7 +103,7 @@
 		<div class="form-group">
 			<label class="control-label" for="input-themes">What kind of spending is it?</label>
 			<select ng-options="c.slug as c.title for c in themes" 
-					class="form-control" 
+			        selectpicker
 					id="input-themes" 
 					ng-model="story.themes" 
 					multiple></select>	

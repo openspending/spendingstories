@@ -3,7 +3,9 @@
 from django.http                    import Http404
 from django.shortcuts               import render_to_response
 from django.template                import RequestContext, TemplateDoesNotExist
+from django.views.decorators.csrf   import ensure_csrf_cookie
 
+@ensure_csrf_cookie
 def home(request):    
     # Render template without any argument
     return render_to_response('index.html', context_instance=RequestContext(request))
