@@ -89,13 +89,13 @@
 			<label class="control-label">Is this story unique or reccurring?</label>
 			<div class="radio">
 				<label>
-					<input type="radio" ng-model="story.continuous" name="continuous" ng-value="false" />
+					<input type="radio" ng-model="story.type" name="type" ng-value="discrete" />
 					Unique event (e.g construction of a building)
 				</label>
 			</div>
 			<div class="radio">
 				<label>
-					<input type="radio" ng-model="story.continuous" name="continuous" ng-value="true"/>
+					<input type="radio" ng-model="story.type" name="type" ng-value="over_one_year"/>
 					Annually recurring event (e.g budgets)
 				</label>
 			</div>

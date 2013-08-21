@@ -87,7 +87,7 @@ class Story(models.Model):
     country             = fields.CountryField(_('Country'),help_text=_("Choose the country or zone where the money is spent")) # ISO code of the country 
     source              = models.URLField(_('Story\'s source URL'), max_length=140)
     currency            = models.ForeignKey(Currency)
-    type                = models.CharField(_("Story type"), choices=(('discrete', _('discrete')), ('over_one_year', _('over one year')), ('per_population', _("per population"))),
+    type                = models.CharField(_("Story type"), choices=(('discrete', _('discrete')), ('over_one_year', _('over one year'))),
         default    ='discrete',
         help_text  =_("The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."),
         max_length =15)
