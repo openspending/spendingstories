@@ -54,7 +54,7 @@ class StoryAdmin(admin.ModelAdmin):
     form              = forms.StoryForm
     fieldsets         = (
         ("Admin fields", {
-            'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'type', 'themes')
+            'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'type', 'themes', 'extras')
         }),
         ('Auto computed fields', {
             'fields': readonly_fields
