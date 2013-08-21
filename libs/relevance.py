@@ -16,14 +16,11 @@ SPENDING STORIES sub module
 
 * Compute a grade of relevance to an amount based on a reference.
 
-* Support two types of reference: discrete and continuous values
-    Discrete is an amount fixed, timeless. Continous represents more a buget, an annual cost.
-
 For more informations, see https://github.com/jplusplus/okf-spending-stories/wiki/The-cards-visualization
 
 """
 
-__version__ = '0.5'
+__version__ = '0.6'
 
 class Relevance:
     """
@@ -58,9 +55,7 @@ class Relevance:
 
     # CONSTANTES
     # input
-    # STORIES_TYPE_DISCRETE     = "discrete"
-    # STORIES_TYPE_CONTINUOUS   = "continuous"
-    STORIES_TYPES = ("discrete", "continuous")
+    STORIES_TYPES = ("discrete", "over_one_year", "per_population")
     # output
     RELEVANCE_TYPE_HALF       = "half"
     RELEVANCE_TYPE_EQUIVALENT = "equivalent"
@@ -71,14 +66,15 @@ class Relevance:
     def __init__(self, amount=None, compared_to=None, story_type=None):
         self.score = None
         self.value = None
+        self.type  = None
         self._amount      = amount
         self._compared_to = compared_to
-        self._story_type   = story_type
+        self._story_type  = story_type
         if self._amount and self._compared_to and self._story_type:
             self.compute()
 
     def compute(self, amount=None, compared_to=None, story_type=None):
-        """ choose the right method related to the nature of the reference (discrete or continuous) """
+        """ choose the right method related to the nature of the reference (discrete or over_one_year) """
         amount      = amount      or self._amount
         compared_to = compared_to or self._compared_to
         story_type  = story_type  or self._story_type
@@ -110,8 +106,8 @@ class Relevance:
                         return self.__set_values(8, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
         return self.__set_values(0)
 
-    def _compute_continuous_relevance(self, amount, compared_to):
-        """ compute the relevance for a continuous reference """
+    def _compute_over_one_year_relevance(self, amount, compared_to):
+        """ compute the relevance for an over_one_year reference """
         ratio = amount/compared_to * 100
         if 90 <= ratio <= 110:
             return self.__set_values(10, Relevance.RELEVANCE_TYPE_EQUIVALENT)
@@ -138,6 +134,13 @@ class Relevance:
                     nice_multiple = self.__nice_multiple_for(ratio)
                     if nice_multiple:
                         return self.__set_values(8, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
+        return self.__set_values(0)
+
+    def _compute_per_population_relevance(self, amount, compared_to):
+        print amount, compared_to
+        ratio = amount/compared_to * 100
+        if 90 <= ratio <= 110:
+            return self.__set_values(10, Relevance.RELEVANCE_TYPE_EQUIVALENT)
         return self.__set_values(0)
 
     def __nice_multiple_for(self, ratio):
