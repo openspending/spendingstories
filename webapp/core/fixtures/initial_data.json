@@ -9,7 +9,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2013-08-08T14:02:18.667Z", 
+        "last_login": "2013-08-21T09:19:24.804Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$qKzQc8xLtPQF$pSSdYBvUU5At/VIa9kVgU3sdMc7NXaizBZcMx4t0awM=", 
@@ -1052,7 +1052,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Risus vitae venenatis volutpat", 
         "currency": "CZK", 
         "country": "AUT", 
@@ -1067,10 +1066,12 @@
             "unknown"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 31282512591554.457, 
-        "current_value_usd": 1598610536345.6643
+        "current_value_usd": 1598610536345.6643, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1078,7 +1079,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Massa netus praesent dui felis mus", 
         "currency": "INR", 
         "country": "MLT", 
@@ -1093,10 +1093,12 @@
             "secondary-lower"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 40000000000.0, 
-        "current_value_usd": 659374772.9278126
+        "current_value_usd": 659374772.9278126, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1104,7 +1106,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "CNY", 
         "country": "ISR", 
@@ -1115,11 +1116,13 @@
         "themes": [
             "manufactoring-construction"
         ], 
-        "source": "http://www.okf.org", 
+        "source": "http://www.okf.org/", 
+        "extras": "{\"coucou\":\"pouet\"}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 150653.60762260066, 
-        "current_value_usd": 24534.963663815477
+        "current_value_usd": 24534.963663815477, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1127,7 +1130,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "AED", 
         "country": "VNM", 
@@ -1140,10 +1142,12 @@
             "tree"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 710000000.0, 
-        "current_value_usd": 193290847.46058026
+        "current_value_usd": 193290847.46058026, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1151,7 +1155,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Metus etiam nostra diam eget", 
         "currency": "MNT", 
         "country": "GNQ", 
@@ -1163,10 +1166,12 @@
             "books"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2007, 
         "current_value": 18259.985803683896, 
-        "current_value_usd": 12.279748354864758
+        "current_value_usd": 12.279748354864758, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1174,7 +1179,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Donec nulla nascetur", 
         "currency": "PLN", 
         "country": "URY", 
@@ -1184,10 +1188,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 215114.55395341525, 
-        "current_value_usd": 67206.83243649532
+        "current_value_usd": 67206.83243649532, 
+        "type": "discrete"
     }
 },
 {
@@ -1195,7 +1201,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Augue lacus", 
         "currency": "LTL", 
         "country": "AUS", 
@@ -1209,10 +1214,12 @@
             "research"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 9254686619046776.0, 
-        "current_value_usd": 3551855631674788.5
+        "current_value_usd": 3551855631674788.5, 
+        "type": "discrete"
     }
 },
 {
@@ -1220,7 +1227,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "MKD", 
         "country": "MLT", 
@@ -1234,10 +1240,12 @@
             "post-secondary"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 38159908.643111624, 
-        "current_value_usd": 820702.2165876105
+        "current_value_usd": 820702.2165876105, 
+        "type": "discrete"
     }
 },
 {
@@ -1245,7 +1253,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "XDR", 
         "country": "IDN", 
@@ -1257,10 +1264,12 @@
             "public-debt"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 279680672307586.0, 
-        "current_value_usd": 422701839805918.56
+        "current_value_usd": 422701839805918.56, 
+        "type": "discrete"
     }
 },
 {
@@ -1268,7 +1277,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "BYR", 
         "country": "MDV", 
@@ -1282,10 +1290,12 @@
             "financial-admin"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 22757043.74084464, 
-        "current_value_usd": 2559.4141532670387
+        "current_value_usd": 2559.4141532670387, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1293,7 +1303,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "GEL", 
         "country": "SLE", 
@@ -1305,10 +1314,12 @@
             "our-streets"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 19400000000000.0, 
-        "current_value_usd": 11727546131874.441
+        "current_value_usd": 11727546131874.441, 
+        "type": "discrete"
     }
 },
 {
@@ -1316,7 +1327,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "TRY", 
         "country": "COM", 
@@ -1328,10 +1338,12 @@
             "environment-admin"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2010, 
         "current_value": 695995354.9691949, 
-        "current_value_usd": 359695143.3953871
+        "current_value_usd": 359695143.3953871, 
+        "type": "discrete"
     }
 },
 {
@@ -1339,7 +1351,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "XOF", 
         "country": "AUT", 
@@ -1351,10 +1362,12 @@
             "books"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 296934541.24298406, 
-        "current_value_usd": 599912.9026238
+        "current_value_usd": 599912.9026238, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1362,7 +1375,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "SGD", 
         "country": "LBR", 
@@ -1377,10 +1389,12 @@
             "street-lights"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 3161578400.09705, 
-        "current_value_usd": 2483319325.893156
+        "current_value_usd": 2483319325.893156, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1388,7 +1402,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "DOP", 
         "country": "DMA", 
@@ -1398,10 +1411,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 235417972792.66547, 
-        "current_value_usd": 5619204123.480758
+        "current_value_usd": 5619204123.480758, 
+        "type": "discrete"
     }
 },
 {
@@ -1409,7 +1424,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Morbi magna cum rutrum duis arcu viverra", 
         "currency": "GBP", 
         "country": "SMR", 
@@ -1421,10 +1435,12 @@
             "railways"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 18817401800.327374, 
-        "current_value_usd": 28593746799.9717
+        "current_value_usd": 28593746799.9717, 
+        "type": "discrete"
     }
 },
 {
@@ -1432,7 +1448,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "BND", 
         "country": "RWA", 
@@ -1445,10 +1460,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 1115844.4816053521, 
-        "current_value_usd": 877101.076882298
+        "current_value_usd": 877101.076882298, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1456,7 +1473,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "INR", 
         "country": "CZE", 
@@ -1470,10 +1486,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 11413691901.239862, 
-        "current_value_usd": 188147512.6412012
+        "current_value_usd": 188147512.6412012, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1481,7 +1499,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Metus lacus dignissim", 
         "currency": "FJD", 
         "country": "SDN", 
@@ -1493,10 +1510,12 @@
             "communication"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2010, 
         "year": 2004, 
         "current_value": 12813295628.906551, 
-        "current_value_usd": 6830391651.744182
+        "current_value_usd": 6830391651.744182, 
+        "type": "discrete"
     }
 },
 {
@@ -1504,7 +1523,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Felis porta vitae leo lorem fames suscipit adipiscing integer", 
         "currency": "ZAR", 
         "country": "MAC", 
@@ -1517,10 +1535,12 @@
             "pound2"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 250.0, 
-        "current_value_usd": 25.264202928545558
+        "current_value_usd": 25.264202928545558, 
+        "type": "discrete"
     }
 },
 {
@@ -1528,7 +1548,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Class lorem tortor primis class dolor cras venenatis aptent pharetra vestibulum libero sem", 
         "currency": "VEF", 
         "country": "ESP", 
@@ -1540,10 +1559,12 @@
             "social-systems"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 2400000000000000.0, 
-        "current_value_usd": 381476517577166.4
+        "current_value_usd": 381476517577166.4, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1551,7 +1572,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "BND", 
         "country": "MUS", 
@@ -1563,10 +1583,12 @@
             "publicaffairs"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1700000000.0, 
-        "current_value_usd": 1336272083.8612916
+        "current_value_usd": 1336272083.8612916, 
+        "type": "discrete"
     }
 },
 {
@@ -1574,7 +1596,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "KES", 
         "country": "PAN", 
@@ -1584,10 +1605,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 171484.78278326502, 
-        "current_value_usd": 1963.9723150761997
+        "current_value_usd": 1963.9723150761997, 
+        "type": "discrete"
     }
 },
 {
@@ -1595,7 +1618,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Augue magna erat ve morbi dictumst", 
         "currency": "FKP", 
         "country": "SUR", 
@@ -1609,10 +1631,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1170000000.0, 
-        "current_value_usd": 1777858819.7752604
+        "current_value_usd": 1777858819.7752604, 
+        "type": "discrete"
     }
 },
 {
@@ -1620,7 +1644,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Netus purus odio dui viverra at taciti", 
         "currency": "ALL", 
         "country": "LBY", 
@@ -1630,10 +1653,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 2.0884581270744436e+16, 
-        "current_value_usd": 197360422896956.0
+        "current_value_usd": 197360422896956.0, 
+        "type": "discrete"
     }
 },
 {
@@ -1641,7 +1666,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "KZT", 
         "country": "JAM", 
@@ -1656,10 +1680,12 @@
             "petrol"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 19419337153.926872, 
-        "current_value_usd": 126383704.11681746
+        "current_value_usd": 126383704.11681746, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1667,7 +1693,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Magna massa a mollis elementum morbi", 
         "currency": "USD", 
         "country": "DMA", 
@@ -1682,10 +1707,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 52969.04387834973, 
-        "current_value_usd": 52969.04387834973
+        "current_value_usd": 52969.04387834973, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1693,7 +1720,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "SBD", 
         "country": "SVN", 
@@ -1703,10 +1729,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 1146877690.1004264, 
-        "current_value_usd": 161305378.17422593
+        "current_value_usd": 161305378.17422593, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1714,7 +1742,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Etiam netus vehicula adipiscing ligula", 
         "currency": "YER", 
         "country": "IRL", 
@@ -1728,10 +1755,12 @@
             "construction"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 36164909720.60246, 
-        "current_value_usd": 168275719.18903542
+        "current_value_usd": 168275719.18903542, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1739,7 +1768,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "AFN", 
         "country": "BLZ", 
@@ -1752,10 +1780,12 @@
             "communication"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 7441493910652.296, 
-        "current_value_usd": 133839216741.87248
+        "current_value_usd": 133839216741.87248, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1763,7 +1793,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Fusce class sit amet nisi hendrerit senectus neque et fringilla aliquam", 
         "currency": "KZT", 
         "country": "ISL", 
@@ -1778,10 +1807,12 @@
             "tree"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 1717.4564193794672, 
-        "current_value_usd": 11.17744144508511
+        "current_value_usd": 11.17744144508511, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1789,7 +1820,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "MMK", 
         "country": "CIV", 
@@ -1799,10 +1829,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 1157227.9469227951, 
-        "current_value_usd": 1188.4195022846332
+        "current_value_usd": 1188.4195022846332, 
+        "type": "discrete"
     }
 },
 {
@@ -1810,7 +1842,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "SAR", 
         "country": "URY", 
@@ -1825,10 +1856,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 365351573989441.8, 
-        "current_value_usd": 97413422541116.05
+        "current_value_usd": 97413422541116.05, 
+        "type": "discrete"
     }
 },
 {
@@ -1836,7 +1869,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "SBD", 
         "country": "MLI", 
@@ -1850,10 +1882,12 @@
             "street-lights"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 2010443778192.0598, 
-        "current_value_usd": 282763712938.64197
+        "current_value_usd": 282763712938.64197, 
+        "type": "discrete"
     }
 },
 {
@@ -1861,7 +1895,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "RSD", 
         "country": "NOR", 
@@ -1876,10 +1909,12 @@
             "petrol"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 1735224161657129.8, 
-        "current_value_usd": 20196180038117.66
+        "current_value_usd": 20196180038117.66, 
+        "type": "discrete"
     }
 },
 {
@@ -1887,7 +1922,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "ZMK", 
         "country": "PSE", 
@@ -1897,10 +1931,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2009, 
         "year": 2007, 
         "current_value": 140016119665003.14, 
-        "current_value_usd": 26786534876.472233
+        "current_value_usd": 26786534876.472233, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1908,7 +1944,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Netus justo netus maecenas tristique", 
         "currency": "BGN", 
         "country": "KNA", 
@@ -1922,10 +1957,12 @@
             "helping-others"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 18343386204.231342, 
-        "current_value_usd": 12421364191.112402
+        "current_value_usd": 12421364191.112402, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1933,7 +1970,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Purus lorem", 
         "currency": "TRY", 
         "country": "ISR", 
@@ -1947,10 +1983,12 @@
             "unknown"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 461522.2986444721, 
-        "current_value_usd": 238517.8697039431
+        "current_value_usd": 238517.8697039431, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1958,7 +1996,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Purus fames dolor purus suspendisse est ornare semper justo parturient ullamcorper turpis", 
         "currency": "PAB", 
         "country": "CPV", 
@@ -1970,10 +2007,12 @@
             "books"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 140114653.72745687, 
-        "current_value_usd": 140114653.72745687
+        "current_value_usd": 140114653.72745687, 
+        "type": "over_one_year"
     }
 },
 {
@@ -1981,7 +2020,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Augue donec sem justo malesuada vel enim curae purus", 
         "currency": "PEN", 
         "country": "MKD", 
@@ -1991,10 +2029,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 6.715367360434378e+16, 
-        "current_value_usd": 2.4035018557435104e+16
+        "current_value_usd": 2.4035018557435104e+16, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2002,7 +2042,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Vitae risus eget commodo", 
         "currency": "PHP", 
         "country": "PNG", 
@@ -2012,10 +2051,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2009, 
         "current_value": 1011644113493.3862, 
-        "current_value_usd": 23211217051.814034
+        "current_value_usd": 23211217051.814034, 
+        "type": "discrete"
     }
 },
 {
@@ -2023,7 +2064,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "KZT", 
         "country": "CZE", 
@@ -2033,10 +2073,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 1.700787996432504e+17, 
-        "current_value_usd": 1106896106714404.4
+        "current_value_usd": 1106896106714404.4, 
+        "type": "discrete"
     }
 },
 {
@@ -2044,7 +2086,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Fames lacus integer eleifend tempus tempor", 
         "currency": "BIF", 
         "country": "AGO", 
@@ -2058,10 +2099,12 @@
             "water"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 1213607.1180044743, 
-        "current_value_usd": 789.0864817095522
+        "current_value_usd": 789.0864817095522, 
+        "type": "discrete"
     }
 },
 {
@@ -2069,7 +2112,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Porta neque a enim velit venenatis diam quam sapien mollis metus dapibus", 
         "currency": "KES", 
         "country": "ZMB", 
@@ -2082,10 +2124,12 @@
             "legislative"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2004, 
         "current_value": 327892908024.09863, 
-        "current_value_usd": 3755275443.203937
+        "current_value_usd": 3755275443.203937, 
+        "type": "discrete"
     }
 },
 {
@@ -2093,7 +2137,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "JOD", 
         "country": "BOL", 
@@ -2103,10 +2146,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 267689007200598.38, 
-        "current_value_usd": 377623522243035.3
+        "current_value_usd": 377623522243035.3, 
+        "type": "discrete"
     }
 },
 {
@@ -2114,7 +2159,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Justo metus suspendisse sit quam pede imperdiet vel odio", 
         "currency": "AMD", 
         "country": "JAM", 
@@ -2124,10 +2168,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 343022.5076681533, 
-        "current_value_usd": 827.8344282820552
+        "current_value_usd": 827.8344282820552, 
+        "type": "discrete"
     }
 },
 {
@@ -2135,7 +2181,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "THB", 
         "country": "AUS", 
@@ -2148,10 +2193,12 @@
             "post-secondary"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 1428.311033332194, 
-        "current_value_usd": 45.60981924377805
+        "current_value_usd": 45.60981924377805, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2159,7 +2206,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Etiam donec lectus aliquam iaculis gravida fermentum pulvinar", 
         "currency": "NOK", 
         "country": "FJI", 
@@ -2169,10 +2215,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 430000.0, 
-        "current_value_usd": 72522.10111031336
+        "current_value_usd": 72522.10111031336, 
+        "type": "discrete"
     }
 },
 {
@@ -2180,7 +2228,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Fames dolor tempor lorem hendrerit", 
         "currency": "BOB", 
         "country": "DNK", 
@@ -2192,10 +2239,12 @@
             "pollution"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 18700000000.0, 
-        "current_value_usd": 2705763942.787128
+        "current_value_usd": 2705763942.787128, 
+        "type": "discrete"
     }
 },
 {
@@ -2203,7 +2252,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "RSD", 
         "country": "MNG", 
@@ -2218,10 +2266,12 @@
             "social-systems"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 793392984967787.5, 
-        "current_value_usd": 9234257982027.32
+        "current_value_usd": 9234257982027.32, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2229,7 +2279,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Etiam proin lectus mattis dignissim malesuada", 
         "currency": "THB", 
         "country": "SLB", 
@@ -2239,10 +2288,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2011, 
         "current_value": 1.59e+17, 
-        "current_value_usd": 5077298354856342.0
+        "current_value_usd": 5077298354856342.0, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2250,7 +2301,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Justo fames", 
         "currency": "HRK", 
         "country": "DZA", 
@@ -2260,10 +2310,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 63042407337367.805, 
-        "current_value_usd": 11119351260256.928
+        "current_value_usd": 11119351260256.928, 
+        "type": "discrete"
     }
 },
 {
@@ -2271,7 +2323,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "PAB", 
         "country": "TJK", 
@@ -2281,10 +2332,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 2713510550557.974, 
-        "current_value_usd": 2713510550557.974
+        "current_value_usd": 2713510550557.974, 
+        "type": "discrete"
     }
 },
 {
@@ -2292,7 +2345,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "XDR", 
         "country": "THA", 
@@ -2302,10 +2354,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 23143410029.347782, 
-        "current_value_usd": 34978326954.35318
+        "current_value_usd": 34978326954.35318, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2313,7 +2367,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "DKK", 
         "country": "RUS", 
@@ -2327,10 +2380,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 20687518.80406163, 
-        "current_value_usd": 3677222.182950259
+        "current_value_usd": 3677222.182950259, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2338,7 +2393,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Porta massa felis senectus vulputate donec est diam cum", 
         "currency": "SAR", 
         "country": "TCD", 
@@ -2351,10 +2405,12 @@
             "misc-services"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 30000.0, 
-        "current_value_usd": 7998.878024042495
+        "current_value_usd": 7998.878024042495, 
+        "type": "discrete"
     }
 },
 {
@@ -2362,7 +2418,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Class purus suscipit proin at lacus torquent", 
         "currency": "IDR", 
         "country": "BFA", 
@@ -2374,10 +2429,12 @@
             "transport"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 11963082335.069143, 
-        "current_value_usd": 1163106.5317524045
+        "current_value_usd": 1163106.5317524045, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2385,7 +2442,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Netus fusce primis consectetuer dignissim auctor", 
         "currency": "GIP", 
         "country": "DEU", 
@@ -2399,10 +2455,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 1723077339.102225, 
-        "current_value_usd": 2618280550.8357077
+        "current_value_usd": 2618280550.8357077, 
+        "type": "discrete"
     }
 },
 {
@@ -2410,7 +2468,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "KES", 
         "country": "FJI", 
@@ -2420,10 +2477,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 7816154344539682.0, 
-        "current_value_usd": 89516460258983.11
+        "current_value_usd": 89516460258983.11, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2431,7 +2490,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "EEK", 
         "country": "MLT", 
@@ -2441,10 +2499,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 13235552356.962961, 
-        "current_value_usd": 1124396982.3891153
+        "current_value_usd": 1124396982.3891153, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2452,7 +2512,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Etiam vitae", 
         "currency": "SYP", 
         "country": "LCA", 
@@ -2466,10 +2525,12 @@
             "schools"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 1326511764274.7114, 
-        "current_value_usd": 18909643614.250904
+        "current_value_usd": 18909643614.250904, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2477,7 +2538,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Risus fusce turpis scelerisque velit mollis mi erat eget sodales proin vel purus cum per et eget", 
         "currency": "LAK", 
         "country": "SYR", 
@@ -2492,10 +2552,12 @@
             "pre-school"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 20505344300462.152, 
-        "current_value_usd": 2632774199.5464773
+        "current_value_usd": 2632774199.5464773, 
+        "type": "discrete"
     }
 },
 {
@@ -2503,7 +2565,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Lorem fusce", 
         "currency": "BRL", 
         "country": "OMN", 
@@ -2517,10 +2578,12 @@
             "petrol"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 2267035155.2896914, 
-        "current_value_usd": 991636680.4917827
+        "current_value_usd": 991636680.4917827, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2528,7 +2591,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Curae fames cursus magnis nulla vestibulum sagittis urna ac hendrerit nibh dui nulla cursus diam at", 
         "currency": "TRY", 
         "country": "AGO", 
@@ -2542,10 +2604,12 @@
             "public-debt"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 37845323.687346295, 
-        "current_value_usd": 19558721.237683225
+        "current_value_usd": 19558721.237683225, 
+        "type": "discrete"
     }
 },
 {
@@ -2553,7 +2617,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "CNY", 
         "country": "ETH", 
@@ -2567,10 +2630,12 @@
             "wheelchair"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 43352423542818.58, 
-        "current_value_usd": 7060236745381.639
+        "current_value_usd": 7060236745381.639, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2578,7 +2643,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "BND", 
         "country": "GNQ", 
@@ -2591,10 +2655,12 @@
             "housing"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2007, 
         "current_value": 227606.8652994401, 
-        "current_value_usd": 178908.64717342303
+        "current_value_usd": 178908.64717342303, 
+        "type": "discrete"
     }
 },
 {
@@ -2602,7 +2668,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Augue curae", 
         "currency": "SVC", 
         "country": "LBR", 
@@ -2617,10 +2682,12 @@
             "petrol"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 1.8095876368976536e+16, 
-        "current_value_usd": 2068250961495996.8
+        "current_value_usd": 2068250961495996.8, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2628,7 +2695,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Augue proin purus vivamus non parturient dictum", 
         "currency": "SLL", 
         "country": "VCT", 
@@ -2641,10 +2707,12 @@
             "traffic-watersup"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 5589290.065741117, 
-        "current_value_usd": 1291.1268659378723
+        "current_value_usd": 1291.1268659378723, 
+        "type": "discrete"
     }
 },
 {
@@ -2652,7 +2720,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Fames etiam congue tortor nam nec curabitur etiam lacus praesent", 
         "currency": "CUP", 
         "country": "MMR", 
@@ -2662,10 +2729,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2008, 
         "current_value": 8379892.016472463, 
-        "current_value_usd": 369436.8460722632
+        "current_value_usd": 369436.8460722632, 
+        "type": "discrete"
     }
 },
 {
@@ -2673,7 +2742,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "ILS", 
         "country": "CYP", 
@@ -2687,10 +2755,12 @@
             "tree"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 7679232671851784.0, 
-        "current_value_usd": 2156860025978094.2
+        "current_value_usd": 2156860025978094.2, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2698,7 +2768,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Risus class risus eni augue hendrerit cum consectetuer", 
         "currency": "DOP", 
         "country": "BDI", 
@@ -2712,10 +2781,12 @@
             "misc-services"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 19198785.18204609, 
-        "current_value_usd": 458256.8254284779
+        "current_value_usd": 458256.8254284779, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2723,7 +2794,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Proin risus auctor lacus parturient scelerisque mattis id habitant", 
         "currency": "AMD", 
         "country": "RWA", 
@@ -2735,10 +2805,12 @@
             "primary"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 38.03954520048292, 
-        "current_value_usd": 0.09180285389207068
+        "current_value_usd": 0.09180285389207068, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2746,7 +2818,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "BIF", 
         "country": "PAK", 
@@ -2759,10 +2830,12 @@
             "military"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 1.2721426470282202e+17, 
-        "current_value_usd": 82714624089117.62
+        "current_value_usd": 82714624089117.62, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2770,7 +2843,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Magna class montes condimentum lorem lectus", 
         "currency": "EUR", 
         "country": "BOL", 
@@ -2784,10 +2856,12 @@
             "water"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 14479.851320268755, 
-        "current_value_usd": 19181.4818910231
+        "current_value_usd": 19181.4818910231, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2795,7 +2869,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "MWK", 
         "country": "MDA", 
@@ -2810,10 +2883,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 5700000000000.0, 
-        "current_value_usd": 17382010076.99163
+        "current_value_usd": 17382010076.99163, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2821,7 +2896,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "NPR", 
         "country": "MDV", 
@@ -2833,10 +2907,12 @@
             "rd-order-safety"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 453.0090969399542, 
-        "current_value_usd": 4.688316008714444
+        "current_value_usd": 4.688316008714444, 
+        "type": "discrete"
     }
 },
 {
@@ -2844,7 +2920,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Class nulla orci rhoncus vitae", 
         "currency": "TJS", 
         "country": "GMB", 
@@ -2857,10 +2932,12 @@
             "garbage"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2011, 
         "current_value": 2000.0, 
-        "current_value_usd": 419.4308030401184
+        "current_value_usd": 419.4308030401184, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2868,7 +2945,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "QAR", 
         "country": "SWE", 
@@ -2881,10 +2957,12 @@
             "legislative"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 12547.095772265206, 
-        "current_value_usd": 3445.599588592235
+        "current_value_usd": 3445.599588592235, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2892,7 +2970,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Massa netus sociis quis ornare mi litora eros", 
         "currency": "ZMK", 
         "country": "MDA", 
@@ -2902,10 +2979,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 175945460925579.66, 
-        "current_value_usd": 33660190246.066525
+        "current_value_usd": 33660190246.066525, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2913,7 +2992,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "BIF", 
         "country": "TZA", 
@@ -2925,10 +3003,12 @@
             "health"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 21830700.461749762, 
-        "current_value_usd": 14194.305854881866
+        "current_value_usd": 14194.305854881866, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2936,7 +3016,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Metus lorem ligula risus vel class fermentum varius", 
         "currency": "MUR", 
         "country": "SAU", 
@@ -2949,10 +3028,12 @@
             "publicaffairs"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 2.1943022594488388e+16, 
-        "current_value_usd": 712088285567143.8
+        "current_value_usd": 712088285567143.8, 
+        "type": "discrete"
     }
 },
 {
@@ -2960,7 +3041,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Fusce porta a", 
         "currency": "TJS", 
         "country": "FJI", 
@@ -2974,10 +3054,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 9.702536473152152e+16, 
-        "current_value_usd": 2.0347713322301224e+16
+        "current_value_usd": 2.0347713322301224e+16, 
+        "type": "over_one_year"
     }
 },
 {
@@ -2985,7 +3067,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Donec nulla", 
         "currency": "PYG", 
         "country": "MYS", 
@@ -3000,10 +3081,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 1.6755051998197094e+16, 
-        "current_value_usd": 3788594213319.178
+        "current_value_usd": 3788594213319.178, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3011,7 +3094,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "BYR", 
         "country": "GNQ", 
@@ -3024,10 +3106,12 @@
             "military"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2010, 
         "current_value": 6523.7384374203075, 
-        "current_value_usd": 0.7337046357641713
+        "current_value_usd": 0.7337046357641713, 
+        "type": "discrete"
     }
 },
 {
@@ -3035,7 +3119,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Fames dolor", 
         "currency": "MUR", 
         "country": "LBR", 
@@ -3050,10 +3133,12 @@
             "unemployment"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 18100000000.0, 
-        "current_value_usd": 587375686.8847544
+        "current_value_usd": 587375686.8847544, 
+        "type": "discrete"
     }
 },
 {
@@ -3061,7 +3146,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Felis donec montes magnis gravida phasellus molestie quis varius ut", 
         "currency": "LAK", 
         "country": "MEX", 
@@ -3076,10 +3160,12 @@
             "pollution"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 12380783.029637039, 
-        "current_value_usd": 1589.6249120711725
+        "current_value_usd": 1589.6249120711725, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3087,7 +3173,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Curae etiam nisi rutrum vel tellus viverra", 
         "currency": "AOA", 
         "country": "CAF", 
@@ -3097,10 +3182,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2012, 
         "current_value": 139000.0, 
-        "current_value_usd": 1448.0946767216667
+        "current_value_usd": 1448.0946767216667, 
+        "type": "discrete"
     }
 },
 {
@@ -3108,7 +3195,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Curae nulla", 
         "currency": "SEK", 
         "country": "TUR", 
@@ -3121,10 +3207,12 @@
             "schools"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1080.0, 
-        "current_value_usd": 164.56342922149764
+        "current_value_usd": 164.56342922149764, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3132,7 +3220,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Velit netus", 
         "currency": "MRO", 
         "country": "BWA", 
@@ -3144,10 +3231,12 @@
             "railways"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 3.7043020265404776e+16, 
-        "current_value_usd": 122856971984757.81
+        "current_value_usd": 122856971984757.81, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3155,7 +3244,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Dolor felis", 
         "currency": "ZMK", 
         "country": "TUN", 
@@ -3165,10 +3253,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1010000000.0, 
-        "current_value_usd": 193223.46805472265
+        "current_value_usd": 193223.46805472265, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3176,7 +3266,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Augue metus enim vel pede adipiscing consequat purus", 
         "currency": "CNY", 
         "country": "BGR", 
@@ -3189,10 +3278,12 @@
             "post-secondary"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 1730491835645011.8, 
-        "current_value_usd": 281822353796128.7
+        "current_value_usd": 281822353796128.7, 
+        "type": "discrete"
     }
 },
 {
@@ -3200,7 +3291,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "TRY", 
         "country": "SEN", 
@@ -3210,10 +3300,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 124439730160433.61, 
-        "current_value_usd": 64311300735795.23
+        "current_value_usd": 64311300735795.23, 
+        "type": "discrete"
     }
 },
 {
@@ -3221,7 +3313,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Metus class odio sodales potenti libero sapien tristique integer eros eget diam laoreet facilisis", 
         "currency": "GMD", 
         "country": "LTU", 
@@ -3235,10 +3326,12 @@
             "street-lights"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 19425443.160772547, 
-        "current_value_usd": 596280.8322193817
+        "current_value_usd": 596280.8322193817, 
+        "type": "discrete"
     }
 },
 {
@@ -3246,7 +3339,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "BMD", 
         "country": "MNE", 
@@ -3260,10 +3352,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2007, 
         "current_value": 6.0772225703833224e+16, 
-        "current_value_usd": 6.0772225703833224e+16
+        "current_value_usd": 6.0772225703833224e+16, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3271,7 +3365,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Velit dolor morbi aptent inceptos viverra commodo cursus porta blandit", 
         "currency": "SOS", 
         "country": "NGA", 
@@ -3283,10 +3376,12 @@
             "wheelchair"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 263039.2461578696, 
-        "current_value_usd": 190.84093841104917
+        "current_value_usd": 190.84093841104917, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3294,7 +3389,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Porta proin facilisi risus eleifend cum vivamus eget class conubia nam nisi", 
         "currency": "FKP", 
         "country": "SYC", 
@@ -3306,10 +3400,12 @@
             "public-debt"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 3511.244423719741, 
-        "current_value_usd": 5335.46740777508
+        "current_value_usd": 5335.46740777508, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3317,7 +3413,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Purus curae aptent", 
         "currency": "GYD", 
         "country": "LBY", 
@@ -3330,10 +3425,12 @@
             "energy"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 23489325016848.5, 
-        "current_value_usd": 116169726943.38794
+        "current_value_usd": 116169726943.38794, 
+        "type": "discrete"
     }
 },
 {
@@ -3341,7 +3438,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Neque porta non auctor sed ut ipsum lectus", 
         "currency": "LBP", 
         "country": "VUT", 
@@ -3355,10 +3451,12 @@
             "tree"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2007, 
         "current_value": 623272.6520479927, 
-        "current_value_usd": 412.5161761424152
+        "current_value_usd": 412.5161761424152, 
+        "type": "discrete"
     }
 },
 {
@@ -3366,7 +3464,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Massa risus quam ad torquent sem commodo nunc mi rutrum", 
         "currency": "IDR", 
         "country": "VUT", 
@@ -3376,10 +3473,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2004, 
         "current_value": 195860.09327115302, 
-        "current_value_usd": 19.04242965255798
+        "current_value_usd": 19.04242965255798, 
+        "type": "discrete"
     }
 },
 {
@@ -3387,7 +3486,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "CDF", 
         "country": "SLB", 
@@ -3399,10 +3497,12 @@
             "economic-aid"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2010, 
         "current_value": 246888226.23841494, 
-        "current_value_usd": 267396.3691215721
+        "current_value_usd": 267396.3691215721, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3410,7 +3510,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Metus lorem ligula", 
         "currency": "NIO", 
         "country": "OMN", 
@@ -3425,10 +3524,12 @@
             "pound2"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 1.74985475792989e+17, 
-        "current_value_usd": 7053554498208954.0
+        "current_value_usd": 7053554498208954.0, 
+        "type": "discrete"
     }
 },
 {
@@ -3436,7 +3537,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "SBD", 
         "country": "LBY", 
@@ -3450,10 +3550,12 @@
             "water"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 2830012099731.3115, 
-        "current_value_usd": 398033875735.10236
+        "current_value_usd": 398033875735.10236, 
+        "type": "discrete"
     }
 },
 {
@@ -3461,7 +3563,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "GHS", 
         "country": "GNQ", 
@@ -3475,10 +3576,12 @@
             "petrol"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2004, 
         "current_value": 16476314513221.307, 
-        "current_value_usd": 7887121209383.996
+        "current_value_usd": 7887121209383.996, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3486,7 +3589,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "KGS", 
         "country": "VCT", 
@@ -3500,10 +3602,12 @@
             "traffic-watersup"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 126905.6495749593, 
-        "current_value_usd": 2594.6097363406943
+        "current_value_usd": 2594.6097363406943, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3511,7 +3615,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Massa felis", 
         "currency": "XAG", 
         "country": "MNE", 
@@ -3524,10 +3627,12 @@
             "other-medical"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2011, 
         "current_value": 8200000.0, 
-        "current_value_usd": 160844236.08795434
+        "current_value_usd": 160844236.08795434, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3535,7 +3640,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "DJF", 
         "country": "BEL", 
@@ -3547,10 +3651,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1370000000000.0, 
-        "current_value_usd": 7693603682.2238655
+        "current_value_usd": 7693603682.2238655, 
+        "type": "discrete"
     }
 },
 {
@@ -3558,7 +3664,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "BTN", 
         "country": "BFA", 
@@ -3571,10 +3676,12 @@
             "unknown"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 624.385043806096, 
-        "current_value_usd": 10.325437400504834
+        "current_value_usd": 10.325437400504834, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3582,7 +3689,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "SOS", 
         "country": "DOM", 
@@ -3592,10 +3698,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 8547.511513636591, 
-        "current_value_usd": 6.2014134474923175
+        "current_value_usd": 6.2014134474923175, 
+        "type": "discrete"
     }
 },
 {
@@ -3603,7 +3711,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Proin metus integer ultricies arcu nisl", 
         "currency": "XOF", 
         "country": "MNG", 
@@ -3617,10 +3724,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 770396086852.7792, 
-        "current_value_usd": 1556472853.2396295
+        "current_value_usd": 1556472853.2396295, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3628,7 +3737,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "ETB", 
         "country": "SLV", 
@@ -3640,10 +3748,12 @@
             "energy"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 118067893.54544502, 
-        "current_value_usd": 6278199.08161528
+        "current_value_usd": 6278199.08161528, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3651,7 +3761,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Dolor metus eget suscipit dis euismod suscipit ut congue ad ante diam facilisis", 
         "currency": "MVR", 
         "country": "URY", 
@@ -3664,10 +3773,12 @@
             "medical-supplies"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 275544.72733135277, 
-        "current_value_usd": 17895.782485175394
+        "current_value_usd": 17895.782485175394, 
+        "type": "discrete"
     }
 },
 {
@@ -3675,7 +3786,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "XAU", 
         "country": "TTO", 
@@ -3685,10 +3795,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 2.2655579779261424e+16, 
-        "current_value_usd": 2.9928110672736362e+19
+        "current_value_usd": 2.9928110672736362e+19, 
+        "type": "discrete"
     }
 },
 {
@@ -3696,7 +3808,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "MYR", 
         "country": "COM", 
@@ -3709,10 +3820,12 @@
             "government"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2009, 
         "current_value": 1907826.2207838218, 
-        "current_value_usd": 588248.4573363306
+        "current_value_usd": 588248.4573363306, 
+        "type": "discrete"
     }
 },
 {
@@ -3720,7 +3833,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Fames massa", 
         "currency": "TOP", 
         "country": "IND", 
@@ -3732,10 +3844,12 @@
             "unknown"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 1063880849862.35, 
-        "current_value_usd": 580129142191.9177
+        "current_value_usd": 580129142191.9177, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3743,7 +3857,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Class massa eget faucibus litora pede", 
         "currency": "RSD", 
         "country": "BFA", 
@@ -3755,10 +3868,12 @@
             "economic-aid"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 2069.6558603491217, 
-        "current_value_usd": 24.088612466436732
+        "current_value_usd": 24.088612466436732, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3766,7 +3881,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "KWD", 
         "country": "HKG", 
@@ -3781,10 +3895,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 7229195630585874.0, 
-        "current_value_usd": 2.5372097521771804e+16
+        "current_value_usd": 2.5372097521771804e+16, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3792,7 +3908,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "RWF", 
         "country": "GRD", 
@@ -3806,10 +3921,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 122542821.67895259, 
-        "current_value_usd": 188601.98829222104
+        "current_value_usd": 188601.98829222104, 
+        "type": "discrete"
     }
 },
 {
@@ -3817,7 +3934,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "CAD", 
         "country": "VUT", 
@@ -3832,10 +3948,12 @@
             "manufactoring-construction"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2004, 
         "current_value": 200726182544.9705, 
-        "current_value_usd": 194792415969.70145
+        "current_value_usd": 194792415969.70145, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3843,7 +3961,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "HRK", 
         "country": "NGA", 
@@ -3855,10 +3972,12 @@
             "hospital-specialized"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 2839814.74712566, 
-        "current_value_usd": 500883.43737202126
+        "current_value_usd": 500883.43737202126, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3866,7 +3985,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "BDT", 
         "country": "HRV", 
@@ -3880,10 +3998,12 @@
             "social-systems"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 1564993202563608.8, 
-        "current_value_usd": 20078959054046.863
+        "current_value_usd": 20078959054046.863, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3891,7 +4011,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Ipsum massa eget cubilia duis ut cum enim", 
         "currency": "VUV", 
         "country": "TTO", 
@@ -3904,10 +4023,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 1796027.5994391555, 
-        "current_value_usd": 18669.725565895587
+        "current_value_usd": 18669.725565895587, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3915,7 +4036,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "RON", 
         "country": "ISL", 
@@ -3930,10 +4050,12 @@
             "publicaffairs"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 47487.999999999956, 
-        "current_value_usd": 14241.33435736907
+        "current_value_usd": 14241.33435736907, 
+        "type": "discrete"
     }
 },
 {
@@ -3941,7 +4063,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Fames donec lectus", 
         "currency": "CDF", 
         "country": "MUS", 
@@ -3956,10 +4077,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1.03e+16, 
-        "current_value_usd": 11155585035037.412
+        "current_value_usd": 11155585035037.412, 
+        "type": "over_one_year"
     }
 },
 {
@@ -3967,7 +4090,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "TND", 
         "country": "PNG", 
@@ -3981,10 +4103,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2008, 
         "current_value": 1733.0709677419354, 
-        "current_value_usd": 1048.4803814194472
+        "current_value_usd": 1048.4803814194472, 
+        "type": "discrete"
     }
 },
 {
@@ -3992,7 +4116,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Magna netus", 
         "currency": "ARS", 
         "country": "KHM", 
@@ -4002,10 +4125,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 117000000000000.0, 
-        "current_value_usd": 21252101142563.816
+        "current_value_usd": 21252101142563.816, 
+        "type": "discrete"
     }
 },
 {
@@ -4013,7 +4138,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "EUR", 
         "country": "TUN", 
@@ -4025,10 +4149,12 @@
             "airplane"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 11154.488718194883, 
-        "current_value_usd": 14776.368805125647
+        "current_value_usd": 14776.368805125647, 
+        "type": "discrete"
     }
 },
 {
@@ -4036,7 +4162,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "PLN", 
         "country": "AGO", 
@@ -4046,10 +4171,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 2.602155361272951e+16, 
-        "current_value_usd": 8129743716767364.0
+        "current_value_usd": 8129743716767364.0, 
+        "type": "discrete"
     }
 },
 {
@@ -4057,7 +4184,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Donec massa integer", 
         "currency": "LBP", 
         "country": "LTU", 
@@ -4070,10 +4196,12 @@
             "military"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 6930.688710624176, 
-        "current_value_usd": 4.5871115883966995
+        "current_value_usd": 4.5871115883966995, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4081,7 +4209,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Etiam felis luctus ullamcorper", 
         "currency": "IDR", 
         "country": "BLR", 
@@ -4094,10 +4221,12 @@
             "wheelchair"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 36819.27947081345, 
-        "current_value_usd": 3.5797416792311014
+        "current_value_usd": 3.5797416792311014, 
+        "type": "discrete"
     }
 },
 {
@@ -4105,7 +4234,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "KRW", 
         "country": "TUN", 
@@ -4118,10 +4246,12 @@
             "nuclear"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 2679398285441.28, 
-        "current_value_usd": 2385408315.559969
+        "current_value_usd": 2385408315.559969, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4129,7 +4259,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "Metus class semper vel", 
         "currency": "CLP", 
         "country": "TUR", 
@@ -4144,10 +4273,12 @@
             "old-age"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 9738.86771300448, 
-        "current_value_usd": 18.987027361876073
+        "current_value_usd": 18.987027361876073, 
+        "type": "discrete"
     }
 },
 {
@@ -4155,7 +4286,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "PGK", 
         "country": "ECU", 
@@ -4165,10 +4295,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 19313126674.712303, 
-        "current_value_usd": 8435768452.150513
+        "current_value_usd": 8435768452.150513, 
+        "type": "discrete"
     }
 },
 {
@@ -4176,7 +4308,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "RSD", 
         "country": "AGO", 
@@ -4186,10 +4317,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 252537305.47638246, 
-        "current_value_usd": 2939268.021067312
+        "current_value_usd": 2939268.021067312, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4197,7 +4330,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "DJF", 
         "country": "TLS", 
@@ -4209,10 +4341,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 3426115.66727021, 
-        "current_value_usd": 19240.274535353987
+        "current_value_usd": 19240.274535353987, 
+        "type": "discrete"
     }
 },
 {
@@ -4220,7 +4354,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Donec fusce habitant risus litora eleifend lacus in etiam mi", 
         "currency": "TND", 
         "country": "SVN", 
@@ -4232,10 +4365,12 @@
             "secondary-lower"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 57455046679.83474, 
-        "current_value_usd": 34759389764.537
+        "current_value_usd": 34759389764.537, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4243,7 +4378,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "AMD", 
         "country": "EGY", 
@@ -4255,10 +4389,12 @@
             "tree"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 35960020968.74585, 
-        "current_value_usd": 86784227.66494231
+        "current_value_usd": 86784227.66494231, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4266,7 +4402,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Neque lacus ligula consectetuer euismod molestie sapien", 
         "currency": "IQD", 
         "country": "CZE", 
@@ -4278,10 +4413,12 @@
             "prisons"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 661.114068092139, 
-        "current_value_usd": 0.5678901652393523
+        "current_value_usd": 0.5678901652393523, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4289,7 +4426,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Morbi magna molestie adipiscing iaculis nisi", 
         "currency": "DJF", 
         "country": "VNM", 
@@ -4302,10 +4438,12 @@
             "housing"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 30755.574315276473, 
-        "current_value_usd": 172.71620423424878
+        "current_value_usd": 172.71620423424878, 
+        "type": "discrete"
     }
 },
 {
@@ -4313,7 +4451,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Massa augue non purus tempor est", 
         "currency": "TJS", 
         "country": "BHS", 
@@ -4323,10 +4460,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2010, 
         "current_value": 165074340.20994052, 
-        "current_value_usd": 34618631.53778653
+        "current_value_usd": 34618631.53778653, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4334,7 +4473,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "LKR", 
         "country": "JPN", 
@@ -4348,10 +4486,12 @@
             "military"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 5.283216666666662e+16, 
-        "current_value_usd": 401264643957563.25
+        "current_value_usd": 401264643957563.25, 
+        "type": "discrete"
     }
 },
 {
@@ -4359,7 +4499,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "FJD", 
         "country": "OMN", 
@@ -4372,10 +4511,12 @@
             "our-streets"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 163000000.0, 
-        "current_value_usd": 86890513.6881878
+        "current_value_usd": 86890513.6881878, 
+        "type": "discrete"
     }
 },
 {
@@ -4383,7 +4524,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "LSL", 
         "country": "ZMB", 
@@ -4397,10 +4537,12 @@
             "unknown"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2011, 
         "current_value": 770000000.0, 
-        "current_value_usd": 77806267.44641346
+        "current_value_usd": 77806267.44641346, 
+        "type": "discrete"
     }
 },
 {
@@ -4408,7 +4550,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Proin massa pharetra hymenaeos at sociis ac fusce", 
         "currency": "LTL", 
         "country": "DMA", 
@@ -4420,10 +4561,12 @@
             "money"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 12359443571.614937, 
-        "current_value_usd": 4743430119.379756
+        "current_value_usd": 4743430119.379756, 
+        "type": "discrete"
     }
 },
 {
@@ -4431,7 +4574,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Massa augue tempus enim", 
         "currency": "SLL", 
         "country": "UGA", 
@@ -4443,10 +4585,12 @@
             "human-resources"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 70689955069.46468, 
-        "current_value_usd": 16329390.50731212
+        "current_value_usd": 16329390.50731212, 
+        "type": "discrete"
     }
 },
 {
@@ -4454,7 +4598,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "BHD", 
         "country": "PAN", 
@@ -4467,10 +4610,12 @@
             "pollution"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 2600.0, 
-        "current_value_usd": 6895.728626556512
+        "current_value_usd": 6895.728626556512, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4478,7 +4623,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "STD", 
         "country": "MRT", 
@@ -4492,10 +4636,12 @@
             "water"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 1007377931.1368954, 
-        "current_value_usd": 54461.10390420687
+        "current_value_usd": 54461.10390420687, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4503,7 +4649,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Dolor morbi tempus velit et cursus dictumst diam lectus", 
         "currency": "RON", 
         "country": "PAN", 
@@ -4516,10 +4661,12 @@
             "economy-tourism"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 22789990.88574032, 
-        "current_value_usd": 6834566.210521014
+        "current_value_usd": 6834566.210521014, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4527,7 +4674,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "LRD", 
         "country": "POL", 
@@ -4537,10 +4683,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 51872.56310281164, 
-        "current_value_usd": 689.5547900555192
+        "current_value_usd": 689.5547900555192, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4548,7 +4696,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Neque morbi", 
         "currency": "GMD", 
         "country": "MDV", 
@@ -4563,10 +4710,12 @@
             "secondary-lower"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 201937978354269.0, 
-        "current_value_usd": 6198661456174.175
+        "current_value_usd": 6198661456174.175, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4574,7 +4723,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "Velit massa vel quis nibh dignissim torquent montes odio laoreet", 
         "currency": "UGX", 
         "country": "CHN", 
@@ -4587,10 +4735,12 @@
             "misc-services"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 33302250566176.902, 
-        "current_value_usd": 12883182092.299362
+        "current_value_usd": 12883182092.299362, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4598,7 +4748,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "CHF", 
         "country": "CPV", 
@@ -4608,10 +4757,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 2516874335474688.5, 
-        "current_value_usd": 2704687860508391.0
+        "current_value_usd": 2704687860508391.0, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4619,7 +4770,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Proin justo", 
         "currency": "PKR", 
         "country": "MLT", 
@@ -4633,10 +4783,12 @@
             "old-age"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 3785073861.095264, 
-        "current_value_usd": 37167674.070302546
+        "current_value_usd": 37167674.070302546, 
+        "type": "discrete"
     }
 },
 {
@@ -4644,7 +4796,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Felis metus", 
         "currency": "BRL", 
         "country": "LTU", 
@@ -4657,10 +4808,12 @@
             "transport"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 20118235415.804665, 
-        "current_value_usd": 8800031238.391388
+        "current_value_usd": 8800031238.391388, 
+        "type": "discrete"
     }
 },
 {
@@ -4668,7 +4821,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "MWK", 
         "country": "HRV", 
@@ -4678,10 +4830,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 200861332297534.03, 
-        "current_value_usd": 612521702118.1932
+        "current_value_usd": 612521702118.1932, 
+        "type": "discrete"
     }
 },
 {
@@ -4689,7 +4843,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Justo proin curae cum feugiat eni", 
         "currency": "MKD", 
         "country": "MDA", 
@@ -4699,10 +4852,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 2158958137.326055, 
-        "current_value_usd": 46432546.403467275
+        "current_value_usd": 46432546.403467275, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4710,7 +4865,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Velit ipsum sem justo eget varius lacus ullamcorper molestie arcu porttitor", 
         "currency": "ISK", 
         "country": "USA", 
@@ -4724,10 +4878,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2003, 
         "current_value": 14103.25485843718, 
-        "current_value_usd": 118.02257373314855
+        "current_value_usd": 118.02257373314855, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4735,7 +4891,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Nulla purus arcu vulputate porttitor odio quisque id cras donec aliquam facilisi", 
         "currency": "XCD", 
         "country": "BWA", 
@@ -4748,10 +4903,12 @@
             "schools"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 87107.6301162202, 
-        "current_value_usd": 32237.01199667673
+        "current_value_usd": 32237.01199667673, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4759,7 +4916,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "TND", 
         "country": "MAR", 
@@ -4774,10 +4930,12 @@
             "unknown"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 1670000000000000.0, 
-        "current_value_usd": 1010323448699768.2
+        "current_value_usd": 1010323448699768.2, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4785,7 +4943,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "", 
         "currency": "SVC", 
         "country": "DOM", 
@@ -4798,10 +4955,12 @@
             "satellite-dish"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 42514.75521108756, 
-        "current_value_usd": 4859.1834708733695
+        "current_value_usd": 4859.1834708733695, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4809,7 +4968,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "Dolor fames", 
         "currency": "MVR", 
         "country": "PSE", 
@@ -4823,10 +4981,12 @@
             "tree"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2009, 
         "year": 2005, 
         "current_value": 1492944593862.5, 
-        "current_value_usd": 96962159185.33307
+        "current_value_usd": 96962159185.33307, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4834,7 +4994,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "AMD", 
         "country": "SVK", 
@@ -4848,10 +5007,12 @@
             "wind"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 1748947502873.932, 
-        "current_value_usd": 4220827857.5633216
+        "current_value_usd": 4220827857.5633216, 
+        "type": "discrete"
     }
 },
 {
@@ -4859,7 +5020,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "LRD", 
         "country": "BLR", 
@@ -4873,10 +5033,12 @@
             "secondary-lower"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 93000000000000.0, 
-        "current_value_usd": 1236271964199.2654
+        "current_value_usd": 1236271964199.2654, 
+        "type": "discrete"
     }
 },
 {
@@ -4884,7 +5046,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "VEF", 
         "country": "BHR", 
@@ -4896,10 +5057,12 @@
             "admin-culture"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2003, 
         "current_value": 167395.2777777769, 
-        "current_value_usd": 26607.236510636983
+        "current_value_usd": 26607.236510636983, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4907,7 +5070,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Felis justo nam neque porttitor dui sodales etiam mus lacus", 
         "currency": "BDT", 
         "country": "ISL", 
@@ -4919,10 +5081,12 @@
             "books"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 1335862965.1506202, 
-        "current_value_usd": 17139204.01388244
+        "current_value_usd": 17139204.01388244, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4930,7 +5094,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "TMT", 
         "country": "NER", 
@@ -4943,10 +5106,12 @@
             "communication"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 703185628742.5144, 
-        "current_value_usd": 246710158316.81937
+        "current_value_usd": 246710158316.81937, 
+        "type": "over_one_year"
     }
 },
 {
@@ -4954,7 +5119,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "IRR", 
         "country": "RUS", 
@@ -4968,10 +5132,12 @@
             "transport"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 1345.7230665728853, 
-        "current_value_usd": 0.10995166757003702
+        "current_value_usd": 0.10995166757003702, 
+        "type": "discrete"
     }
 },
 {
@@ -4979,7 +5145,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": true, 
         "description": "", 
         "currency": "MVR", 
         "country": "SLB", 
@@ -4991,10 +5156,12 @@
             "unemployment"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2011, 
         "year": 2006, 
         "current_value": 121787920.34056097, 
-        "current_value_usd": 7909750.815574959
+        "current_value_usd": 7909750.815574959, 
+        "type": "over_one_year"
     }
 },
 {
@@ -5002,7 +5169,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "JOD", 
         "country": "GRC", 
@@ -5012,10 +5178,12 @@
         "sticky": true, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2011, 
         "current_value": 5.176577509225844e+16, 
-        "current_value_usd": 7.302494236280211e+16
+        "current_value_usd": 7.302494236280211e+16, 
+        "type": "discrete"
     }
 },
 {
@@ -5023,7 +5191,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "HUF", 
         "country": "STP", 
@@ -5037,10 +5204,12 @@
             "medical-supplies"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2004, 
         "current_value": 301213.55093786103, 
-        "current_value_usd": 1333.0833764177285
+        "current_value_usd": 1333.0833764177285, 
+        "type": "discrete"
     }
 },
 {
@@ -5048,7 +5217,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "BIF", 
         "country": "GEO", 
@@ -5061,10 +5229,12 @@
             "railways"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 53758968264.44818, 
-        "current_value_usd": 34954042.78600523
+        "current_value_usd": 34954042.78600523, 
+        "type": "discrete"
     }
 },
 {
@@ -5072,7 +5242,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Purus class mattis consectetuer integer nascetur", 
         "currency": "NPR", 
         "country": "YEM", 
@@ -5085,10 +5254,12 @@
             "wheelchair"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 287955.6960254456, 
-        "current_value_usd": 2980.1328684036366
+        "current_value_usd": 2980.1328684036366, 
+        "type": "discrete"
     }
 },
 {
@@ -5096,7 +5267,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": false, 
         "description": "", 
         "currency": "AUD", 
         "country": "CIV", 
@@ -5110,10 +5280,12 @@
             "sports"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 136923.76076977898, 
-        "current_value_usd": 122514.90527526083
+        "current_value_usd": 122514.90527526083, 
+        "type": "discrete"
     }
 },
 {
@@ -5121,7 +5293,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "KPW", 
         "country": "PAN", 
@@ -5136,10 +5307,12 @@
             "water"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 960.7081366287098, 
-        "current_value_usd": 1.0674534851430109
+        "current_value_usd": 1.0674534851430109, 
+        "type": "over_one_year"
     }
 },
 {
@@ -5147,7 +5320,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "", 
         "currency": "PEN", 
         "country": "BDI", 
@@ -5161,10 +5333,12 @@
             "unemployment"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2005, 
         "current_value": 1141539825486443.5, 
-        "current_value_usd": 408569321929741.25
+        "current_value_usd": 408569321929741.25, 
+        "type": "discrete"
     }
 },
 {
@@ -5172,7 +5346,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "", 
         "currency": "XDR", 
         "country": "ZAF", 
@@ -5187,10 +5360,12 @@
             "waste"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2006, 
         "current_value": 296150254.9285855, 
-        "current_value_usd": 447593523.65840787
+        "current_value_usd": 447593523.65840787, 
+        "type": "discrete"
     }
 },
 {
@@ -5198,7 +5373,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Porta risus taciti elit ultricies mattis platea conubia", 
         "currency": "RWF", 
         "country": "MRT", 
@@ -5208,10 +5382,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 2204.024851166389, 
-        "current_value_usd": 3.392148666728828
+        "current_value_usd": 3.392148666728828, 
+        "type": "discrete"
     }
 },
 {
@@ -5219,7 +5395,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": true, 
         "description": "Risus vitae", 
         "currency": "TZS", 
         "country": "CHN", 
@@ -5231,10 +5406,12 @@
             "water"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 55000.0, 
-        "current_value_usd": 33.987027565602006
+        "current_value_usd": 33.987027565602006, 
+        "type": "over_one_year"
     }
 },
 {
@@ -5242,7 +5419,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Morbi donec est nibh leo sapien suscipit vitae volutpat duis eu", 
         "currency": "GNF", 
         "country": "QAT", 
@@ -5256,10 +5432,12 @@
             "fishing"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 1546899.3154636535, 
-        "current_value_usd": 220.37177616972784
+        "current_value_usd": 220.37177616972784, 
+        "type": "discrete"
     }
 },
 {
@@ -5267,7 +5445,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "HNL", 
         "country": "BOL", 
@@ -5282,10 +5459,12 @@
             "our-streets"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2010, 
         "current_value": 1079.58164585443, 
-        "current_value_usd": 52.937040472684906
+        "current_value_usd": 52.937040472684906, 
+        "type": "over_one_year"
     }
 },
 {
@@ -5293,7 +5472,6 @@
     "model": "core.story", 
     "fields": {
         "status": "refused", 
-        "continuous": true, 
         "description": "", 
         "currency": "AZN", 
         "country": "VCT", 
@@ -5303,10 +5481,12 @@
         "sticky": false, 
         "themes": [], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2009, 
         "current_value": 2094976739927.9014, 
-        "current_value_usd": 2670801555236.998
+        "current_value_usd": 2670801555236.998, 
+        "type": "over_one_year"
     }
 },
 {
@@ -5314,7 +5494,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Fames risus", 
         "currency": "DJF", 
         "country": "MLI", 
@@ -5329,10 +5508,12 @@
             "garbage"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 171000000.0, 
-        "current_value_usd": 960296.518000205
+        "current_value_usd": 960296.518000205, 
+        "type": "discrete"
     }
 },
 {
@@ -5340,7 +5521,6 @@
     "model": "core.story", 
     "fields": {
         "status": "pending", 
-        "continuous": false, 
         "description": "Dolor morbi", 
         "currency": "LVL", 
         "country": "BOL", 
@@ -5353,10 +5533,12 @@
             "research"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2008, 
         "current_value": 24333.06518889285, 
-        "current_value_usd": 45879.8472540474
+        "current_value_usd": 45879.8472540474, 
+        "type": "discrete"
     }
 },
 {
@@ -5364,7 +5546,6 @@
     "model": "core.story", 
     "fields": {
         "status": "published", 
-        "continuous": false, 
         "description": "Magna neque nec amet dignissim in hymenaeos lacus a nisl netus hendrerit", 
         "currency": "GTQ", 
         "country": "COG", 
@@ -5378,10 +5559,12 @@
             "housing"
         ], 
         "source": "http://www.okf.org", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2012, 
         "current_value": 187000000000.0, 
-        "current_value_usd": 23842081273.447636
+        "current_value_usd": 23842081273.447636, 
+        "type": "discrete"
     }
 }
 ]

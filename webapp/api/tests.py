@@ -61,7 +61,7 @@ class APIStoryTestCase(SimpleTestCase):
             [ ]  regular user POST
         """
         story = {
-            'continuous' : False,
+            'type'       : "discrete",
             'country'    : 'BGR',
             'currency'   : u'GNF',
             'description': None,
@@ -105,10 +105,10 @@ class APIStoryTestCase(SimpleTestCase):
                 self.assertIsNotNone(story['relevance_score'])
                 if story['relevance_score'] != 0:
                     count[relevance_for] += 1
-                    if story['relevance_type'] in (Relevance.TYPE_WEEK, Relevance.TYPE_MONTH) :
-                        if story['relevance_type'] == Relevance.TYPE_WEEK:
+                    if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_WEEK, Relevance.RELEVANCE_TYPE_MONTH) :
+                        if story['relevance_type'] == Relevance.RELEVANCE_TYPE_WEEK:
                             reverse_computing = float(story['relevance_value']) * story['current_value_usd']/52
-                        elif story['relevance_type'] == Relevance.TYPE_MONTH:
+                        elif story['relevance_type'] == Relevance.RELEVANCE_TYPE_MONTH:
                             reverse_computing = float(story['relevance_value']) * story['current_value_usd']/12
                         accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
                         debug = "\n"
@@ -122,7 +122,7 @@ class APIStoryTestCase(SimpleTestCase):
                         debug += "\n--------------------------------------"
                         if accuracy < TOLERENCE:
                             warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
-                    if story['relevance_type'] in (Relevance.TYPE_MULTIPLE, Relevance.TYPE_HALF) :
+                    if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_MULTIPLE, Relevance.RELEVANCE_TYPE_HALF) :
                         reverse_computing = float(story['relevance_value']) * story['current_value_usd']
                         accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
                         debug = "\n"
