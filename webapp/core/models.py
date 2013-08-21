@@ -95,6 +95,7 @@ class Story(models.Model):
     sticky              = models.BooleanField(_('Is a top story'),help_text=_("Check if the story is a tabloid"),default=False)
     year                = models.IntegerField(_('Year'), choices=YEAR_CHOICES, max_length=4, help_text=_("Enter the start year of the spending"))
     themes              = models.ManyToManyField(Theme, limit_choices_to = {'active':True})
+    extras              = models.TextField(_("Extra informations in json format"), default="{}")
     # auto computed
     created_at          = models.DateTimeField(auto_now_add=True, editable=False)
     current_value       = models.FloatField(_('The current value with the inflation'), editable=False)
