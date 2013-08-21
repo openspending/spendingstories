@@ -30,7 +30,7 @@ for i in range(100):
     story.country             = random.choice(COUNTRIES)[0]
     story.currency            = random.choice(CURRENCY)
     story.status              = random.choice(('published', 'refused', 'pending'))
-    story.continuous          = random.randint(0,1) == 0
+    story.type                = random.choice(("over_one_year", "discrete"))
     story.source              = "http://www.okf.org"
     story.sticky              = random.randint(0,1) == 0
     # themes
