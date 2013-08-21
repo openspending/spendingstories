@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Story.type'
         db.add_column(u'core_story', 'type',
-                      self.gf('django.db.models.fields.CharField')(default='discrete', max_length=10),
+                      self.gf('django.db.models.fields.CharField')(default='discrete', max_length=15),
                       keep_default=False)
 
 
