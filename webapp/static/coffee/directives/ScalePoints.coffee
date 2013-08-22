@@ -30,12 +30,11 @@ angular.module('stories')
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
 
-            lines = scope.lines = scope.lines || []
             # Scope values to monitor            
             monitored = ["rulerValue"] #, "rulerCurrency", "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
-
+            lines = scope.lines = []
             scope.harmonizePoints = ()->
                 """
                 Reposition all points to avoid overlapping
@@ -80,6 +79,7 @@ angular.module('stories')
                 
 
             addPoint = (point)->
+                lines = scope.lines
                 lines = scope.lines = scope.lines || []
                 lines[point.line] = {} unless lines[point.line]
                 lines[point.line][point.id] = point
@@ -87,7 +87,7 @@ angular.module('stories')
 
             # Isolate the scale initialization to allow dynamique updating
             update = ->
-                     
+                scope.lines = []
                 # Data must be loaded
                 return unless scope.data? and scope.data.length                                 
 
