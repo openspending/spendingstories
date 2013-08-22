@@ -18,8 +18,8 @@ angular.module('stories')
             pointWidthBig  : "&"
             pointHeightBig : "&"
             overview       : "&"     
+        
         link: (scope, element, attrs)->  
-            
             # Where we insert the point
             workspace      = d3.select(element[0])            
             # Width of the workspace according to its parent
@@ -30,13 +30,64 @@ angular.module('stories')
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
 
+            lines = scope.lines = scope.lines || []
             # Scope values to monitor            
             monitored = ["rulerValue"] #, "rulerCurrency", "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
 
+            scope.harmonizePoints = ()->
+                """
+                Reposition all points to avoid overlapping
+                """
+                # this algorithm work on a sorted list (from lower to higher)
+                lines[0] = _.sortBy lines[0], (e)-> e.x
+                harmonize = (line)->
+                    """
+                    Will loop over a line and remove all overlapping elements
+                    @param line - the line to clean up (Object { <id>: element} )
+                    @returns the overlapping elements removed from `line` 
+
+                    To do that it work this way:
+                      - we set an element of reference (the lowest)
+
+                      - we search the nearest not overlapping element to be the 
+                        new reference element
+
+                      - all other elements are deleted from the passed line and
+                        return as result 
+                    """
+                    last_good_point = null # the reference point 
+                    bad_points = {}
+                    for i,n of line
+                        do()->
+                            if !last_good_point or Math.abs(n.x - last_good_point.x) >= (pointWidth + pointGap)
+                                # if the current point is the first point or if he's not overlapping
+                                # with the last good point then we set it as the new reference point 
+                                last_good_point = n
+                            if last_good_point.id != n.id
+                                n.line += 1
+                                bad_points[i] = n
+                                delete line[i]
+                    # we return the sorted remaining overlapping points 
+                    _.sortBy bad_points, (e)-> e.x
+
+                # understand this loop as: while there is overlapping elements on the last
+                # line we have to create a new line with those elements
+                while !_.isEmpty (last_line = harmonize(lines[lines.length - 1]))
+                    do()->
+                        lines.push(last_line)
+                
+
+            addPoint = (point)->
+                lines = scope.lines = scope.lines || []
+                lines[point.line] = {} unless lines[point.line]
+                lines[point.line][point.id] = point
+
+
             # Isolate the scale initialization to allow dynamique updating
-            update = ->        
+            update = ->
+                     
                 # Data must be loaded
                 return unless scope.data? and scope.data.length                                 
 
@@ -70,26 +121,30 @@ angular.module('stories')
                 scale = d3.scale.log().domain [ min, max ]
                 # these variables help us to know if we have to go to the next line
                 lastY = lastX = -(pointWidth+pointGap)
+
                 # Create position functions 
-                x  = (d)-> scale(d.current_value_usd)*workspaceWidth            
-                y  = (d)->        
-                    if Math.abs(x(d) - lastX) >= pointWidth + pointGap       
-                        lastY = 0
-                    else                    
-                        lastY = lastY + pointHeight + pointGap
-                    # Record the current value as last x
-                    lastX = x(d)
-                    lastY
+                x = (d)-> scale(d.current_value_usd)*workspaceWidth
+                y = (d)-> d.line * (pointHeight +  pointGap)
+            
                 # Percentage value (to allow resizing)
                 xpr = (d)-> x(d)/workspaceWidth*100 + "%"
 
                 # Function that return the point css
                 scope.pointStyle = (d)->
-                    position: "absolute"
-                    top     : y(d)
-                    left    : xpr(d)
-                    width   : pointWidth
-                    height  : pointHeight
+                    d.line = d.line || 0
+                    d.x    = d.x    || x(d) 
+                    addPoint(d)
+                    style = 
+                        position: "absolute"
+                        top     : y(d)
+                        left    : xpr(d)
+                        width   : pointWidth
+                        height  : pointHeight
+
+                    if this.$last
+                        this.$parent.harmonizePoints()
+                        update()
+                    return style
 
                 # Add the ruler to the workspace
                 scope.rulerStyle = ->
