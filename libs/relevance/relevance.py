@@ -33,6 +33,10 @@ class Relevance:
             compared_to = 50000,
             story_type  = "discrete")
 
+    `amount` is the number that you want compute the relevance, related to `compated_to`.
+    `story_type` is the nature of the `compared_to` value. It can take `discrete` (default value), `over_one_year` or other
+    names of files in the `processors` package. This `story_type` will change the way that the relevance will be computed.
+
     * or *
 
         relevance = Relevance()
@@ -67,7 +71,7 @@ class Relevance:
         self.value = value
         self.type  = relevance_type
 
-    def compute(self, amount, compared_to, story_type, **extra_fields):
+    def compute(self, amount, compared_to, story_type="discrete", **extra_fields):
         """ choose the right processor related to the nature of the reference (discrete or over_one_year etc...) """
         import processors
         processor = eval("processors.%s.Processor()" % story_type)
