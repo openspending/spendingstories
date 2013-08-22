@@ -34,8 +34,9 @@ angular.module('stories')
             monitored = ["rulerValue"] #, "rulerCurrency", "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
-            lines = scope.lines = []
             scope.harmonizePoints = ()->
+                lines = scope.lines
+                console.log('harmonizePoints !')
                 """
                 Reposition all points to avoid overlapping
                 """
@@ -76,6 +77,7 @@ angular.module('stories')
                 while !_.isEmpty (last_line = harmonize(lines[lines.length - 1]))
                     do()->
                         lines.push(last_line)
+                update(true)
                 
 
             addPoint = (point)->
@@ -86,8 +88,9 @@ angular.module('stories')
 
 
             # Isolate the scale initialization to allow dynamique updating
-            update = ->
-                scope.lines = []
+            update = (optimized = false)->
+                if !optimized
+                    scope.lines = []
                 # Data must be loaded
                 return unless scope.data? and scope.data.length                                 
 
@@ -131,8 +134,13 @@ angular.module('stories')
 
                 # Function that return the point css
                 scope.pointStyle = (d)->
-                    d.line = d.line || 0
-                    d.x    = d.x    || x(d) 
+                    # if it's not optimized (e.g: if we change the scale it's
+                    # not optimized anymore) we have to reinitialize these 
+                    # that help us to place the point during optimization
+                    if !optimized
+                        d.line = 0
+                        d.x = x(d)
+
                     addPoint(d)
                     style = 
                         position: "absolute"
@@ -141,9 +149,12 @@ angular.module('stories')
                         width   : pointWidth
                         height  : pointHeight
 
-                    if this.$last
+                    # we launch the optimization algorithm after each point is 
+                    # placed and that update() method wasn't called by our 
+                    # harmonization algorithm. 
+                    if this.$last && !optimized 
                         this.$parent.harmonizePoints()
-                        update()
+                        
                     return style
 
                 # Add the ruler to the workspace
