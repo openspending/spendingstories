@@ -191,7 +191,7 @@
     {
         "fields": {
             "iso_code": "EUR",
-            "name": "EU euro",
+            "name": "Euro",
             "rate": 0.75488699999999997
         },
         "model": "currency.currency",
