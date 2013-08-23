@@ -1,4 +1,5 @@
 OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
+    # TODO: avoid reduncy 
     humanize: (value, suffix, plural=false)->
         if plural
             suffix += 's'
@@ -7,9 +8,36 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         else
             Humanize.intword(value) + " " + suffix
 
-    round: (value, decimals_number=2) ->
-        return null unless angular.isNumber value
-        return Humanize.intcomma(value, decimals_number)
+    getFloatPart: (value_f)->
+        float_part_s = String(value_f).split('.')[1]
+        return parseFloat([0,float_part_s].join('.'))
+
+    getIntPart: (value_f)->
+        return parseInt(String(value_f).split('.')[0])
+
+    getDecimalNumber: (value_f, max_decimals=6)->
+        float_part_s = String(value_f).split('.')[1]
+        i = 0 
+        if value_f < Math.pow(10, (-1)*max_decimals)
+            return max_decimals
+        else 
+            if float_part_s
+                c = float_part_s[i]
+                while (c == '0') && (i <= max_decimals) 
+                    do()->
+                        c = float_part_s[i]
+                        i += 1
+        return i
+
+    round: (value, decimals=2) ->
+        result = @getIntPart(value)
+        if decimals > 0
+            float_part = @getFloatPart(value)
+            last_decimal = float_part * Math.pow(10, decimals)
+            if last_decimal < 1
+                float_part = 1 / Math.pow(10, decimals)
+            result += float_part
+        return result
 
 angular
     .module('storiesFilters', [])
@@ -55,31 +83,39 @@ angular
     .filter("decimalSeparator", ->
         return (n, dec=".")-> (n+"").replace /\./, dec
     )
-    .filter("queryPercentage", ["Search", (Search) -> 
-            return (value_usd)->
-
-                percentage = (Search.query_usd / value_usd) * 100
-                wording_begin = "are"
+    .filter("queryEquivalent", ["Search", (Search) -> 
+            return (d)->
+                value = d.current_value_usd
+                ratio = Search.query_usd / value 
+                percentage = ratio * 100
                 use_percentage = true
-                if percentage > 1
-                    wording_begin += " nearly"
-                    if percentage > 100
-                        percentage = OSS.round (percentage / 100), 1
-                        use_percentage = false
-                    else
-                        percentage = OSS.round(percentage, 0)
-                else
-                    if percentage < 0.01
-                        wording_begin += " less than"
-                        percentage = 0.01
-                    else
-                        wording_begin += " almost"
-                        percentage = OSS.round(percentage, 2)
-                if use_percentage
-                    wording_end = "#{percentage}% of"
-                else
-                    wording_end = "#{percentage} times"
+                decimals = 1
 
-                return "#{wording_begin} #{wording_end}"
+                wording_begin = "are"
+                if percentage > 100 
+                    use_percentage = false
+                    result = ratio
+                else
+                    decimals = 0
+                    if percentage < 1
+                        decimals = OSS.getDecimalNumber(percentage)
+                        console.log('number of 0 found : ', decimals, ' - ratio: ', ratio)
+                    result = percentage
+
+                result = OSS.round result, decimals
+
+
+                if result < Math.pow(10,3) || result > Math.pow(10, 15)
+                    result = Humanize.intcomma(result, decimals)
+                else
+                    result = Humanize.intword(result, decimals)
+
+                if use_percentage
+                    result = result + '%'
+                    wording_end = 'of'
+                else
+                    wording_end = "times"
+
+                return "are #{result} #{wording_end}"
         ]
     )
