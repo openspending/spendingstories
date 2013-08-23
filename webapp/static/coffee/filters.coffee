@@ -1,10 +1,15 @@
-humanize = (value, suffix, plural=false)->
-    if plural
-        suffix += 's'
-    if value < Math.pow(10, 6) || value > Math.pow(10, 15)
-        Humanize.intcomma(value) + " " + suffix
-    else
-        Humanize.intword(value) + " " + suffix
+OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
+    humanize: (value, suffix, plural=false)->
+        if plural
+            suffix += 's'
+        if value < Math.pow(10, 6) || value > Math.pow(10, 15)
+            Humanize.intcomma(value) + " " + suffix
+        else
+            Humanize.intword(value) + " " + suffix
+
+    round: (value, decimals_number=2) ->
+        return null unless angular.isNumber value
+        return Humanize.intcomma(value, decimals_number)
 
 angular
     .module('storiesFilters', [])
@@ -27,7 +32,7 @@ angular
                         if toCurrency isnt 'USD'
                             # The value is now into the targeted currency
                             converted = converted*toCurrency.rate
-                humanize(converted, toCurrency.name, (converted > 1))
+                OSS.humanize(converted, toCurrency.name, (converted > 1))
         ]
     )
     .filter("humanizeCurrency", ["Currency", (Currency)->
@@ -35,7 +40,7 @@ angular
                 return null unless angular.isNumber value
                 toCurrency = Currency.list[currency]
                 suffix = if toCurrency? then toCurrency.name else currency
-                humanize(value, suffix, ((value > 1) && toCurrency?)) 
+                OSS.humanize(value, suffix, ((value > 1) && toCurrency?)) 
         ]
     )
     .filter("nl2br", ->
@@ -49,4 +54,32 @@ angular
     )
     .filter("decimalSeparator", ->
         return (n, dec=".")-> (n+"").replace /\./, dec
+    )
+    .filter("queryPercentage", ["Search", (Search) -> 
+            return (value_usd)->
+
+                percentage = (Search.query_usd / value_usd) * 100
+                wording_begin = "are"
+                use_percentage = true
+                if percentage > 1
+                    wording_begin += " nearly"
+                    if percentage > 100
+                        percentage = OSS.round (percentage / 100), 1
+                        use_percentage = false
+                    else
+                        percentage = OSS.round(percentage, 0)
+                else
+                    if percentage < 0.01
+                        wording_begin += " less than"
+                        percentage = 0.01
+                    else
+                        wording_begin += " almost"
+                        percentage = OSS.round(percentage, 2)
+                if use_percentage
+                    wording_end = "#{percentage}% of"
+                else
+                    wording_end = "#{percentage} times"
+
+                return "#{wording_begin} #{wording_end}"
+        ]
     )

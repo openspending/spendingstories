@@ -25,7 +25,9 @@
 						</div>					
 
 						<div class="col-sm-9 col-md-10">
-							<h5>[[search.query|humanizeCurrency:search.currency]] are rossly </h5>
+							<h5 ng-cloak>
+								[[search.query|humanizeCurrency:search.currency]] 
+								[[d.current_value_usd|queryPercentage]]</h5>
 							<h4 class="top0">[[d.title]]</h4>
 							<p class="top10">[[d.description]]</p>
 							<p>
