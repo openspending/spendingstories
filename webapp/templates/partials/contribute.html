@@ -61,7 +61,7 @@
 
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
 		<div class="breadcrumb">
-			<strong>[[story.value|currency:story.currency]]</strong> is ...
+			<strong>[[story.value|humanizeCurrency:story.currency.iso_code]]</strong> is ...
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-title">Give a title to your story</label>
