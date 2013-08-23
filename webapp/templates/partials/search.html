@@ -8,7 +8,6 @@
 			
 			<div class="preview-strat">
 				<div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">	
-								
 					<div class="btn-nav col-xs-1">
 						<a ng-if="$first" class="disabled btn">
 							&#9664;
@@ -26,13 +25,12 @@
 						</div>					
 
 						<div class="col-sm-9 col-md-10">
-							<h5 ng-if="isEquivalent(d)" class="bottom0">[[search.query_usd|toQueryCurrency]] are equivalent to</h5>
-
+							<h5>[[search.query|humanizeCurrency:search.currency]] are rossly </h5>
 							<h4 class="top0">[[d.title]]</h4>
 							<p class="top10">[[d.description]]</p>
 							<p>
 								<span class="label label-warning">
-									Cost: [[d.value|humanize]]&nbsp;[[d.currency.iso_code]] in [[d.year]]
+									Cost: [[d.value|humanizeCurrency:d.currency.iso_code]] in [[d.year]]
 								</span>
 
 								<span class="label">
