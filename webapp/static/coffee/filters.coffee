@@ -1,12 +1,13 @@
-humanize = (value)->
-    humanized = Humanize.intword(value) 
+humanize = (value, suffix, plural=false)->
+    if plural
+        suffix += 's'
     if value < Math.pow(10, 6) || value > Math.pow(10, 15)
-        humanized = Humanize.intcomma(value)
-    return humanized
+        Humanize.intcomma(value) + " " + suffix
+    else
+        Humanize.intword(value) + " " + suffix
 
 angular
     .module('storiesFilters', [])
-    .filter("humanize", -> humanize)
     .filter("thousandSeparator", -> Humanize.intcomma)
     .filter("toQueryCurrency", ["Search", "Currency", (Search, Currency)->  
             return (value, fromCurrency='USD', toCurrency=Search.currency, decimals=2)->    
@@ -26,20 +27,15 @@ angular
                         if toCurrency isnt 'USD'
                             # The value is now into the targeted currency
                             converted = converted*toCurrency.rate
-
-                humanize(converted) + " " + toCurrency.name
+                humanize(converted, toCurrency.name, (converted > 1))
         ]
     )
     .filter("humanizeCurrency", ["Currency", (Currency)->
             return (value, currency="USD")->
                 return null unless angular.isNumber value
-                toCurrency = Currency.list[currency]            
+                toCurrency = Currency.list[currency]
                 suffix = if toCurrency? then toCurrency.name else currency
-
-                if value < Math.pow(10, 6) || value > Math.pow(10, 15)
-                    Humanize.intcomma(value) + " " + suffix
-                else
-                    Humanize.intword(value) + " " + suffix
+                humanize(value, suffix, ((value > 1) && toCurrency?)) 
         ]
     )
     .filter("nl2br", ->
