@@ -99,7 +99,6 @@ angular
                     decimals = 0
                     if percentage < 1
                         decimals = OSS.getDecimalNumber(percentage)
-                        console.log('number of 0 found : ', decimals, ' - ratio: ', ratio)
                     result = percentage
 
                 result = OSS.round result, decimals
