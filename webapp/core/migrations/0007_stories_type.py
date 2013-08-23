@@ -38,7 +38,7 @@ class Migration(DataMigration):
             'sticky': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'themes': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['core.Theme']", 'symmetrical': 'False'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '240'}),
-            'type': ('django.db.models.fields.CharField', [], {'default': "'discrete'", 'max_length': '10'}),
+            'type': ('django.db.models.fields.CharField', [], {'default': "'discrete'", 'max_length': '15'}),
             'value': ('django.db.models.fields.FloatField', [], {}),
             'year': ('django.db.models.fields.IntegerField', [], {'max_length': '4'})
         },
