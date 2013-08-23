@@ -15,12 +15,14 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
     getIntPart: (value_f)->
         return parseInt(String(value_f).split('.')[0])
 
-    getDecimalNumber: (value_f, max_decimals=6)->
+    getDecimalNumber: (value_f, max_decimals=5)->
+        if value_f == 0
+            return 0
         float_part_s = String(value_f).split('.')[1]
-        i = 0 
-        if value_f < Math.pow(10, (-1)*max_decimals)
+        i = 0
+        if value_f <= (1 / Math.pow(10, max_decimals)) 
             return max_decimals
-        else 
+        else
             if float_part_s
                 c = float_part_s[i]
                 while (c == '0') && (i <= max_decimals) 
@@ -30,13 +32,29 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         return i
 
     round: (value, decimals=2) ->
-        result = @getIntPart(value)
+        if value == 0
+            return 0
+        result = null
+        if decimals == 0
+            result = @getIntPart(value)
         if decimals > 0
-            float_part = @getFloatPart(value)
-            last_decimal = float_part * Math.pow(10, decimals)
-            if last_decimal < 1
-                float_part = 1 / Math.pow(10, decimals)
-            result += float_part
+            if value < (1/Math.pow(10, decimals))
+                return (1/Math.pow(10, decimals))
+            else
+                float_part = @getFloatPart(value)
+                last_decimal = float_part * Math.pow(10, decimals)
+                next_decimal = @getIntPart(@getFloatPart(last_decimal)*10)
+                if next_decimal >= 5
+                    last_decimal += 1
+                else if last_decimal < 1
+                    last_decimal = 1
+
+                last_decimal_i = @getIntPart(last_decimal) 
+                if next_decimal < 4 && last_decimal_i == 0
+                    last_decimal_i = 1 
+
+                float_part = @getIntPart(last_decimal) / Math.pow(10, decimals)
+                result = @getIntPart(value) + float_part
         return result
 
 angular
@@ -92,15 +110,17 @@ angular
                 decimals = 1
 
                 wording_begin = "are"
-                if percentage > 100 
+                if percentage > 100
                     use_percentage = false
                     result = ratio
                 else
-                    decimals = 0
+                    result = percentage
+                    if percentage >= 1 
+                        decimals = 0
                     if percentage < 1
                         decimals = OSS.getDecimalNumber(percentage)
-                    result = percentage
-
+                        if decimals == 0
+                            decimals = 1
                 result = OSS.round result, decimals
 
 
