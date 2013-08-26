@@ -34,51 +34,6 @@ angular.module('stories')
             monitored = ["rulerValue"] #, "rulerCurrency", "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
-            scope.harmonizePoints = ()->
-                lines = scope.lines
-                console.log('harmonizePoints !')
-                """
-                Reposition all points to avoid overlapping
-                """
-                # this algorithm work on a sorted list (from lower to higher)
-                lines[0] = _.sortBy lines[0], (e)-> e.x
-                harmonize = (line)->
-                    """
-                    Will loop over a line and remove all overlapping elements
-                    @param line - the line to clean up (Object { <id>: element} )
-                    @returns the overlapping elements removed from `line` 
-
-                    To do that it work this way:
-                      - we set an element of reference (the lowest)
-
-                      - we search the nearest not overlapping element to be the 
-                        new reference element
-
-                      - all other elements are deleted from the passed line and
-                        return as result 
-                    """
-                    last_good_point = null # the reference point 
-                    bad_points = {}
-                    for i,n of line
-                        do()->
-                            if !last_good_point or Math.abs(n.x - last_good_point.x) >= (pointWidth + pointGap)
-                                # if the current point is the first point or if he's not overlapping
-                                # with the last good point then we set it as the new reference point 
-                                last_good_point = n
-                            if last_good_point.id != n.id
-                                n.line += 1
-                                bad_points[i] = n
-                                delete line[i]
-                    # we return the sorted remaining overlapping points 
-                    _.sortBy bad_points, (e)-> e.x
-
-                # understand this loop as: while there is overlapping elements on the last
-                # line we have to create a new line with those elements
-                while !_.isEmpty (last_line = harmonize(lines[lines.length - 1]))
-                    do()->
-                        lines.push(last_line)
-                update(true)
-                
 
             addPoint = (point)->
                 lines = scope.lines
@@ -121,16 +76,80 @@ angular.module('stories')
                 min = Math.min dataset[0].current_value_usd, rulerValue 
                 max = Math.max dataset[dataset.length-1].current_value_usd, rulerValue          
                 # And extend the scale with the bounds                    
-                scale = d3.scale.log().domain [ min, max ]
+                scale = d3.scale.linear()
+                          .domain([ min, max ])
+                          .rangeRound([10, workspaceWidth - pointWidth - 10])
+
+                ticks  = scale.ticks(15)
+
+                axisLabels = _.map ticks, (t)-> 
+                    text: t
+                    value: t
+
+                scope.ticks = ticks
+                scope.axisLabels = axisLabels
+                xAxisHeight = 80
+
                 # these variables help us to know if we have to go to the next line
                 lastY = lastX = -(pointWidth+pointGap)
 
-                # Create position functions 
-                x = (d)-> scale(d.current_value_usd)*workspaceWidth
+                # Create position functions
+                x = (d)-> scale(d.current_value_usd)
                 y = (d)-> d.line * (pointHeight +  pointGap)
             
                 # Percentage value (to allow resizing)
                 xpr = (d)-> x(d)/workspaceWidth*100 + "%"
+
+                scope.harmonizePoints = ()->
+                    lines = scope.lines
+                    """
+                    Reposition all points to avoid overlapping
+                    """
+                    # this algorithm work on a sorted list (from lower to higher)
+                    lines[0] = _.sortBy lines[0], (e)-> e.x
+                    harmonize = (line)->
+                        """
+                        Will loop over a line and remove all overlapping elements
+                        @param line - the line to clean up (Object { <id>: element} )
+                        @returns the overlapping elements removed from `line` 
+
+                        To do that it work this way:
+                          - we set an element of reference (the lowest)
+
+                          - we search the nearest not overlapping element to be the 
+                            new reference element
+
+                          - all other elements are deleted from the passed line and
+                            return as result 
+                        """
+                        last_good_point = null # the reference point 
+                        bad_points = {}
+                        for i,n of line
+                            do()->
+                                if !last_good_point or Math.abs(n.x - last_good_point.x) >= (pointWidth + pointGap)
+                                    # if the current point is the first point or if he's not overlapping
+                                    # with the last good point then we set it as the new reference point 
+                                    last_good_point = n
+                                if last_good_point.id != n.id
+                                    n.line += 1
+                                    bad_points[i] = n
+                                    delete line[i]
+                        # we return the sorted remaining overlapping points 
+                        _.sortBy bad_points, (e)-> e.x
+
+                    # understand this loop as: while there is overlapping elements on the last
+                    # line we have to create a new line with those elements
+                    while !_.isEmpty (last_line = harmonize(lines[lines.length - 1]))
+                        do()->
+                            lines.push(last_line)
+
+                    update(true)
+
+                scope.hasLabel = (t)-> ticks.indexOf(t) % 5 == 0
+                # Function that return a tick css 
+                scope.tickStyle = (t)->
+                        position: "absolute"
+                        left: xpr(current_value_usd: t)
 
                 # Function that return the point css
                 scope.pointStyle = (d)->
@@ -173,6 +192,7 @@ angular.module('stories')
 
                 # Find the maximum Y of this serie
                 maxY = Math.max.apply null, _.map(dataset, y)
+                pointsHeight = maxY + pointHeight
                 # Update workspace height
-                element.css "height", maxY + pointHeight    
+                element.find('.points').css "height", pointsHeight
                 element.css "minWidth", workspaceWidth unless scope.overview()
