@@ -80,7 +80,7 @@ angular.module('stories')
                           .domain([ min, max ])
                           .rangeRound([10, workspaceWidth - pointWidth - 10])
 
-                ticks  = scale.ticks(15)
+                ticks  = scale.ticks(10)
 
                 axisLabels = _.map ticks, (t)-> 
                     text: t
@@ -145,7 +145,10 @@ angular.module('stories')
 
                     update(true)
 
-                scope.hasLabel = (t)-> ticks.indexOf(t) % 5 == 0
+                # Function that will decide if a tick should have a label or not
+                scope.hasLabel = (t)-> ticks.indexOf(t) % 2 != 0
+
+
                 # Function that return a tick css 
                 scope.tickStyle = (t)->
                         position: "absolute"
