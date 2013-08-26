@@ -143,8 +143,8 @@ header {
 
 		.top-strat, .other-strat {
 			@main-color: #403F3F;
-			@graduation-color: #B5B5B5;
-			@graduation-bg-color: darken(@graduation-color, 40);
+			@graduation-color: lighten(@main-color, 65);
+			@graduation-bg-color: darken(@graduation-color, 50);
 
 			@shadow-color: darken(@main-color, 10);
 
@@ -256,7 +256,7 @@ header {
 			}
 
 			.sep {
-				border-top: 1px solid @shadow-color;
+				border-top: 1px solid lighten(@shadow-color, 10);
 			}
 
 			.axis {
