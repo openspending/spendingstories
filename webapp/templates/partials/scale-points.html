@@ -1,12 +1,26 @@
 <div class="one-scale-points">
-    <div class="point"
-    	 ng-repeat="d in dataset"     	 
-    	 ng-style="pointStyle(d)" 
-    	 ng-click="click(d)" 
-    	 ng-class="{'current': d.id == current}">
-        <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
+    <div class="points">
+        <div class="point"
+        	 ng-repeat="d in dataset"     	 
+        	 ng-style="pointStyle(d)" 
+        	 ng-click="click(d)" 
+        	 ng-class="{'current': d.id == current}">
+            <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
+        </div>
+        <div class="ruler" ng-style="rulerStyle()" ng-class="rulerClass()">
+    	   <span>[[rulerValue|toQueryCurrency]]</span>
+        </div>
     </div>
-    <div class="ruler" ng-style="rulerStyle()" ng-class="rulerClass()">
-    	<span>[[rulerValue|toQueryCurrency]]</span>
-    </div>
+    <div class="x-axis axis down">
+        
+        <div class="tick"
+             ng-repeat="t in ticks"
+             ng-style="tickStyle(t)"
+             ng-class="{'small': hasLabel(t) == false}">
+            <div ng-if="hasLabel(t)" class="axis-label">[[t|toQueryCurrency]]</div>
+
+
+        </div>
+
+        
 </div>
