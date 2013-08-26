@@ -143,6 +143,12 @@ header {
 
 		.top-strat, .other-strat {
 			@main-color: #403F3F;
+			@graduation-color: #B5B5B5;
+			@graduation-bg-color: darken(@graduation-color, 40);
+
+			@shadow-color: darken(@main-color, 10);
+
+
 			clear:left;
 			background:@main-color;			
 			overflow:auto;
@@ -158,6 +164,8 @@ header {
 
 					margin-top:20px;
 					margin-bottom: 15px;
+			
+
 				}
 				.point {			
 					background:#BFBDBC;
@@ -247,21 +255,24 @@ header {
 				}
 			}
 
+			.sep {
+				border-top: 1px solid @shadow-color;
+			}
+
 			.axis {
-				@shadow-color: darken(@main-color, 10); 
 				@ticks-height: 10px; 
 				@label-height: 20px;
 				@graduation-height: @ticks-height + @label-height;
-				@graduation-color: #333;
 				@padding-top: 2px;
 				@border-top-height: 2px;
 				position: relative;
 				height: @graduation-height + @padding-top + @border-top-height;
 
 				width: 100%;
-				border-top: solid 2px @graduation-color;
+				border-top: solid 1px @graduation-color;
 				border-bottom: solid 4px @shadow-color;
-				background: #f5f5f5;
+				background: @graduation-bg-color;
+
 				.tick {
 					height: @ticks-height;
 					width: 2px;
@@ -272,7 +283,8 @@ header {
 					}
 					.axis-label {
 						@label-width: 150px;
-						color: @graduation-color;
+						font-weight: bold;
+						color: lighten(@graduation-color, 20);
 						font-size: 0.70em;
 						min-width: @label-width;
 						text-align: center;
@@ -326,6 +338,10 @@ header {
 		.steps-nav , fieldset {
 			padding:20px;
 		}
+	}
+
+	.sep {
+		width: 100%;
 	}
 
 }
