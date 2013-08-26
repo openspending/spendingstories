@@ -142,22 +142,23 @@ header {
 		}
 
 		.top-strat, .other-strat {
+			@main-color: #403F3F;
 			clear:left;
-			background:#403F3F;			
-			border-bottom:darken(#403F3F, 10) 3px solid;
+			background:@main-color;			
 			overflow:auto;
 			z-index:@zindex-content+50;
 			position:relative;
 			
 			.one-scale-points {				
-
-				min-height:70px;
 				min-width:600px;
-				margin-top:20px;
-				margin-bottom:15px;				
-				margin-left:5px;
-				margin-right:30px;
 				
+				.points {
+					position: relative;
+					min-height:70px;
+
+					margin-top:20px;
+					margin-bottom: 15px;
+				}
 				.point {			
 					background:#BFBDBC;
 					border-radius:1px;
@@ -243,6 +244,43 @@ header {
 						}
 					}	
 						
+				}
+			}
+
+			.axis {
+				@shadow-color: darken(@main-color, 10); 
+				@ticks-height: 10px; 
+				@label-height: 20px;
+				@graduation-height: @ticks-height + @label-height;
+				@graduation-color: #333;
+				@padding-top: 2px;
+				@border-top-height: 2px;
+				position: relative;
+				height: @graduation-height + @padding-top + @border-top-height;
+
+				width: 100%;
+				border-top: solid 2px @graduation-color;
+				border-bottom: solid 4px @shadow-color;
+				background: #f5f5f5;
+				.tick {
+					height: @ticks-height;
+					width: 2px;
+					background: @graduation-color;
+					&.small {
+						width: 1px;
+						height: 5px;
+					}
+					.axis-label {
+						@label-width: 150px;
+						color: @graduation-color;
+						font-size: 0.70em;
+						min-width: @label-width;
+						text-align: center;
+						position: relative;
+						top: (@label-height/2);
+						left:  -(@label-width/ 2);
+						float: left;
+					}
 				}
 			}
 		}
