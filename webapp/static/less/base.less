@@ -259,6 +259,8 @@ header {
 			.axis {
 				@padding-top: 2px;
 				@border-top-width: 1px;
+				@label-width: 150px;
+
 
 				overflow:hidden;
 				position: relative;
@@ -279,8 +281,21 @@ header {
 						background:#403F3F;
 					}
 
+					&:first-child {
+						.axis-label {
+							left: 0px;
+							text-align: left;
+						}
+					}
+
+					&:last-child {
+						.axis-label {
+							left: -@label-width;
+							text-align: right
+						}
+					}
+
 					.axis-label {
-						@label-width: 150px;
 						font-weight: bold;
 						color: lighten(@graduation-color, 20);
 						font-size: 0.70em;
@@ -296,7 +311,9 @@ header {
 						          -1px -1px 0 darken(@shadow-color, 5%), 
 						           -1px 1px 0 darken(@shadow-color, 5%), 
 						           1px -1px 0 darken(@shadow-color, 5%);
+					
 					}
+
 				}
 			}
 		}
