@@ -60,8 +60,8 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
 angular
     .module('storiesFilters', [])
     .filter("thousandSeparator", -> Humanize.intcomma)
-    .filter("toQueryCurrency", ["Search", "Currency", (Search, Currency)->  
-            return (value, fromCurrency='USD', toCurrency=Search.currency, decimals=2)->    
+    .filter("toQueryCurrency", ["searchService", "Currency", (searchService, Currency)->  
+            return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)->    
                 return null unless angular.isNumber value
                 fromCurrency = Currency.list[fromCurrency]      
                 toCurrency   = Currency.list[toCurrency]
@@ -101,10 +101,10 @@ angular
     .filter("decimalSeparator", ->
         return (n, dec=".")-> (n+"").replace /\./, dec
     )
-    .filter("queryEquivalent", ["Search", (Search) -> 
+    .filter("queryEquivalent", ["searchService", (searchService) -> 
             return (d)->
                 value = d.current_value_usd
-                ratio = Search.query_usd / value 
+                ratio = searchService.query_usd / value 
                 percentage = ratio * 100
                 use_percentage = true
                 decimals = 1
