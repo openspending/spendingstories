@@ -1,6 +1,7 @@
 # Declare services once
 angular.module('storiesServices', [])
 
+
 angular
     .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters", "ngCookies"])
     .run(
@@ -32,7 +33,7 @@ angular
                 # Bind routes to the controllers
                 $routeProvider
                     .when('/search/', 
-                        controller: SearchCtrl
+                        controller: 'searchCtrl'
                         templateUrl: "./partial/search.html"
                         reloadOnSearch: false
                     )
