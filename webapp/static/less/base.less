@@ -143,10 +143,8 @@ header {
 
 		.top-strat, .other-strat {
 			@main-color: #403F3F;
-			@graduation-color: lighten(@main-color, 65);
-			@graduation-bg-color: darken(@graduation-color, 50);
-
 			@shadow-color: darken(@main-color, 10);
+			@graduation-color: lighten(@main-color, 65);
 
 
 			clear:left;
@@ -256,31 +254,31 @@ header {
 			}
 
 			.sep {
-				border-top: 1px solid lighten(@shadow-color, 10);
 			}
 
 			.axis {
-				@ticks-height: 10px; 
-				@label-height: 20px;
-				@graduation-height: @ticks-height + @label-height;
 				@padding-top: 2px;
-				@border-top-height: 2px;
+				@border-top-width: 1px;
+
+				overflow:hidden;
 				position: relative;
-				height: @graduation-height + @padding-top + @border-top-height;
+				height: 30px;
 
 				width: 100%;
-				border-top: solid 1px @graduation-color;
-				border-bottom: solid 4px @shadow-color;
-				background: @graduation-bg-color;
+				border-bottom: solid 2px darken(@shadow-color, 5%);
+				background: @shadow-color;
 
 				.tick {
-					height: @ticks-height;
-					width: 2px;
-					background: @graduation-color;
-					&.small {
-						width: 1px;
-						height: 5px;
+					height: 100%;
+					width: 1px;
+					background: darken(@graduation-color, 40%);	
+					.box-shadow(1px 0 0 darken(@shadow-color, 5%));
+
+					&.small {					
+						height: 30%;
+						background:#403F3F;
 					}
+
 					.axis-label {
 						@label-width: 150px;
 						font-weight: bold;
@@ -289,9 +287,15 @@ header {
 						min-width: @label-width;
 						text-align: center;
 						position: relative;
-						top: (@label-height/2);
-						left:  -(@label-width/ 2);
+						top: 0;
+						left:  -(@label-width / 2);
 						float: left;
+						height:30px;
+						line-height:30px;
+						text-shadow:1px 1px 0 darken(@shadow-color, 5%), 
+						          -1px -1px 0 darken(@shadow-color, 5%), 
+						           -1px 1px 0 darken(@shadow-color, 5%), 
+						           1px -1px 0 darken(@shadow-color, 5%);
 					}
 				}
 			}
