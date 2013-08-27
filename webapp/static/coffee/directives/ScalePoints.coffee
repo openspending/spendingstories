@@ -78,9 +78,9 @@ angular.module('stories')
                 # And extend the scale with the bounds                    
                 scale = d3.scale.linear()
                           .domain([ min, max ])
-                          .rangeRound([10, workspaceWidth - pointWidth - 10])
+                          .rangeRound([5, workspaceWidth - pointWidth - 5])
 
-                ticks  = scale.ticks(10)
+                ticks  = scale.ticks(100)
 
                 axisLabels = _.map ticks, (t)-> 
                     text: t
@@ -146,7 +146,7 @@ angular.module('stories')
                     update(true)
 
                 # Function that will decide if a tick should have a label or not
-                scope.hasLabel = (t)-> ticks.indexOf(t) % 2 != 0
+                scope.hasLabel = (t)-> ticks.indexOf(t) % 20 == 0
 
 
                 # Function that return a tick css 
