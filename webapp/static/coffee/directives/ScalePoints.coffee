@@ -17,7 +17,7 @@ angular.module('stories')
             pointHeight    : "&"
             pointWidthBig  : "&"
             pointHeightBig : "&"
-            overview       : "&"     
+            overview       : "&"
         
         link: (scope, element, attrs)->  
             # Where we insert the point
@@ -146,7 +146,7 @@ angular.module('stories')
                     update(true)
 
                 # Function that will decide if a tick should have a label or not
-                scope.hasLabel = (t)-> ticks.indexOf(t) % 20 == 0
+                scope.hasLabel = (t)-> ticks.indexOf(t) % Math.floor(ticks.length/4) == 0
 
 
                 # Function that return a tick css 
