@@ -16,6 +16,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import permissions
 from django.db.models import Max, Min
+from django.forms import widgets
 from relevance import Relevance
 
 import serializers
@@ -46,8 +47,21 @@ class StoryViewSet(viewsets.ModelViewSet):
     """
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
-    filter_fields      = ('sticky', 'country', 'currency', 'themes', 'type')
+    filter_fields      = ('sticky', 'country', 'currency','type',)
     permission_classes = (StoryPermission,)
+
+    def get_queryset(self):
+        queryset = self.queryset
+        if 'themes' in self.request.QUERY_PARAMS:
+            themes = self.request.QUERY_PARAMS['themes'].split(',')
+            for theme in themes:
+                # not optimized but hard to optimize more:
+                # We want that EVERY passed themes are present in the story's 
+                # themes. Therefore themes__slug__in=themes will not work 
+                # because it will return stories that have one theme present in 
+                # the passed themes list
+                queryset = queryset.filter(themes__slug=theme)
+        return queryset
 
     def create(self, request, pk=None):
         # reset reserved field if not staff
