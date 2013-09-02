@@ -1,11 +1,21 @@
 class SearchService
     @$inject: ['Restangular', 'Currency']
+    
     constructor: (@Restangular, @Currency) ->
         @currency      = 'USD'
         @query         =  null
         @query_usd     =  null
         @stories       =  @Restangular.all('stories-nested')
-        @results       =  this.stories.getList()
+        @results        = @stories.getList()
+        @results_sticky = @stories.getList({sticky:true})
+        @has_results_sticky = false 
+        @has_results = false
+        @results.then @checkResults
+        @results_sticky.then @checkStickyResults
+
+
+
+        # filters fields for stories
         @filter_fields = 
             'sticky': {
                 'type': typeof true
@@ -19,7 +29,6 @@ class SearchService
             'themes': {
                 'type': typeof []
             }
-
         @accepted_filters = _.keys(@filter_fields)
 
     set: (params) =>
@@ -46,12 +55,19 @@ class SearchService
                 @query_usd = if c? then query/c.rate else null
 
     filterStories: (params)=>
-        filters    = {}
-        params     = _.pick(params, @accepted_filters)
-        filters[k] = @processParam(k, param) for k,param of params
-        console.log 'params:', filters 
-        @results   = @stories.getList(filters)
+        filters         = {}
+        params          = _.pick(params, @accepted_filters)
+        filters[k]      = @processParam(k, param) for k,param of params
+        @results        = @stories.getList(filters)
+        @results_sticky = @stories.getList(_.extend(filters, {sticky: true}))
 
+        @results.then @checkResults
+        @results_sticky.then @checkStickyResults
+
+    checkResults: (data, result='has_results')=>
+        this[result] = data? && data.length? && data.length > 0
+
+    checkStickyResults: (data) => @checkResults(data, 'has_results_sticky')
 
     processParam: (field_key, param)=>
         processed = param
