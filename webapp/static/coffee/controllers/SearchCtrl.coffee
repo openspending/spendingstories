@@ -1,20 +1,20 @@
 
 class SearchCtrl
-    @$inject: ['$scope', '$routeParams', 'searchService']
+    @$inject: ['$scope', '$routeParams', 'searchService', 'Currency', 'Restangular']
 
-    constructor: (@scope, @routeParams, @searchService) ->
-        @scope.search     = @searchService
+    constructor: (@scope, @routeParams, @searchService, Currency, Restangular) ->
+        # Binding of scope variables
         # Visualization mode
         @scope.overview   = false
+        @scope.search     = @searchService
         # Watch for route change to update the search
         @scope.$watch @routeParams, @readRouteParams
         # Watch for search change to update the search
         @scope.$on "$routeUpdate", @readRouteParams
 
-        # Select the closest story into the stickies as preview    
-        @scope.$watch "search", @onSearch
-           
-        
+        # Select the closest story into the stickies as preview 
+        @scope.$watch "searchService", @onSearch
+
         # Toggle overview mode
         @scope.toggleOverview = -> @scope.overview = not @scope.overview
         # Get the filtered result 
@@ -23,19 +23,20 @@ class SearchCtrl
 
         # True if the given value is the equivalent of the query
         @scope.isEquivalent = @isEquivalent
-        
+        # True if search service has some stories
+        @scope.hasStories = @hasStories
+        # Trie if search service has some sticky stories
+        @scope.hasStickyStories = @hasStickyStories
         # Event triggered when we click on a point
         @scope.pointSelection = @setPreviewedStory
-
         # Select the next story 
         @scope.nextStoryPreview = @nextStoryPreview 
 
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
-           
 
     # Read the route params to update search
-    readRouteParams: =>  
+    readRouteParams: =>
         # Update the query property of search according q 
         @scope.search.set(@routeParams) if @routeParams.q?
 
@@ -45,7 +46,7 @@ class SearchCtrl
         # Index of the closest value
         closestIdx = 0;
         # Get all result from search service
-        @searchService.results.then (data)=>            
+        @searchService.results.then (data)=>
             # Get only stories that are sticky
             data = _.where data, sticky: true
 
@@ -60,7 +61,12 @@ class SearchCtrl
     setPreviewedStory: (d)=>
         @scope.previewedStory = d
 
-
+    hasStories: ()=>
+        @searchService.has_results
+    
+    hasStickyStories: ()=>
+        @searchService.has_results_sticky
+        
     isEquivalent: (d)=>
         Math.abs(d.current_value_usd  - @search.query_usd) < 10
 
