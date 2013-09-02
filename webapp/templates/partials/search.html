@@ -66,8 +66,8 @@
 
 				</div>
 			</div>	
-			<h3>Top stories</h3>			
-			<div class="top-strat">
+			<h3  ng-if="hasStickyStories()">Top stories</h3>			
+			<div ng-if="hasStickyStories()" class="top-strat">
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
@@ -78,10 +78,9 @@
 					filter="{sticky: true}"></scale-points>
 			</div>
 
-			<h3>Other stories</h3>
-			<div class="other-strat">
+			<h3 ng-if="hasStories()">Other stories</h3>
+			<div ng-if="hasStories()" class="other-strat">
 				<scale-points
-					ng-if="search.results.length"
 					data="search.results"
 					ruler="search.query_usd"
 					story="previewedStory.id"
