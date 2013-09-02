@@ -32,6 +32,7 @@ class SearchService
         @accepted_filters = _.keys(@filter_fields)
 
     set: (params) =>
+        # first we filter the stories with the passed parameters
         @filterStories(params)
         query = params.q
         currency = params.c || 'USD'
@@ -70,6 +71,8 @@ class SearchService
     checkStickyResults: (data) => @checkResults(data, 'has_results_sticky')
 
     processParam: (field_key, param)=>
+        # this function is to process special types of parameters like boolean
+        # or Arrays
         processed = param
         field_type = @filter_fields[field_key].type
         if field_type == typeof true
