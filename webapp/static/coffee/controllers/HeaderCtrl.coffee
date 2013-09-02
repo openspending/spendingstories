@@ -30,6 +30,7 @@ class HeaderCtrl
 
         @scope.filters.currency = @routeParams.currency
         @scope.filters.country  = @routeParams.country
+        @scope.filters.themes   = @routeParams.themes
         @search()
 
 
@@ -43,7 +44,7 @@ class HeaderCtrl
             for k, filter of @scope.filters
                 do()-> 
                     if filter?
-                        filters[k] = filter 
+                        filters[k] = filter
 
             params = _.extend params, filters 
 
