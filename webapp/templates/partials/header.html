@@ -1,4 +1,4 @@
-<header ng-controller="HeaderCtrl" ng-class="getHeaderClass()" stick-to-top>		
+<header ng-controller="headerCtrl" ng-class="getHeaderClass()" stick-to-top>		
 	<div class="container">
 		<h1>
 			<a ng-href="/">Spending Stories</a>
@@ -39,55 +39,7 @@
 				</div>
 			</div>
 			<span class="help-block">Example queries: 15 million euros, 12 billion yens, 4500000 PLN</span>
-		
-			<div class="filters row">
-				<div class="filter col-sm-3 form-group">
-					<label class="control-label" for="input-country">Country</label>
-					<select ng-options="c.iso_code as c.name for c in countries"
-							id="input-country"
-							ng-model="filters.country"
-							ng-change="search()"
-							selectpicker>
-					</select>
-				</div>	
-				<div class="filter col-sm-3 form-group">
-					<label class="control-label" for="input-currency">Curency</label>
-					<select ng-options="c.iso_code as c.name for (iso_code, c) in currencies"
-							id="input-currency"
-							ng-model="filters.currency"
-							ng-change="search()"
-							selectpicker>
-					</select>
-				</div>
-
-				<div class="filter col-sm-3 form-group">
-					<label class="control-label" for="input-themes">Themes</label>
-					<select ng-options="c.slug as c.title for c in themes" 
-					        selectpicker
-							id="input-themes" 
-							ng-model="filters.themes"
-							ng-change="search()"
-							multiple></select>
-				</div>
-				<div class="filter col-sm-3 form-group">
-					<label class="control-label" for="input-sticky">Only sticky stories ?</label>
-					<input type="checkbox" ng-options="c.slug as c.title for c in themes" 
-					        selectpicker
-							id="input-sticky"
-							ng-model="filter_sticky"
-							ng-change="search()"
-							/>
-				</div>
-<!-- 			<ul ng-if="filters.length"
-				class="filters-activated">
-				<li class="filter-activated"
-					ng-repeat="f in filters">
-					<a ng-click="suppressFilter(f)">&#215;</a>
-					<span>[[f.title]]</span>
-				</li>
-			</ul> -->
-
-			</div>
 		</form>
+        {% include "partials/filters.html" %}
 	</div>
 </header>
