@@ -1,44 +1,44 @@
 
 class SearchCtrl
-    @$inject: ['$scope', '$routeParams', 'searchService', 'Currency', 'Restangular']
+    @$inject: ['$scope', '$location','$routeParams', 'searchService', 'Currency', 'Restangular']
 
-    constructor: (@scope, @routeParams, @searchService, Currency, Restangular) ->
+    constructor: (@scope, @location, @routeParams, @searchService, Currency, Restangular) ->
         # Binding of scope variables
         # Visualization mode
-        @scope.overview   = false
-        @scope.search     = @searchService
-        # Watch for route change to update the search
-        @scope.$watch @routeParams, @readRouteParams
-        # Watch for search change to update the search
-        @scope.$on "$routeUpdate", @readRouteParams
+        @scope.overview = false
+        @scope.search   = @searchService
+        @scope.search.set(@location.search())
 
+        # True if search service has some stories
+        @scope.hasNormalStories = false
+        # True if search service has some sticky stories
+        @scope.hasStickyStories = false
+        
+        # Will set the previous variables based on results 
+        @scope.search.results.then @checkStories
+
+        # On URL parameters updated we want to update search results
+        @scope.$on "$routeUpdate", @onRouteUpdate
         # Select the closest story into the stickies as preview 
-        @scope.$watch "searchService", @onSearch
+        @scope.$watch "this.search.results", @onSearch
 
         # Toggle overview mode
         @scope.toggleOverview = -> @scope.overview = not @scope.overview
         # Get the filtered result 
         # (no filter yet)
         @scope.userFilter = (d)-> true
-
         # True if the given value is the equivalent of the query
         @scope.isEquivalent = @isEquivalent
-        # True if search service has some stories
-        @scope.hasStories = @hasStories
-        # Trie if search service has some sticky stories
-        @scope.hasStickyStories = @hasStickyStories
         # Event triggered when we click on a point
         @scope.pointSelection = @setPreviewedStory
         # Select the next story 
         @scope.nextStoryPreview = @nextStoryPreview 
-
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
-
-    # Read the route params to update search
-    readRouteParams: =>
-        # Update the query property of search according q 
-        @scope.search.set(@routeParams) if @routeParams.q?
+    
+    onRouteUpdate: =>
+        @scope.search.set(@routeParams)
+        
 
     onSearch: =>
         # Value to be closed to
@@ -46,7 +46,7 @@ class SearchCtrl
         # Index of the closest value
         closestIdx = 0;
         # Get all result from search service
-        @searchService.results.then (data)=>
+        @scope.search.results.then (data)=>
             # Get only stories that are sticky
             data = _.where data, sticky: true
 
@@ -61,12 +61,6 @@ class SearchCtrl
     setPreviewedStory: (d)=>
         @scope.previewedStory = d
 
-    hasStories: ()=>
-        @searchService.has_results
-    
-    hasStickyStories: ()=>
-        @searchService.has_results_sticky
-        
     isEquivalent: (d)=>
         Math.abs(d.current_value_usd  - @search.query_usd) < 10
 
