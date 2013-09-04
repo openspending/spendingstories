@@ -30,7 +30,7 @@ angular.module('stories')
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
             # Scope values to monitor            
-            monitored = ["rulerValue", "data"] #, "rulerCurrency", "data"]
+            monitored = ["rulerValue"] #, "rulerCurrency", "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
 
