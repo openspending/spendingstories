@@ -1,19 +1,16 @@
 class HeaderCtrl
-    @$inject: ['$scope', '$routeParams', '$location', 'searchService', 'Currency', 'Restangular']
+    @$inject: ['$scope', '$routeParams', '$location', 'searchService']
 
-    constructor: (@scope, @routeParams, @location, @searchService, Currency, Restangular)->
-        @scope.filters = {
-            currency: if @routeParams.currency? then @routeParams.currency else undefined
-            country:  if @routeParams.country?  then @routeParams.country  else undefined
-        }
+    constructor: (@scope, @routeParams, @location, @searchService)->
+        @searchParams = @location.search()
+
         # Bi-directional edition of the query
-        @scope.$on "$routeUpdate", @onRouteUpdate
-        @scope.query    = if @routeParams.q? then @routeParams.q else @searchService.query
-        @scope.currency = if @routeParams.c? then @routeParams.c else @searchService.currency
-        
-        @scope.currencies = Currency.list
-        @scope.countries  = Restangular.all('countries').getList()
-        @scope.themes     = Restangular.all('themes').getList()
+        @scope.query    = _.clone @searchService.query
+        @scope.currency = _.clone @searchService.currency
+
+        @scope.query    = if @searchParams.q? then parseInt(@searchParams.q)
+        @scope.currency = if @searchParams.c? then @searchParams.c
+
         # Update the header size according the location
         @scope.getHeaderClass = => 
             # If we aren't on the homepage
@@ -21,35 +18,17 @@ class HeaderCtrl
             if ['/', ''].indexOf( @location.path() ) is -1  then 'reduce'
 
         # Submit function to go to the search form
-        @scope.search = @search
-    
+        @scope.search = @onSearch
 
-    onRouteUpdate: =>
-        @scope.query    = @routeParams.q
-        @scope.currency = @routeParams.c
-
-        @scope.filters.currency = @routeParams.currency
-        @scope.filters.country  = @routeParams.country
-        @scope.filters.themes   = @routeParams.themes
-        @search()
-
-
-    search: =>
+    onSearch: =>
+        params = {}
         if @scope.query?
-            params = 
+            params = _.extend @location.search(), {
                 q: @scope.query
                 c: @scope.currency
-
-            filters = {}
-            for k, filter of @scope.filters
-                do()-> 
-                    if filter?
-                        filters[k] = filter
-
-            params = _.extend params, filters 
-
-            # Update path
-            @location.path("/search/").search(params)
+            }
+        # Update path
+        @location.path("/search/").search(params)
            
 
 angular.module('stories').controller 'headerCtrl', HeaderCtrl
