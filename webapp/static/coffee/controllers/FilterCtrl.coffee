@@ -1,6 +1,7 @@
 class FilterCtrl
     @$inject: ['$scope', '$routeParams', '$location', 'Currency', 'Restangular']
     constructor: (@scope, @routeParams, @location, Currency, Restangular)->
+        @filter_visible = false
         @searchParams = @location.search()
         @scope.filters = {
             onlySticky:
@@ -8,11 +9,13 @@ class FilterCtrl
                 type: 'boolean'
                 value: @searchParams.onlySticky
             country:
+                name: 'Country'
                 type: 'string'
                 stackable: true 
                 value: @searchParams.country
                 activated: @searchParams.country?
             currency:
+                name: 'Currency'
                 type: 'string'
                 stackable: true
                 value: @searchParams.currency
@@ -22,8 +25,6 @@ class FilterCtrl
                 stackable: false
                 value: if @searchParams.themes? then @searchParams.themes.split(',')
                 activated: @searchParams.themes?
-
-
         }
 
         # Not handled for the moment
@@ -34,6 +35,10 @@ class FilterCtrl
 
         # filter method in scope, used by filter form element to launch filter on change
         @scope.filter = @filter
+        # function to show or hide filter pannel 
+        @scope.showFilter  = @showFilters 
+        @scope.getClass    = @getClass
+
         @scope.getActivatedFilters = @getActivatedFilters
         @scope.removeFilter = @removeFilter
         @scope.removeTheme = @removeTheme
@@ -41,6 +46,13 @@ class FilterCtrl
         @scope.$on "$routeUpdate", @onRouteUpdated
 
     
+    showFilters: =>
+        @filter_visible = !@filter_visible
+
+    getClass: =>
+        klass = if @filter_visible then "" else "reduced"
+        return klass
+
     getActivatedFilters: ()=>
         return _.where(@scope.filters, {activated: true, stackable:true})
 
@@ -60,17 +72,16 @@ class FilterCtrl
     removeTheme: (t)=>
         themes = @scope.filters.themes
         themes.value.splice(themes.value.indexOf(t), 1)
+        @filter()
 
     removeFilter: (filter)=>
-        console.log "filter"
-        console.log @scope.filters
         filter.activated = false
         filter.value = undefined
-        console.log @scope.filters
         @filter()
 
     addFilter: (params, key, value)=>
         if value? && typeof value == typeof []
+            console.log value
             value = value.join(',')
         if value? && value != ""
             params[key] = value
@@ -84,11 +95,7 @@ class FilterCtrl
 
     filter: =>
         params = @location.search()
-        console.log "filter()", @scope , @scope.fitlers 
-        @addFilter(params, 'onlySticky',  @scope.filters.onlySticky.value)
-        @addFilter(params, 'country',     @scope.filters.country.value)
-        @addFilter(params, 'currency',    @scope.filters.currency.value)
-        @addFilter(params, 'themes',      @scope.filters.themes.value)
+        @addFilter(params, key, filter.value) for key, filter of @scope.filters
         @location.path("/search/").search(params)
 
 angular.module('stories').controller 'filterCtrl', FilterCtrl
