@@ -1,6 +1,6 @@
 class FilterCtrl
-    @$inject: ['$scope', '$routeParams', '$location', 'searchService', 'Currency', 'Restangular']
-    constructor: (@scope, @routeParams, @location, @searchService, Currency, Restangular)->
+    @$inject: ['$scope', '$routeParams', '$location', 'Currency', 'Restangular']
+    constructor: (@scope, @routeParams, @location, Currency, Restangular)->
         @searchParams = @location.search()
         @scope.onlySticky     = if @searchParams.onlySticky? then @searchParams.onlySticky
         @scope.country        = if @searchParams.country?    then @searchParams.country
@@ -11,7 +11,17 @@ class FilterCtrl
         @scope.currencies = Currency.list
         @scope.countries  = Restangular.all('countries').getList()
         @scope.themes     = Restangular.all('themes').getList()
+
+        # filter method in scope, used by filter form element to launch filter on change
         @scope.filter     = @filter
+        # when URL change we want that filter updates to
+        @scope.$on "$routeUpdate", @onRouteUpdated
+
+    onRouteUpdated: ()=>
+        @scope.onlySticky     = @routeParams.onlySticky
+        @scope.country        = @routeParams.country
+        @scope.currency       = @routeParams.currency
+        @scope.selectedThemes = @routeParams.themes
 
     addFilter: (params, key, value)=>
         if value? && typeof value == typeof []
