@@ -8,15 +8,11 @@ class SearchCtrl
         @scope.overview = false
         @scope.search   = @searchService
         @scope.search.set(@location.search())
-
         # True if search service has some stories
         @scope.hasNormalStories = false
         # True if search service has some sticky stories
         @scope.hasStickyStories = false
         
-        # Will set the previous variables based on results 
-        @scope.search.results.then @checkStories
-
         # On URL parameters updated we want to update search results
         @scope.$on "$routeUpdate", @onRouteUpdate
         # Select the closest story into the stickies as preview 
@@ -38,11 +34,10 @@ class SearchCtrl
     
     onRouteUpdate: =>
         @scope.search.set(@routeParams)
-        
 
     onSearch: =>
         # Value to be closed to
-        goal       = @searchService.query_usd;
+        goal       = @scope.search.query_usd;
         # Index of the closest value
         closestIdx = 0;
         # Get all result from search service
@@ -62,11 +57,11 @@ class SearchCtrl
         @scope.previewedStory = d
 
     isEquivalent: (d)=>
-        Math.abs(d.current_value_usd  - @search.query_usd) < 10
+        Math.abs(d.current_value_usd  - @scope.search.query_usd) < 10
 
     nextStoryPreview: ()=>
         # Get all result from search service
-        @searchService.results.then (data)=>
+        @scope.search.results.then (data)=>
             # Get only stories that are in the same group (sticky or not)
             data = _.where data, sticky: @scope.previewedStory.sticky        
             # Sort the data by usd
@@ -78,7 +73,7 @@ class SearchCtrl
 
     previousStoryPreview: ()=>
         # Get all result from search service
-        @searchService.results.then (data)=>
+        @scope.search.results.then (data)=>
             # Get only stories that are in the same group (sticky or not)
             data = _.where data, sticky: @scope.previewedStory.sticky        
             # Sort the data by usd
