@@ -1,0 +1,49 @@
+<div ng-controller="filterCtrl"
+     class="filters row">
+    <div class="filter col-sm-3 form-group">
+        <label class="control-label" for="input-country">Country</label>
+        <select ng-options="c.iso_code as c.name for c in countries"
+                id="input-country"
+                ng-model="country"
+                ng-change="filter()"
+                selectpicker>
+        </select>
+    </div>  
+    <div class="filter col-sm-3 form-group">
+        <label class="control-label" for="input-currency">Curency</label>
+        <select ng-options="c.iso_code as c.name for (iso_code, c) in currencies"
+                id="input-currency"
+                ng-model="currency"
+                ng-change="filter()"
+                selectpicker>
+        </select>
+    </div>
+
+    <div class="filter col-sm-3 form-group">
+        <label class="control-label" for="input-themes">Themes</label>
+        <select ng-options="c.slug as c.title for c in themes" 
+                selectpicker
+                id="input-themes" 
+                ng-model="selectedThemes"
+                ng-change="filter()"
+                multiple></select>
+    </div>
+    <div class="filter col-sm-3 form-group">
+        <label class="control-label" for="input-sticky">Only sticky stories ?</label>
+        <input type="checkbox" ng-options="c.slug as c.title for c in themes" 
+                selectpicker
+                id="input-sticky"
+                ng-model="onlySticky"
+                ng-change="filter()"
+                />
+    </div>
+<!--            <ul ng-if="filters"
+    class="filters-activated">
+    <li class="filter-activated"
+        ng-repeat="f in filters">
+        <a ng-click="suppressFilter(f)">&#215;</a>
+        <span>[[f.title]]</span>
+    </li>
+</ul> -->
+
+</div>
