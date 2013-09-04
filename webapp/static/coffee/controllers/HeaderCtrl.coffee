@@ -1,13 +1,8 @@
 class HeaderCtrl
-    @$inject: ['$scope', '$routeParams', '$location', 'searchService']
+    @$inject: ['$scope', '$routeParams', '$location']
 
-    constructor: (@scope, @routeParams, @location, @searchService)->
-        @searchParams = @location.search()
-
-        # Bi-directional edition of the query
-        @scope.query    = _.clone @searchService.query
-        @scope.currency = _.clone @searchService.currency
-
+    constructor: (@scope, @routeParams, @location)->
+        @searchParams   = @location.search()
         @scope.query    = if @searchParams.q? then parseInt(@searchParams.q)
         @scope.currency = if @searchParams.c? then @searchParams.c
 
