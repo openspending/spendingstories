@@ -2,39 +2,36 @@ class SearchService
     @$inject: ['Restangular', 'Currency']
     
     constructor: (@Restangular, @Currency) ->
-        @currency      = 'USD'
-        @query         =  null
-        @query_usd     =  null
-        @stories       =  @Restangular.all('stories-nested')
-        @results        = @stories.getList()
-        @results_sticky = @stories.getList({sticky:true})
-        @has_results_sticky = false 
-        @has_results = false
-        @results.then @checkResults
-        @results_sticky.then @checkStickyResults
+        @currency  = 'USD'
+        @query     =  null
+        @query_usd =  null
+        @results   =  @Restangular.all('stories-nested').getList()
+        # filters fields for stories and their process functions 
+        @accepted_filters = ['onlySticky', 'themes', 'country', 'currency']
 
 
-
-        # filters fields for stories
-        @filter_fields = 
-            'sticky': {
-                'type': typeof true
-            }
-            'country': {
-                'type': typeof ""
-            }
-            'currency': {
-                'type': typeof ""
-            }
-            'themes': {
-                'type': typeof []
-            }
-        @accepted_filters = _.keys(@filter_fields)
+    getFiltersParams: (params)=>
+        filters  = {}
+        accepted = _.pick(params, @accepted_filters)
+        for key, value of accepted 
+            do()-> 
+                if value?
+                    if key == 'onlySticky'
+                        filters.sticky = 'True'
+                    else
+                        filters[key] = value
+        return filters
 
     set: (params) =>
-        # first we filter the stories with the passed parameters
-        @filterStories(params)
-        query = params.q
+        # process the passed HTTP params to get the filters 
+        filters_params = @getFiltersParams(params)
+        # we need to keep the old reference of @results in order to propagate 
+        # changes around the application when @results changes (e.g: when we 
+        # filter them for instance)
+        @results = @Restangular.copy(@results) 
+        # then we filter the stories with the passed parameters
+        @results = @Restangular.all('stories-nested').getList(filters_params)
+        query    = params.q
         currency = params.c || 'USD'
         # USD doesn't need convertion
         if currency is 'USD'
@@ -54,45 +51,6 @@ class SearchService
                 @query    = query
                 @currency = c.iso_code                    
                 @query_usd = if c? then query/c.rate else null
-
-    filterStories: (params)=>
-        filters         = {}
-        params          = _.pick(params, @accepted_filters)
-        filters[k]      = @processParam(k, param) for k,param of params
-        @results        = @stories.getList(filters)
-        @results_sticky = @stories.getList(_.extend(filters, {sticky: true}))
-
-        @results.then @checkResults
-        @results_sticky.then @checkStickyResults
-
-    checkResults: (data, result='has_results')=>
-        this[result] = data? && data.length? && data.length > 0
-
-    checkStickyResults: (data) => @checkResults(data, 'has_results_sticky')
-
-    processParam: (field_key, param)=>
-        # this function is to process special types of parameters like boolean
-        # or Arrays
-        processed = param
-        field_type = @filter_fields[field_key].type
-        if field_type == typeof true
-            processed = @processBooleanParam(param)
-        return processed
-
-
-    processBooleanParam: (param)=>
-        """
-        Convert a (string|boolean) `param` to string. 
-        This string represent a python boolean (e.g: True, False)
-        """
-        # dumbydumb bool conversion
-        param = param.toLowerCase() is "true" ? true : false 
-        # Yes, we convert back to string but now we are sure to deal with a 
-        # boolean (true or false), we limit side-effects this way. 
-        param = ""+param
-        return  param[0].toUpperCase() + param.slice(1)
-
-
 
 angular.module('storiesServices')
     # Create a factory dedicated to research
