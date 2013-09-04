@@ -2,18 +2,18 @@
      class="filters row">
     <div class="filter col-sm-3 form-group">
         <label class="control-label" for="input-country">Country</label>
-        <select ng-options="c.iso_code as c.name for c in countries"
+        <select ng-options="c.iso_code as c.name for c in country_list"
                 id="input-country"
-                ng-model="country"
+                ng-model="filters.country.value"
                 ng-change="filter()"
                 selectpicker>
         </select>
     </div>  
     <div class="filter col-sm-3 form-group">
         <label class="control-label" for="input-currency">Curency</label>
-        <select ng-options="c.iso_code as c.name for (iso_code, c) in currencies"
+        <select ng-options="c.iso_code as c.name for (iso_code, c) in currency_list"
                 id="input-currency"
-                ng-model="currency"
+                ng-model="filters.currency.value"
                 ng-change="filter()"
                 selectpicker>
         </select>
@@ -21,29 +21,34 @@
 
     <div class="filter col-sm-3 form-group">
         <label class="control-label" for="input-themes">Themes</label>
-        <select ng-options="c.slug as c.title for c in themes" 
+        <select ng-options="c.slug as c.title for c in theme_list" 
                 selectpicker
                 id="input-themes" 
-                ng-model="selectedThemes"
+                ng-model="filters.themes.value"
                 ng-change="filter()"
                 multiple></select>
     </div>
     <div class="filter col-sm-3 form-group">
         <label class="control-label" for="input-sticky">Only sticky stories ?</label>
-        <input type="checkbox" ng-options="c.slug as c.title for c in themes" 
+        <input type="checkbox"
                 selectpicker
                 id="input-sticky"
-                ng-model="onlySticky"
+                ng-model="filters.onlySticky.value"
                 ng-change="filter()"
                 />
     </div>
-<!--            <ul ng-if="filters"
+    <ul ng-if="!_.isEmpty(getActivatedFilters())"
     class="filters-activated">
-    <li class="filter-activated"
-        ng-repeat="f in filters">
-        <a ng-click="suppressFilter(f)">&#215;</a>
-        <span>[[f.title]]</span>
-    </li>
-</ul> -->
+        <li class="filter-activated"
+            ng-repeat="f in getActivatedFilters()">
+            <a ng-click="removeFilter(f)">&#215;</a>
+            <span>[[f.value]]</span>
+        </li>
+        <li class="filter-activated"
+            ng-repeat="t in filters.themes.value">
+            <a ng-click="removeTheme(t)">&#215;</a>
+            <span>[[t]]</span>
+        </li>
+</ul>
 
 </div>
