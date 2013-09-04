@@ -7,6 +7,7 @@
 
 @zindex-content: 100;
 @zindex-header : @zindex-content+100;
+@zindex-filter : @zindex-header + 10;
 
 header {
 	
@@ -79,12 +80,55 @@ header {
 		}
 	}
 	.filters {
+		.row, .form-group {
+			margin: 0;
+		}
 		display: none;
 		min-width: 600px;
-		background: black;
-		margin: 0;
-		margin-top: 50px;
+		z-index: @zindex-filter;
+		.filter-bar {
+			position: relative;
+			.filter {
+				.transition(height 1s ease);
+				height: 80px;
+			}
+			&.reduced {
+				z-index: @zindex-filter + 10;
+				.filter {
+					overflow: hidden;
+					height: 0px;
+				}
+			}
+		}
+		margin-top: 18px;
 		padding-bottom: 15px;
+		.opened-tab {
+			#gradient > .vertical(rgba(245,245,245,0), rgba(245,245,245,1));
+			z-index: @zindex-filter + 20;
+			position: relative;
+			margin-top: 5px;
+			text-align: center;
+			.filters-activated {
+				text-align: left;
+				ul { list-style: none; }
+				li {
+					float: left;
+					margin-right: 5px;
+					padding: 5px;
+					.border-radius(5px);
+					background: #BBB;
+				}
+				a:hover{ 
+					cursor: pointer;
+				}
+			}
+			.open-filter-bar {
+				display: inline-block;
+				position: relative;
+				bottom: -0.5em;
+				margin: auto;
+			}
+		}
 	}
 }
 
