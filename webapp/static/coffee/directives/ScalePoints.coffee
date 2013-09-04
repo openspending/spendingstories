@@ -21,7 +21,7 @@ angular.module('stories')
         
         link: (scope, element, attrs)->  
             # Where we insert the point
-            workspace      = d3.select(element[0])            
+            workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
             workspaceWidth = if scope.overview() then element.innerWidth() else 6000
             
@@ -29,9 +29,8 @@ angular.module('stories')
             pointWidth  = if scope.overview() then scope.pointWidth()  or 25 else scope.pointWidthBig()  or 200
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
-
             # Scope values to monitor            
-            monitored = ["rulerValue"] #, "rulerCurrency", "data"]
+            monitored = ["rulerValue", "data"] #, "rulerCurrency", "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
 
@@ -46,6 +45,7 @@ angular.module('stories')
             update = (optimized = false)->
                 if !optimized
                     scope.lines = []
+
                 # Data must be loaded
                 return unless scope.data? and scope.data.length                                 
 
@@ -68,10 +68,9 @@ angular.module('stories')
                 # Not more data after filtering ?
                 return unless dataset.length
                 # Order dataset to avoid caothic stacking
-                dataset = _.sortBy dataset, "current_value_usd" 
+                dataset = _.sortBy dataset, "current_value_usd"
                 # Put the processed data into a dedicated field
                 scope.dataset = dataset
-
                 # Bounds values (using sorted list)            
                 min = Math.min dataset[0].current_value_usd, rulerValue 
                 max = Math.max dataset[dataset.length-1].current_value_usd, rulerValue          
