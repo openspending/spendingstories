@@ -72,8 +72,9 @@
 					data="search.results"
 					ng-if="search.results.length"
 					story="previewedStory.id"
+					currency="search.currency"
 					click="pointSelection"
-					ruler="search.query_usd"
+					ruler="search.query"
 					overview="true"
 					filter="{sticky: true}"></scale-points>
 			</div>
@@ -83,7 +84,8 @@
 				<scale-points
 					ng-if="search.results.length"
 					data="search.results"
-					ruler="search.query_usd"
+					ruler="search.query"
+					currency="search.currency"
 					story="previewedStory.id"
 					click="pointSelection"
 					point-height="16"
