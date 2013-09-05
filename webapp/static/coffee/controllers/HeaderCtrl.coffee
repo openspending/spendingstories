@@ -4,7 +4,7 @@ class HeaderCtrl
     constructor: (@scope, @routeParams, @location)->
         @searchParams   = @location.search()
         @scope.query    = if @searchParams.q? then parseInt(@searchParams.q)
-        @scope.currency = if @searchParams.c? then @searchParams.c
+        @scope.currency = if @searchParams.c? then @searchParams.c else 'USD'
 
         # Update the header size according the location
         @scope.getHeaderClass = => 
