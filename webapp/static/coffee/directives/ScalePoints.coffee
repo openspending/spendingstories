@@ -95,6 +95,9 @@ angular.module('stories')
                     exp = Math.log(t) / Math.log(scale.base())
                     return exp % 1 == 0 || Math.abs(Math.round(exp) - exp) < 0.0001
 
+                if ticks.length > 4
+                    ticks = _.filter(ticks, (t, i)-> i % Math.floor(ticks.length/4) == 0)
+                    
                 scope.ticks = ticks
                 xAxisHeight = 80
 
@@ -110,13 +113,13 @@ angular.module('stories')
 
                 scope.harmonizePoints = ()->
                     lines = scope.lines
-                    """
+                    ### 
                     Reposition all points to avoid overlapping
-                    """
+                    ### 
                     # this algorithm work on a sorted list (from lower to higher)
                     lines[0] = _.sortBy lines[0], (e)-> e.x
                     harmonize = (line)->
-                        """
+                        ###
                         Will loop over a line and remove all overlapping elements
                         @param line - the line to clean up (Object { <id>: element} )
                         @returns the overlapping elements removed from `line` 
@@ -129,7 +132,7 @@ angular.module('stories')
 
                           - all other elements are deleted from the passed line and
                             return as result 
-                        """
+                        ### 
                         last_good_point = null # the reference point 
                         bad_points = {}
                         for i,n of line
