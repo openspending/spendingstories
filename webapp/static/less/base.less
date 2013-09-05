@@ -83,6 +83,7 @@ header {
 		.row, .form-group {
 			margin: 0;
 		}
+		#gradient > .vertical(rgba(245,245,245,0), rgba(245,245,245,1));
 		display: none;
 		min-width: 600px;
 		z-index: @zindex-filter;
@@ -101,32 +102,41 @@ header {
 			}
 		}
 		margin-top: 18px;
-		padding-bottom: 15px;
 		.opened-tab {
-			#gradient > .vertical(rgba(245,245,245,0), rgba(245,245,245,1));
 			z-index: @zindex-filter + 20;
 			position: relative;
 			margin-top: 5px;
 			text-align: center;
 			.filters-activated {
+				padding: 8px 15px;
+				height: 25px;
 				text-align: left;
-				ul { list-style: none; }
+				span {
+					height: 25px;
+					vertical-align: middle;
+				}
+				ul {
+					height: 25px;
+					display: inline-block;
+					list-style: none;
+					padding: 2px 2px;
+					margin: 0;
+					vertical-align: middle;
+				}
 				li {
 					float: left;
 					margin-right: 5px;
-					padding: 5px;
-					.border-radius(5px);
-					background: #BBB;
 				}
 				a:hover{ 
 					cursor: pointer;
 				}
 			}
 			.open-filter-bar {
-				display: inline-block;
-				position: relative;
-				bottom: -0.5em;
-				margin: auto;
+				background: @body-bg;
+				@border-style: 1px solid #eaeaea;
+				border-left: @border-style;
+				border-right: @border-style;
+				padding: 5px;
 			}
 		}
 	}
@@ -200,7 +210,6 @@ header {
 			@main-color: #403F3F;
 			@shadow-color: darken(@main-color, 10);
 			@graduation-color: lighten(@main-color, 65);
-
 
 			clear:left;
 			background:@main-color;			

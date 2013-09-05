@@ -42,22 +42,22 @@
     </div>
     <div class="opened-tab">
         <div class="filters-activated row">
-            <span>Active filters:</span>
-            <ul ng-if="getActivatedFilters().length">
-                <li class="filter-activated"
+            <span class="">Active filters:</span>
+            <ul ng-if="hasActivatedFilters()">
+                <li class="filter-activated label label-default"
                     ng-repeat="f in getActivatedFilters()">
                     <a ng-click="removeFilter(f)">&#215;</a>
                     <span>[[f.name]]: [[f.value]]</span>
                 </li>
-                <li class="filter-activated"
+                <li class="filter-activated label label-default"
                     ng-repeat="t in filters.themes.value">
-                    <a ng-click="removeTheme(t)">&#215;</a>
+                    <a ng-click="removeTheme($index)">&#215;</a>
                     <span>Theme: [[t]]</span>
                 </li>
             </ul>
-            <span ng-if="!getActivatedFilters().length">No filter selected</span>
+            <span ng-if="!hasActivatedFilters()">No filter selected</span>
         </div>
-        <button class="btn btn-secondary open-filter-bar" ng-click="showFilter()">
+        <button class="btn btn-secondary open-filter-bar" ng-click="toggleFilters()">
             <span><span ng-bind="getFilterButtonVerb()"></span> filters</span>
         </button>
     </div>
