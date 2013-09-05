@@ -384,13 +384,6 @@ header {
 						}
 					}
 
-					&:last-child {
-						.axis-label {
-							left: -@label-width;
-							text-align: right
-						}
-					}
-
 					.axis-label {
 						font-weight: bold;
 						color: lighten(@graduation-color, 20);
@@ -400,7 +393,11 @@ header {
 						position: relative;
 						bottom: 100%;
 						top:-20px;
-						left:  -(@label-width / 2);											
+						left:  -(@label-width / 2);
+						&.aligned-right {
+							left: -@label-width;
+							text-align: right
+						}									
 					}
 
 				}

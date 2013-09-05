@@ -16,6 +16,6 @@
         <div class="tick"
              ng-repeat="t in ticks"
              ng-style="tickStyle(t)">
-            <div class="axis-label">[[t|humanizeCurrency:rulerCurrency]]</div>
+            <div class="axis-label" ng-class="axisLabelClass(t)">[[t|humanizeCurrency:rulerCurrency]]</div>
     </div>
 </div>
