@@ -61,6 +61,7 @@ header {
 		right:0;
 		width:auto;	
 		padding:0;
+		padding-top:5px;
 		background:@reduce-bg;
 		border-bottom:1px solid @reduce-border;
 
@@ -114,15 +115,14 @@ header {
 
 		&.showFilters, &.hasFilters {			
 			border-top:1px solid @reduce-border;
-			margin-top: 10px;
 		}
 
 		.opened-tab {
 			z-index: @zindex-filter + 20;
 			text-align: center;	
-			padding-top:10px;		
 
 			.filters-activated {
+				padding-top:10px;		
 				text-align: left;
 
 				ul {
@@ -353,28 +353,24 @@ header {
 				}
 			}
 
-			.sep {
-			}
-
 			.axis {
 				@padding-top: 2px;
 				@border-top-width: 1px;
 				@label-width: 150px;
-
 
 				overflow:hidden;
 				position: relative;
 				height: 30px;
 
 				width: 100%;
-				border-bottom: solid 2px darken(@shadow-color, 5%);
-				background: @shadow-color;
+				border-bottom: solid 3px @shadow-color;
 
 				.tick {
-					height: 100%;
-					width: 1px;
-					background: darken(@graduation-color, 40%);	
-					.box-shadow(1px 0 0 darken(@shadow-color, 5%));
+					height: 30%;
+					bottom:0;
+					width: 0px;
+					border:solid 5px transparent;
+					border-bottom-color:@shadow-color;	
 
 					&.small {					
 						height: 30%;
@@ -383,7 +379,7 @@ header {
 
 					&:first-child {
 						.axis-label {
-							left: 0px;
+							left: 0px;							
 							text-align: left;
 						}
 					}
@@ -402,16 +398,9 @@ header {
 						min-width: @label-width;
 						text-align: center;
 						position: relative;
-						top: 0;
-						left:  -(@label-width / 2);
-						float: left;
-						height:30px;
-						line-height:30px;
-						text-shadow:1px 1px 0 darken(@shadow-color, 5%), 
-						          -1px -1px 0 darken(@shadow-color, 5%), 
-						           -1px 1px 0 darken(@shadow-color, 5%), 
-						           1px -1px 0 darken(@shadow-color, 5%);
-					
+						bottom: 100%;
+						margin-top:-10px;
+						left:  -(@label-width / 2);											
 					}
 
 				}
