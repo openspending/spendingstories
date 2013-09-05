@@ -79,26 +79,23 @@ angular.module('stories')
 
                 # Put the processed data into a dedicated field
                 scope.dataset = dataset
-                console.log dataset[0].converted_current_value
                 # Bounds values (using sorted list)            
                 min = Math.min dataset[0].converted_current_value, rulerValue 
                 max = Math.max dataset[dataset.length-1].converted_current_value, rulerValue
-                console.log min, max       
-                # And extend the scale with the bounds                    
+                # And extend the scale with the bounds, it's good to note that 
+                # we use a log base 20 to have cool values on the ticks                    
                 scale = d3.scale.log()
+                          .base(20)
                           .domain([ min, max ])
-                          .rangeRound([pointWidth, workspaceWidth - pointWidth])
+                          .rangeRound([pointWidth + 5, workspaceWidth - (pointWidth*2)])
                           .nice()
 
                 ticks = scale.ticks()
-                ticks = _.filter(ticks, (t, i)-> (i % Math.floor(ticks.length/4) == 0))
-
-                axisLabels = _.map ticks, (t)-> 
-                    text: t
-                    value: t
+                ticks = _.filter ticks, (t,i)->
+                    exp = Math.log(t) / Math.log(scale.base())
+                    return exp % 1 == 0 || Math.abs(Math.round(exp) - exp) < 0.0001
 
                 scope.ticks = ticks
-                scope.axisLabels = axisLabels
                 xAxisHeight = 80
 
                 # these variables help us to know if we have to go to the next line
