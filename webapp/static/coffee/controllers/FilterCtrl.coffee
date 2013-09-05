@@ -34,8 +34,8 @@ class FilterCtrl
         # Not handled for the moment
         # type:       if @searchParams.type?       then @searchParams.type
         @scope.currency_list = Currency.list
-        @scope.country_list    = Restangular.all('countries').getList()
-        @scope.theme_list      = Restangular.all('themes').getList()
+        @scope.country_list  = Restangular.all('countries').getList()
+        @scope.theme_list    = Restangular.all('themes').getList()
 
         ########################################################################
         #                       SCOPE FUNCTION BINDINGS                        #
@@ -53,26 +53,13 @@ class FilterCtrl
         @scope.removeFilter = @removeFilter
         @scope.removeTheme = @removeTheme
         # when URL change we want that filter updates to
-        @scope.$on "$routeUpdate", @onRouteUpdated
-
-
-    getFilterButtonVerb: =>
-        ###
-        Returns the verb of the opening and closing button for filter bar
-        ###
-        if @scope.filter_visible then 'Hide' else 'Show'
+        @scope.$on "$routeUpdate", @onRouteUpdated        
     
     toggleFilters: =>
         ###
         Produce the closing & the opening of the filters bar
         ### 
         @scope.filter_visible = !@scope.filter_visible
-
-    getClass: =>
-        ###
-        The CSS class for filters, reduced = not visible
-        ###
-        if @scope.filter_visible then "" else "reduced"
 
     hasActivatedFilters: ()=>
         themes = @scope.filters.themes.value 

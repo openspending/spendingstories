@@ -11,12 +11,16 @@
 
 header {
 	
+	@reduce-bg:darken(@body-bg, 3%);
+	@reduce-border:darken(@reduce-bg, 6%);
+
 	padding:100px 10px;
 	background:@body-bg;
 	z-index:@zindex-header;	
 	margin:auto;	
+
 	.transition(padding-top 1s);
-	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );
+	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );	
 	
 	
 	h1 {
@@ -56,7 +60,9 @@ header {
 		left:0; 
 		right:0;
 		width:auto;	
-		padding:0 10px;
+		padding:0;
+		background:@reduce-bg;
+		border-bottom:1px solid @reduce-border;
 
 		h1 {
 			float:left;
@@ -79,72 +85,102 @@ header {
 			display: block;
 		}
 	}
+
 	.filters {
+
+		z-index: @zindex-filter;
+		display: none;
+		min-width: 600px;
+
 		.row, .form-group {
 			margin: 0;
 		}
-		#gradient > .vertical(rgba(245,245,245,0), rgba(245,245,245,1));
-		display: none;
-		min-width: 600px;
-		z-index: @zindex-filter;
+
 		.filter-bar {
 			position: relative;
+			z-index: @zindex-filter + 10;
+			overflow: hidden;
+
 			.filter {
-				.transition(height 1s ease);
-				max-height: 100px;
-			}
-			&.reduced {
-				z-index: @zindex-filter + 10;
-				.filter {
-					overflow: hidden;
-					max-height: 0px;
-				}
+				.transition(0.7s ease);		
+				margin-top:-100px;
+				padding-top:10px;
 			}
 		}
-		margin-top: 18px;
+
+		&.showFilters .filter {
+			margin-top:0px;			
+		}
+
+		&.showFilters, &.hasFilters {			
+			border-top:1px solid @reduce-border;
+			margin-top: 10px;
+		}
+
 		.opened-tab {
 			z-index: @zindex-filter + 20;
-			position: relative;
-			margin-top: 5px;
-			text-align: center;
+			text-align: center;	
+			padding-top:10px;		
+
 			.filters-activated {
-				padding: 8px 15px;
-				height: 25px;
 				text-align: left;
-				span {
-					height: 25px;
-					vertical-align: middle;
-				}
+
 				ul {
-					height: 25px;
 					display: inline-block;
-					list-style: none;
-					padding: 2px 2px;
-					margin: 0;
-					vertical-align: middle;
+										
+					.label {
+						margin-left: 5px;
+						padding-right:30px;
+						position:relative;
+
+						a {
+							color:white;
+							display:block;
+							position:absolute;
+							right:0;
+							top:0;
+							bottom:0;
+							padding:0 5px;
+							line-height:20px;
+							background:fade(#fff, 15%);						
+						}
+					}
 				}
-				li {
-					float: left;
-					margin-right: 5px;
-				}
+
 				a:hover{ 
 					cursor: pointer;
 				}
 			}
+
 			.open-filter-bar {
-				background: @body-bg;
-				@border-style: 1px solid #eaeaea;
-				border-left: @border-style;
-				border-right: @border-style;
-				padding: 5px;
+				position:absolute;
+				top:100%;
+				left:0; 
+				right:0;
+				margin-top:-2px;
+
+				button {				
+					background: @reduce-bg;				
+					border:1px solid @reduce-border;
+					border-top:0;
+					color: #000;
+					padding:2px 5px;
+					font-size:14px;
+					i {
+						margin-right:5px;
+					}
+				}
 			}
+
 		}
 	}
 }
 
 #content {
-	margin-top:160px;
+	margin-top:95px;
 	margin-bottom:40px;
+	position:relative;
+	z-index:@zindex-content;
 	
 	.scale-strats {
 

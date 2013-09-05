@@ -1,63 +1,82 @@
-<div ng-controller="filterCtrl"
-     class="filters">
-    <div class="filter-bar row" ng-class="getClass()">
-        <div class="filter col-sm-4 form-group">
-            <label class="control-label" for="input-country">Country</label>
-            <select ng-options="c.iso_code as c.name for c in country_list"
-                    id="input-country"
-                    ng-model="filters.country.value"
-                    ng-change="filter()"
-                    selectpicker>
-            </select>
-        </div>  
-        <div class="filter col-sm-4 form-group">
-            <label class="control-label" for="input-currency">Curency</label>
-            <select ng-options="c.iso_code as c.name for (iso_code, c) in currency_list"
-                    id="input-currency"
-                    ng-model="filters.currency.value"
-                    ng-change="filter()"
-                    selectpicker>
-            </select>
+<div ng-controller="filterCtrl" class="filters" ng-class="{ hasFilters: hasActivatedFilters(), showFilters: filter_visible }">
+
+    <div class="container">
+        <div class="filter-bar row" ng-class="getClass()">
+            <div class="filter col-sm-3 form-group">
+                <label class="control-label sr-only" for="input-country">Country</label>
+                <select ng-options="c.iso_code as c.name for c in country_list"
+                        id="input-country"
+                        ng-model="filters.country.value"
+                        ng-change="filter()"
+                        selectpicker
+                        data-container="body"
+                        title="Choose a country">
+                </select>
+            </div>  
+            <div class="filter col-sm-3 form-group">
+                <label class="control-label sr-only" for="input-currency">Currency</label>
+                <select ng-options="c.iso_code as c.name for (iso_code, c) in currency_list"
+                        id="input-currency"
+                        ng-model="filters.currency.value"
+                        ng-change="filter()"
+                        selectpicker
+                        data-container="body"
+                        title="Choose a currency">
+                </select>
+            </div>
+
+            <div class="filter col-sm-3 form-group">
+                <label class="control-label sr-only" for="input-themes">Themes</label>
+                <select ng-options="c.slug as c.title for c in theme_list" 
+                        selectpicker
+                        data-container="body"
+                        title="Choose themes"
+                        id="input-themes" 
+                        ng-model="filters.themes.value"
+                        ng-change="filter()"
+                        multiple>
+                </select>
+            </div>
+            <div class="filter col-sm-3 form-group">
+                <label class="control-label checkbox">
+                    Only sticky stories ?
+                    <input type="checkbox"
+                            selectpicker
+                            id="input-sticky"
+                            ng-model="filters.onlySticky.value"
+                            ng-change="filter()"/>
+                </label>
+            </div>
         </div>
 
-        <div class="filter col-sm-4 form-group">
-            <label class="control-label" for="input-themes">Themes</label>
-            <select ng-options="c.slug as c.title for c in theme_list" 
-                    selectpicker
-                    id="input-themes" 
-                    ng-model="filters.themes.value"
-                    ng-change="filter()"
-                    multiple></select>
+        <div class="opened-tab">
+
+            <div class="filters-activated row" ng-if="hasActivatedFilters()">
+                <div class="col-sm-12">
+                    <span class="">Active filters:</span>
+
+                    <ul ng-if="hasActivatedFilters()" class="list-inline">
+                        <li class="filter-activated label label-default"
+                            ng-repeat="f in getActivatedFilters()">
+                            <a ng-click="removeFilter(f)">&#215;</a>
+                            <span>[[f.name]]: [[f.value]]</span>
+                        </li>
+                        <li class="filter-activated label label-default"
+                            ng-repeat="t in filters.themes.value">
+                            <a ng-click="removeTheme($index)">&#215;</a>
+                            <span>Theme: [[t]]</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="open-filter-bar">
+                <button class="btn btn-secondary" ng-click="toggleFilters()">
+                    <i class="icon-caret-up" ng-show="filter_visible" ></i>
+                    <i class="icon-caret-down" ng-hide="filter_visible" ></i>
+                    filters
+                </button>
+            </div>
         </div>
-        <div class="filter col-sm-3 form-group">
-            <label class="control-label" for="input-sticky">Only sticky stories ?</label>
-            <input type="checkbox"
-                    selectpicker
-                    id="input-sticky"
-                    ng-model="filters.onlySticky.value"
-                    ng-change="filter()"
-                    />
-        </div>
-    </div>
-    <div class="opened-tab">
-        <div class="filters-activated row">
-            <span class="">Active filters:</span>
-            <ul ng-if="hasActivatedFilters()">
-                <li class="filter-activated label label-default"
-                    ng-repeat="f in getActivatedFilters()">
-                    <a ng-click="removeFilter(f)">&#215;</a>
-                    <span>[[f.name]]: [[f.value]]</span>
-                </li>
-                <li class="filter-activated label label-default"
-                    ng-repeat="t in filters.themes.value">
-                    <a ng-click="removeTheme($index)">&#215;</a>
-                    <span>Theme: [[t]]</span>
-                </li>
-            </ul>
-            <span ng-if="!hasActivatedFilters()">No filter selected</span>
-        </div>
-        <button class="btn btn-secondary open-filter-bar" ng-click="toggleFilters()">
-            <span><span ng-bind="getFilterButtonVerb()"></span> filters</span>
-        </button>
     </div>
 </div>
