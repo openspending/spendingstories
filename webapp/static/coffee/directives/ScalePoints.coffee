@@ -1,5 +1,5 @@
 angular.module('stories')
-    .directive "scalePoints", ()->     
+    .directive "scalePoints", ['Currency', (Currency)->
         # Returned object to that defines the directive
         restrict: "EAC"
         templateUrl: "/partial/scale-points.html"
@@ -19,7 +19,7 @@ angular.module('stories')
             pointHeightBig : "&"
             overview       : "&"
         
-        link: (scope, element, attrs)->  
+        link: (scope, element, attrs)->
             # Where we insert the point
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
@@ -30,7 +30,7 @@ angular.module('stories')
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
             # Scope values to monitor            
-            monitored = ["rulerValue"] #, "rulerCurrency", "data"]
+            monitored = ["rulerValue", "rulerCurrency"] #, "data"]
             # Watch those values
             scope.$watch monitored.join("||"), ->update()
 
@@ -58,6 +58,10 @@ angular.module('stories')
                     # accoding the top left corner of the workspace
                     element.css("position", "relative")
 
+                rulerRate = Currency.list[scope.rulerCurrency].rate
+                # if rulerRate is defined we set it to the scope otherwise we set it like USD
+                scope.rulerRate = if rulerRate? then rulerRate else 1
+
                 dataset = scope.data
                 # Filter dataset if we received a filter
                 filter  = scope.filter()
@@ -69,17 +73,25 @@ angular.module('stories')
                 return unless dataset.length
                 # Order dataset to avoid caothic stacking
                 dataset = _.sortBy dataset, "current_value_usd"
+                dataset = _.map dataset, (story)->
+                    story.converted_current_value = story.current_value_usd / scope.rulerRate
+                    return story
+
                 # Put the processed data into a dedicated field
                 scope.dataset = dataset
+                console.log dataset[0].converted_current_value
                 # Bounds values (using sorted list)            
-                min = Math.min dataset[0].current_value_usd, rulerValue 
-                max = Math.max dataset[dataset.length-1].current_value_usd, rulerValue          
+                min = Math.min dataset[0].converted_current_value, rulerValue 
+                max = Math.max dataset[dataset.length-1].converted_current_value, rulerValue
+                console.log min, max       
                 # And extend the scale with the bounds                    
-                scale = d3.scale.linear()
+                scale = d3.scale.log()
                           .domain([ min, max ])
-                          .rangeRound([5, workspaceWidth - pointWidth - 5])
+                          .rangeRound([pointWidth, workspaceWidth - pointWidth])
+                          .nice()
 
-                ticks  = scale.ticks(100)
+                ticks = scale.ticks()
+                ticks = _.filter(ticks, (t, i)-> (i % Math.floor(ticks.length/4) == 0))
 
                 axisLabels = _.map ticks, (t)-> 
                     text: t
@@ -93,7 +105,7 @@ angular.module('stories')
                 lastY = lastX = -(pointWidth+pointGap)
 
                 # Create position functions
-                x = (d)-> scale(d.current_value_usd)
+                x = (d)-> scale(d.converted_current_value)
                 y = (d)-> d.line * (pointHeight +  pointGap)
             
                 # Percentage value (to allow resizing)
@@ -144,14 +156,10 @@ angular.module('stories')
 
                     update(true)
 
-                # Function that will decide if a tick should have a label or not
-                scope.hasLabel = (t)-> ticks.indexOf(t) % Math.floor(ticks.length/4) == 0
-
-
                 # Function that return a tick css 
                 scope.tickStyle = (t)->
                         position: "absolute"
-                        left: xpr(current_value_usd: t)
+                        left: xpr(converted_current_value: t)
 
                 # Function that return the point css
                 scope.pointStyle = (d)->
@@ -183,12 +191,12 @@ angular.module('stories')
                     position: 'absolute'
                     top: 0
                     bottom: 0
-                    left: xpr(current_value_usd: rulerValue)
+                    left: xpr(converted_current_value: rulerValue)
 
                 # Sets a class that determines
                 # the direction of the ruler's label (left or right)
                 scope.rulerClass = ->
-                    xp = x(current_value_usd: rulerValue)
+                    xp = x(converted_current_value: rulerValue)
                     # 2 half of the screen?
                     if xp/workspaceWidth > 0.5 then "to-left" else "to-right"
 
@@ -198,3 +206,4 @@ angular.module('stories')
                 # Update workspace height
                 element.find('.points').css "height", pointsHeight
                 element.css "minWidth", workspaceWidth unless scope.overview()
+    ]
