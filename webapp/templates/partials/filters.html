@@ -57,11 +57,8 @@
             </ul>
             <span ng-if="!getActivatedFilters().length">No filter selected</span>
         </div>
-
         <button class="btn btn-secondary open-filter-bar" ng-click="showFilter()">
-            <span>Show filters</span>
+            <span><span ng-bind="getFilterButtonVerb()"></span> filters</span>
         </button>
     </div>
-
-
 </div>

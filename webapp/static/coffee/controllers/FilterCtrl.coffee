@@ -1,7 +1,7 @@
 class FilterCtrl
     @$inject: ['$scope', '$routeParams', '$location', 'Currency', 'Restangular']
     constructor: (@scope, @routeParams, @location, Currency, Restangular)->
-        @filter_visible = false
+        @scope.filter_visible = false
         @searchParams = @location.search()
         @scope.filters = {
             onlySticky:
@@ -33,24 +33,30 @@ class FilterCtrl
         @scope.country_list    = Restangular.all('countries').getList()
         @scope.theme_list      = Restangular.all('themes').getList()
 
+
+        # Function bindings
+
         # filter method in scope, used by filter form element to launch filter on change
         @scope.filter = @filter
         # function to show or hide filter pannel 
         @scope.showFilter  = @showFilters 
         @scope.getClass    = @getClass
-
+        @scope.getFilterButtonVerb = @getFilterButtonVerb
         @scope.getActivatedFilters = @getActivatedFilters
         @scope.removeFilter = @removeFilter
         @scope.removeTheme = @removeTheme
         # when URL change we want that filter updates to
         @scope.$on "$routeUpdate", @onRouteUpdated
 
+
+    getFilterButtonVerb: =>
+        if @scope.filter_visible then 'Hide' else 'Show'
     
     showFilters: =>
-        @filter_visible = !@filter_visible
+        @scope.filter_visible = !@scope.filter_visible
 
     getClass: =>
-        klass = if @filter_visible then "" else "reduced"
+        klass = if @scope.filter_visible then "" else "reduced"
         return klass
 
     getActivatedFilters: ()=>
