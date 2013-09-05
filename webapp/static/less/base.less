@@ -91,13 +91,13 @@ header {
 			position: relative;
 			.filter {
 				.transition(height 1s ease);
-				height: 80px;
+				max-height: 100px;
 			}
 			&.reduced {
 				z-index: @zindex-filter + 10;
 				.filter {
 					overflow: hidden;
-					height: 0px;
+					max-height: 0px;
 				}
 			}
 		}
@@ -143,7 +143,7 @@ header {
 }
 
 #content {
-	margin-top:220px;
+	margin-top:160px;
 	margin-bottom:40px;
 	
 	.scale-strats {
