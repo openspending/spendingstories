@@ -61,7 +61,7 @@ class StoryViewSet(viewsets.ModelViewSet):
                 else:
                     qg |= Q(themes__slug=theme)
 
-            queryset = queryset.filter(qg)
+            queryset = queryset.filter(qg).distinct()
         return queryset
 
     def create(self, request, pk=None):
