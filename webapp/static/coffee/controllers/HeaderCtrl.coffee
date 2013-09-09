@@ -22,8 +22,11 @@ class HeaderCtrl
                 q: @scope.query
                 c: @scope.currency
             }
-        # Update path
-        @location.search(params)
+        if @location.path().indexOf('search') == -1
+            @location.path('/search/').search(params)
+        else 
+            # Update path
+            @location.search(params)
 
 angular.module('stories').controller 'headerCtrl', HeaderCtrl
 
