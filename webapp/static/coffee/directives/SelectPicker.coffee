@@ -14,7 +14,6 @@ angular.module('stories').directive 'selectpicker', ['$timeout', ($timeout) ->
   selectpicker =
     restrict: 'A'
     link: (scope, element, attr) ->
-
       # Take a hash of options from the selectpicker directive
       options = scope.$eval(attr.selectpicker) or {}
 
@@ -35,4 +34,12 @@ angular.module('stories').directive 'selectpicker', ['$timeout', ($timeout) ->
           stopLoading()
           element.selectpicker "refresh"
         , true)
+
+      if attr.ngModel
+        scope.$watch("#{attr.ngModel}", (newVal, oldVal)->
+          element.selectpicker "refresh",
+          true
+        )
+
+
 ]
