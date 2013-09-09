@@ -3,15 +3,26 @@ class SearchCtrl
     @$inject: ['$scope', '$location','$routeParams', 'searchService', 'Currency', 'Restangular']
 
     constructor: (@scope, @location, @routeParams, @searchService, Currency, Restangular) ->
-        # Binding of scope variables
+        searchParams = @location.search()
+        @MODES =  {
+            scale: 'scale'
+            cards: 'cards'
+        }
+        @scope.mode = searchParams.visualization || @MODES.scale 
+        @scope.tabs = {
+            scale: {
+                name: @MODES.scale
+                active: @isScaleMode()
+            }
+            cards: {
+                name: @MODES.cards
+                active: @isCardsMode()
+            }
+        }
         # Visualization mode
         @scope.overview = false
         @scope.search   = @searchService
         @scope.search.set(@location.search())
-        # True if search service has some stories
-        @scope.hasNormalStories = false
-        # True if search service has some sticky stories
-        @scope.hasStickyStories = false
         
         # On URL parameters updated we want to update search results
         @scope.$on "$routeUpdate", @onRouteUpdate
@@ -31,8 +42,30 @@ class SearchCtrl
         @scope.nextStoryPreview = @nextStoryPreview 
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
-    
+        @scope.changeVisualization = @changeVisualization
+
+        @scope.isScaleMode = @isScaleMode        
+        @scope.isCardsMode  = @isCardsMode
+
+    isCardsMode: ()=>
+        @scope.mode == @MODES.cards
+
+    isScaleMode: ()=>
+        @scope.mode == @MODES.scale
+
+    changeVisualization: (tab) =>
+        @scope.mode = tab.name unless @scope.mode == tab.name
+        params = _.extend(@location.search(), {
+            visualization: tab.name
+        })
+        @location.search(params)
+
     onRouteUpdate: =>
+        console.log "routeUpdated"
+        visualizationMode = @location.search()['visualization']
+        tab = @scope.tabs[visualizationMode] if visualizationMode?
+        if tab?
+            tab.active = true if !tab.active
         @scope.search.set(@routeParams)
 
     onSearch: =>
