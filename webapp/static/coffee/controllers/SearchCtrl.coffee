@@ -1,8 +1,8 @@
 
 class SearchCtrl
-    @$inject: ['$scope', '$location','$routeParams', 'searchService', 'Currency', 'Restangular']
+    @$inject: ['$scope', '$location','$routeParams', 'searchService', 'Restangular']
 
-    constructor: (@scope, @location, @routeParams, @searchService, Currency, Restangular) ->
+    constructor: (@scope, @location, @routeParams, @searchService, @Restangular) ->
         searchParams = @location.search()
         @MODES =  {
             scale: 'scale'
@@ -42,6 +42,7 @@ class SearchCtrl
         @scope.nextStoryPreview = @nextStoryPreview 
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
+        
         @scope.changeVisualization = @changeVisualization
 
         @scope.isScaleMode = @isScaleMode        
@@ -61,7 +62,6 @@ class SearchCtrl
         @location.search(params)
 
     onRouteUpdate: =>
-        console.log "routeUpdated"
         visualizationMode = @location.search()['visualization']
         tab = @scope.tabs[visualizationMode] if visualizationMode?
         if tab?
