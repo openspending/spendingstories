@@ -15,7 +15,7 @@ from webapp.currency.models import Currency
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import permissions
-from django.db.models import Max, Min
+from django.db.models import Max, Min, Q
 from django.forms import widgets
 from relevance import Relevance
 
@@ -54,13 +54,14 @@ class StoryViewSet(viewsets.ModelViewSet):
         queryset = self.queryset
         if 'themes' in self.request.QUERY_PARAMS:
             themes = self.request.QUERY_PARAMS['themes'].split(',')
+            qg = None 
             for theme in themes:
-                # not optimized but hard to optimize more:
-                # We want that EVERY passed themes are present in the story's 
-                # themes. Therefore themes__slug__in=themes will not work 
-                # because it will return stories that have one theme present in 
-                # the passed themes list
-                queryset = queryset.filter(themes__slug=theme)
+                if qg is None:
+                    qg = Q(themes__slug=theme)
+                else:
+                    qg |= Q(themes__slug=theme)
+
+            queryset = queryset.filter(qg)
         return queryset
 
     def create(self, request, pk=None):
