@@ -23,8 +23,7 @@ class HeaderCtrl
                 c: @scope.currency
             }
         # Update path
-        @location.path("/search/").search(params)
-           
+        @location.search(params)
 
 angular.module('stories').controller 'headerCtrl', HeaderCtrl
 
