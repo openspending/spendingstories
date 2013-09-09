@@ -3,9 +3,8 @@
 	<li>Your query for <strong>[[search.query|toQueryCurrency:search.currency]]</strong></li>	
 </ul>
 <tabset>
-	<tab heading="Scale visualisation">
-		<div class="scale-strats">
-			
+	<tab heading="Scale visualisation" active="tabs.scale.active" select="changeVisualization(tabs.scale)">
+		<div class="scale-strats" ng-if="search.query">
 			<div class="preview-strat">
 				<div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">	
 					<div class="btn-nav col-xs-1">
@@ -96,7 +95,7 @@
 
 		</div>
 	</tab>
-	<tab heading="Cards visualisation" disabled="true">
+	<tab heading="Cards visualisation" active='tabs.cards.active' select="changeVisualization(tabs.cards)">
 		Tourte
 	</tab>
 </tabset>
