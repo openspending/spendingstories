@@ -1,4 +1,4 @@
-angular.module('stories').directive 'selectpicker', ['$timeout', ($timeout) ->
+angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($timeout, $location) ->
   
   # This is stolen from Angular...
   NG_OPTIONS_REGEXP = /^\s*(.*?)(?:\s+as\s+(.*?))?(?:\s+group\s+by\s+(.*))?\s+for\s+(?:([\$\w][\$\w\d]*)|(?:\(\s*([\$\w][\$\w\d]*)\s*,\s*([\$\w][\$\w\d]*)\s*\)))\s+in\s+(.*)$/
@@ -14,6 +14,7 @@ angular.module('stories').directive 'selectpicker', ['$timeout', ($timeout) ->
   selectpicker =
     restrict: 'A'
     link: (scope, element, attr) ->
+
       # Take a hash of options from the selectpicker directive
       options = scope.$eval(attr.selectpicker) or {}
 
@@ -36,10 +37,19 @@ angular.module('stories').directive 'selectpicker', ['$timeout', ($timeout) ->
         , true)
 
       if attr.ngModel
-        scope.$watch("#{attr.ngModel}", (newVal, oldVal)->
-          element.selectpicker "refresh",
-          true
+        scope.$watch("#{attr.ngModel}", 
+          (newVal, oldVal)->
+            stopLoading()
+            element.selectpicker("refresh")
+          , true
         )
+      scope.$watch(
+        ()->
+          $location.path()
+        ,(newVal, oldVal)->
+            # kind of ugly, we get the reference to the contextualized dropdown.
+            element.selectpicker('close')
 
+      )
 
 ]
