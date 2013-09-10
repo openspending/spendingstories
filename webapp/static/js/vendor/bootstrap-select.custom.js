@@ -583,6 +583,11 @@
             }
         },
 
+        close: function(){
+            this.$dropdown.removeClass('open')
+            this.removeClass('open')
+        },
+
         hide: function() {
             this.$newElement.hide();
         },
@@ -595,10 +600,6 @@
             this.$newElement.remove();
             this.$element.remove();
         },
-
-        context: function(){
-            return this;
-        }
     };
 
     $.fn.selectpicker = function(option, event) {
