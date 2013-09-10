@@ -47,7 +47,8 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
         ()->
           $location.path()
         ,(newVal, oldVal)->
-            # kind of ugly, we get the reference to the contextualized dropdown.
+            # this is a custom command to programmaticaly close (not hide!) the 
+            # opened dropdown 
             element.selectpicker('close')
 
       )
