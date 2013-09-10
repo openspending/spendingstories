@@ -19,6 +19,7 @@
         this.$newElement = null;
         this.$button = null;
         this.$menu = null;
+        this.$dropdown = null;
 
         //Merge defaults, options and data-attributes to make our options
         this.options = $.extend({}, $.fn.selectpicker.defaults, this.$element.data(), typeof options == 'object' && options);
@@ -348,6 +349,7 @@
                 $drop.appendTo(_this.options.container);
                 $drop.toggleClass('open', !$(this).hasClass('open'));
                 $drop.append(_this.$menu);
+                _this.$dropdown = $drop;
             });
             $(window).resize(function() {
                 getPlacement(_this.$newElement);
@@ -592,6 +594,10 @@
         destroy: function() {
             this.$newElement.remove();
             this.$element.remove();
+        },
+
+        context: function(){
+            return this;
         }
     };
 
