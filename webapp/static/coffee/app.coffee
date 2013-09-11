@@ -33,7 +33,7 @@ angular
                 # Bind routes to the controllers
                 $routeProvider
                     .when('/search/', 
-                        controller: 'searchCtrl'
+                        controller: 'tabsCtrl'
                         templateUrl: "./partial/search.html"
                         reloadOnSearch: false
                     )
