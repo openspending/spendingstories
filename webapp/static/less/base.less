@@ -430,19 +430,23 @@ header {
 		}
 	}	
 
-	.cards-grid {
-		@cards-width: 200px;
+	.cards-content {
+		@cards-width: 190px;
 		@cards-padding: 15px;
 		@cards-bg-col: #403f3f;
-		padding-top:  20px;
-		padding-left:  30px;
+	
 		.row { margin: 0; }
+		.cards-grid {
+			margin-bottom: 10px;
+			padding-top:  40px;
+			padding-left:  35px;
+		}
 		.card {
 			position: relative;
-			margin-right: 20px;
-			margin-bottom: 20px;
-			width: 200px;
-			height: 200px;
+			margin-right: 30px;
+			margin-bottom: 25px;
+			width: @cards-width;
+			height: @cards-width;
 			text-align: center;
 			background: @cards-bg-col;
 			.card-title {
