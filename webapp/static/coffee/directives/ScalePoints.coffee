@@ -81,7 +81,9 @@ angular.module('stories')
                 scope.dataset = dataset
                 # Bounds values (using sorted list)            
                 min = Math.min dataset[0].converted_current_value, rulerValue 
+                min = if min < 1 then 1 else min
                 max = Math.max dataset[dataset.length-1].converted_current_value, rulerValue
+                
                 # And extend the scale with the bounds, it's good to note that 
                 # we use a log base 20 to have cool values on the ticks                    
                 scale = d3.scale.log()
