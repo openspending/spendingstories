@@ -1,4 +1,5 @@
 class FilterCtrl
+    
     @$inject: ['$scope', '$routeParams', '$location', 'Currency', 'Restangular']
     constructor: (@scope, @routeParams, @location, Currency, Restangular)->
         @searchParams = @location.search()
@@ -11,20 +12,24 @@ class FilterCtrl
                 stackable: false
                 type: 'boolean'
                 value: @searchParams.onlySticky
+                modes: ['cards']
             country:
                 name: 'Country'
                 type: 'string'
                 stackable: true 
                 value: @searchParams.country
+                modes: ['cards', 'scale']
             currency:
                 name: 'Currency'
                 type: 'string'
                 stackable: true
                 value: @searchParams.currency
+                modes: ['cards', 'scale']
             themes:
                 type: 'array'
                 stackable: false
                 value: if @searchParams.themes? then @searchParams.themes.split(',')
+                modes: ['cards', 'scale']
         }
 
 
@@ -47,6 +52,7 @@ class FilterCtrl
         @scope.hasActivatedFilters = @hasActivatedFilters
 
         @scope.getActivatedFilters = @getActivatedFilters
+        @scope.isVisible = @isVisible
         @scope.removeFilter = @removeFilter
         @scope.removeTheme = @removeTheme
 
@@ -63,6 +69,8 @@ class FilterCtrl
             else
                 @scope.$watch watch_string, @filter
 
+    isVisible:(f)=>
+        f.modes.indexOf(@searchParams.visualization) != -1
 
     toggleFilters: =>
         ###
