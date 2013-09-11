@@ -584,8 +584,13 @@
         },
 
         close: function(){
-            this.$dropdown.removeClass('open')
-            this.removeClass('open')
+            var me = this;
+            if (me.$dropdown && me.$dropdown.hasClass('open')) {
+                this.$dropdown.removeClass('open');
+            }
+            if (me.$newElement && me.$newElement.hasClass('open')) {
+                $me.$newElement.removeClass('open');
+            }
         },
 
         hide: function() {
