@@ -9,7 +9,7 @@ class SearchService
         searchParams = @location.search()
         @accepted_filters = ['onlySticky', 'themes', 'country', 'currency']
         @extra_fields = {
-            visualisation: {
+            visualization: {
                 cards: {
                     api_key: 'relevance_for'
                     value_key: 'query_usd'
@@ -29,6 +29,11 @@ class SearchService
     getURLParams: =>
         @location.search()
 
+    onURLChanged: () =>
+        params = @location.search()
+        @updateQuery(params)
+        @updateAPIParams(params)
+        
     updateQuery: (params)=>
          # may be optimised if we check changes to avoid $digest
         @query   = parseInt(params.q)
@@ -53,13 +58,6 @@ class SearchService
     updateAPIParams: (params)=>
         @results = @Restangular.copy(@results) if @results?
         @results = @Restangular.all('stories-nested').getList(@getAPIParams(params))
-
-    
-    onURLChanged: () =>
-        console.log "URL Changed !"
-        params = @location.search()
-        @updateQuery(params)
-        @updateAPIParams(params)
      
     paramsChanged: (params)=>
         _.find(params, @hasChanged)?
@@ -74,9 +72,8 @@ class SearchService
         extra_api_params = {}
         accepted = _.pick(newParams, _.keys(@extra_fields)) 
         _.each accepted, (value, key)=>
-            field_meta = @extra_fields[key]
-            extra_api_params[field_meta.api_key] = @[field_meta.value_key]
-
+            field_meta = @extra_fields[key][value]
+            extra_api_params[field_meta.api_key] = @[field_meta.value_key] if field_meta?
         return extra_api_params
 
     getFiltersParams: (params)=>
