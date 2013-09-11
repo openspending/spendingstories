@@ -21,7 +21,6 @@ class ScaleCtrl
 
     # Inherited from VisualizationCtrl
     onResultsChanged: =>
-        console.log @scope.search
         @scope.search.results.then (data)=>
             # Value to be closed to
             goal = @scope.search.query_usd;
@@ -44,7 +43,7 @@ class ScaleCtrl
         Math.abs(d.current_value_usd  - @scope.search.query_usd) < 10
 
     nextStoryPreview: ()=>
-        @scope.search.results.then (data)->
+        @scope.search.results.then (data)=>
             # Get only stories that are in the same group (sticky or not)
             data = _.where data, sticky: @scope.previewedStory.sticky        
             # Sort the data by usd
@@ -55,7 +54,7 @@ class ScaleCtrl
             @scope.previewedStory = data[idx+1] if data[idx+1]?
 
     previousStoryPreview: ()=>
-        @scope.search.results.then (data)->
+        @scope.search.results.then (data)=>
             # Get only stories that are in the same group (sticky or not)
             data = _.where data, sticky: @scope.previewedStory.sticky        
             # Sort the data by usd
