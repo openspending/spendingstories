@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="filter-bar row" ng-class="getClass()">
-            <div class="filter col-sm-3 form-group">
+            <div ng-if="isVisible(filters.country)" class="filter col-sm-3 form-group">
                 <label class="control-label sr-only" for="input-country">Country</label>
                 <select ng-options="c.iso_code as c.name for c in country_list"
                         id="input-country"
@@ -14,7 +14,7 @@
                         title="Choose a country">
                 </select>
             </div>  
-            <div class="filter col-sm-3 form-group">
+            <div ng-if="isVisible(filters.currency)" class="filter col-sm-3 form-group">
                 <label class="control-label sr-only" for="input-currency">Currency</label>
                 <select ng-options="c.iso_code as c.name for (iso_code, c) in currency_list"
                         id="input-currency"
@@ -25,7 +25,7 @@
                 </select>
             </div>
 
-            <div class="filter col-sm-3 form-group">
+            <div ng-if="isVisible(filters.themes)" class="filter col-sm-3 form-group">
                 <label class="control-label sr-only" for="input-themes">Themes</label>
                 <select ng-options="c.slug as c.title for c in theme_list" 
                         selectpicker
@@ -36,7 +36,7 @@
                         multiple>
                 </select>
             </div>
-            <div class="filter col-sm-3 form-group">
+            <div ng-if="isVisible(filters.onlySticky)" class="filter col-sm-3 form-group">
                 <label class="control-label checkbox">
                     Only sticky stories ?
                     <input type="checkbox"
