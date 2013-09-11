@@ -4,101 +4,11 @@
 </ul>
 <tabset>
 	<tab heading="Scale visualisation" active="tabs.scale.active" select="changeVisualization(tabs.scale)">
-		<div class="scale-strats" ng-if="search.query">
-			<div class="preview-strat">
-				<div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">	
-					<div class="btn-nav col-xs-1">
-						<a ng-if="$first" class="disabled btn">
-							&#9664;
-						</a>
-						<a ng-if="!$first" 
-						   class="btn previous"
-						   ng-click="previousStoryPreview()">
-							&#9664;
-						</a>
-					</div>
-
-					<div class="col-xs-10">
-						<div class="col-sm-3 col-md-2 tc bottom20">
-							<img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length > 0" />				
-						</div>					
-
-						<div class="col-sm-9 col-md-10">
-							<h5 ng-cloak>
-								[[search.query|humanizeCurrency:search.currency]] 
-								[[d|queryEquivalent]]</h5>
-							<h4 class="top0">[[d.title]]</h4>
-							<p class="top10">[[d.description]]</p>
-							<p>
-								<span class="label label-warning">
-									Cost: [[d.value|humanizeCurrency:d.currency.iso_code]] in [[d.year]]
-								</span>
-
-								<span class="label">
-									(≈[[d.current_value_usd|toQueryCurrency]] in [[d.inflation_last_year]])									
-									<span class="left05" ng-if="d.source">&#8212;</span>
-									<a href="[[d.source]]" ng-if="d.source" tooltip="[[d.source]]" class="left05" target="_blank" tooltip-append-to-body="true">
-										<span>Read the story</span>
-										<!-- <span class="sr-only">source</span> -->
-									</a>
-								</span>
-							</p>
-							<ul class="list-inline" ng-if="d.themes">								
-								<li ng-repeat="theme in d.themes" class="theme">								
-									<img ng-src="[[theme.image]]" ng-if="theme.image" />
-									[[theme.title]]
-								</li>
-							</ul>
-						</div>
-					</div>
-				
-					<div class="btn-nav col-xs-1">
-						<a ng-if="!$last" 
-						   class="btn next"
-						   ng-click="nextStoryPreview()">
-							&#9654;
-						</a>
-						<a ng-if="$last" class="disabled btn">
-							&#9654;
-						</a>
-					</div>
-
-				</div>
-			</div>
-			<h3>Top stories</h3>			
-			<div class="top-strat">
-				<scale-points
-					data="search.results"
-					ng-if="search.results.length"
-					story="previewedStory.id"
-					currency="search.currency"
-					click="pointSelection"
-					ruler="search.query"
-					overview="true"
-					filter="{sticky: true}"></scale-points>
-			</div>
-
-			<h3 >Other stories</h3>
-			<div class="other-strat">
-				<scale-points
-					ng-if="search.results.length"
-					data="search.results"
-					ruler="search.query"
-					currency="search.currency"
-					story="previewedStory.id"
-					click="pointSelection"
-					point-height="16"
-					point-width="16"
-					overview="true"
-					filter="{sticky: false}"></scale-points>
-			</div>
-
-		</div>
+		{% include "partials/scale.html" %}
 	</tab>
-	<tab heading="Cards visualisation" 
+	<tab heading="Cards visualisation"
 		 active='tabs.cards.active' 
-		 select="changeVisualization(tabs.cards)"
-		 disabled="true">
-		Tourte
+		 select="changeVisualization(tabs.cards)">
+		{% include "partials/cards.html" %}
 	</tab>
 </tabset>
