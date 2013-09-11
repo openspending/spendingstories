@@ -430,6 +430,45 @@ header {
 		}
 	}	
 
+	.cards-grid {
+		@cards-width: 200px;
+		@cards-padding: 15px;
+		@cards-bg-col: #403f3f;
+		padding-top:  20px;
+		padding-left:  30px;
+		.row { margin: 0; }
+		.card {
+			position: relative;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			background: @cards-bg-col;
+			.card-title {
+				font-size: 0.8em;
+			}
+			.card-infos {
+				position: absolute;
+				width: @cards-width - (@cards-padding *2);
+				text-align: center;
+
+				bottom: 15px;
+				left: @cards-padding;
+
+				img {
+					display: inline-block;
+					height: 85px;
+					width: 85px;
+				}
+			}
+		}
+		.load-more {
+			text-align: center;
+
+		}
+
+	}
 
 	.contribute {
 		
