@@ -445,28 +445,30 @@ header {
 			&.active {
 				.box-shadow(0 0 5px 5px @brand-primary); 
 			}
-			position: relative;
 			margin-right: 30px;
 			margin-bottom: 25px;
 			width: @cards-width;
 			height: @cards-width;
 			text-align: center;
 			background: @cards-bg-col;
-			.card-title {
-				font-size: 0.8em;
+			.card-heading {
+				min-height: 90px;
+				h5 { 
+					font-size: 15px;
+				}
+				h6 {
+					font-size: 13px;
+				}
 			}
 			.card-infos {
-				position: absolute;
-				width: @cards-width - (@cards-padding *2);
 				text-align: center;
-
-				bottom: 5px;
-				left: @cards-padding;
-
+				font-size: 0.8em;
 				img {
-					display: inline-block;
 					height: 85px;
 					width: 85px;
+				}
+				.card-infos-list {
+					text-align: left;
 				}
 			}
 		}
