@@ -442,6 +442,9 @@ header {
 			padding-left:  35px;
 		}
 		.card {
+			&.active {
+				.box-shadow(0 0 5px 5px @brand-primary); 
+			}
 			position: relative;
 			margin-right: 30px;
 			margin-bottom: 25px;
@@ -457,7 +460,7 @@ header {
 				width: @cards-width - (@cards-padding *2);
 				text-align: center;
 
-				bottom: 15px;
+				bottom: 5px;
 				left: @cards-padding;
 
 				img {
