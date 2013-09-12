@@ -1,13 +1,14 @@
 class TabsCtrl
 
-    @$inject: ['$scope', '$location']
+    @$inject: ['$scope', '$location', 'searchService']
 
-    constructor: (@scope, @location) ->
+    constructor: (@scope, @location, @searchService) ->
         searchParams = @location.search()
         @MODES =  {
             scale: 'scale'
             cards: 'cards'
         }
+        @scope.search = @searchService
         @scope.mode = searchParams.visualization || @MODES.scale 
         @scope.tabs = {
             scale: {
