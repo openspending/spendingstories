@@ -19,13 +19,13 @@
 
                 <div class="col-sm-9 col-md-10">
                     <h5 ng-cloak>
-                        [[search.query|humanizeCurrency:search.currency]] 
+                        [[search.query|humanizeValue:search.currency]] 
                         [[d|queryEquivalent]]</h5>
                     <h4 class="top0">[[d.title]]</h4>
                     <p class="top10">[[d.description]]</p>
                     <p>
                         <span class="label label-warning">
-                            Cost: [[d.value|humanizeCurrency:d.currency.iso_code]] in [[d.year]]
+                            Cost: [[d.value|humanizeValue:d.currency.iso_code]] in [[d.year]]
                         </span>
 
                         <span class="label">

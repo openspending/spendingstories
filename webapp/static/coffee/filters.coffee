@@ -96,7 +96,7 @@ angular
                 OSS.humanize(converted, toCurrency.name, (converted > 1))
         ]
     )
-    .filter("humanizeCurrency", ["Currency", (Currency)->
+    .filter("humanizeValue", ["Currency", (Currency)->
             return (value, currency="USD")->
                 return null unless angular.isNumber value
                 toCurrency = Currency.list[currency]

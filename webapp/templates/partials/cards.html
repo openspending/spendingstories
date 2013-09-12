@@ -5,14 +5,18 @@
              ng-click="showDetails(d)"
              ng-init="d.details_visible = false"
              ng-class="{active: d.details_visible}">
-            <div class="row card-title">
+            <div class="row card-heading">
                 <h6>[[d|queryEquivalent]]</h6>
-                <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:30 ]]</h5>
+                <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:40 ]]</h5>
                 <h5 class="title" ng-if="d.details_visible">[[ d.title ]]</h5>
             </div>
             <div class="card-infos row">
                 <img ng-if="!d.details_visible" ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
-                <p 
+                <ul class="card-infos-list list-unstyled" ng-if="d.details_visible">
+                    <li>Cost: [[d.value|humanizeValue:d.currency.iso_code]]</li>
+                    <li>Year: [[d.year]]</li>
+                </ul>
+
             </div>
         </div>
     </div>

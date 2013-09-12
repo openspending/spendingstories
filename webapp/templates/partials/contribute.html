@@ -51,7 +51,7 @@
 		</div>	
 		<div class="form-group">
 			<label class="control-label" for="input-value">Amount</label>
-			<p class="pull-right">[[story.value|humanizeCurrency:story.currency.iso_code]]</p>
+			<p class="pull-right">[[story.value|humanizeValue:story.currency.iso_code]]</p>
 			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block">
 				Insert a round number without any space or separator
@@ -61,7 +61,7 @@
 
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
 		<div class="breadcrumb">
-			<strong>[[story.value|humanizeCurrency:story.currency.iso_code]]</strong> is ...
+			<strong>[[story.value|humanizeValue:story.currency.iso_code]]</strong> is ...
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-title">Give a title to your story</label>

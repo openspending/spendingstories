@@ -8,7 +8,7 @@
             <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
         </div>
         <div class="ruler" ng-style="rulerStyle()" ng-class="rulerClass()">
-    	   <span>[[rulerValue|humanizeCurrency:rulerCurrency]]</span>
+    	   <span>[[rulerValue|humanizeValue:rulerCurrency]]</span>
         </div>
     </div>
     <div class="sep"></div>
@@ -16,6 +16,6 @@
         <div class="tick"
              ng-repeat="t in ticks"
              ng-style="tickStyle(t)">
-            <div class="axis-label" ng-class="axisLabelClass(t)">[[t|humanizeCurrency:rulerCurrency]]</div>
+            <div class="axis-label" ng-class="axisLabelClass(t)">[[t|humanizeValue:rulerCurrency]]</div>
     </div>
 </div>
