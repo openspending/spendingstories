@@ -4,10 +4,16 @@
              ng-repeat="d in search.results"
              ng-click="showDetails(d)"
              ng-init="d.details_visible = false"
-             ng-class="{active: d.details_visible}">
+             ng-class="{active: d.details_visible, sticky: d.sticky }">
             <div class="row card-heading">
-                <h6>[[d|queryEquivalent]]</h6>
-                <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:40 ]]</h5>
+                
+                <h5 class="card-equivalent" ng-if="!d.details_visible">
+                    [[d|queryEquivalent]]
+                </h5>
+                <h5 class="card-equivalent" ng-if="d.details_visible">
+                    [[search.query|humanizeValue:search.currency]]&nbsp;[[d|queryEquivalent]]
+                </h5>
+                <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:35 ]]</h5>
                 <h5 class="title" ng-if="d.details_visible">[[ d.title ]]</h5>
             </div>
             <div class="card-infos row">

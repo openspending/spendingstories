@@ -443,7 +443,13 @@ header {
 		}
 		.card {
 			&.active {
-				.box-shadow(0 0 5px 5px @brand-primary); 
+				background: lighten(@cards-bg-col, 20%);
+				.card-heading .card-equivalent {
+					// color: black;
+				}
+			}
+			&.sticky {
+				border: 2px solid fade(lighten(@brand-primary, 50%), 50%);
 			}
 			margin-right: 30px;
 			margin-bottom: 25px;
@@ -454,15 +460,17 @@ header {
 			.card-heading {
 				min-height: 90px;
 				h5 { 
-					font-size: 15px;
+					font-size: 16px;
+					margin-bottom: 5px;
 				}
-				h6 {
-					font-size: 13px;
+				.card-equivalent {
+					color: @brand-primary;
+					font-weight: bold;
 				}
 			}
 			.card-infos {
 				text-align: center;
-				font-size: 0.8em;
+				font-size: 12px;
 				img {
 					height: 85px;
 					width: 85px;
