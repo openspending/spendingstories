@@ -1,6 +1,6 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # TabsCtrl handle navigation between tabs.
-# Each tab is in fact a visuzaliton mode (cards or scale)
+# Each tab is related to a visuzaliton mode (cards or scale)
 # ────────────────────────────────────────────────────────────────────────────── 
 class TabsCtrl
 

@@ -1,13 +1,36 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# FilterCtrl handle the filters activated based on URL parameters
+# ────────────────────────────────────────────────────────────────────────────── 
 class FilterCtrl
     
     @$inject: ['$scope', '$routeParams', '$location', 'Currency', 'Restangular']
+    
     constructor: (@scope, @routeParams, @location, Currency, Restangular)->
         @searchParams = @location.search()
-        ########################################################################
-        #                       SCOPE VARIABLES BINDINGS                       #
-        ########################################################################
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope variables bindings                       
+        # ──────────────────────────────────────────────────────────────────────
+        # Are the filters select lists visible
         @scope.filter_visible = false
-        @scope.filters = {
+        # filter list values 
+        @scope.currency_list = Currency.list
+        @scope.country_list  = Restangular.all('countries').getList()
+        @scope.theme_list    = Restangular.all('themes').getList()
+        # filters models 
+        @scope.filters = 
+            ### 
+            Each filter can be described as following :
+                @stackable: 
+                    the filter can be added to the "filter bar"
+                @type:      
+                    the type of the filter value
+                @value:     
+                    the current filter value 
+                @modes:
+                    array of supported visualization mode for the filter 
+                    will hide the filter if it's not supported and remove 
+                    this parameters from url.
+            ### 
             onlySticky:
                 stackable: false
                 type: 'boolean'
@@ -30,35 +53,33 @@ class FilterCtrl
                 stackable: false
                 value: if @searchParams.themes? then @searchParams.themes.split(',')
                 modes: ['cards', 'scale']
-        }
+            # Not handled for the moment
+            # type:
+                # name: 'Type'
+                # type: 'string'
+                # stackable: true 
+                # value: if @searchParams.type? then @searchParams.type
+                # modes: ['cards', 'scale']
 
-
-        # Not handled for the moment
-        # type:       if @searchParams.type?       then @searchParams.type
-        @scope.currency_list = Currency.list
-        @scope.country_list  = Restangular.all('countries').getList()
-        @scope.theme_list    = Restangular.all('themes').getList()
-
-        ########################################################################
-        #                       SCOPE FUNCTION BINDINGS                        #
-        ########################################################################
-
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope function bindings                       
+        # ──────────────────────────────────────────────────────────────────────
         # filter method in scope, used by filter form element to launch filter on change
         @scope.filter = @filter
         # function to show or hide filter pannel 
-        @scope.toggleFilters = @toggleFilters 
-        @scope.getClass   = @getClass
-        @scope.getFilterButtonVerb = @getFilterButtonVerb
+        @scope.toggleFilters = @toggleFilters
         @scope.hasActivatedFilters = @hasActivatedFilters
-
         @scope.getActivatedFilters = @getActivatedFilters
+        # utility function to check if a filter is visible in the current mode 
         @scope.isVisible = @isVisible
+        # remove an activated filter 
         @scope.removeFilter = @removeFilter
+        # remove an activated theme 
         @scope.removeTheme = @removeTheme
 
-        ########################################################################
-        #                       ADDITIONAL BINDINGS                            #
-        ########################################################################
+        # ──────────────────────────────────────────────────────────────────────
+        # Watchers
+        # ──────────────────────────────────────────────────────────────────────
         # when URL change we want that filter updates to
         @scope.$on "$routeUpdate", @onRouteUpdated
         # when a filter value change we want to update the URL 

@@ -1,3 +1,6 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# The Scale controller handle the scale visualization mode behaviors 
+# ──────────────────────────────────────────────────────────────────────────────
 class ScaleCtrl
 
     @$inject: ['$scope', 'searchService']
