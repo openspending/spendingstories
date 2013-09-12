@@ -442,6 +442,14 @@ header {
 			padding-left:  35px;
 		}
 		.card {
+			cursor:pointer;
+			margin-right: 30px;
+			margin-bottom: 25px;
+			width: @cards-width;
+			height: @cards-width;
+			text-align: center;
+			background: @cards-bg-col;
+			
 			&.active {
 				background: lighten(@cards-bg-col, 20%);
 				.card-heading .card-equivalent {
@@ -451,12 +459,7 @@ header {
 			&.sticky {
 				border: 2px solid fade(lighten(@brand-primary, 50%), 50%);
 			}
-			margin-right: 30px;
-			margin-bottom: 25px;
-			width: @cards-width;
-			height: @cards-width;
-			text-align: center;
-			background: @cards-bg-col;
+
 			.card-heading {
 				min-height: 90px;
 				h5 { 
@@ -480,6 +483,7 @@ header {
 				}
 			}
 		}
+		
 		.load-more {
 			text-align: center;
 
