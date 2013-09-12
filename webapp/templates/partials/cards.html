@@ -1,12 +1,18 @@
 <div ng-controller="cardsCtrl" class="cards-content">
     <div class="cards-grid row">
-        <div class="card col-xs-4 col-md-3" ng-repeat="d in search.results">
+        <div class="card col-xs-4 col-md-3" 
+             ng-repeat="d in search.results"
+             ng-click="showDetails(d)"
+             ng-init="d.details_visible = false"
+             ng-class="{active: d.details_visible}">
             <div class="row card-title">
-                <span>equivalent of</span>
-                <span class="title">[[ d.title ]]</span>
+                <h6>[[d|queryEquivalent]]</h6>
+                <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:30 ]]</h5>
+                <h5 class="title" ng-if="d.details_visible">[[ d.title ]]</h5>
             </div>
             <div class="card-infos row">
-                <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
+                <img ng-if="!d.details_visible" ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
+                <p 
             </div>
         </div>
     </div>
