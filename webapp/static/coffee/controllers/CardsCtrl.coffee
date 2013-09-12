@@ -4,12 +4,11 @@ class CardsCtrl
 
     constructor: (@scope, @searchService) ->
         @scope.search = @searchService
-        # Select the closest story into the stickies as preview 
-        @scope.$watch "this.search.results", @onResultsChanged
+        @scope.showDetails = @showDetails
+    
+    showDetails: (d)=>
+        d.details_visible = !d.details_visible
 
-
-    onResultsChanged: =>
-        # do stuff 
 
         
 angular.module('stories').controller 'cardsCtrl', CardsCtrl
