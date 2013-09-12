@@ -59,7 +59,22 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
 
 angular
     .module('storiesFilters', [])
-    .filter("thousandSeparator", -> Humanize.intcomma)
+    .filter('thousandSeparator', -> Humanize.intcomma)
+    .filter('truncate', -> 
+        # took from https://gist.github.com/danielcsgomes/2478654
+        return (text, length, end) ->
+            if !angular.isString(text)
+                return text
+            if isNaN(length)
+                length = 10
+ 
+            end = "..." unless end?
+
+            if text.length <= length || (text.length - end.length) <= length
+                return text
+            else
+                return String(text).substring(0, length-end.length) + end
+    )
     .filter("toQueryCurrency", ["searchService", "Currency", (searchService, Currency)->  
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)->    
                 return null unless angular.isNumber value
