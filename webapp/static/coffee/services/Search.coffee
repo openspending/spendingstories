@@ -9,21 +9,28 @@ class SearchService
         # ──────────────────────────────────────────────────────────────────────
         # Constructor and instance's scope variables declaration 
         # ──────────────────────────────────────────────────────────────────────
-        searchParams = @location.search()
-        # Filter parameters accepted in URL, will filter the stories 
+        searchParams = @getURLParams()
+        # Filter parameters accepted in URL, will produce filtering of stories 
         @accepted_filters = ['onlySticky', 'themes', 'country', 'currency']
-        # These fields are used to bind some params in URL to some params in API
-        # values are retrieved from the searchService instance, for example
-        @extra_fields =
+
+
+        @extra_fields = 
+            ### 
+            This attribute is used to bind some received URL parameters to some 
+            extra API parameters. For example if the URL contains the parameters 
+            "visualization" set "cards" it will request the API with an extra 
+            parameter called`relevance_for` with the current @query_usd as 
+            value.
+            
+            An exemple of binding 
+              received_url = /#/search/?visualization=cards
+              api_url      = /api/stories-nested/?relevance_for=@query_usd 
+            
+            ### 
             visualization:
-                # For cards mode we want to get the stories sorted by 
-                # relevance, see wiki for this relevance model
                 cards:
-                    # Will request the API with relevance_for parameters
                     api_key: 'relevance_for'
-                    # and with the instance attribute `query_usd` as value
-                    # /api/stories-nested/?relevance_for=@query_usd 
-                    instance_attribute: 'query_usd'
+                    instance_attr: 'query_usd'
         # current currency selected by user
         @currency  = 'USD'
         # current query entered by user 
@@ -94,7 +101,8 @@ class SearchService
         accepted = _.pick(newParams, _.keys(@extra_fields)) 
         _.each accepted, (value, key)=>
             field_meta = @extra_fields[key][value]
-            extra_api_params[field_meta.api_key] = @[field_meta.value_key] if field_meta?
+            if field_meta?
+                extra_api_params[field_meta.api_key] = @[field_meta.instance_attr] 
         return extra_api_params
 
     getFiltersParams: (params)=>
