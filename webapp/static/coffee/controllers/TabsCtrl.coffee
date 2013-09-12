@@ -1,31 +1,45 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# TabsCtrl handle navigation between tabs.
+# Each tab is in fact a visuzaliton mode (cards or scale)
+# ────────────────────────────────────────────────────────────────────────────── 
 class TabsCtrl
 
     @$inject: ['$scope', '$location', 'searchService']
 
     constructor: (@scope, @location, @searchService) ->
+        # ──────────────────────────────────────────────────────────────────────
+        # constructor & instance variables
+        # ──────────────────────────────────────────────────────────────────────
         searchParams = @location.search()
         @MODES =
             scale: 'scale'
             cards: 'cards'
+
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope variables binding // AngularJS Models 
+        # ──────────────────────────────────────────────────────────────────────    
         @scope.search = @searchService
-        @scope.mode = searchParams.visualization or @MODES.scale 
-        @scope.tabs = {
-            scale: {
+        @scope.mode   = searchParams.visualization or @MODES.scale 
+        @scope.tabs   = 
+            scale: 
                 name: @MODES.scale
                 active: @isScaleMode()
-            }
-            cards: {
+            cards: 
                 name: @MODES.cards
                 active: @isCardsMode()
-            }
-        }
+
+        # ──────────────────────────────────────────────────────────────────────
+        # Watchers
+        # ──────────────────────────────────────────────────────────────────────
         # On URL parameters updated we want to update search results
         @scope.$on "$routeUpdate", @onRouteUpdate
-        
-        @scope.changeVisualization = @changeVisualization
 
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope function binding 
+        # ──────────────────────────────────────────────────────────────────────
+        @scope.changeVisualization = @changeVisualization
         @scope.isScaleMode = @isScaleMode        
-        @scope.isCardsMode  = @isCardsMode
+        @scope.isCardsMode = @isCardsMode
 
     isCardsMode: ()=>
         @scope.mode == @MODES.cards
@@ -34,11 +48,13 @@ class TabsCtrl
         @scope.mode == @MODES.scale
 
     changeVisualization: (tab) =>
+        # change visualization mode & URL params
         @scope.mode = tab.name unless @scope.mode == tab.name
         params = _.extend @location.search(), visualization: tab.name
         @location.search(params)
 
     onRouteUpdate: =>
+        # if URL change we want to update the tab in consequence
         visualizationMode = @location.search()['visualization']
         tab = @scope.tabs[visualizationMode] if visualizationMode?
         tab.active = true if tab? and !tab.active
