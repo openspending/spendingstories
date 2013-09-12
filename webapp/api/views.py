@@ -20,6 +20,7 @@ from django.forms import widgets
 from relevance import Relevance
 
 import serializers
+import filters
 
 # -----------------------------------------------------------------------------
 #
@@ -107,6 +108,7 @@ class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset         = Theme.objects.public()
     serializer_class = serializers.ThemeSerializer
+    filter_backends  = (filters.UsedThemes,)
 
 # -----------------------------------------------------------------------------
 #
