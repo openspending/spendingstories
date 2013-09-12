@@ -4,12 +4,11 @@ class TabsCtrl
 
     constructor: (@scope, @location, @searchService) ->
         searchParams = @location.search()
-        @MODES =  {
+        @MODES =
             scale: 'scale'
             cards: 'cards'
-        }
         @scope.search = @searchService
-        @scope.mode = searchParams.visualization || @MODES.scale 
+        @scope.mode = searchParams.visualization or @MODES.scale 
         @scope.tabs = {
             scale: {
                 name: @MODES.scale
@@ -36,15 +35,12 @@ class TabsCtrl
 
     changeVisualization: (tab) =>
         @scope.mode = tab.name unless @scope.mode == tab.name
-        params = _.extend(@location.search(), {
-            visualization: tab.name
-        })
+        params = _.extend @location.search(), visualization: tab.name
         @location.search(params)
 
     onRouteUpdate: =>
         visualizationMode = @location.search()['visualization']
         tab = @scope.tabs[visualizationMode] if visualizationMode?
-        if tab?
-            tab.active = true if !tab.active
+        tab.active = true if tab? and !tab.active
 
 angular.module('stories').controller 'tabsCtrl', TabsCtrl
