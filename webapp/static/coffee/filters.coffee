@@ -107,6 +107,13 @@ angular
     .filter("nl2br", ->
         return (str='')-> (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br />$2')
     )
+    .filter("linkDomain", ->
+        return (href)->
+            if angular.isString(href)
+                return href.split('/').slice(2)[0]
+            else 
+                return href
+    )
     .filter("thousandRound", ->
         return (n)-> Math.round(n/1000)*1000
     )
