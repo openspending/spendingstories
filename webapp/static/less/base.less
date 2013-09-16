@@ -453,7 +453,10 @@ header {
 			&.active {
 				background: lighten(@cards-bg-col, 20%);
 				.card-heading .card-equivalent {
-					color: darken(@brand-primary, 15%);
+					color: @gray-darker;
+				}
+				a {
+					color: darken(@brand-primary, 10%);
 				}
 			}
 			&.sticky {
@@ -464,10 +467,12 @@ header {
 				min-height: 90px;
 				h5 { 
 					font-size: 16px;
-					margin-bottom: 5px;
+					.card-equivalent{
+						margin-bottom: 5px;
+					}
 				}
 				.card-equivalent {
-					color: @brand-primary;
+					color: @gray-light;
 					font-weight: bold;
 				}
 			}
