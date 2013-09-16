@@ -17,7 +17,7 @@ angular
         [
             '$interpolateProvider', 
             '$routeProvider', 
-            'RestangularProvider',
+            'RestangularProvider',  
             '$httpProvider',
             '$cookiesProvider',
             ($interpolateProvider, $routeProvider, RestangularProvider, $http, $cookies)->
@@ -38,7 +38,7 @@ angular
                         reloadOnSearch: false
                     )
                     .when('/contribute/',
-                        controller: ContributeCtrl
+                        controller: 'contributeCtrl'
                         templateUrl: "./partial/contribute.html"
                     )
         ]
