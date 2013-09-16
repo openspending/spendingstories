@@ -21,6 +21,7 @@
                 <ul class="card-infos-list list-unstyled" ng-if="d.details_visible">
                     <li>Cost: [[d.value|humanizeValue:d.currency.iso_code]]</li>
                     <li>Year: [[d.year]]</li>
+                    <li ng-if="d.source">Source: <a href="[[d.source]]">[[d.source|linkDomain]]</a></li>
                 </ul>
 
             </div>
