@@ -15,12 +15,13 @@ from rest_framework import routers
 import views
 
 router = routers.DefaultRouter()
-router.register(r'stories'       , views.StoryViewSet)
-router.register(r'stories-nested', views.StoryNestedViewSet, base_name="stories-nested")
-router.register(r'themes'        , views.ThemeViewSet)
-router.register(r'currencies'    , views.CurrencyViewSet)
-router.register(r'meta'          , views.MetaViewSet     , base_name="meta")
-router.register(r'countries'     , views.CountryViewSet, base_name="countries")
+router.register(r'countries'           , views.CountryViewSet, base_name="countries")
+router.register(r'currencies'          , views.CurrencyViewSet)
+router.register(r'meta'                , views.MetaViewSet     , base_name="meta")
+router.register(r'stories'             , views.StoryViewSet)
+router.register(r'stories-nested'      , views.StoryNestedViewSet, base_name="stories-nested")
+router.register(r'themes'              , views.ThemeViewSet)
+router.register(r'filters/themes'      , views.UsedThemeViewSet,    base_name="used themes")
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browseable API.
@@ -30,5 +31,4 @@ urlpatterns = patterns('',
     url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'),
     url(r'^', include(router.urls))
 )
-
 # EOF
