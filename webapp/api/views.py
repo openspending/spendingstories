@@ -20,7 +20,6 @@ from django.forms import widgets
 from relevance import Relevance
 
 import serializers
-import filters
 
 # -----------------------------------------------------------------------------
 #
@@ -108,7 +107,12 @@ class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset         = Theme.objects.public()
     serializer_class = serializers.ThemeSerializer
-    filter_backends  = (filters.UsedThemes,)
+
+
+class UsedThemeViewSet(ThemeViewSet):
+    queryset = Theme.objects.used()
+
+
 
 # -----------------------------------------------------------------------------
 #
@@ -121,6 +125,7 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset         = Currency.objects.all()
     serializer_class = serializers.CurrencySerializer
+
 
 # -----------------------------------------------------------------------------
 #
@@ -154,3 +159,4 @@ class CountryViewSet(viewsets.ViewSet):
         return Response([{"iso_code": c[0], "name": c[1]} for c in webapp.core.fields.COUNTRIES])
 
 # EOF
+
