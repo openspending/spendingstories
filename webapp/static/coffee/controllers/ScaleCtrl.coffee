@@ -1,5 +1,5 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# The Scale controller handle the scale visualization mode behaviors 
+# The Scale controller handles the tabs' behaviors 
 # ──────────────────────────────────────────────────────────────────────────────
 class ScaleCtrl
 
