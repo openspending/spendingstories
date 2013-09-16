@@ -14,13 +14,13 @@ class FilterCtrl
         @scope.filter_visible = false
         # filter list values 
         @scope.currency_list = Currency.list
-        @scope.country_list  = Restangular.all('countries').getList()
-        @scope.theme_list    = Restangular.all('themes').getList()
+        @scope.country_list  = Restangular.all('filters/countries').getList()
+        @scope.theme_list    = Restangular.all('filters/themes').getList()
         # filters models 
         @scope.filters = 
             ### 
             Each filter can be described as following :
-                @stackable: 
+                @stackable:
                     the filter can be added to the "filter bar"
                 @type:      
                     the type of the filter value
