@@ -3,9 +3,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ScaleCtrl
 
-    @$inject: ['$scope', 'searchService']
+    @$inject: ['$scope', 'searchService', 'Page']
 
-    constructor: (@scope, @searchService) ->
+    constructor: (@scope, @searchService, @Page) ->
         @scope.search = @searchService
         # Select the closest story into the stickies as preview 
         @scope.$watch "this.search.results", @onResultsChanged
@@ -21,6 +21,12 @@ class ScaleCtrl
         @scope.nextStoryPreview = @nextStoryPreview 
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
+        @scope.$watch 'previewedStory', @changeTitle
+
+    
+    changeTitle: =>
+        parent_scope = @scope.$parent
+        parent_scope.setTitle parent_scope.MODES.scale, @scope.previewedStory.title if @scope.previewedStory?
 
     # Inherited from VisualizationCtrl
     onResultsChanged: =>

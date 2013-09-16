@@ -431,7 +431,7 @@ header {
 	}	
 
 	.cards-content {
-		@cards-width: 190px;
+		@cards-width: 220px;
 		@cards-padding: 15px;
 		@cards-bg-col: #403f3f;
 	
@@ -439,12 +439,12 @@ header {
 		.cards-grid {
 			margin-bottom: 10px;
 			padding-top:  40px;
-			padding-left:  35px;
+			padding-left:  55px;
 		}
 		.card {
 			cursor:pointer;
-			margin-right: 30px;
-			margin-bottom: 25px;
+			margin-right: 50px;
+			margin-bottom: 35px;
 			width: @cards-width;
 			height: @cards-width;
 			text-align: center;
@@ -453,7 +453,10 @@ header {
 			&.active {
 				background: lighten(@cards-bg-col, 20%);
 				.card-heading .card-equivalent {
-					// color: black;
+					color: @gray-darker;
+				}
+				a {
+					color: darken(@brand-primary, 10%);
 				}
 			}
 			&.sticky {
@@ -464,10 +467,12 @@ header {
 				min-height: 90px;
 				h5 { 
 					font-size: 16px;
-					margin-bottom: 5px;
+					.card-equivalent{
+						margin-bottom: 5px;
+					}
 				}
 				.card-equivalent {
-					color: @brand-primary;
+					color: @gray-light;
 					font-weight: bold;
 				}
 			}

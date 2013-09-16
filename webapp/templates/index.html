@@ -23,41 +23,41 @@
         <script type="text/javascript"   src="{% static 'js/vendor/d3.v3.js' %}"></script>
 
         <script type="text/coffeescript" src="{% static 'coffee/app.coffee' %}"></script>    
-        <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/services/Meta.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/services/Currency.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/services/Search.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/CardsCtrl.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/controllers/ScaleCtrl.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/controllers/HeaderCtrl.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/controllers/FilterCtrl.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/controllers/TabsCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/ContributeCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/FilterCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/HeaderCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/PageCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/ScaleCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/TabsCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/directives/ScalePoints.coffee' %}"></script>
-        <script type="text/coffeescript" src="{% static 'coffee/directives/StickToTop.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/directives/SelectPicker.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/directives/StickToTop.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Currency.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Meta.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Page.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Search.coffee' %}"></script>
     {% endcompress %}
 {% endblock %}
 
 {% block content %}
-    <div ng-app="stories" id="ng-app">        
-        {% include "partials/header.html" %}
-        <div ng-view id="content" class="container"></div>
-        <footer>
-            <div class="container">            
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 col-md-offset-6 col">
-                        <a href="http://okfn.org" target="_blank">
-                            <img src="{% static 'img/okfn-logo.png' %}" />
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-md-3 col">                    
-                        <a href="http://jplusplus.org" target="_blank">
-                            <img src="{% static 'img/jpp-logo.png' %}" />
-                        </a>
-                    </div>
+    {% include "partials/header.html" %}
+    <div ng-view id="content" class="container"></div>
+    <footer>
+        <div class="container">            
+            <div class="row">
+                <div class="col-sm-6 col-md-3 col-md-offset-6 col">
+                    <a href="http://okfn.org" target="_blank">
+                        <img src="{% static 'img/okfn-logo.png' %}" />
+                    </a>
+                </div>
+                <div class="col-sm-6 col-md-3 col">                    
+                    <a href="http://jplusplus.org" target="_blank">
+                        <img src="{% static 'img/jpp-logo.png' %}" />
+                    </a>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 {% endblock %}

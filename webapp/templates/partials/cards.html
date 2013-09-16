@@ -7,22 +7,23 @@
              ng-class="{active: d.details_visible, sticky: d.sticky }">
             <div class="row card-heading">
                 
-                <h5 class="card-equivalent" ng-if="!d.details_visible">
+                <h6 class="card-equivalent" ng-if="!d.details_visible">
                     [[d|queryEquivalent]]
                 </h5>
-                <h5 class="card-equivalent" ng-if="d.details_visible">
+                <h6 class="card-equivalent" ng-if="d.details_visible">
                     [[search.query|humanizeValue:search.currency]]&nbsp;[[d|queryEquivalent]]
                 </h5>
                 <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:35 ]]</h5>
                 <h5 class="title" ng-if="d.details_visible">[[ d.title ]]</h5>
             </div>
             <div class="card-infos row">
-                <img ng-if="!d.details_visible" ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" />
+                <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length && !d.details_visible" />
                 <ul class="card-infos-list list-unstyled" ng-if="d.details_visible">
                     <li>Cost: [[d.value|humanizeValue:d.currency.iso_code]]</li>
                     <li>Year: [[d.year]]</li>
+                    <li ng-if="d.source">Source: <a href="[[d.source]]">[[d.source|linkDomain]]</a></li>
                 </ul>
-
+                <a class="embed" ng-if="d.details_visible" ><i class="icon-share"></i>&nbsp;Click to copy the embed code</a>
             </div>
         </div>
     </div>
