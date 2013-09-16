@@ -5,13 +5,13 @@ class CardsCtrl
     
     @$inject: ['$scope', 'searchService']
 
-    constructor: (@scope, @searchService) ->
+    constructor: (@scope, @searchService, @Page) ->
         # ──────────────────────────────────────────────────────────────────────
         # scope function binding  
         # ──────────────────────────────────────────────────────────────────────
         @scope.search = @searchService
         @scope.showDetails = @showDetails
-    
+
     showDetails: (d)=>
         # show a card detail 
         d.details_visible = !d.details_visible

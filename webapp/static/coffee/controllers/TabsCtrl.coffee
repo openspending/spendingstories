@@ -4,14 +4,14 @@
 # ────────────────────────────────────────────────────────────────────────────── 
 class TabsCtrl
 
-    @$inject: ['$scope', '$location', 'searchService']
+    @$inject: ['$scope', '$location', 'searchService', 'Page']
 
-    constructor: (@scope, @location, @searchService) ->
+    constructor: (@scope, @location, @searchService, @Page) ->
         # ──────────────────────────────────────────────────────────────────────
         # constructor & instance variables
         # ──────────────────────────────────────────────────────────────────────
         searchParams = @location.search()
-        @MODES =
+        @scope.MODES = @MODES = 
             scale: 'scale'
             cards: 'cards'
 
@@ -24,15 +24,19 @@ class TabsCtrl
             scale: 
                 name: @MODES.scale
                 active: @isScaleMode()
+                title: undefined
             cards: 
                 name: @MODES.cards
                 active: @isCardsMode()
+                title: undefined
 
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
         # ──────────────────────────────────────────────────────────────────────
         # On URL parameters updated we want to update search results
         @scope.$on "$routeUpdate", @onRouteUpdate
+        # On mode changes we want to get the appropriated title
+        @scope.$watch 'mode', @onModeChanged
 
         # ──────────────────────────────────────────────────────────────────────
         # Scope function binding 
@@ -40,12 +44,29 @@ class TabsCtrl
         @scope.changeVisualization = @changeVisualization
         @scope.isScaleMode = @isScaleMode        
         @scope.isCardsMode = @isCardsMode
+        @scope.setTitle    = @setTitle
+
+    setTitle: (tab, title)=>
+        @scope.tabs[tab].title = title 
+        @updateTitle()
+
+
+    updateTitle: =>
+        title =  @scope.mode
+        subtitle = @scope.tabs[@scope.mode].title
+        if subtitle?
+            title = "#{title} / #{subtitle}"
+        @Page.setTitle title
+
 
     isCardsMode: ()=>
         @scope.mode == @MODES.cards
 
     isScaleMode: ()=>
         @scope.mode == @MODES.scale
+
+    onModeChanged: ()=>
+        title = angular.element($('.active')).scope().title 
 
     changeVisualization: (tab) =>
         # change visualization mode & URL params
