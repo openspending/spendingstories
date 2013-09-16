@@ -431,7 +431,7 @@ header {
 	}	
 
 	.cards-content {
-		@cards-width: 190px;
+		@cards-width: 220px;
 		@cards-padding: 15px;
 		@cards-bg-col: #403f3f;
 	
@@ -439,12 +439,12 @@ header {
 		.cards-grid {
 			margin-bottom: 10px;
 			padding-top:  40px;
-			padding-left:  35px;
+			padding-left:  55px;
 		}
 		.card {
 			cursor:pointer;
-			margin-right: 30px;
-			margin-bottom: 25px;
+			margin-right: 50px;
+			margin-bottom: 35px;
 			width: @cards-width;
 			height: @cards-width;
 			text-align: center;
@@ -453,7 +453,7 @@ header {
 			&.active {
 				background: lighten(@cards-bg-col, 20%);
 				.card-heading .card-equivalent {
-					// color: black;
+					color: darken(@brand-primary, 15%);
 				}
 			}
 			&.sticky {
