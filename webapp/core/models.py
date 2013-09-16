@@ -23,17 +23,65 @@ YEAR_CHOICES = []
 for r in range(1999, (datetime.datetime.now().year + 1)):
     YEAR_CHOICES.append((r,r))
 
+
+class UsedModelManager(models.Manager):
+    def used(self):
+        """
+
+        Returns only used entities in other models. 
+        
+            We have 2 models, A & B. A models can be retrieved from B model but 
+            not the opposite (like in 1 to n relationships). 
+
+            Thus, this model manager can be used to find all A models --
+            `current_queryset` -- that are actually used in one or more B models
+            -- `targeted_queryset`. 
+
+
+        This manager usage is based on inheritance: 
+            - every subclass have to define its own Meta class with 3 subattributes:
+                - target: the targeted queryset
+                - model_filter: the filter to apply to the targeted queryset B.filter(model_filter)
+                - attr: the targeted attribute of the current model to check A[attr]
+        """ 
+        results    = list()
+        meta_args  = self.__class__.Meta()
+        target_qs  = meta_args.target
+        target_qs_filter = meta_args.model_filter
+
+        current_qs = self.get_query_set()
+        current_qs_attr = meta_args.attr
+        for obj in current_qs:
+            obj_value = getattr(obj, current_qs_attr)
+            kwargs = {
+                target_qs_filter: obj_value
+            }
+            # we filter the targeted queryset, if we have some results then it
+            # means our current object is used
+            if not target_qs.filter(**kwargs).count() > 0:
+                kwargs = {
+                    current_qs_attr: obj_value
+                }
+                current_qs = current_qs.exclude(**kwargs)
+
+        return current_qs
+
 # -----------------------------------------------------------------------------
 #
 #    THEMES
 #
 # -----------------------------------------------------------------------------
-class ThemeManager(models.Manager):
+class ThemeManager(UsedModelManager):
+    class Meta:
+        attr    = 'slug'
+        model_filter = '{0}__{1}'.format('themes', attr)
+
     """
     Manager for Stories
     """
     def public(self):
         return self.get_query_set().filter(active=True)
+
 
 class Theme(models.Model):
     title       = models.CharField(max_length=80)
@@ -132,3 +180,6 @@ class Story(models.Model):
         super(Story, self).save(*args, **kwargs)
 
 # EOF
+
+
+ThemeManager.Meta.target = Story.objects.public()
