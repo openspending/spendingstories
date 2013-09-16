@@ -19,9 +19,11 @@ router.register(r'countries'           , views.CountryViewSet, base_name="countr
 router.register(r'currencies'          , views.CurrencyViewSet)
 router.register(r'meta'                , views.MetaViewSet     , base_name="meta")
 router.register(r'stories'             , views.StoryViewSet)
-router.register(r'stories-nested'      , views.StoryNestedViewSet, base_name="stories-nested")
+router.register(r'stories-nested'      , views.StoryNestedViewSet,  base_name="stories-nested")
 router.register(r'themes'              , views.ThemeViewSet)
 router.register(r'filters/themes'      , views.UsedThemeViewSet,    base_name="used themes")
+router.register(r'filters/countries'   , views.UsedCountryViewSet,  base_name="used countries")
+router.register(r'filters/currencies'  , views.UsedCurrencyViewSet,  base_name="used currencies")
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browseable API.

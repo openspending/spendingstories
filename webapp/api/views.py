@@ -109,11 +109,6 @@ class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.ThemeSerializer
 
 
-class UsedThemeViewSet(ThemeViewSet):
-    queryset = Theme.objects.used()
-
-
-
 # -----------------------------------------------------------------------------
 #
 #    CURRENCY
@@ -151,7 +146,6 @@ class MetaViewSet(viewsets.ViewSet):
 # -----------------------------------------------------------------------------
 import webapp.core.fields
 class CountryViewSet(viewsets.ViewSet):
-
     def list(self, request):
         """
         Provide Countries
@@ -160,3 +154,53 @@ class CountryViewSet(viewsets.ViewSet):
 
 # EOF
 
+class UsedReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+        qs = self.queryset 
+        for element in qs:
+            value = getattr(element, self.obj_attr)
+            kwargs = {
+                self.target_filter: value
+            }
+            if not self.target_qs.filter(**kwargs).count() > 0:
+                kwargs = {
+                    self.obj_attr: value
+                }
+                qs = qs.exclude(**kwargs)
+        return qs
+
+class UsedFieldViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        results  = []
+        response = self.viewset().list(request)
+        for element in response.data:
+
+            value = element[self.obj_attr]
+            kwargs = {
+                self.target_filter: value
+            }
+            if self.target_qs.filter(**kwargs).count() > 0:
+                results.append(element)
+        return Response(results)
+
+class UsedThemeViewSet(UsedReadOnlyModelViewSet):
+    obj_attr         = 'slug'
+    target_filter    = 'themes__%s' % obj_attr
+    target_qs        = Story.objects.public()
+    queryset         = Theme.objects.public()
+    serializer_class = serializers.ThemeSerializer
+
+class UsedCurrencyViewSet(UsedReadOnlyModelViewSet):
+    obj_attr         = 'iso_code'
+    target_filter    = 'currency'
+    target_qs        = Story.objects.public()
+    queryset         = Currency.objects.all()
+    serializer_class = serializers.CurrencySerializer
+
+
+class UsedCountryViewSet(UsedFieldViewSet):
+    viewset       = CountryViewSet
+    target_filter = 'country'
+    obj_attr      = 'iso_code'
+    target_qs     = Story.objects.public()
