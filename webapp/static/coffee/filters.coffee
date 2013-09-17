@@ -1,3 +1,5 @@
+"use_strict"
+
 OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
     # TODO: avoid reduncy 
     humanize: (value, suffix, plural=false)->
@@ -158,5 +160,37 @@ angular
                     wording_end = "times"
 
                 return "are #{result} #{wording_end}"
+        ]
+    )
+    .filter("cardEquivalent", ["searchService", (searchService)->
+            return (d)->
+                console.log d
+                TYPES = 
+                    equivalent: 'equivalent'
+                    multiple: 'multiple'
+                    percentage: 'percentage'
+                    half: 'half'
+
+                type  = d.relevance_type
+                val   = d.relevance_value
+                score = d.relevance_score 
+                if type is TYPES.equivalent
+                    words = 'equals'
+                if type is TYPES.multiple
+                    words = "#{val} times"
+                if type is TYPES.percentage
+                    words = "~ #{val * 100}%"
+
+                if type is TYPES.half
+                    if d.type is 'discrete'
+                        words = 'half of' 
+                    else
+                        words = '6 months of'
+
+                return words + " -- relev: #{score}"
+
+
+
+
         ]
     )
