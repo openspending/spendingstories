@@ -108,6 +108,10 @@ class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset         = Theme.objects.public()
     serializer_class = serializers.ThemeSerializer
 
+class UsedThemeViewSet(ThemeViewSet):
+    serializer_class = serializers.UsedThemeSerializer
+    filter_backends = (serializers.UsedModelFilter,)
+
 
 # -----------------------------------------------------------------------------
 #
@@ -121,6 +125,9 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset         = Currency.objects.all()
     serializer_class = serializers.CurrencySerializer
 
+class UsedCurrencyViewSet(CurrencyViewSet):
+    serializer_class = serializers.UsedCurrencySerializer
+    filter_backends = (serializers.UsedModelFilter,)
 
 # -----------------------------------------------------------------------------
 #
@@ -146,61 +153,44 @@ class MetaViewSet(viewsets.ViewSet):
 # -----------------------------------------------------------------------------
 import webapp.core.fields
 class CountryViewSet(viewsets.ViewSet):
+    def create_element(self, c):
+        elem = {"iso_code": c[0], "name": c[1]}
+        return elem
+
+    def create_list(self, request):
+        return [ self.create_element(c) for c in webapp.core.fields.COUNTRIES]
+
     def list(self, request):
         """
         Provide Countries
         """
-        return Response([{"iso_code": c[0], "name": c[1]} for c in webapp.core.fields.COUNTRIES])
-
-# EOF
-
-class UsedReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
-    def get_queryset(self):
-        qs = self.queryset 
-        for element in qs:
-            value = getattr(element, self.obj_attr)
-            kwargs = {
-                self.target_filter: value
-            }
-            if not self.target_qs.filter(**kwargs).count() > 0:
-                kwargs = {
-                    self.obj_attr: value
-                }
-                qs = qs.exclude(**kwargs)
-        return qs
-
-class UsedFieldViewSet(viewsets.ViewSet):
-
-    def list(self, request):
-        results  = []
-        response = self.viewset().list(request)
-        for element in response.data:
-
-            value = element[self.obj_attr]
-            kwargs = {
-                self.target_filter: value
-            }
-            if self.target_qs.filter(**kwargs).count() > 0:
-                results.append(element)
-        return Response(results)
-
-class UsedThemeViewSet(UsedReadOnlyModelViewSet):
-    obj_attr         = 'slug'
-    target_filter    = 'themes__%s' % obj_attr
-    target_qs        = Story.objects.public()
-    queryset         = Theme.objects.public()
-    serializer_class = serializers.ThemeSerializer
-
-class UsedCurrencyViewSet(UsedReadOnlyModelViewSet):
-    obj_attr         = 'iso_code'
-    target_filter    = 'currency'
-    target_qs        = Story.objects.public()
-    queryset         = Currency.objects.all()
-    serializer_class = serializers.CurrencySerializer
+        return Response(self.create_list(request))
 
 
-class UsedCountryViewSet(UsedFieldViewSet):
-    viewset       = CountryViewSet
-    target_filter = 'country'
-    obj_attr      = 'iso_code'
-    target_qs     = Story.objects.public()
+class UsedCountryViewSet(CountryViewSet):
+    """ 
+    API endpoint to return countries with an usage status included to know if 
+    the given countries are used in one or more stories. Add an "used" attribute 
+    to Countries
+    ### Filters:
+    - `isUsed` (Boolean)
+
+    """ 
+
+    stories = Story.objects.public()
+
+    def create_element(self, c):
+        country = super(UsedCountryViewSet, self).create_element(c)
+        country['used'] = self.is_used(c)
+        return country
+
+    def create_list(self, request):
+        countries = super(UsedCountryViewSet, self).create_list(request)
+        is_used = request.QUERY_PARAMS.get('isUsed', None)
+        if is_used is not None:
+            b_is_used = is_used != 'False' and is_used != 'false'
+            countries = filter(lambda x: x['used'] == b_is_used, countries)
+        return countries
+
+    def is_used(self, c):
+        return self.stories.filter(country=c[0]).count() > 0
