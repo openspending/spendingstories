@@ -38,11 +38,7 @@ class Processor(Processor):
                         if amount % one_month < one_week * 0.25:
                             return Relevance(8, Relevance.RELEVANCE_TYPE_MONTH, int(amount / one_month))
             else:
-                if ratio < 1002:
-                    # x200, x500, x1000. For instance: the query is twice the amount
-                    nice_multiple = self.__nice_multiple_for(ratio)
-                    if nice_multiple:
-                        return Relevance(8, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
+                return self.__nice_multiple_for(ratio)
         return Relevance(0)
 
 # EOF

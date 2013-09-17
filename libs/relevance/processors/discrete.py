@@ -12,6 +12,7 @@
 # -----------------------------------------------------------------------------
 
 from relevance import Relevance, Processor
+import math
 
 class Processor(Processor):
 
@@ -22,20 +23,27 @@ class Processor(Processor):
             return Relevance(10, Relevance.RELEVANCE_TYPE_EQUIVALENT)
         else:
             if ratio < 100:
+                percentage = ratio / 100
+                relevance_value = round(ratio) / 100 
+
+                relevance  = 6
+                relevance_type = Relevance.RELEVANCE_TYPE_PERCENTAGE
                 if not ratio < 1:
                     if 49 < ratio < 51:
-                        # near
-                        return Relevance(9, Relevance.RELEVANCE_TYPE_HALF, 0.5)
+                        relevance       = 9
+                        relevance_type  = Relevance.RELEVANCE_TYPE_HALF
+                        relevance_value = 0.5
                     else:
                         if round(ratio) % 10 == 0:
-                            # multiple of 10
-                            return Relevance(8, Relevance.RELEVANCE_TYPE_MULTIPLE, round(ratio)/100)
+                            relevance = 8
+                        elif round(ratio) % 5 == 0:
+                            relevance = 7
+                else:
+                    relevance = 5
+                    relevance_type = Relevance.RELEVANCE_TYPE_PERCENTAGE
+                return Relevance(relevance, relevance_type, relevance_value)
             else:
-                if ratio < 1002:
-                    # x200, x500, x1000. For instance: the query is twice the amount
-                    nice_multiple = self.__nice_multiple_for(ratio)
-                    if nice_multiple:
-                        return Relevance(8, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
+                return self.__nice_multiple_for(ratio)
         return Relevance(0)
 
 # EOF

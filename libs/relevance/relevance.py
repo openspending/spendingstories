@@ -63,6 +63,7 @@ class Relevance:
     RELEVANCE_TYPE_HALF       = "half"
     RELEVANCE_TYPE_EQUIVALENT = "equivalent"
     RELEVANCE_TYPE_MULTIPLE   = "multiple"
+    RELEVANCE_TYPE_PERCENTAGE = "percentage"
     RELEVANCE_TYPE_WEEK       = "weeks"
     RELEVANCE_TYPE_MONTH      = "months"
 
