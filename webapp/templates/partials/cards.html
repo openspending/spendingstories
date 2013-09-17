@@ -8,10 +8,10 @@
             <div class="row card-heading">
                 
                 <h6 class="card-equivalent" ng-if="!d.details_visible">
-                    [[d|queryEquivalent]]
+                    [[d|cardEquivalent]]
                 </h5>
                 <h6 class="card-equivalent" ng-if="d.details_visible">
-                    [[search.query|humanizeValue:search.currency]]&nbsp;[[d|queryEquivalent]]
+                    [[search.query|humanizeValue:search.currency]]&nbsp;[[d|cardEquivalent]]
                 </h5>
                 <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:35 ]]</h5>
                 <h5 class="title" ng-if="d.details_visible">[[ d.title ]]</h5>
