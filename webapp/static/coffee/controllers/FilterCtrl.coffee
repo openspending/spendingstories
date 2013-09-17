@@ -13,9 +13,9 @@ class FilterCtrl
         # Are the filters select lists visible
         @scope.filter_visible = false
         # filter list values 
-        @scope.currency_list = Currency.list
-        @scope.country_list  = Restangular.all('filters/countries').getList()
-        @scope.theme_list    = Restangular.all('filters/themes').getList()
+        @scope.currency_list = Restangular.all('filters/currencies').getList isUsed:true
+        @scope.country_list  = Restangular.all('filters/countries').getList isUsed:true
+        @scope.theme_list    = Restangular.all('filters/themes').getList isUsed:true
         # filters models 
         @scope.filters = 
             ### 
