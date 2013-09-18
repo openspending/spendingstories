@@ -21,8 +21,8 @@ class SubProcessor(Processor):
         relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
         ratio = amount/compared_to * 100
 
-        unhandled_types = (Relevance.RELEVANCE_TYPE_EQUIVALENT, Relevance.RELEVANCE_TYPE_MULTIPLE)
-        if not relevance.type in unhandled_types:
+        if not relevance.type in self.supertypes():
+            # if it has not been yet processed as: equivalent, half or multiple
             relevance.type  = Relevance.RELEVANCE_TYPE_PERCENTAGE
             if relevance.type is Relevance.RELEVANCE_TYPE_HALF:
                 relevance.value = 0.5

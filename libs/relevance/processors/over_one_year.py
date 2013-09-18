@@ -19,16 +19,9 @@ class SubProcessor(Processor):
     def compute(self, amount, compared_to, *args, **kwargs):
         """ compute the relevance for an over_one_year reference """
         relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
-        time_equivalence = Relevance.RELEVANCE_TYPE_TIME
-
-        if relevance.type is Relevance.RELEVANCE_TYPE_HALF:
-            relevance.value = {
-                'months': 6,
-                'weeks': 0,
-                'days': 0
-            }
-            return relevance
-        elif not relevance.type in (Relevance.RELEVANCE_TYPE_EQUIVALENT, Relevance.RELEVANCE_TYPE_MULTIPLE):
+        time_equivalence =  Relevance.RELEVANCE_TYPE_TIME
+        if not relevance.type in self.supertypes():
+            # if it has not been yet processed as: equivalent, half or multiple
             relevance.type = time_equivalence
             equivalence    = self._compute_value(amount, compared_to)
 

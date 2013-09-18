@@ -60,7 +60,12 @@ class Processor(object):
             relevance = Relevance(0, Relevance.RELEVANCE_TYPE_NONE)
         return relevance
 
-
+    def supertypes(self):
+        return (
+            Relevance.RELEVANCE_TYPE_EQUIVALENT, 
+            Relevance.RELEVANCE_TYPE_MULTIPLE,
+            Relevance.RELEVANCE_TYPE_HALF
+        )
 
 
 
