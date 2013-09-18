@@ -12,12 +12,12 @@
 # -----------------------------------------------------------------------------
 from relevance import Relevance
 
-class Processor:
+class Processor(object):
     """ Base class to compute a relevance """
 
     def compute(self, amount, compared_to, *args, **kwargs):
         """ Should be implemented and return a Relevance instance """
-        raise Exception("do be implemented")
+        return self.__nice_equivalence(amount, compared_to)
 
     def __nice_multiple_for(self, ratio):
         """ x200, x500, x1000. For instance: the query is twice the amount """
@@ -31,7 +31,9 @@ class Processor:
             if ratio_rounded in nice_range:
                 nice_multiple = i
         if not nice_multiple:
-            nice_multiple = round(ratio_rounded / 100, 2)
+
+            nice_multiple =  round(ratio_rounded / 100, 1)
+
 
         if nice_multiple in [2, 5, 10]:
             relevance = 8
@@ -39,6 +41,28 @@ class Processor:
             relevance = 7
         if nice_multiple > 10:
             relevance = 5
-        return Relevance(relevance, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
+        return Relevance(
+            relevance, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple
+        )
+
+
+    def __nice_equivalence(self, amount, compared_to):
+        """ ratio equivalence if it's 50% """ 
+        ratio = amount/compared_to * 100
+        relevance = None
+        if 90 <= ratio <= 110:
+            relevance =  Relevance(10, Relevance.RELEVANCE_TYPE_EQUIVALENT)
+        elif 49 < ratio < 51:
+            relevance =  Relevance(9, Relevance.RELEVANCE_TYPE_HALF, 0.5)
+        elif ratio > 100:
+            relevance = self.__nice_multiple_for(ratio)
+        else:
+            relevance = Relevance(0, Relevance.RELEVANCE_TYPE_NONE)
+        return relevance
+
+
+
+
+
 
 # EOF
