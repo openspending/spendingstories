@@ -13,7 +13,7 @@
 
 from relevance import Processor, Relevance
 
-class Processor(Processor):
+class SubProcessor(Processor):
     def compute(self, amount, compared_to, *args, **kwargs):
         ratio = amount/compared_to * 100
         if 90 <= ratio <= 110:
