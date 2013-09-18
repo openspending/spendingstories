@@ -14,36 +14,28 @@
 from relevance import Relevance, Processor
 import math
 
-class Processor(Processor):
+class SubProcessor(Processor):
 
     def compute(self, amount, compared_to, *args, **kwargs):
         """ compute the relevance for a discrete reference """
+        relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
         ratio = amount/compared_to * 100
-        if 90 <= ratio <= 110:
-            return Relevance(10, Relevance.RELEVANCE_TYPE_EQUIVALENT)
-        else:
-            if ratio < 100:
-                percentage = ratio / 100
-                relevance_value = round(ratio) / 100 
 
-                relevance  = 6
-                relevance_type = Relevance.RELEVANCE_TYPE_PERCENTAGE
-                if not ratio < 1:
-                    if 49 < ratio < 51:
-                        relevance       = 9
-                        relevance_type  = Relevance.RELEVANCE_TYPE_HALF
-                        relevance_value = 0.5
-                    else:
-                        if round(ratio) % 10 == 0:
-                            relevance = 8
-                        elif round(ratio) % 5 == 0:
-                            relevance = 7
-                else:
-                    relevance = 5
-                    relevance_type = Relevance.RELEVANCE_TYPE_PERCENTAGE
-                return Relevance(relevance, relevance_type, relevance_value)
+        unhandled_types = (Relevance.RELEVANCE_TYPE_EQUIVALENT, Relevance.RELEVANCE_TYPE_MULTIPLE)
+        if not relevance.type in unhandled_types:
+            relevance.type  = Relevance.RELEVANCE_TYPE_PERCENTAGE
+            if relevance.type is Relevance.RELEVANCE_TYPE_HALF:
+                relevance.value = 0.5
             else:
-                return self.__nice_multiple_for(ratio)
-        return Relevance(0)
+                rounded_ratio = round(ratio)
+                if ratio > 1:
+                    if  rounded_ratio % 10 == 0:
+                        relevance.score = 8
+                    elif rounded_ratio % 5 == 0:
+                        relevance.score = 7
+                else:
+                    relevance.score = 6
 
+                relevance.value = rounded_ratio/100
+        return relevance
 # EOF
