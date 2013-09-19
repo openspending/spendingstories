@@ -63,8 +63,9 @@ class Relevance:
     RELEVANCE_TYPE_HALF       = "half"
     RELEVANCE_TYPE_EQUIVALENT = "equivalent"
     RELEVANCE_TYPE_MULTIPLE   = "multiple"
-    RELEVANCE_TYPE_WEEK       = "weeks"
-    RELEVANCE_TYPE_MONTH      = "months"
+    RELEVANCE_TYPE_PERCENTAGE = "percentage"
+    RELEVANCE_TYPE_TIME       = "time"
+    RELEVANCE_TYPE_NONE       = "none"
 
     def __init__(self, score=None, relevance_type=None, value=None):
         self.score = score
@@ -74,7 +75,7 @@ class Relevance:
     def compute(self, amount, compared_to, story_type="discrete", **extra_fields):
         """ choose the right processor related to the nature of the reference (discrete or over_one_year etc...) """
         import processors
-        processor = eval("processors.%s.Processor()" % story_type)
+        processor = eval("processors.%s.SubProcessor()" % story_type)
         self.__set_values(*processor.compute(float(amount), float(compared_to), **extra_fields).values())
         return self.values()
 

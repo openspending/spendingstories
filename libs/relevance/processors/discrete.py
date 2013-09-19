@@ -12,30 +12,30 @@
 # -----------------------------------------------------------------------------
 
 from relevance import Relevance, Processor
+import math
 
-class Processor(Processor):
+class SubProcessor(Processor):
 
     def compute(self, amount, compared_to, *args, **kwargs):
         """ compute the relevance for a discrete reference """
+        relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
         ratio = amount/compared_to * 100
-        if 90 <= ratio <= 110:
-            return Relevance(10, Relevance.RELEVANCE_TYPE_EQUIVALENT)
-        else:
-            if ratio < 100:
-                if not ratio < 1:
-                    if 49 < ratio < 51:
-                        # near
-                        return Relevance(9, Relevance.RELEVANCE_TYPE_HALF, 0.5)
-                    else:
-                        if round(ratio) % 10 == 0:
-                            # multiple of 10
-                            return Relevance(8, Relevance.RELEVANCE_TYPE_MULTIPLE, round(ratio)/100)
-            else:
-                if ratio < 1002:
-                    # x200, x500, x1000. For instance: the query is twice the amount
-                    nice_multiple = self.__nice_multiple_for(ratio)
-                    if nice_multiple:
-                        return Relevance(8, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
-        return Relevance(0)
 
+        if not relevance.type in self.supertypes():
+            # if it has not been yet processed as: equivalent, half or multiple
+            relevance.type  = Relevance.RELEVANCE_TYPE_PERCENTAGE
+            if relevance.type is Relevance.RELEVANCE_TYPE_HALF:
+                relevance.value = 0.5
+            else:
+                rounded_ratio = round(ratio)
+                if ratio > 1:
+                    if  rounded_ratio % 10 == 0:
+                        relevance.score = 8
+                    elif rounded_ratio % 5 == 0:
+                        relevance.score = 7
+                else:
+                    relevance.score = 6
+
+                relevance.value = rounded_ratio/100
+        return relevance
 # EOF

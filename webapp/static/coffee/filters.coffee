@@ -1,3 +1,5 @@
+"use_strict"
+
 OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
     # TODO: avoid reduncy 
     humanize: (value, suffix, plural=false)->
@@ -144,19 +146,82 @@ angular
                         if decimals == 0
                             decimals = 1
                 result = OSS.round result, decimals
-
-
+ 
                 if result < Math.pow(10,3) || result > Math.pow(10, 15)
                     result = Humanize.intcomma(result, decimals)
                 else
                     result = Humanize.intword(result, decimals)
-
+ 
                 if use_percentage
                     result = result + '%'
                     wording_end = 'of'
-                else
+                 else
                     wording_end = "times"
 
                 return "are #{result} #{wording_end}"
+
+
+
+        ]
+    )
+    .filter("cardEquivalent", ["searchService", (searchService)->
+            return (d)->
+                relevance_type  = d.relevance_type
+                relevance_value = d.relevance_value
+                relevance_score = d.relevance_score
+                stupid_plural = (str, n)->
+                    result = str
+                    if n > 1
+                        result += 's'
+                    return result 
+
+                percentage_equivalent = (d)->
+                    value = d.current_value_usd
+                    ratio = searchService.query_usd / value 
+                    percentage = ratio * 100
+                    decimals = 1
+                    result = percentage
+                    if percentage >= 1 
+                        decimals = 0
+                    if percentage < 1
+                        decimals = OSS.getDecimalNumber(percentage)
+                        if decimals == 0
+                            decimals = 1
+                    result = OSS.round result, decimals
+                    if result < Math.pow(10,3) || result > Math.pow(10, 15)
+                        result = Humanize.intcomma(result, decimals)
+                    else
+                        result = Humanize.intword(result, decimals)
+
+                    return "#{result}%"
+
+                time_equivalent = (d)->
+                    m = d.relevance_value['months']
+                    w = d.relevance_value['weeks']
+                    d = d.relevance_value['days']
+                    result =  []
+                    months_part = stupid_plural("#{m} month", m)
+                    weeks_part  = stupid_plural("#{w} week", w)
+                    days_part   = stupid_plural("#{d} day", d) 
+                    result.push(months_part) if m > 0
+                    result.push(weeks_part)  if w > 0 
+                    result.push(days_part)   if d > 0 and w == 0 or d > 1 and w > 0  
+                    return result.join(' ')
+               
+                if relevance_type is 'equivalent'
+                    return 'equivalent to'
+                else
+                    if relevance_type is 'multiple'
+                        return "#{relevance_value}x"
+                    else
+                        if d.type is "discrete"
+                           return percentage_equivalent(d)
+                        else if d.type is "over_one_year"
+                            return time_equivalent(d)
+
+
+
+
+
         ]
     )

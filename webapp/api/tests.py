@@ -103,14 +103,23 @@ class APIStoryTestCase(SimpleTestCase):
             assert len(response.data) > 0
             for story in response.data:
                 self.assertIsNotNone(story['relevance_score'])
-                if story['relevance_score'] != 0:
+                self.assertFalse(story['relevance_type'] is Relevance.RELEVANCE_TYPE_NONE)
+                if story['relevance_score'] > 8:
                     count[relevance_for] += 1
-                    if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_WEEK, Relevance.RELEVANCE_TYPE_MONTH) :
-                        if story['relevance_type'] == Relevance.RELEVANCE_TYPE_WEEK:
-                            reverse_computing = float(story['relevance_value']) * story['current_value_usd']/52
-                        elif story['relevance_type'] == Relevance.RELEVANCE_TYPE_MONTH:
-                            reverse_computing = float(story['relevance_value']) * story['current_value_usd']/12
+                    if story['type'] is 'over_one_year':
+                        accepted_types = (
+                            Relevance.RELEVANCE_TYPE_TIME, 
+                            Relevance.RELEVANCE_TYPE_MULTIPLE, 
+                            Relevance.RELEVANCE_TYPE_EQUIVALENCE,
+                            Relevance.RELEVANCE_TYPE_HALF,
+                        )
+                        self.asserTrue(story['relevance_type'] in accepted_types)
+                    if story['relevance_type'] is Relevance.RELEVANCE_TYPE_TIME:
+                        value = story['relevance_value']
+                        day_value = story['current_value_usd'] / 360 
+                        reverse_computing = (value['months'] * 30 + value['weeks'] * 7 + value['days']) * day_value
                         accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+
                         debug = "\n"
                         debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
                         debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
