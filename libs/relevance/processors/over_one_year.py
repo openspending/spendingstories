@@ -74,7 +74,7 @@ class SubProcessor(Processor):
             # in that case it's useless to compute a time equivalence
             weeks  = 0
             months = 0
-            days   = 1 if total_days > 0.89 else 0 
+            days   = 1 if total_nb_days > 0.9 else 0 
         else: 
             weeks  = math.floor((total_nb_days / weeks_days  ) % 4  )
             months = math.floor((total_nb_days / months_days ) % 12 )

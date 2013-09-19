@@ -20,7 +20,7 @@ class SubProcessor(Processor):
         """ compute the relevance for a discrete reference """
         relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
         ratio = (amount/compared_to) * 100
-        print "compute(%f, %f) - ratio: %f " % (amount, compared_to, ratio)
+        # print "compute(%f, %f) - ratio: %f " % (amount, compared_to, ratio)
 
         if not relevance.type in self.supertypes():
             # if it has not been yet processed as: equivalent, half or multiple
@@ -42,8 +42,5 @@ class SubProcessor(Processor):
 
     def is_multiple_of(self, n, m, tolerance):
         mod_nm   = n % m 
-        multiple = mod_nm == 0 or mod_nm <= tolerance or mod_nm >= (m - tolerance)
-
-        print "is_multiple_of(%d, %d, %d) => \n\tmod: %s \n\tResult: %s" % (n, m, tolerance,mod_nm, multiple)
-        return multiple
+        return mod_nm == 0 or mod_nm <= tolerance or mod_nm >= (m - tolerance)
 # EOF
