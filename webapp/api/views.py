@@ -156,19 +156,12 @@ class MetaViewSet(viewsets.ViewSet):
 #
 # -----------------------------------------------------------------------------
 import webapp.core.fields
-class CountryViewSet(viewsets.ViewSet):
+class CountryViewSet(ChoicesViewSet):
+    class Meta: 
+        choices = webapp.core.fields.COUNTRIES
     def create_element(self, c):
-        elem = {"iso_code": c[0], "name": c[1]}
-        return elem
+        return {"iso_code": c[0], "name": c[1]}
 
-    def create_list(self, request):
-        return [ self.create_element(c) for c in webapp.core.fields.COUNTRIES]
-
-    def list(self, request):
-        """
-        Provide Countries
-        """
-        return Response(self.create_list(request))
 
 class UsedCountryViewSet(CountryViewSet):
     """ 
@@ -196,45 +189,3 @@ class UsedCountryViewSet(CountryViewSet):
 
     def is_used(self, c):
         return self.stories.filter(country=c[0]).count() > 0
-
-
-
-
-# -----------------------------------------------------------------------------
-#
-#    STORY TYPES
-#
-# -----------------------------------------------------------------------------
-import webapp.core.models
-class StoryTypesViewSet(ChoicesViewSet):
-    
-    class Meta:
-        choices = webapp.core.models.STORY_TYPES
-
-    def create_element(self, obj):
-        return { "id": obj[0], "name": obj[1] }
-
-class UsedStoryTypesViewSet(StoryTypesViewSet):
-    stories = Story.objects.public()
-
-    class Meta:
-        choices = webapp.core.models.STORY_TYPES
-
-    def create_element(self, obj):
-        _type = super(UsedStoryTypesViewSet, self).create_element(obj)
-        _type['used'] = self.is_used(obj)
-        return _type
-
-    def create_list(self, request):
-        _list = super(UsedStoryTypesViewSet,self).create_list(request)
-        is_used = request.QUERY_PARAMS.get('isUsed', None)
-        if is_used is not None:
-            b_is_used = is_used != 'False' and is_used != 'false'
-            _list = filter(lambda x: x['used'] == b_is_used, _list)
-        return _list
-
-    
-    def is_used(self,  c):
-        return self.stories.filter(type=c[0]).count() > 0
-
-     
