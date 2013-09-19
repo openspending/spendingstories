@@ -22,6 +22,26 @@ from relevance import Relevance
 import random
 import warnings
 
+API_FILTERS = '/api/filters/%s'
+# generic method to perform some tests 
+def test_ressource(case, ressource, attributes):
+    response = case.client.get(ressource)
+    case.assertEquals(response.status_code, 200, response)
+    # print "test_ressource(%s,%s,%s) - response: %s" % (case, ressource, attributes, response
+    for element in response.data:
+        element_keys = element.keys()
+        for attr_k in attributes.keys():
+            attr = attributes[attr_k]
+            case.assertTrue(attr_k in element_keys)
+
+            if attr['required']:
+                case.assertIsNotNone(element[attr_k])
+
+            if attr['value'] != None:
+                case.assertEquals(attr['value'], element[attr_k])
+
+
+
 class APIStoryTestCase(SimpleTestCase):
     def setUp(self):
         # Every test needs a client.
@@ -151,31 +171,177 @@ class APIStoryTestCase(SimpleTestCase):
                     if accuracy < TOLERENCE:
                         warnings.warn("time equivalence accurency under %s%%: %s" % (TOLERENCE, debug))
 
-                elif relevance_type in (Relevance.RELEVANCE_TYPE_PERCENTAGE, Relevance.RELEVANCE_TYPE_HALF, Relevance.RELEVANCE_TYPE_MULTIPLE):
-                    
-                    ratio_gap = abs(story['relevance_ratio'] - story['relevance_value'])
-                    print "ratio gap: %f, ratio: %f, value: %f" % (ratio_gap, ratio, value)  
-                    self.assertTrue( ratio_gap <= 0.05)
-
                 
-
-                if story['relevance_score'] > 8:
-                    
-                    if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_MULTIPLE, Relevance.RELEVANCE_TYPE_HALF) :
-                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']
-                        accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
-                        debug = "\n"
-                        debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
-                        debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
-                        debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
-                        debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
-                        debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
-                        debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
-                        debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
-                        debug += "\n--------------------------------------"
-                        if accuracy < TOLERENCE:
-                            warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
+                if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_MULTIPLE, Relevance.RELEVANCE_TYPE_HALF) :
+                    reverse_computing = float(story['relevance_value']) * story['current_value_usd']
+                    accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+                    debug = "\n"
+                    debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
+                    debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
+                    debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
+                    debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
+                    debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
+                    debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
+                    debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
+                    debug += "\n--------------------------------------"
+                    if accuracy < TOLERENCE:
+                        warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
         count = sorted(count.iteritems(), key=itemgetter(1), reverse=True)
         # pp(count[:5])
+
+    def test_api_filters_countries_list(self):
+        attributes = {
+            'iso_code':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': None
+            }, 
+            'name':{
+                'required': True,
+                'value': None
+            }
+        }
+        test_ressource(self, API_FILTERS % 'countries/', attributes)
+
+
+    def test_api_filters_countries_list_filtered(self):
+        attributes = {
+            'iso_code':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': True,
+            }, 
+            'name':{
+                'required': True,
+                'value': None
+            }
+        }
+        test_ressource(self, API_FILTERS % 'countries/?isUsed', attributes)
+
+
+
+    def test_api_filters_themes_list(self):
+        attributes = {
+            'description':{
+                'required': False, 
+                'value': None
+            },
+            'title':{
+                'required': True,
+                'value': None
+            }, 
+            'slug':{
+                'required': True,
+                'value': None
+            },
+            'used':{
+                'required': True,
+                'value': None
+            },
+        }
+        test_ressource(self, API_FILTERS % 'themes/', attributes)
+
+
+    def test_api_filters_themes_list_filtered(self):
+        attributes = {
+            'description':{
+                'required': False, 
+                'value': None
+            },
+            'title':{
+                'required': True,
+                'value': None
+            }, 
+            'slug':{
+                'required': True,
+                'value': None
+            },
+            'used':{
+                'required': True,
+                'value': True,
+            },
+        }
+        test_ressource(self, API_FILTERS % 'themes/?isUsed', attributes)    
+
+
+    def test_api_filters_currencies_list(self):
+        attributes = {
+            'iso_code':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': None
+            }, 
+            'name':{
+                'required': True,
+                'value': None
+            }
+        }
+        test_ressource(self, API_FILTERS % 'currencies/', attributes)
+
+
+    def test_api_filters_currencies_list_filtered(self):
+        attributes = {
+            'iso_code':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': True,
+            }, 
+            'name':{
+                'required': True,
+                'value': None
+            }
+        }
+        test_ressource(self, API_FILTERS % 'currencies/?isUsed', attributes)
+
+    def test_api_filters_story_types_list(self):
+        attributes = {
+            'id': {
+                'required': True, 
+                'value': None
+            },
+            'name':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': None
+            }, 
+        }
+        test_ressource(self, API_FILTERS % 'storyTypes/', attributes)
+
+
+    def test_api_filters_story_types_list_filtered(self):
+        attributes = {
+            'id': {
+                'required': True, 
+                'value': None
+            },
+            'name':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': True,
+            }, 
+        }
+        test_ressource(self, API_FILTERS % 'storyTypes/?isUsed', attributes)
+
+
+
+
 
 # EOF
