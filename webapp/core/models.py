@@ -23,6 +23,8 @@ YEAR_CHOICES = []
 for r in range(1999, (datetime.datetime.now().year + 1)):
     YEAR_CHOICES.append((r,r))
 
+STORY_TYPES = (('discrete', _('discrete')), ('over_one_year', _('over one year')))
+
 # -----------------------------------------------------------------------------
 #
 #    THEMES
@@ -88,10 +90,7 @@ class Story(models.Model):
     country             = fields.CountryField(_('Country'),help_text=_("Choose the country or zone where the money is spent")) # ISO code of the country 
     source              = models.URLField(_('Story\'s source URL'), max_length=140)
     currency            = models.ForeignKey(Currency)
-    type                = models.CharField(_("Story type"), choices=(('discrete', _('discrete')), ('over_one_year', _('over one year'))),
-        default    ='discrete',
-        help_text  =_("The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."),
-        max_length =15)
+    type                = models.CharField(_("Story type"), choices=STORY_TYPES, default    ='discrete', help_text  =_("The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."), max_length =15)
     status              = models.CharField(_("status"), choices=(('pending', _('pending')), ('published', _('published')), ('refused', _('refused'))), default='pending', max_length=9)
     sticky              = models.BooleanField(_('Is a top story'),help_text=_("Check if the story is a tabloid"),default=False)
     year                = models.IntegerField(_('Year'), choices=YEAR_CHOICES, max_length=4, help_text=_("Enter the start year of the spending"))
