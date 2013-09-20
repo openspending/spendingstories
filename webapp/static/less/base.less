@@ -439,22 +439,26 @@ header {
 		.cards-grid {
 			margin-bottom: 10px;
 			padding-top:  40px;
-			padding-left:  55px;
+			text-align: center;
 		}
 
 		.card {
-			margin-right: 20px;
+			display: inline-block;
 			margin-bottom: 35px;
+			margin-left: 15px;
+			margin-right: 15px;
 			width: @cards-width;
 			height: @cards-width*1.2;
 			text-align: left;
 			background: @cards-bg-col;
-			float:left;
 			background:#222;
 			position: relative;
 			overflow:hidden;
 			.box-shadow(0 2px 0 0 fade(black, 70));
 			
+			&:first-child {
+				// margin-left: 0px;
+			}
 			&.active {
 				.card-body .card-preview { left:-1px*@cards-width; }
 				.card-body .card-infos   { left:0; }
