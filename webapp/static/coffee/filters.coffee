@@ -1,14 +1,73 @@
 "use_strict"
 
 OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
+    STORY_TYPES: 
+        discrete: 'discrete'
+        continous: 'over_one_year'
+        population: 'per_population' # FIXME: not handled yet
+
+    RELEVANCE_TYPES:
+        equivalent: 'equivalent'
+        half:       'half'
+        multiple:   'multiple'
+        percentage: 'percentage'
+        time:       'time'
+
+
     # TODO: avoid reduncy 
-    humanize: (value, suffix, plural=false)->
+    humanize: (value, suffix, plural=false) ->
         if plural
             suffix += 's'
         if value < Math.pow(10, 6) || value > Math.pow(10, 15)
             Humanize.intcomma(value) + " " + suffix
         else
             Humanize.intword(value) + " " + suffix
+
+
+    humanizeEquivalent: (story) ->
+        ###
+        Utility to get a human sentance for amount's equivalences
+        @param story
+            The story object containing every equivalence informations
+            ```js
+            story = {
+                type: 
+                relevance_type:  Equivalence type, check RELEVANCE_TYPES
+                relevance_ratio: Original ratio
+                relevance_value: Actual equivalence value, can be a percentage,
+                                 a multiple or a time equivalence
+
+            }
+            ```
+            The API calculated equivalence, can be slicly different
+
+        ###
+        switch story.relevance_type
+            when @RELEVANCE_TYPES.equivalent
+                return @humanizeEquivalent(story)
+            when @RELEVANCE_TYPES.half
+                return @humanizeHalf(story)
+            when @RELEVANCE_TYPES.multiple
+                return @humanizeMultiple(story)
+            when @RELEVANCE_TYPES.percentage
+                return @humanizePercentage(story)
+            when @RELEVANCE_TYPES.time
+                return @humanizeTime(story)
+
+    humanizeEquivalent: (story) ->
+        console.error('IMPLEMENT ME!')
+
+    humanizeHalf: (story) ->
+        console.error('IMPLEMENT ME!')
+    
+    humanizeMultiple: (story) ->
+        console.error('IMPLEMENT ME!')
+    
+    humanizePercentage: (story) ->
+        console.error('IMPLEMENT ME!')
+    
+    humanizeTime: (story) ->
+        console.error('IMPLEMENT ME!')
 
     getFloatPart: (value_f)->
         float_part_s = String(value_f).split('.')[1]
@@ -54,7 +113,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
                 last_decimal_i = @getIntPart(last_decimal) 
                 if next_decimal < 4 && last_decimal_i == 0
                     last_decimal_i = 1 
-
                 float_part = @getIntPart(last_decimal) / Math.pow(10, decimals)
                 result = @getIntPart(value) + float_part
         return result
@@ -80,30 +138,34 @@ angular
     .filter("toQueryCurrency", ["searchService", "Currency", (searchService, Currency)->  
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)->    
                 return null unless angular.isNumber value
-                fromCurrency = Currency.list[fromCurrency]      
-                toCurrency   = Currency.list[toCurrency]
+                _fromCurrency = Currency.list[fromCurrency]
+                _toCurrency = Currency.list[toCurrency]
                 converted = value
                 
-                if fromCurrency? and toCurrency?                             
+                if _fromCurrency? and _toCurrency?                             
                     # Convertion needed
-                    if toCurrency.iso_code isnt fromCurrency.iso_code
+                    if _toCurrency.iso_code isnt _fromCurrency.iso_code
                         # Initial value must be converted to dollars
-                        if fromCurrency isnt 'USD'
+                        if _fromCurrency.iso_code isnt 'USD'
                             # Initial value is now converted to dollar
                             converted = converted/fromCurrency.rate
                         # If the final currency isn't dollar
-                        if toCurrency isnt 'USD'
+                        if _toCurrency.iso_code isnt 'USD'
                             # The value is now into the targeted currency
                             converted = converted*toCurrency.rate
-                OSS.humanize(converted, toCurrency.name, (converted > 1))
+                    OSS.humanize(converted, _toCurrency.name, (converted > 1))
+                
         ]
     )
     .filter("humanizeValue", ["Currency", (Currency)->
-            return (value, currency="USD")->
+            return (value, currency="USD") ->
                 return null unless angular.isNumber value
-                toCurrency = Currency.list[currency]
-                suffix = if toCurrency? then toCurrency.name else currency
-                OSS.humanize(value, suffix, ((value > 1) && toCurrency?)) 
+                _currency = Currency.list[currency]
+                if not _currency?
+                    Currency.get(currency).then (toCurrency)->
+                            OSS.humanize value, toCurrency.name or currency, value > 1 && toCurrency? 
+                else
+                    OSS.humanize value, _currency.name, value > 1
         ]
     )
     .filter("nl2br", ->
@@ -166,6 +228,8 @@ angular
     )
     .filter("cardEquivalent", ["searchService", (searchService)->
             return (d)->
+                return OSS.humanizeEquivalent(d)
+
                 relevance_type  = d.relevance_type
                 relevance_value = d.relevance_value
                 relevance_score = d.relevance_score
