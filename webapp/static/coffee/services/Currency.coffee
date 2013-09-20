@@ -2,7 +2,7 @@ angular.module('storiesServices')
     # Create a factory dedicated to the currency
     .factory("Currency", [ 'Restangular', (Restangular)->
         obj = 
-            all : Restangular.all('filters/currencies')
+            all : Restangular.all('currencies')
             get : (iso_code) -> obj.all.one(iso_code).get()
             list: {}
 
