@@ -1,33 +1,52 @@
 <div ng-controller="cardsCtrl" class="cards-content">
-    <div class="cards-grid row">
-        <div class="card col-xs-4 col-md-3" 
+    <div class="cards-grid">
+
+        <div class="card" 
              ng-repeat="d in search.results"
-             ng-click="showDetails(d)"
              ng-init="d.details_visible = false"
              ng-class="{active: d.details_visible, sticky: d.sticky }">
-            <div class="row card-heading">
-                
-                <h6 class="card-equivalent" ng-if="!d.details_visible">
+
+            <div class="card-heading">                            
+                <h6 class="card-equivalent">
                     [[d|cardEquivalent]]
-                </h5>
-                <h6 class="card-equivalent" ng-if="d.details_visible">
+                </h6>
+
+                <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" class="theme" />
+
+                <!--h6 class="card-equivalent" ng-if="d.details_visible">
                     [[search.query|humanizeValue:search.currency]]&nbsp;[[d|cardEquivalent]]
-                </h5>
-                <h5 class="title" ng-if="!d.details_visible">[[ d.title|truncate:35 ]]</h5>
-                <h5 class="title" ng-if="d.details_visible">[[ d.title ]]</h5>
+                </h6-->
             </div>
-            <div class="card-infos row">
-                <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length && !d.details_visible" />
-                <ul class="card-infos-list list-unstyled" ng-if="d.details_visible">
-                    <li>Cost: [[d.value|humanizeValue:d.currency.iso_code]]</li>
-                    <li>Year: [[d.year]]</li>
-                    <li ng-if="d.source">Source: <a href="[[d.source]]">[[d.source|linkDomain]]</a></li>
-                </ul>
-                <a class="embed" ng-if="d.details_visible" ><i class="icon-share"></i>&nbsp;Click to copy the embed code</a>
+
+            <div class="card-body">
+
+                <div class="card-preview">
+                    <h5>[[ d.title ]]</h5>
+                </div>
+
+                <div class="card-infos">
+                    <h6>[[d.value|humanizeValue:d.currency.iso_code]]</h6>
+                    <p>
+                        <i class="icon-calendar"></i> [[d.year]] 
+                        <span ng-if="d.source">
+                            &#8212; <a ng-href="[[d.source]]">Read the story</a>
+                        </span>
+                    </p>
+                    <!--p>
+                        <a class="embed" ng-if="d.details_visible">
+                            <i class="icon-share"></i>&nbsp;Click to copy the embed code
+                        </a>
+                    </p-->
+                    <p class="desc">
+                        [[d.description]]
+                    </p>
+                </div>
             </div>
+
+            <a ng-click="showDetails(d)" class="toggler"><i class="icon-info"></i></a>
         </div>
     </div>
-    <div class="load-more row">
+    <div class="load-more">
         <button class="btn btn-primary">Load more</button>
     </div>
 </div>  
