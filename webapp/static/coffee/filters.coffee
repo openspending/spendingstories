@@ -2,17 +2,25 @@
 
 OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
     STORY_TYPES: 
-        discrete: 'discrete'
-        continous: 'over_one_year'
+        discrete:   'discrete'
+        continous:  'over_one_year'
         population: 'per_population' # FIXME: not handled yet
 
-    RELEVANCE_TYPES:
+    RELEVANCE_TYPES: 
         equivalent: 'equivalent'
         half:       'half'
         multiple:   'multiple'
         percentage: 'percentage'
         time:       'time'
 
+    stupidPlural: (str, n)->
+        result = str
+        if n > 1
+            result += 's'
+        return result 
+
+    randomPick: (values) ->
+        return values[0]
 
     # TODO: avoid reduncy 
     humanize: (value, suffix, plural=false) ->
@@ -23,8 +31,10 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         else
             Humanize.intword(value) + " " + suffix
 
+    sentanceBuilder: () ->
 
-    humanizeEquivalent: (story) ->
+
+    humanizeEquivalence: (story, query) ->
         ###
         Utility to get a human sentance for amount's equivalences
         @param story
@@ -40,34 +50,67 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             }
             ```
             The API calculated equivalence, can be slicly different
-
+        @param query
+            The query parameters -> {
+                value: raw value entered by user
+                currency: currency object got from Currencies API
+            }
         ###
         switch story.relevance_type
             when @RELEVANCE_TYPES.equivalent
-                return @humanizeEquivalent(story)
+                return @humanizeEquivalent(story, query)
             when @RELEVANCE_TYPES.half
-                return @humanizeHalf(story)
+                return @humanizeHalf(story, query)
             when @RELEVANCE_TYPES.multiple
-                return @humanizeMultiple(story)
+                return @humanizeMultiple(story, query)
             when @RELEVANCE_TYPES.percentage
-                return @humanizePercentage(story)
+                return @humanizePercentage(story, query)
             when @RELEVANCE_TYPES.time
-                return @humanizeTime(story)
+                return @humanizeTime(story, query)
 
-    humanizeEquivalent: (story) ->
-        console.error('IMPLEMENT ME!')
+    humanizeEquivalent: (story, query) ->
+        return "equals"
 
-    humanizeHalf: (story) ->
-        console.error('IMPLEMENT ME!')
+    humanizeHalf: (story, query) ->
+        return "half of"
     
-    humanizeMultiple: (story) ->
-        console.error('IMPLEMENT ME!')
+    humanizeMultiple: (story, query) ->
+        ratio = story.relevance_value
+        return " is #{ratio} times"
     
-    humanizePercentage: (story) ->
-        console.error('IMPLEMENT ME!')
+    humanizePercentage: (story, query) ->
+        value = story.current_value_usd
+        ratio = query.value / value 
+        percentage = ratio * 100
+        decimals = 1
+        result = percentage
+        if percentage >= 1 
+            decimals = 0
+        if percentage < 1
+            decimals = OSS.getDecimalNumber(percentage)
+            if decimals == 0
+                decimals = 1
+        result = OSS.round result, decimals
+        if result < Math.pow(10,3) || result > Math.pow(10, 15)
+            result = Humanize.intcomma(result, decimals)
+        else
+            result = Humanize.intword(result, decimals)
+        return "#{result}%"
     
-    humanizeTime: (story) ->
-        console.error('IMPLEMENT ME!')
+    humanizeTime: (story, value) ->
+            m = story.relevance_value['months']
+            w = story.relevance_value['weeks']
+            d = story.relevance_value['days']
+            result =  []
+            months_part = @stupidPlural("#{m} month", m)
+            weeks_part  = @stupidPlural("#{w} week",  w)
+            days_part   = @stupidPlural("#{d} day",   d) 
+            result.push(months_part) if m > 0
+            result.push(weeks_part)  if w > 0 
+            result.push(days_part)   if d > 0 and w == 0 or d > 1 and w > 0 
+            if d is 0 and w is 0 and d is 0
+                return "less than one day"
+            return result.join(' ')
 
     getFloatPart: (value_f)->
         float_part_s = String(value_f).split('.')[1]
@@ -226,62 +269,12 @@ angular
 
         ]
     )
-    .filter("cardEquivalent", ["searchService", (searchService)->
+    .filter("cardEquivalent", ["searchService", "Currency", (searchService, Currency)->
             return (d)->
-                return OSS.humanizeEquivalent(d)
+                currency = Currency.list[searchService.currency]
+                value    = searchService.query
+                return OSS.humanizeEquivalence d, currency: currency, value:value
 
-                relevance_type  = d.relevance_type
-                relevance_value = d.relevance_value
-                relevance_score = d.relevance_score
-                stupid_plural = (str, n)->
-                    result = str
-                    if n > 1
-                        result += 's'
-                    return result 
-
-                percentage_equivalent = (d)->
-                    value = d.current_value_usd
-                    ratio = searchService.query_usd / value 
-                    percentage = ratio * 100
-                    decimals = 1
-                    result = percentage
-                    if percentage >= 1 
-                        decimals = 0
-                    if percentage < 1
-                        decimals = OSS.getDecimalNumber(percentage)
-                        if decimals == 0
-                            decimals = 1
-                    result = OSS.round result, decimals
-                    if result < Math.pow(10,3) || result > Math.pow(10, 15)
-                        result = Humanize.intcomma(result, decimals)
-                    else
-                        result = Humanize.intword(result, decimals)
-
-                    return "#{result}%"
-
-                time_equivalent = (d)->
-                    m = d.relevance_value['months']
-                    w = d.relevance_value['weeks']
-                    d = d.relevance_value['days']
-                    result =  []
-                    months_part = stupid_plural("#{m} month", m)
-                    weeks_part  = stupid_plural("#{w} week", w)
-                    days_part   = stupid_plural("#{d} day", d) 
-                    result.push(months_part) if m > 0
-                    result.push(weeks_part)  if w > 0 
-                    result.push(days_part)   if d > 0 and w == 0 or d > 1 and w > 0  
-                    return result.join(' ')
-               
-                if relevance_type is 'equivalent'
-                    return 'equivalent to'
-                else
-                    if relevance_type is 'multiple'
-                        return "#{relevance_value}x"
-                    else
-                        if d.type is "discrete"
-                           return percentage_equivalent(d)
-                        else if d.type is "over_one_year"
-                            return time_equivalent(d)
 
 
 
