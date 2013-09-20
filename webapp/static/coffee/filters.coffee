@@ -141,8 +141,6 @@ angular
                 _fromCurrency = Currency.list[fromCurrency]
                 _toCurrency = Currency.list[toCurrency]
                 converted = value
-                # console.log 'searchService: ', searchService, 'Currency: ', Currency, 
-                console.log '_toCurrency: ', _toCurrency, '_fromCurrency: ', _fromCurrency
                 
                 if _fromCurrency? and _toCurrency?                             
                     # Convertion needed
