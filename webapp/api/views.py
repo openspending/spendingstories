@@ -130,6 +130,14 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.CurrencySerializer
 
 class UsedCurrencyViewSet(CurrencyViewSet):
+    """ 
+    API endpoint to return currencies with an usage status included to know if 
+    the given countries are used in one or more stories. Add an "used" attribute 
+    to returned currencies
+    ### Filters:
+    - `isUsed` (Boolean)
+
+    """ 
     serializer_class = serializers.UsedCurrencySerializer
     filter_backends = (serializers.UsedModelFilter,)
 
