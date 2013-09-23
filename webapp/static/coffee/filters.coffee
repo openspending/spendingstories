@@ -47,11 +47,9 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             result += 's'
         return result 
 
-    randomPick: (values) ->
-        values[chance.integer min: 0, max: values.length - 1 ]
-
-    # TODO: avoid reduncy 
     humanize: (value, suffix, plural=false) ->
+        # use it to humanize some amount and add a suffix (that can be 
+        # pluralized if needed)
         if plural
             suffix += 's'
         if value < Math.pow(10, 6) || value > Math.pow(10, 15)
@@ -60,6 +58,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             Humanize.intword(value) + " " + suffix
 
     sentenceBuilder: (sentences, precision) ->
+        # pick a sentence in a list of choices 
         s = _.find(sentences, (s)-> return precision >= s.precision[0] and precision < s.precision[1] ) or sentences[0]
         return s.value
 
@@ -100,10 +99,13 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
                 return @humanizeTime(story, query)
 
     getRatioPrecision: (a, b) ->
+        # return the absolute precision between `a` and `b` params 
+        # returns float between 0 and 1.
+        # 1 => absolutly precise, a = b
+        # 0 => infinitly imprecise
         ratio = Math.abs(a - b) / b
         precision = 1 - ratio
         return precision
-
 
     humanizeEquivalent: (story, query) ->
         sentences = [
