@@ -30,14 +30,14 @@ class SubProcessor(Processor):
                 relevance.type  = Relevance.RELEVANCE_TYPE_PERCENTAGE
                 rounded_ratio = round(ratio)
                 if ratio > 1:
-                    if   self.is_multiple_of(ratio, 10, 0.1):
+                    if   self.is_multiple_of(ratio, 10, 0.5):
                         relevance.score = 8
-                    elif self.is_multiple_of(ratio, 5, 0.1):
+                    elif self.is_multiple_of(ratio, 5, 0.5):
                         relevance.score = 7
                 else:
                     relevance.score = 6
 
-                relevance.value = rounded_ratio
+                relevance.value = rounded_ratio / 100
         return relevance
 
     def is_multiple_of(self, n, m, tolerance):
