@@ -1,4 +1,4 @@
-"use_strict"
+"use strict"
 
 OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
     STORY_TYPES: 
@@ -12,6 +12,34 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         multiple:   'multiple'
         percentage: 'percentage'
         time:       'time'
+
+    getFloatPart: (value_f)->
+        float_part_s = String(value_f).split('.')[1]
+        return parseFloat([0,float_part_s].join('.'))
+
+    getIntPart: (value_f)->
+        return parseInt(String(value_f).split('.')[0])
+
+    getDecimalNumber: (value_f, max_decimals=5)->
+        if value_f == 0
+            return 0
+        float_part_s = String(value_f).split('.')[1]
+        i = 0
+        if value_f <= (1 / Math.pow(10, max_decimals)) 
+            return max_decimals
+        else
+            if float_part_s
+                c = float_part_s[i]
+                while (c == '0') && (i <= max_decimals) 
+                    do()->
+                        c = float_part_s[i]
+                        i += 1
+        return i
+
+    round: (value, decimals=2) ->
+        # Über rounding 
+        Math.round(value * Math.pow(10, decimals))/Math.pow(10, decimals) 
+
 
     stupidPlural: (str, n)->
         result = str
@@ -32,7 +60,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             Humanize.intword(value) + " " + suffix
 
     sentanceBuilder: () ->
-
 
     humanizeEquivalence: (story, query) ->
         ###
@@ -111,54 +138,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             if d is 0 and w is 0 and d is 0
                 return "less than one day"
             return result.join(' ')
-
-    getFloatPart: (value_f)->
-        float_part_s = String(value_f).split('.')[1]
-        return parseFloat([0,float_part_s].join('.'))
-
-    getIntPart: (value_f)->
-        return parseInt(String(value_f).split('.')[0])
-
-    getDecimalNumber: (value_f, max_decimals=5)->
-        if value_f == 0
-            return 0
-        float_part_s = String(value_f).split('.')[1]
-        i = 0
-        if value_f <= (1 / Math.pow(10, max_decimals)) 
-            return max_decimals
-        else
-            if float_part_s
-                c = float_part_s[i]
-                while (c == '0') && (i <= max_decimals) 
-                    do()->
-                        c = float_part_s[i]
-                        i += 1
-        return i
-
-    round: (value, decimals=2) ->
-        if value == 0
-            return 0
-        result = null
-        if decimals == 0
-            result = @getIntPart(value)
-        if decimals > 0
-            if value < (1/Math.pow(10, decimals))
-                return (1/Math.pow(10, decimals))
-            else
-                float_part = @getFloatPart(value)
-                last_decimal = float_part * Math.pow(10, decimals)
-                next_decimal = @getIntPart(@getFloatPart(last_decimal)*10)
-                if next_decimal >= 5
-                    last_decimal += 1
-                else if last_decimal < 1
-                    last_decimal = 1
-
-                last_decimal_i = @getIntPart(last_decimal) 
-                if next_decimal < 4 && last_decimal_i == 0
-                    last_decimal_i = 1 
-                float_part = @getIntPart(last_decimal) / Math.pow(10, decimals)
-                result = @getIntPart(value) + float_part
-        return result
 
 angular
     .module('storiesFilters', [])
