@@ -59,7 +59,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         else
             Humanize.intword(value) + " " + suffix
 
-    sentanceBuilder: (sentences, precision) ->
+    sentenceBuilder: (sentences, precision) ->
         s = _.find(sentences, (s)-> return precision >= s.precision[0] and precision < s.precision[1] ) or sentences[0]
         return s.value
 
@@ -118,7 +118,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         ]
         precision = @getRatioPrecision(story.relevance_ratio, 1)
         console.log "humanizeEquivalent, precision: ", precision
-        @sentanceBuilder(sentences, precision)
+        @sentenceBuilder(sentences, precision)
 
     humanizeHalf: (story, query) ->
         sentences = [
@@ -130,7 +130,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         ]
         precision = @getRatioPrecision(story.relevance_ratio, 0.5)
         console.log "humanizeHalf, precision: ", precision, 
-        @sentanceBuilder(sentences, precision)
+        @sentenceBuilder(sentences, precision)
 
     humanizeMultiple: (story, query) ->
         ratio = story.relevance_value
@@ -155,15 +155,18 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         if result < Math.pow(10,3)
             result = Humanize.intcomma(result, decimals)
 
-        precision = @getRatioPrecision(result, story.relevance_ratio)
+        precision = @getRatioPrecision(ratio, story.relevance_ratio)
         sentences = [
                 value:  "roughly equals #{result}% of",
                 precision: [0.8, 0.95]
             ,
+                value: "represents #{result}% of"
+                precision: [0.95, 0.99]
+            ,
                 value: "is #{result}% of"
-                precision: [0.95,1]
+                precision: [0.99,1]
         ]
-        @sentanceBuilder(sentences, precision)
+        @sentenceBuilder(sentences, precision)
     
     humanizeTime: (story, value) ->
             m = story.relevance_value['months']
