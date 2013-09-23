@@ -48,7 +48,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         return result 
 
     randomPick: (values) ->
-        return values[0]
+        values[chance.integer min: 0, max: values.length - 1 ]
 
     # TODO: avoid reduncy 
     humanize: (value, suffix, plural=false) ->
@@ -59,7 +59,11 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         else
             Humanize.intword(value) + " " + suffix
 
-    sentanceBuilder: () ->
+    sentanceBuilder: (sentences, precision) ->
+        s = _.find(sentences, (s)-> return precision >= s.precision[0] and precision < s.precision[1] ) or sentences[0]
+        return s.value
+
+
 
     humanizeEquivalence: (story, query) ->
         ###
@@ -95,19 +99,49 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             when @RELEVANCE_TYPES.time
                 return @humanizeTime(story, query)
 
+    getRatioPrecision: (a, b) ->
+        ratio = Math.abs(a - b) / b
+        precision = 1 - ratio
+        return precision
+
+
     humanizeEquivalent: (story, query) ->
-        return "equals"
+        sentences = [
+                value:  "roughly matches with",
+                precision: [0.90, 0.95]
+            ,
+                value: "almost equals"
+                precision: [0.95,0.99]
+            ,
+                value: "is an equivalent of"
+                precision: [0.99, 1]
+        ]
+        precision = @getRatioPrecision(story.relevance_ratio, 1)
+        console.log "humanizeEquivalent, precision: ", precision
+        @sentanceBuilder(sentences, precision)
 
     humanizeHalf: (story, query) ->
-        return "half of"
-    
+        sentences = [
+                value:  "fits like half of",
+                precision: [0.9, 0.99]
+            ,
+                value: "is half of"
+                precision: [0.99,1]
+        ]
+        precision = @getRatioPrecision(story.relevance_ratio, 0.5)
+        console.log "humanizeHalf, precision: ", precision, 
+        @sentanceBuilder(sentences, precision)
+
     humanizeMultiple: (story, query) ->
         ratio = story.relevance_value
         return " is #{ratio} times"
     
     humanizePercentage: (story, query) ->
-        value = story.current_value_usd
-        ratio = query.value / value 
+        ratio = story.relevance_value
+        if ratio == 0
+            ratio = story.relevance_ratio
+
+        console.log ratio
         percentage = ratio * 100
         decimals = 1
         result = percentage
@@ -118,11 +152,18 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             if decimals == 0
                 decimals = 1
         result = OSS.round result, decimals
-        if result < Math.pow(10,3) || result > Math.pow(10, 15)
+        if result < Math.pow(10,3)
             result = Humanize.intcomma(result, decimals)
-        else
-            result = Humanize.intword(result, decimals)
-        return "#{result}%"
+
+        precision = @getRatioPrecision(result, story.relevance_ratio)
+        sentences = [
+                value:  "roughly equals #{result}% of",
+                precision: [0.8, 0.95]
+            ,
+                value: "is #{result}% of"
+                precision: [0.95,1]
+        ]
+        @sentanceBuilder(sentences, precision)
     
     humanizeTime: (story, value) ->
             m = story.relevance_value['months']
@@ -244,20 +285,14 @@ angular
 
                 return "are #{result} #{wording_end}"
 
-
-
         ]
     )
     .filter("cardEquivalent", ["searchService", "Currency", (searchService, Currency)->
-            return (d)->
-                currency = Currency.list[searchService.currency]
-                value    = searchService.query
-                return OSS.humanizeEquivalence d, currency: currency, value:value
-
-
-
-
-
-
+            return (story)->
+                return OSS.humanizeEquivalence story, {
+                        currency: Currency.list[searchService.currency]
+                        value:searchService.query_usd
+                    }
+                
         ]
     )
