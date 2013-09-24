@@ -121,7 +121,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
                 precision: [0.99, 1]
         ]
         precision = @getRatioPrecision(story.relevance_ratio, 1)
-        console.log "humanizeEquivalent, precision: ", precision
         @sentenceBuilder(sentences, precision)
 
     humanizeHalf: (story, query) ->
@@ -178,7 +177,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         @sentenceBuilder(sentences, precision)
     
     humanizeTime: (story, query) ->
-        console.log "humanizeTime"
         m = story.relevance_value['months']
         w = story.relevance_value['weeks']
         d = story.relevance_value['days']
