@@ -229,7 +229,8 @@ angular
                 return String(text).substring(0, length-end.length) + end
     )
     .filter("toQueryCurrency", ["searchService", "Currency", (searchService, Currency)->  
-            return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)->    
+            return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)-> 
+                return ""   
                 return null unless angular.isNumber value
                 _fromCurrency = Currency.list[fromCurrency]
                 _toCurrency = Currency.list[toCurrency]
@@ -252,6 +253,7 @@ angular
     )
     .filter("humanizeValue", ["Currency", (Currency)->
             return (value, currency="USD") ->
+                return ""
                 return null unless angular.isNumber value
                 _currency = Currency.list[currency]
                 if not _currency?
@@ -282,6 +284,7 @@ angular
     )
     .filter("queryEquivalent", ["searchService", (searchService) -> 
             return (d)->
+                return "" unless d.current_value_usd?
                 value = d.current_value_usd
                 ratio = searchService.query_usd / value 
                 percentage = ratio * 100
