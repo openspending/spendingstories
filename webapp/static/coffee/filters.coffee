@@ -1,6 +1,8 @@
 "use strict"
 
-OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories || 
+# Utililty toolbelt for our filters
+
+OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
     STORY_TYPES: 
         discrete:   'discrete'
         continous:  'over_one_year'
@@ -131,19 +133,24 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
                 precision: [0.99,1]
         ]
         precision = @getRatioPrecision(story.relevance_ratio, 0.5)
-        console.log "humanizeHalf, precision: ", precision, 
         @sentenceBuilder(sentences, precision)
 
     humanizeMultiple: (story, query) ->
         ratio = story.relevance_value
-        return " is #{ratio} times"
+        sentences = [
+                value:  "is #{ratio} times",
+                precision: [0.9, 0.99]
+            ,
+                value: "is #{ratio} × this story"
+                precision: [0.99,1]
+        ]
+        precision = @getRatioPrecision(ratio, story.relevance_ratio)
+        @sentenceBuilder(sentences, precision)
     
     humanizePercentage: (story, query) ->
         ratio = story.relevance_value
         if ratio == 0
             ratio = story.relevance_ratio
-
-        console.log ratio
         percentage = ratio * 100
         decimals = 1
         result = percentage
@@ -170,20 +177,38 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         ]
         @sentenceBuilder(sentences, precision)
     
-    humanizeTime: (story, value) ->
-            m = story.relevance_value['months']
-            w = story.relevance_value['weeks']
-            d = story.relevance_value['days']
-            result =  []
-            months_part = @stupidPlural("#{m} month", m)
-            weeks_part  = @stupidPlural("#{w} week",  w)
-            days_part   = @stupidPlural("#{d} day",   d) 
-            result.push(months_part) if m > 0
-            result.push(weeks_part)  if w > 0 
-            result.push(days_part)   if d > 0 and w == 0 or d > 1 and w > 0 
-            if d is 0 and w is 0 and d is 0
-                return "less than one day"
-            return result.join(' ')
+    humanizeTime: (story, query) ->
+        console.log "humanizeTime"
+        m = story.relevance_value['months']
+        w = story.relevance_value['weeks']
+        d = story.relevance_value['days']
+        story_value = story.current_value_usd
+        story_day_value = story_value / 360
+        time_value = (m * 30 + w * 7 + d) * story_day_value 
+        precision = @getRatioPrecision(time_value, story_value) 
+        result =  []
+        months_part = @stupidPlural("#{m} month", m)
+        weeks_part  = @stupidPlural("#{w} week",  w)
+        days_part   = @stupidPlural("#{d} day",   d) 
+        result.push(months_part) if m > 0
+        result.push(weeks_part)  if w > 0 
+        result.push(days_part)   if d > 0 and w == 0 or d > 1 and w > 0 
+        if d is 0 and w is 0 and d is 0
+            result_s = "less than 1 day"
+        else 
+            result_s = result.join(' ')
+
+        sentences = [
+            value:  "is #{result_s} of"
+            precision: [0.8, 0.9]
+        ,
+            value: "worth #{result_s} of"
+            precision: [0.9, 0.97]
+        ,
+            value: "matches #{result_s} of"
+            precision: [0.97, 1]
+        ]
+        @sentenceBuilder(sentences, precision)
 
 angular
     .module('storiesFilters', [])
