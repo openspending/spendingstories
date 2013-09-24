@@ -23,8 +23,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         return parseInt(String(value_f).split('.')[0])
 
     getDecimalNumber: (value_f, max_decimals=5)->
-        if value_f == 0
-            return 0
+        return 0 unless value_f? and value_f isnt 0
         float_part_s = String(value_f).split('.')[1]
         i = 0
         if value_f <= (1 / Math.pow(10, max_decimals)) 
@@ -39,6 +38,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         return i
 
     round: (value, decimals=2) ->
+        return null unless value?
         # Über rounding 
         Math.round(value * Math.pow(10, decimals))/Math.pow(10, decimals) 
 
@@ -50,6 +50,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         return result 
 
     humanize: (value, suffix, plural=false) ->
+        return null unless value?
         # use it to humanize some amount and add a suffix (that can be 
         # pluralized if needed)
         if plural
@@ -67,6 +68,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
 
 
     humanizeEquivalence: (story, query) ->
+        return null unless story?
         ###
         Utility to get a human sentance for amount's equivalences
         @param story
