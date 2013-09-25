@@ -3,6 +3,9 @@ class Comprehension
 
     constructor : (@currency) ->
         @currency.list
+        if not String.prototype.contains?
+            String.prototype.contains = (str, startIndex) ->
+                -1 isnt String.prototype.indexOf.call this, str, startIndex
 
     getPropositions : (query) =>
         #LowerCase the query for easier comparisons
@@ -39,14 +42,14 @@ class Comprehension
         for iso, curr of currency.list
             name = do curr.name.toLowerCase
             #Match ISO codes
-            if query.match do iso.toLowerCase
+            if query.contains do iso.toLowerCase
                 strippedQuerry = strippedQuerry.replace do iso.toLowerCase, ''
                 matched[iso] = [curr.name]
             #Or do a word comparison
             else
                 num = 0
                 _.map words, (word) =>
-                    if name.match word
+                    if name.contains word
                         ++num
                         matched[iso] = [curr.name, num]
                         strippedQuerry = strippedQuerry.replace word, ''
@@ -62,7 +65,7 @@ class Comprehension
         [strippedQuerry, matches]
 
     defaultCurrencies = (currency) =>
-        _.map ['USD', 'EUR', 'GBP'],(iso) -> [currency.list[iso].name, iso]
+        _.map ['USD', 'EUR', 'GBP'], (iso) -> [currency.list[iso].name, iso]
 
     defaultNumbers = () =>
         [100000]
