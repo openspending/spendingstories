@@ -20,8 +20,8 @@ class Comprehension
         numbers = (do defaultNumbers) if numbers.length <= 0
 
         #Compute all numbers with all currencies
-        currencies.map (currency) =>
-            numbers.map (number) =>
+        _.map currencies, (currency) =>
+            _.map numbers, (number) =>
                 propositions.push
                     label : "#{number} #{currency[0]}"
                     currency : currency[1]
@@ -45,7 +45,7 @@ class Comprehension
             #Or do a word comparison
             else
                 num = 0
-                words.map (word) =>
+                _.map words, (word) =>
                     if name.match word
                         ++num
                         matched[iso] = [curr.name, num]
@@ -62,7 +62,7 @@ class Comprehension
         [strippedQuerry, matches]
 
     defaultCurrencies = (currency) =>
-        ['USD', 'EUR', 'GBP'].map (iso) -> [currency.list[iso].name, iso]
+        _.map ['USD', 'EUR', 'GBP'],(iso) -> [currency.list[iso].name, iso]
 
     defaultNumbers = () =>
         [100000]
