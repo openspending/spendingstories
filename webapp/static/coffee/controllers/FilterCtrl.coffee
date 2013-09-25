@@ -92,7 +92,7 @@ class FilterCtrl
 
     isVisible:(f)=>
         viz_mode = @location.search().visualization
-        f.modes.indexOf(viz_mode) != -1
+        _.indexOf(f.modes, viz_mode) != -1
 
     toggleFilters: =>
         ###
@@ -116,7 +116,7 @@ class FilterCtrl
         viz_mode = @location.search().visualization
         for f_key, filter of @scope.filters
             do()=>
-                if filter.modes.indexOf(viz_mode) == -1
+                if _.indexOf(filter.modes, viz_mode) == -1
                     # if URL has a filter disabled in one mode we have to delete
                     # it from URL.
                     @removeFilter(filter)

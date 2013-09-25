@@ -58,7 +58,7 @@ class ScaleCtrl
             # Sort the data by usd
             data = _.sortBy data, "current_value_usd"
             # Get the current index of the previewed story
-            idx  = _.pluck(data, "id").indexOf @scope.previewedStory.id
+            idx  = _.indexOf _.pluck(data, "id"), @scope.previewedStory.id
             # Set the new previewed story
             @scope.previewedStory = data[idx+1] if data[idx+1]?
 
@@ -69,7 +69,7 @@ class ScaleCtrl
             # Sort the data by usd
             data = _.sortBy data, "current_value_usd"
             # Get the current index of the previewed story
-            idx  = _.pluck(data, "id").indexOf @scope.previewedStory.id
+            idx  = _.indexOf _.pluck(data, "id"), @scope.previewedStory.id
             # Set the new previewed story
             @scope.previewedStory = data[idx-1] if data[idx-1]?
 

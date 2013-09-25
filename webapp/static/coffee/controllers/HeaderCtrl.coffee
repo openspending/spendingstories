@@ -10,7 +10,7 @@ class HeaderCtrl
         @scope.getHeaderClass = => 
             # If we aren't on the homepage
             # return a class that reduce the header
-            if ['/', ''].indexOf( @location.path() ) is -1  then 'reduce'
+            if _.indexOf(['/', ''], @location.path()) is -1  then 'reduce'
 
         # Submit function to go to the search form
         @scope.search = @onSearch
@@ -22,7 +22,7 @@ class HeaderCtrl
                 q: @scope.query
                 c: @scope.currency
             }
-        if @location.path().indexOf('search') == -1
+        if _.indexOf(@location.path(), 'search') == -1
             @location.path('/search/').search(params)
         else 
             # Update path
