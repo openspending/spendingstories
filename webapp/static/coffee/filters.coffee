@@ -230,7 +230,6 @@ angular
     )
     .filter("toQueryCurrency", ["searchService", "Currency", (searchService, Currency)->  
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)-> 
-                return ""   
                 return null unless angular.isNumber value
                 _fromCurrency = Currency.list[fromCurrency]
                 _toCurrency = Currency.list[toCurrency]
@@ -247,20 +246,18 @@ angular
                         if _toCurrency.iso_code isnt 'USD'
                             # The value is now into the targeted currency
                             converted = converted*toCurrency.rate
-                    OSS.humanize(converted, _toCurrency.name, (converted > 1))
+                    return OSS.humanize(converted, _toCurrency.name, (converted > 1))
+                else 
+                    return ""
                 
         ]
     )
     .filter("humanizeValue", ["Currency", (Currency)->
             return (value, currency="USD") ->
-                return ""
                 return null unless angular.isNumber value
                 _currency = Currency.list[currency]
-                if not _currency?
-                    Currency.get(currency).then (toCurrency)->
-                            OSS.humanize value, toCurrency.name or currency, value > 1 && toCurrency? 
-                else
-                    OSS.humanize value, _currency.name, value > 1
+                if _currency? then OSS.humanize value, _currency.name, value > 1 else "" 
+
         ]
     )
     .filter("nl2br", ->
@@ -322,10 +319,13 @@ angular
     )
     .filter("cardEquivalent", ["searchService", "Currency", (searchService, Currency)->
             return (story)->
-                return OSS.humanizeEquivalence story, {
-                        currency: Currency.list[searchService.currency]
-                        value:searchService.query_usd
-                    }
+                if story?
+                    return OSS.humanizeEquivalence story, {
+                            currency: Currency.list[searchService.currency]
+                            value:searchService.query_usd
+                        }
+                else
+                    return ""
                 
         ]
     )
