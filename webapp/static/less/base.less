@@ -451,9 +451,10 @@ header {
 			height: @cards-width*1.2;
 			text-align: left;
 			background: @cards-bg-col;
-			background:#222;
+			background:#F5F5F5;
 			position: relative;
 			overflow:hidden;
+			color:#000;
 			.box-shadow(0 2px 0 0 fade(black, 70));
 			
 			&:first-child {
@@ -465,59 +466,44 @@ header {
 			}			
 
 			&.sticky {
-				.card-heading, .card-heading .theme {
-					background-color:#D8BB00;
-					border-color:#D8BB00;
-				}
-			}
 
-			.toggler {
+				background-color:@brand-primary;
 				color:white;
-				background:@brand-primary;
-				.border-radius(10px);
-				width:20px;
-				height:20px;
-				line-height:20px;
-				text-align: center;
-				display:block;
-				position:absolute;
-				bottom:20px;
-				right:20px;
-				cursor: pointer;
-			}
 
-			.card-heading {
-				background:#F5F5F5;
-				border-bottom:1px solid black;
-				position:relative;
-				z-index:20;
-
-				.theme {
-					position:absolute;
-					bottom:-20px;
-					left:50%;
-					margin-left:-20px;
-					width:40px;
-					border:4px solid #F5F5F5;
-					background:inherit;
-					.border-radius(20px);	
-					.box-shadow(0 1px 0 0 black);						
+				a {
+					color:fade(white, 60);
 				}
 
-				h6 {
-					padding:10px 20px;
-					padding-bottom:25px;
-					text-transform:uppercase;
-					color:#403F3F;
-					font-size:14px;
-					font-weight:bold;
-					margin:0;			
+				.card-body .card-preview {
+				 	h6 {
+						color:mix(white, @brand-primary);
 
-					i {
-						font-style: inherit;
-						color:lighten(#403F3F, 25);
+						i {
+							position:absolute;
+							top:10px;
+							right:10px;
+						}
+					}
+
+					h5 {
+						font-size:22px;
 					}
 				}
+
+				.card-footer {
+					border-color:fade(white, 20);
+				}
+			}
+
+			.card-footer {	
+				text-align:right;
+				font-size:14px;			
+				position:absolute;
+				bottom:10px;
+				right:10px;
+				left:10px;
+				padding-top:3px;
+				border-top:1px solid #E2E2E2;
 			}
 
 			.card-body {
@@ -526,33 +512,82 @@ header {
 				position:relative;
 
 				.card-infos, .card-preview {
-					padding:0 20px;
-					padding-top:20px;
 					position:absolute;
 					top:0;
 					bottom:0;
 					left:0;
-					width:@cards-width - 40px;
+					width:@cards-width;
 					.transition(left 0.4s);
 				}
 
 				.card-preview {
+					z-index:20;
+					padding:10px 20px;
+					font-size:14px;
+					font-weight:bold;
+					margin:0;
 
-					left:0;
+					h5, h6 {
+						margin:0;						
+					}
+					h6 {
+						font-size:14px;
+						color:#403F3F;
+						text-transform:uppercase;
+					}
 
 					h5 {
-						color:#fff;
-						position:relative;
-						z-index:10;
-					}					
+						padding-top:5px;
+						font-size:20px;
+						color:inherit;
+					}
+
+					.theme {
+						display:none;
+						position:absolute;
+						top:0;
+						bottom:0;
+						left:0;
+						width:40px;
+						background:#B2B2B2;
+						img {
+							height:40px;
+							max-width:40px;
+							position:absolute;
+							top:50%;
+							left:0;
+							margin-top:-20px;
+						}
+					}
 				}
 
 				.card-infos {
-					font-size:12px;
+					padding:20px;	
+					font-size:14px;
 					left:@cards-width;
 
 					.card-infos-list {
 						text-align: left;
+					}
+
+					.theme {				
+						background:fade(black, 20);
+						font-size:80%;
+						border-radius:16px;
+						padding:1px;
+						padding-left:20px;
+						padding-right:5px;
+						margin-right:5px;
+						position:relative;
+						
+						img {
+							width:16px;					
+							height:16px;					
+							position:absolute;
+							top:50%;
+							left:3px;
+							margin-top:-16px/2px;
+						}
 					}
 				}
 			}
@@ -560,8 +595,11 @@ header {
 		}
 		
 		.load-more {
+			padding:20px;
 			text-align: center;
-
+			a {
+				color:white;
+			}
 		}
 
 	}

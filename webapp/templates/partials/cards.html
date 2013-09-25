@@ -1,27 +1,22 @@
 <div ng-controller="cardsCtrl" class="cards-content">
     <div class="cards-grid">
-        <h3 ng-cloack>[[search.query|humanizeValue:search.currency]]...</h3>
+        <h3 ng-hide="true" ng-cloack>[[search.query|humanizeValue:search.currency]]...</h3>
         <div class="card" 
              ng-repeat="d in search.results"
              ng-init="d.details_visible = false"
-             ng-class="{active: d.details_visible, sticky: d.sticky }">
+             ng-class="{active: d.details_visible, sticky: d.sticky}">
 
-            <div class="card-heading">                            
-                <h6 class="card-equivalent">
-                    [[d|cardEquivalent]]
-                </h6>
-
-                <img ng-src="[[d.themes[0].image]]" ng-if="d.themes.length" class="theme" />
-
-                <!--h6 class="card-equivalent" ng-if="d.details_visible">
-                    [[search.query|humanizeValue:search.currency]]&nbsp;[[d|cardEquivalent]]
-                </h6-->
-            </div>
 
             <div class="card-body">
 
-                <div class="card-preview">
-                    <h5>[[ d.title ]]</h5>
+                <div class="card-preview">     
+                    <h6>                    
+                        [[d|cardEquivalent]]
+                        <i class="icon-bookmark pull-right" ng-if="d.sticky"></i>
+                    </h6>                
+                    <h5>
+                        [[ d.title ]]
+                    </h5>
                 </div>
 
                 <div class="card-infos">
@@ -40,14 +35,29 @@
                     <p class="desc">
                         [[d.description]]
                     </p>
+
+                    <ul class="list-inline" ng-if="d.themes">                               
+                        <li ng-repeat="theme in d.themes" class="theme">                                
+                            <img ng-src="[[theme.image]]" ng-if="theme.image" />
+                            [[theme.title]]
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <a ng-click="showDetails(d)" class="toggler"><i class="icon-info"></i></a>
+            <div class="card-footer">
+                <a ng-click="showDetails(d)" class="toggler">
+                    <i class="icon-eye-open"></i>
+                    More info
+                </a>
+            </div>
         </div>
     </div>
     <div class="clearfix"></div>
     <div class="load-more">
-        <button class="btn btn-primary">Load more</button>
+        <a>
+            <i class="icon-plus"></i>
+            Load more
+        </a>
     </div>
 </div>  
