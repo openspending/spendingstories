@@ -116,10 +116,6 @@ class Comprehension
     @$inject : ['Currency']
 
     constructor : (@currency) ->
-        @currency.list
-        if not String.prototype.contains?
-            String.prototype.contains = (str, startIndex) ->
-                -1 isnt String.prototype.indexOf.call this, str, startIndex
 
     getPropositions : (query) =>
         #LowerCase the query for easier comparisons
@@ -130,7 +126,7 @@ class Comprehension
         numbers = []
         propositions = []
 
-        # [query, currencies] = matchCurrency query, @currency
+        currencies = matchCurrency query, @currency
         numbers   = matchNumbers query
 
         #Set defoult values if nothing was found
@@ -146,7 +142,7 @@ class Comprehension
                     number : number
         # Finally return the propositions
         propositions
-    
+
     matchNumbers = (query) =>
         splitArray = (array, pattern)->
             index_split = array.indexOf(pattern)
@@ -166,12 +162,12 @@ class Comprehension
                 unit_results[0] or scale_results[0]
 
         processTerms = (terms)->
-            # will convert one and/or number arrays to a JS number 
+            # will convert one and/or number arrays to a JS number
             if terms.length is 0
                 return 0
             # perform fuzzy search (@see searchValue) on every element and do an addition
-            numbers = _.map terms, (t)-> _.reduce(_.map(t.split('-'), searchValue), (e,sum)-> return e + sum) 
-            sum = _.reduce numbers, (w, sum)-> sum *= w
+            numbers = _.map terms, (t)-> _.reduce(_.map(t.split('-'), searchValue), (e, sum = 1)-> return e + sum)
+            sum = _.reduce numbers, (w, sum = 1)-> sum *= w
 
         matched = {}
         words = query.split(/\s+/)
@@ -183,35 +179,28 @@ class Comprehension
         [sum, sum * 10, sum * 100]
 
     matchCurrency = (query, currency) =>
-        matched = {}
-        words = query.split /\s+/
-        max = 0
-        strippedQuerry = query
+        currencies = []
+        for key, value of currency.list
+            currencies.push
+                iso : key
+                name : value.name
 
-        for iso, curr of currency.list
-            name = do curr.name.toLowerCase
-            #Match ISO codes
-            if query.contains do iso.toLowerCase
-                strippedQuerry = strippedQuerry.replace do iso.toLowerCase, ''
-                matched[iso] = [curr.name]
-            #Or do a word comparison
-            else
-                num = 0
-                _.map words, (word) =>
-                    if name.contains word
-                        ++num
-                        matched[iso] = [curr.name, num]
-                        strippedQuerry = strippedQuerry.replace word, ''
-                max = num if num > max
-
-        #Keep only the best matches
+        #Keep exactly matched ISO codes
+        words = query.split(/\s+/)
         matches = []
-        for iso, curr of matched
-            if not curr[1]? or curr[1] is max
-                matches.push [curr[0], iso]
+        _.map words, (word) =>
+            _.map currencies, (curr) =>
+                if (do curr.iso.toLowerCase) is word
+                    matches.push [curr.name, curr.iso]
 
-        #Finally return the new query and the matches
-        [strippedQuerry, matches]
+        #Fuzzy search !
+        options =
+            keys : ['iso', 'name']
+        matched = (new Fuse currencies, options).search query
+
+        #Finally return the matches
+        _.union matches, _.map matched, (match) =>
+            [match.name, match.iso]
 
     defaultCurrencies = (currency) =>
         _.map ['USD', 'EUR', 'GBP'], (iso) -> [currency.list[iso].name, iso]
