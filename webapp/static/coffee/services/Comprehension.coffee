@@ -1,3 +1,7 @@
+LITTERALS_TYPES = {
+    scale: 'scale'
+    unit: 'unit'
+}
 ###
 UBER CONSTANTS
 ### 
@@ -109,7 +113,7 @@ SEARCH_OPTS =
     id: 'value'
     treshold: 0.3
 
-SEARCH_UNIT_SET  = new Fuse LITTERALS_UNIT, SEARCH_OPTS
+SEARCH_UNIT_SET  = new Fuse LITTERALS_UNIT,  SEARCH_OPTS
 SEARCH_SCALE_SET = new Fuse LITTERALS_SCALE, SEARCH_OPTS
 
 class Comprehension
@@ -151,23 +155,82 @@ class Comprehension
             else
                 return [array]
 
-        searchValue = (term)->
-            # perform a fuzzy search on our SEARCH sets
-            parsed = parseInt(term)
-            unless isNaN(parsed)
-                return parsed
+        searchValue = (term, index, list)->
+            splitted = term.split('-')
+            if splitted.length > 1
+
+                # if term is composed of multiple term (like twenty-two) we do 
+                # a recursive call to return the proper value 
+                sub_numbers = _.map(splitted, 
+                    (el, index, list)->
+                        # we want to process each element as a isolated numbers
+                        # to avoid some scale unit to mess around
+                        searchValue(el, 0, [el])
+                )
+                value = _.reduce(sub_numbers,
+                    (memo, element) ->
+                        return (memo.value or memo) + (element.value or 0)
+                )
+
+                return {
+                    type: LITTERALS_TYPES.unit
+                    value: value 
+                }
             else
+                term = splitted[0]
+                parsed = parseInt(term)
+                unless isNaN(parsed)
+                    # easy ending, it's a number, we return it as unit
+                    return {
+                        type: LITTERALS_TYPES.unit
+                        value: parsed
+                    }
+
+                # perform a fuzzy search on our SEARCH sets
                 unit_results  = SEARCH_UNIT_SET.search(term)
                 scale_results = SEARCH_SCALE_SET.search(term)
-                unit_results[0] or scale_results[0]
+                if index is list.length - 1 and list.length > 1 
+                    # scale should be prior in the number match results if it's 
+                    # the last number of query (2 hundred, hundred is last and 
+                    # should be return (a priori) as a scale if search result 
+                    # are positive)
+                    if scale_results[0]?
+                        type = LITTERALS_TYPES.scale
+                        value = scale_results[0]
+                    else if unit_results[0]?
+                        type = LITTERALS_TYPES.unit
+                        value = unit_results[0]
+                else
+                    if unit_results[0]?
+                        type = LITTERALS_TYPES.unit
+                        value = unit_results[0]
+                    else if scale_results[0]?
+                        type = LITTERALS_TYPES.scale
+                        value = scale_results[0]
+
+                return {
+                    type:  type
+                    value: value
+                }
 
         processTerms = (terms)->
             # will convert one and/or number arrays to a JS number
             if terms.length is 0
                 return 0
             # perform fuzzy search (@see searchValue) on every element and do an addition
-            numbers = _.map terms, (t)-> _.reduce(_.map(t.split('-'), searchValue), (e, sum = 1)-> return e + sum)
-            sum = _.reduce numbers, (w, sum = 1)-> sum *= w
+            numbers = _.map terms, searchValue 
+            sum = _.reduce numbers, (memo, sum)->
+                    if sum.type is LITTERALS_TYPES.unit
+                        value = memo + (sum.value or 0)
+                    else 
+                        value = memo * (sum.value or 1)
+                    return value
+                , 0
+
+            if _.isObject sum 
+                return sum.value
+            else
+                return sum
 
         matched = {}
         words = query.split(/\s+/)
