@@ -164,7 +164,7 @@ INSTALLED_APPS = (
     'compressor',               # Compresses linked and inline JavaScript or CSS into a single cached file.
     'south',                    # helps with database migrations
     # Internal applications added 
-    'webapp.api',  
+    'webapp.api',
     'webapp.core',
     'webapp.currency',
     # Uncomment the next line to enable admin documentation:
@@ -214,8 +214,10 @@ REST_FRAMEWORK = {
     )
 }
 
+# Compatibility with AngularJS
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
+# Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
     try:
         HEROKU_SETTINGS
@@ -224,3 +226,5 @@ if os.environ.get('HEROKU', None):
             from settings_heroku import *
         except ImportError:
             pass
+
+# EOF
