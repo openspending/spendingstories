@@ -231,7 +231,6 @@ class Comprehension
             number_terms = terms[TYPES.number]
             number_terms = number_terms.concat(query_numbers) if query_numbers?
             number_terms = _.sortBy(number_terms, (term)-> term.index )
-            console.log number_terms
             terms[TYPES.number] = number_terms
         else
             terms = 
@@ -291,7 +290,6 @@ class Comprehension
         _.without(str.split(/[\s+|-]/), '', 'and', '+')
 
     searchValue: (term)=>
-        console.log term
         _.map ([_.first @searchSet.search term]), (elem) =>
             _.extend elem,
                 index : @getTermPosition term
