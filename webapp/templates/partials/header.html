@@ -1,10 +1,10 @@
-<header ng-controller="headerCtrl" ng-class="getHeaderClass()" stick-to-top>		
+<header ng-controller="headerCtrl" ng-class="getHeaderClass()" stick-to-top>
 	<div class="container">
 		<h1>
 			<a ng-href="/">Spending Stories</a>
 			<i>by <a href="http://www.okf.org/" target="_blank">OKF</a></i>
-		</h1>	
-	
+		</h1>
+
 		<ul class="list-inline links pull-right">
 			<li>
 				<a ng-href="#/contribute/">
@@ -16,25 +16,8 @@
 
 		<form  class="form-horizontal" role="form" ng-submit="search()">
 			<div class="input-group">
-				<input type="number" ng-required class="form-control" ng-model="query" placeholder="How much is it really?" />		
+				<input type="text" ng-required class="form-control" ng-model="user_query" placeholder="How much is it really?" typeahead="prop as prop.label for prop in propositions() | limitTo: 8" typeahead-wait-ms="1" />
 				<div class="input-group-btn relative">
-					<div class="dropdown btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle currency" data-toggle="dropdown">
-							<span class="right10">[[currency]]</span><span class="caret"></span>
-						</button>
-					    <ul class="dropdown-menu">
-					     	<li>
-					     		<a ng-click="currency = 'USD'">Dollars</a>
-					     	</li>
-					     	<li>
-					     		<a ng-click="currency = 'GBP'">British pounds</a>
-					     	</li>
-					     	<li>
-					     		<a ng-click="currency = 'EUR'">Euros</a>
-					     	</li>
-					    	<li class="disabled"><a>Yen</a></li>
-					    </ul>
-					</div>
 					<input type="submit" class="btn btn-primary" value="Compare" />
 				</div>
 			</div>
