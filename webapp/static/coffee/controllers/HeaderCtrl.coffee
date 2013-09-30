@@ -3,7 +3,10 @@ class HeaderCtrl
 
     constructor: (@scope, @routeParams, @location, @comprehension)->
         @searchParams   = @location.search()
-        @scope.query    = if @searchParams.q? then parseInt(@searchParams.q)
+        @scope.user_query = 
+        
+        @scope.query = if @searchParams.q? then parseInt(@searchParams.q) else null
+        
         @scope.currency = if @searchParams.c? then @searchParams.c else 'USD'
 
         # Update the header size according the location
@@ -30,7 +33,7 @@ class HeaderCtrl
             @location.search(params)
 
     getPropositions: =>
-            @comprehension.getPropositions @scope.query
+            @comprehension.getPropositions @scope.user_query
 
 
 angular.module('stories').controller 'headerCtrl', HeaderCtrl

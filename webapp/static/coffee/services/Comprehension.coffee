@@ -5,7 +5,7 @@ TYPES = {
 
 # Search set is the set who will be used for fuzzy searching values.
 # It regroups currencies and numbers to get the most relevant result for each
-# search term 
+# search term
 
 SEARCH_SET_DATA = [
         id: 0
@@ -25,52 +25,52 @@ SEARCH_SET_DATA = [
     ,
         id: 3
         value: 3
-        name: "three"    
+        name: "three"
         type: TYPES.number
     ,
         id: 4
         value: 4
-        name: "four"     
+        name: "four"
         type: TYPES.number
     ,
         id: 5
         value: 5
-        name: "five"     
+        name: "five"
         type: TYPES.number
     ,
         id: 6
         value: 6
-        name: "six"  
+        name: "six"
         type: TYPES.number
     ,
         id: 7
         value: 7
-        name: "seven"    
+        name: "seven"
         type: TYPES.number
     ,
         id: 8
         value: 8
-        name: "eight"    
+        name: "eight"
         type: TYPES.number
     ,
         id: 9
         value: 9
-        name: "nine"     
+        name: "nine"
         type: TYPES.number
     ,
         id: 10
         value: 10
-        name: "ten"       
+        name: "ten"
         type: TYPES.number
     ,
         id: 11
         value: 11
-        name: "eleven"        
+        name: "eleven"
         type: TYPES.number
     ,
         id: 12
         value: 12
-        name: "twelve"   
+        name: "twelve"
         type: TYPES.number
     ,
         id: 13
@@ -85,22 +85,22 @@ SEARCH_SET_DATA = [
     ,
         id: 15
         value: 15
-        name: "fifteen"  
+        name: "fifteen"
         type: TYPES.number
     ,
         id: 16
         value: 16
-        name: "sixteen"  
+        name: "sixteen"
         type: TYPES.number
     ,
         id: 17
         value: 17
-        name: "seventeen"    
+        name: "seventeen"
         type: TYPES.number
     ,
         id: 18
         value: 18
-        name: "eighteen"  
+        name: "eighteen"
         type: TYPES.number
     ,
         id: 19
@@ -110,37 +110,37 @@ SEARCH_SET_DATA = [
     ,
         id: 20
         value: 20
-        name: "twenty"         
+        name: "twenty"
         type: TYPES.number
     ,
         id: 21
         value: 30
-        name: "thirty"         
+        name: "thirty"
         type: TYPES.number
     ,
         id: 22
         value: 40
-        name: "forty"          
+        name: "forty"
         type: TYPES.number
     ,
         id: 23
         value: 50
-        name: "fifty"          
+        name: "fifty"
         type: TYPES.number
     ,
         id: 24
         value: 60
-        name: "sixty" 
+        name: "sixty"
         type: TYPES.number
     ,
         id: 25
         value: 70
-        name: "seventy" 
+        name: "seventy"
         type: TYPES.number
     ,
         id: 26
         value: 80
-        name: "eighty"  
+        name: "eighty"
         type: TYPES.number
     ,
         id: 27
@@ -152,7 +152,6 @@ SEARCH_SET_DATA = [
         value: 1e2
         name: "hundred"
         type: TYPES.number
-
     ,
         id: 29
         value: 1e3
@@ -163,7 +162,6 @@ SEARCH_SET_DATA = [
         value: 1e6
         name: "million"
         type: TYPES.number
-
     ,
         id: 31
         value: 1e9
@@ -179,16 +177,19 @@ SEARCH_SET_DATA = [
         value: 'EUR'
         symbol: '€'
         name: 'Euro'
+        type: TYPES.currency
     ,
         id: 33
         value: 'GBP'
         symbol: '£'
         name: 'British Pound'
+        type: TYPES.currency
     ,
         id: 33
         value: 'USD'
         symbol: '$'
         name: 'US Dollar'
+        type: TYPES.currency
 ]
 
 DECIMAL_CARACTER = {
@@ -196,9 +197,8 @@ DECIMAL_CARACTER = {
     'en': '.'
 }
 
-SEARCH_OPTS = 
+SEARCH_OPTS =
     keys: ['name', 'value', 'symbol']
-    id: 'id'
     treshold: 0.3
 
 class Comprehension
@@ -206,9 +206,9 @@ class Comprehension
 
     constructor : ($window, @currency) ->
         # when currencies will be filtered:
-        # add currencies to SEARCH_SET_DATA with format: 
+        # add currencies to SEARCH_SET_DATA with format:
         # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
-        @searchSet = new Fuse SEARCH_SET_DATA,  SEARCH_OPTS
+        @searchSet = new Fuse SEARCH_SET_DATA, SEARCH_OPTS
         @language  = ($window.navigator.userLanguage || $window.navigator.language).substr(0, 2)
 
         @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
@@ -225,12 +225,9 @@ class Comprehension
 
         # First step: extract numbers from query (query is changed)
         [numbers, @query] = @extractNumbersFromQuery @query
-        terms = _.map atomize(@query), @searchValue
-        terms = _.sortBy terms.concat(numbers), (term)-> return term.index
-        terms = _.groupBy terms, (term)-> return term.type
+        terms = _.groupBy (_.flatten _.map atomize(@query), @searchValue), 'type'
 
-        number = @extractNumbersFromTerms(terms[TYPES.number])
-        console.log number
+        numbers    = @extractNumbersFromTerms(terms[TYPES.number])
         currencies = matchCurrency query, @currency
 
         #Set defoult values if nothing was found
@@ -245,34 +242,33 @@ class Comprehension
                     currency : currency[1]
                     number : number
         # Finally return the propositions
-        # propositions
-        [{
-            label: "1200000 US Dollars"
-            currency: "USD"
-            number: 1200000
-        }]
+        propositions
 
     extractNumbersFromQuery: (query) => 
         query_numbers = query.match(/\d{1,3}([,|\.]?\s*\d{1,3})*/g)
-        numbers = for number in query_numbers
-            do()=>
-                query.replace(number, '')
-                number = 
-                    index: @getTermPosition(number)
-                    value: parseNumber(number)
-                    type:  TYPES.number
-
+        numbers = undefined
+        if query_numbers?
+            numbers = for number in query_numbers
+                do()=>
+                    query.replace(number, '')
+                    number =
+                        index: @getTermPosition(number)
+                        value: parseNumber(number)
+                        type:  TYPES.number
         return [numbers, query]
 
     extractNumbersFromTerms: (terms) =>
-        _.reduce(terms, (memo, sum)->
-                if sum.value > memo
-                    memo *= sum.value
+        console.log 'extractNumbersFromTerms',  terms
+        sum = _.reduce(terms, (memo, term)->
+                console.log "reduce extractNumbersFromTerms: ", term
+                if term.value > memo
+                    memo *= term.value or 1
                 else
-                    memo += sum.value
+                    memo += term.value or 0
                 memo
-            , 0
-        )
+            , 0 )
+        console.log sum
+        [sum]
 
     parseNumber = (str_number)->
         number = str_number.split(@local_decimal_caracter)
@@ -286,15 +282,12 @@ class Comprehension
     atomize = (str)=>
         str.split(/[\s+|-]/)
 
-    searchValue: (term, index, list)=>
-        return @searchSet.search(term)
-
-    extractNumbers = (query) =>
-        sum = _.reduce splitted_array, (memo, words)->
-                return memo + processTerms(words)
-            , 0
-
-        [sum, sum * 10, sum * 100]
+    searchValue: (term)=>
+        console.log term
+        _.map ([_.first @searchSet.search term]), (elem) =>
+            _.extend elem,
+                index : @getTermPosition term
+                term : term
 
     matchCurrency = (query, currency) =>
         currencies = []
