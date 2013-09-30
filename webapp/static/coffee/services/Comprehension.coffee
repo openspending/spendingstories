@@ -227,19 +227,20 @@ class Comprehension
         [numbers, @query] = @extractNumbers @query
         terms = _.groupBy (_.flatten _.map atomize(@query), @searchValue), 'type'
 
-        currencies = matchCurrency query, @currency
-        numbers   = matchNumbers query
+        #currencies = matchCurrency query, @currency
+        currencies = terms[TYPES.currency]
+        #numbers   = matchNumbers query
 
-        #Set defoult values if nothing was found
-        currencies = (defaultCurrencies @currency) if currencies.length <= 0
-        numbers = (do defaultNumbers) if numbers.length <= 0
+        #Set default values if nothing was found
+        currencies = (defaultCurrencies @currency) if not currencies? or currencies.length <= 0
+        numbers = (do defaultNumbers) if not numbers? or numbers.length <= 0
 
         #Compute all numbers with all currencies
         _.map currencies, (currency) =>
             _.map numbers, (number) =>
                 propositions.push
-                    label : "#{number} #{currency[0]}"
-                    currency : currency[1]
+                    label : "#{number} #{currency.name}"
+                    currency : currency.value
                     number : number
         # Finally return the propositions
         propositions
@@ -339,7 +340,9 @@ class Comprehension
             [match.name, match.iso]
 
     defaultCurrencies = (currency) =>
-        _.map ['USD', 'EUR', 'GBP'], (iso) -> [currency.list[iso].name, iso]
+        _.map ['USD', 'EUR', 'GBP'], (iso) ->
+            name : currency.list[iso].name
+            value : iso
 
     defaultNumbers = () =>
         [100000]
