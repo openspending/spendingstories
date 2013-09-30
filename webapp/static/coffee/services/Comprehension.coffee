@@ -288,7 +288,7 @@ class Comprehension
         return @original_query.indexOf(term)
 
     atomize = (str)=>
-        _.without(str.split(/[\s+|-]/), '', 'and', '+')
+        _.without(str.split(/[\s+|-]/), '', 'and', '+' , '.')
 
     searchValue: (term)=>
         _.map ([_.first @searchSet.search term]), (elem) =>
