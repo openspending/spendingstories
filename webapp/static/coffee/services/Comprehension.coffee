@@ -270,10 +270,11 @@ class Comprehension
 
     extractNumbersFromTerms: (terms) =>
         sum = _.reduce(terms, (memo, term)->
+                return term.value if memo is 0
                 if term.value > memo
-                    return (memo.value or 1) * (term.value or 1)
+                    return (memo or 1) * (term.value or 1)
                 else
-                    return (memo.value or 0) + (term.value or 0)
+                    return (memo or 0) + (term.value or 0)
             , 0 )
         [sum]
 
