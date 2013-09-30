@@ -16,7 +16,7 @@
 
 		<form  class="form-horizontal" role="form" ng-submit="search()">
 			<div class="input-group">
-				<input type="text" ng-required class="form-control" ng-model="user_query" placeholder="How much is it really?" typeahead="prop as prop.label for prop in propositions() | filter:$viewValue | limitTo: 8" typeahead-wait-ms="1" />
+				<input type="text" ng-required class="form-control" ng-model="user_query" placeholder="How much is it really?" typeahead="prop as prop.label for prop in propositions() | limitTo: 8" typeahead-wait-ms="1" />
 				<div class="input-group-btn relative">
 					<div class="dropdown btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle currency" data-toggle="dropdown">
