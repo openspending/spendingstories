@@ -224,25 +224,32 @@ class Comprehension
         propositions = []
 
         # First step: extract numbers from query (query is changed)
-        [numbers, @query] = @extractNumbersFromQuery @query
-        terms = _.groupBy (_.flatten _.map atomize(@query), @searchValue), 'type'
+        [query_numbers, @query] = @extractNumbersFromQuery @query
+        terms = _.map atomize(@query), @searchValue
+        terms =  _.flatten(terms)
+        terms = _.groupBy(terms, 'type')
+        terms[TYPES.number] = terms[TYPES.number].concat(query_numbers) if query_numbers?
+        terms[TYPES.number] = _.sortBy(terms[TYPES.number], (term)-> return term.index ) 
 
         numbers    = @extractNumbersFromTerms(terms[TYPES.number])
-        currencies = matchCurrency query, @currency
+        currencies = terms[TYPES.currency]
 
-        #Set defoult values if nothing was found
-        currencies = (defaultCurrencies @currency) if currencies.length <= 0
-        numbers = (do defaultNumbers) if numbers.length <= 0
+        #Set default values if nothing was found
+        currencies = (defaultCurrencies @currency) if not currencies? or currencies.length <= 0
+        numbers = (do defaultNumbers) if not numbers? or numbers.length <= 0
 
         #Compute all numbers with all currencies
         _.map currencies, (currency) =>
             _.map numbers, (number) =>
                 propositions.push
-                    label : "#{number} #{currency[0]}"
-                    currency : currency[1]
+                    label : "#{number} #{currency.name}"
+                    currency : currency.value
                     number : number
+
+        console.log propositions
+
         # Finally return the propositions
-        propositions
+        return propositions
 
     extractNumbersFromQuery: (query) => 
         query_numbers = query.match(/\d{1,3}([,|\.]?\s*\d{1,3})*/g)
@@ -250,22 +257,23 @@ class Comprehension
         if query_numbers?
             numbers = for number in query_numbers
                 do()=>
-                    query.replace(number, '')
-                    number =
+                    query  = query.replace(number, '')
+                    return {
                         index: @getTermPosition(number)
                         value: parseNumber(number)
                         type:  TYPES.number
+                    }
         return [numbers, query]
 
     extractNumbersFromTerms: (terms) =>
         console.log 'extractNumbersFromTerms',  terms
         sum = _.reduce(terms, (memo, term)->
+                console.log memo
                 console.log "reduce extractNumbersFromTerms: ", term
                 if term.value > memo
-                    memo *= term.value or 1
+                    return (memo.value or 1) * (term.value or 1)
                 else
-                    memo += term.value or 0
-                memo
+                    return (memo.value or 0) + (term.value or 0)
             , 0 )
         console.log sum
         [sum]
@@ -314,7 +322,9 @@ class Comprehension
             [match.name, match.iso]
 
     defaultCurrencies = (currency) =>
-        _.map ['USD', 'EUR', 'GBP'], (iso) -> [currency.list[iso].name, iso]
+        _.map ['USD', 'EUR', 'GBP'], (iso) ->
+            name : currency.list[iso].name
+            value : iso
 
     defaultNumbers = () =>
         [100000]
