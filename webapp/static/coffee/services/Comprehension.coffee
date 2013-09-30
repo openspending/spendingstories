@@ -224,12 +224,14 @@ class Comprehension
         propositions = []
 
         # First step: extract numbers from query (query is changed)
-        [numbers, @query] = @extractNumbers @query
-        terms = _.map atomize(@query), @searchValue 
-        console.log terms
+        [numbers, @query] = @extractNumbersFromQuery @query
+        terms = _.map atomize(@query), @searchValue
+        terms = _.sortBy terms.concat(numbers), (term)-> return term.index
+        terms = _.groupBy terms, (term)-> return term.type
 
+        number = @extractNumbersFromTerms(terms[TYPES.number])
+        console.log number
         currencies = matchCurrency query, @currency
-        numbers   = matchNumbers query
 
         #Set defoult values if nothing was found
         currencies = (defaultCurrencies @currency) if currencies.length <= 0
@@ -243,9 +245,14 @@ class Comprehension
                     currency : currency[1]
                     number : number
         # Finally return the propositions
-        propositions
+        # propositions
+        [{
+            label: "1200000 US Dollars"
+            currency: "USD"
+            number: 1200000
+        }]
 
-    extractNumbers: (query) => 
+    extractNumbersFromQuery: (query) => 
         query_numbers = query.match(/\d{1,3}([,|\.]?\s*\d{1,3})*/g)
         numbers = for number in query_numbers
             do()=>
@@ -257,10 +264,19 @@ class Comprehension
 
         return [numbers, query]
 
+    extractNumbersFromTerms: (terms) =>
+        _.reduce(terms, (memo, sum)->
+                if sum.value > memo
+                    memo *= sum.value
+                else
+                    memo += sum.value
+                memo
+            , 0
+        )
+
     parseNumber = (str_number)->
         number = str_number.split(@local_decimal_caracter)
         sub_numbers = number[0].match(/\d+/g)
-
         if sub_numbers? then n = sub_numbers.join('') else n = str_number
         return parseInt(n)
 
@@ -273,39 +289,7 @@ class Comprehension
     searchValue: (term, index, list)=>
         return @searchSet.search(term)
 
-
-    matchNumbers = (query) =>
-        splitArray = (array, pattern)->
-            index_split = array.indexOf(pattern)
-            if index_split isnt -1
-                return [array.splice(0, index_split), array.splice(1, array.length - 1)]
-            else
-                return [array]
-
-        searchValue = (term, index, list)->
-
-        processTerms = (terms)->
-            # will convert one and/or number arrays to a JS number
-            if terms.length is 0
-                return 0
-            # perform fuzzy search (@see searchValue) on every element and do an addition
-            numbers = _.map terms, searchValue 
-            sum = _.reduce numbers, (memo, sum)->
-                    if sum.type is LITTERALS_TYPES.unit
-                        value = memo + (sum.value or 0)
-                    else 
-                        value = memo * (sum.value or 1)
-                    return value
-                , 0
-
-            if _.isObject sum 
-                return sum.value
-            else
-                return sum
-
-        matched = {}
-        words = query.split(/\s+/)
-        splitted_array = splitArray(words, 'and')
+    extractNumbers = (query) =>
         sum = _.reduce splitted_array, (memo, words)->
                 return memo + processTerms(words)
             , 0
