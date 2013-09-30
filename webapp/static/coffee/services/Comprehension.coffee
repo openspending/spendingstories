@@ -202,20 +202,21 @@ SEARCH_OPTS =
     treshold: 0.3
 
 class Comprehension
-    @$inject : ['Currency']
+    @$inject : ['$window', 'Currency']
 
-    constructor : (@currency) ->
+    constructor : ($window, @currency) ->
         # when currencies will be filtered:
         # add currencies to SEARCH_SET_DATA with format: 
         # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
         @searchSet = new Fuse SEARCH_SET_DATA,  SEARCH_OPTS
+        @language  = ($window.navigator.userLanguage || $window.navigator.language).substr(0, 2)
+
+        @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
 
     getPropositions : (query) =>
         #LowerCase the query for easier comparisons
-        @query = query
-        @original_query = do query.toLowerCase
-
-
+        @original_query = query
+        @query = do query.toLowerCase
 
         #Initialize data structures
         currencies = []
@@ -254,7 +255,6 @@ class Comprehension
                     value: parseNumber(number)
                     type:  TYPES.number
 
-        console.log(numbers)
         return [numbers, query]
 
     parseNumber = (str_number)->
@@ -283,33 +283,6 @@ class Comprehension
                 return [array]
 
         searchValue = (term, index, list)->
-
-                # perform a fuzzy search on our SEARCH sets
-                unit_results  = SEARCH_UNIT_SET.search(term)
-                scale_results = SEARCH_SCALE_SET.search(term)
-                if index is list.length - 1 and list.length > 1 
-                    # scale should be prior in the number match results if it's 
-                    # the last number of query (2 hundred, hundred is last and 
-                    # should be return (a priori) as a scale if search result 
-                    # are positive)
-                    if scale_results[0]?
-                        type = LITTERALS_TYPES.scale
-                        value = scale_results[0]
-                    else if unit_results[0]?
-                        type = LITTERALS_TYPES.unit
-                        value = unit_results[0]
-                else
-                    if unit_results[0]?
-                        type = LITTERALS_TYPES.unit
-                        value = unit_results[0]
-                    else if scale_results[0]?
-                        type = LITTERALS_TYPES.scale
-                        value = scale_results[0]
-
-                return {
-                    type:  type
-                    value: value
-                }
 
         processTerms = (terms)->
             # will convert one and/or number arrays to a JS number
