@@ -3,7 +3,7 @@ class HeaderCtrl
 
     constructor: (@scope, @routeParams, @location, @comprehension)->
         @searchParams   = @location.search()
-        @scope.user_query = 
+        @scope.user_query = undefined
         
         @scope.query = if @searchParams.q? then parseInt(@searchParams.q) else null
         
@@ -21,10 +21,11 @@ class HeaderCtrl
 
     onSearch: =>
         params = {}
-        if @scope.query?
+        console.log @scope.user_query
+        if @scope.user_query?
             params = _.extend @location.search(), {
-                q: @scope.query
-                c: @scope.currency
+                q: @scope.user_query.number
+                c: @scope.user_query.currency
             }
         if @location.path().indexOf('search') == -1
             @location.path('/search/').search(params)
