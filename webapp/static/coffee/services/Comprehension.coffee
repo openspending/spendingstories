@@ -225,11 +225,18 @@ class Comprehension
 
         # First step: extract numbers from query (query is changed)
         [query_numbers, @query] = @extractNumbersFromQuery @query
-        terms = _.map atomize(@query), @searchValue
-        terms =  _.flatten(terms)
-        terms = _.groupBy(terms, 'type')
-        terms[TYPES.number] = terms[TYPES.number].concat(query_numbers) if query_numbers?
-        terms[TYPES.number] = _.sortBy(terms[TYPES.number], (term)-> return term.index ) 
+        terms = _.map atomize(@query), @searchValue if @query isnt ""
+        if terms?
+            terms = _.groupBy(_.flatten(terms), 'type')
+            number_terms = terms[TYPES.number]
+            number_terms = number_terms.concat(query_numbers) if query_numbers?
+            number_terms = _.sortBy(number_terms, (term)-> term.index )
+            console.log number_terms
+            terms[TYPES.number] = number_terms
+        else
+            terms = 
+                'number': query_numbers if query_numbers
+
 
         numbers    = @extractNumbersFromTerms(terms[TYPES.number])
         currencies = terms[TYPES.currency]
@@ -245,11 +252,8 @@ class Comprehension
                     label : "#{number} #{currency.name}"
                     currency : currency.value
                     number : number
-
-        console.log propositions
-
         # Finally return the propositions
-        return propositions
+        propositions
 
     extractNumbersFromQuery: (query) => 
         query_numbers = query.match(/\d{1,3}([,|\.]?\s*\d{1,3})*/g)
@@ -266,16 +270,12 @@ class Comprehension
         return [numbers, query]
 
     extractNumbersFromTerms: (terms) =>
-        console.log 'extractNumbersFromTerms',  terms
         sum = _.reduce(terms, (memo, term)->
-                console.log memo
-                console.log "reduce extractNumbersFromTerms: ", term
                 if term.value > memo
                     return (memo.value or 1) * (term.value or 1)
                 else
                     return (memo.value or 0) + (term.value or 0)
             , 0 )
-        console.log sum
         [sum]
 
     parseNumber = (str_number)->
@@ -288,7 +288,7 @@ class Comprehension
         return @original_query.indexOf(term)
 
     atomize = (str)=>
-        str.split(/[\s+|-]/)
+        _.without(str.split(/[\s+|-]/), '', 'and', '+')
 
     searchValue: (term)=>
         console.log term
