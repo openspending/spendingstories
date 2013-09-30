@@ -12,13 +12,15 @@
 # -----------------------------------------------------------------------------
 from economics import Inflation, CPI
 import datetime
+import os
 
 # -----------------------------------------------------------------------------
 #
 #    INFLATION
 #
 # -----------------------------------------------------------------------------
-CPI       = CPI(datapackage="data/cpi/")
+# Load in memory the datapackage on launching, pretty faster
+CPI       = CPI(datapackage=os.path.join((os.path.dirname(os.path.realpath(__file__))), "..", "data/cpi/"))
 INFLATION = Inflation(CPI)
 INFLATION_REFERENCE_RETRY = 5
 

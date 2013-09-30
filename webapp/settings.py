@@ -33,12 +33,12 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
+        'NAME'    : 'dev.db',                   # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': '',
+        'USER'    : '',
         'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST'    : '', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT'    : '', # Set to empty string for default.
     }
 }
 
@@ -164,7 +164,7 @@ INSTALLED_APPS = (
     'compressor',               # Compresses linked and inline JavaScript or CSS into a single cached file.
     'south',                    # helps with database migrations
     # Internal applications added 
-    'webapp.api',  
+    'webapp.api',
     'webapp.core',
     'webapp.currency',
     # Uncomment the next line to enable admin documentation:
@@ -214,8 +214,10 @@ REST_FRAMEWORK = {
     )
 }
 
+# Compatibility with AngularJS
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
+# Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
     try:
         HEROKU_SETTINGS
@@ -224,3 +226,5 @@ if os.environ.get('HEROKU', None):
             from settings_heroku import *
         except ImportError:
             pass
+
+# EOF
