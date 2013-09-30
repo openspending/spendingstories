@@ -21,7 +21,6 @@ class HeaderCtrl
 
     onSearch: =>
         params = {}
-        console.log @scope.user_query
         if @scope.user_query?
             params = _.extend @location.search(), {
                 q: @scope.user_query.number
