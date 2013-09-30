@@ -228,12 +228,12 @@ class Comprehension
         terms = _.map atomize(@query), @searchValue if @query isnt ""
         if terms?
             terms = _.groupBy(_.flatten(terms), 'type')
-            number_terms = terms[TYPES.number]
+            number_terms = terms[TYPES.number] || []
             number_terms = number_terms.concat(query_numbers) if query_numbers?
             number_terms = _.sortBy(number_terms, (term)-> term.index )
             terms[TYPES.number] = number_terms
         else
-            terms = 
+            terms =
                 'number': query_numbers if query_numbers
 
 
@@ -254,7 +254,7 @@ class Comprehension
         # Finally return the propositions
         propositions
 
-    extractNumbersFromQuery: (query) => 
+    extractNumbersFromQuery: (query) =>
         query_numbers = query.match(/\d{1,3}([,|\.]?\s*\d{1,3})*/g)
         numbers = undefined
         if query_numbers?
