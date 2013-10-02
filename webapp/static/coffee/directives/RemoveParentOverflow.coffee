@@ -5,8 +5,15 @@
         link: (scope, element, attr) ->
             parentSelector = attr.removeparentoverflow
             parent = if parentSelector? then element.parents(parentSelector) else do element.parent
+            timer = undefined
 
-            element.on 'focus', () => parent.css 'overflow', 'visible'
-            element.on 'blur', () => parent.css 'overflow', 'hidden'
+            element.on 'focus', () =>
+                if timer?
+                    clearTimeout timer
+                parent.css 'overflow', 'visible'
+            element.on 'blur', () =>
+                timer = setTimeout () =>
+                    parent.css 'overflow', 'hidden'
+                , 500
 
 ]
