@@ -11,7 +11,7 @@ class SearchService
         # ──────────────────────────────────────────────────────────────────────
         searchParams = @getURLParams()
         # Filter parameters accepted in URL, will produce filtering of stories 
-        @accepted_filters = ['onlySticky', 'themes', 'country', 'currency']
+        @accepted_filters = ['onlySticky', 'themes', 'country', 'currency', 'title']
 
 
         @extra_fields = 

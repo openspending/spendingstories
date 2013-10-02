@@ -16,6 +16,7 @@ class FilterCtrl
         @scope.currency_list = Restangular.all('filters/currencies').getList isUsed:true
         @scope.country_list  = Restangular.all('filters/countries').getList isUsed:true
         @scope.theme_list    = Restangular.all('filters/themes').getList isUsed:true
+        @scope.stories_list  = Restangular.all('stories').getList isUsed:true
         # filters models 
         @scope.filters = 
             ### 
@@ -52,6 +53,12 @@ class FilterCtrl
                 type: 'array'
                 stackable: false
                 value: if @searchParams.themes? then @searchParams.themes.split(',')
+                modes: ['cards', 'scale']
+            title:
+                name: 'Title'
+                type: 'string'
+                stackable: true
+                value: @searchParams.title
                 modes: ['cards', 'scale']
             # Not handled for the moment
             # type:
