@@ -16,6 +16,7 @@ class FilterCtrl
         @scope.currency_list = Restangular.all('filters/currencies').getList isUsed:true
         @scope.country_list  = Restangular.all('filters/countries').getList isUsed:true
         @scope.theme_list    = Restangular.all('filters/themes').getList isUsed:true
+        @scope.stories_list  = Restangular.all('stories').getList isUsed:true
         # filters models 
         @scope.filters = 
             ### 
@@ -53,6 +54,12 @@ class FilterCtrl
                 stackable: false
                 value: if @searchParams.themes? then @searchParams.themes.split(',')
                 modes: ['cards', 'scale']
+            title:
+                name: 'Title'
+                type: 'string'
+                stackable: true
+                value: @searchParams.title
+                modes: ['cards', 'scale']
             # Not handled for the moment
             # type:
                 # name: 'Type'
@@ -76,6 +83,9 @@ class FilterCtrl
         @scope.removeFilter = @removeFilter
         # remove an activated theme 
         @scope.removeTheme = @removeTheme
+        # reset filters
+        @scope.resetFilters = @resetFilters
+        @scope.resetComparison = @resetComparison
 
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
@@ -89,6 +99,14 @@ class FilterCtrl
                 @scope.$watchCollection watch_string, @filter
             else
                 @scope.$watch watch_string, @filter
+
+    resetFilters : () =>
+        for key, filter of @scope.filters
+            if key isnt 'title'
+                filter.value = undefined
+
+    resetComparison : () =>
+        @scope.filters.title.value = undefined
 
     isVisible:(f)=>
         viz_mode = @location.search().visualization
