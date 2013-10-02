@@ -4,12 +4,11 @@ django-rest-framework-docs==0.1.6
 django-filter==0.6.0
 django-angular==0.1.4
 django-compressor==1.3.0
-datapackage==0.1.2
+git+https://github.com/vied12/datapackage.git
 django-model-utils==1.4.0
 markdown==2.3.1
 loremipsum==1.0.2
 requests==1.2.3
 south==0.8.1
-pyquery==1.2.4
 BeautifulSoup==3.2.1
 dj-static==0.0.5
