@@ -5,7 +5,7 @@
 # -----------------------------------------------------------------------------
 # Author : Edouard Richard                                  <edou4rd@gmail.com>
 # -----------------------------------------------------------------------------
-# License : proprietary journalism++
+# License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : date
 # Last mod : date
