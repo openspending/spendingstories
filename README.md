@@ -1,6 +1,9 @@
 # Spending Stories
 
-## How to install Spending Stories on Ubuntu
+2013, Journalism++  
+GNU General Public License
+
+## How to install Spending Stories
 
 ### Important notes
 
@@ -12,7 +15,11 @@ If you find a bug/error in this guide please submit a pull request.
 
 The Spending Stories installation consists of setting up the following components: 
 
-TODO
+
+1. Set up your python environnement
+1. Install dependencies
+1. Set up the database (example with MySQL)
+1. Run server (example with mod_wsgi from apache)
 
 ### 1. Set up your python environnement
 
@@ -55,7 +62,7 @@ source .env
 pip install -r requirements_core.txt
 ```
 
-**b. Install preprocessors for *Less* and *CoffeeScript***
+**b. Install compilers for *Less* and *CoffeeScript* **
 
 __If you don't have already nodejs installed__:
 
@@ -67,13 +74,15 @@ sudo apt-get update
 sudo apt-get install nodejs
 ```
 
+and then install them
+
 ```bash
 cat npm_requirements.txt | sudo xargs npm -g install
 ```
 
 ### 3. Set up the database
 
-1. Configure the file `webapp/settings.py`
+**a. Configure the file `webapp/settings.py`**
 
 ```python
 DATABASES = {
@@ -89,7 +98,12 @@ DATABASES = {
 }
 ```
 
-For Mysql, you will need to install mysql-python, like that:
+Currently, the dataset backend is sqlite3, very easy to use for development.
+You can change it by _mysql_, _postgres_ or _oracle_.
+
+#### Example with MySQL
+
+For MySQL, you will need to install mysql-python, like that:
 
     sudo apt-get install libmysqlclient-dev
     pip install mysql-python
@@ -100,12 +114,10 @@ and create the database
     mysql>  CREATE DATABASE IF NOT EXISTS `<database_name>` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
     mysql> \q
 
-Currently, the dataset backend is sqlite3, very easy to use for development.
-You can change it by _mysql_, _postgres_ or _oracle_.
 
-2. Syncing the database
+**b. Syncing the database  **
 
-To create the tables in the database and put some data like categories and currency, please run and provide asked informations
+To create the tables in the database and put some data like categories and currencies, please run and provide asked informations
 
 ```bash
 python manage.py syncdb && python manage.py migrate
@@ -120,6 +132,13 @@ python manage.py runserver
 ```
 
 **b. For production**
+
+You have a lot a choice to deploy this application.  
+Take a look on this documentation : [Django - deployment](https://docs.djangoproject.com/en/1.5/howto/deployment/)
+
+Keep in mind that assets are already served by the wsgi server with [dj-static](https://github.com/kennethreitz/dj-static) if you're using our [wsgi.py file](https://github.com/jplusplus/okf-spending-stories/blob/master/webapp/wsgi.py)
+
+Dependency:
 
     sudo apt-get install libapache2-mod-wsgi
 
