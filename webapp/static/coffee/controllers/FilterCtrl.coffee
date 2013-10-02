@@ -83,6 +83,8 @@ class FilterCtrl
         @scope.removeFilter = @removeFilter
         # remove an activated theme 
         @scope.removeTheme = @removeTheme
+        # reset all filters
+        @scope.resetFilters = @resetFilters
 
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
@@ -96,6 +98,11 @@ class FilterCtrl
                 @scope.$watchCollection watch_string, @filter
             else
                 @scope.$watch watch_string, @filter
+
+    resetFilters : () =>
+        for key, filter of @scope.filters
+            if key isnt 'title'
+                filter.value = undefined
 
     isVisible:(f)=>
         viz_mode = @location.search().visualization

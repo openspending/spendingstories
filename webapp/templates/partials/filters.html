@@ -40,7 +40,8 @@
                 <label class="control-label sr-only" for="input-title">Title</label>
                 <input type="text" data-container="body" class="form-control"
                         ng-model="filters.title.value" typeahead-editable="false"
-                        typeahead="story.title for story in stories_list | filter:$viewValue | limitTo:8" placeholder="Title" />
+                        typeahead="story.title for story in stories_list | filter:$viewValue | limitTo:8" placeholder="Title"
+                        typeahead-on-select="resetFilters()" />
             </div>
             <div ng-if="isVisible(filters.onlySticky)" class="filter col-sm-3 form-group">
                 <label class="control-label checkbox">
