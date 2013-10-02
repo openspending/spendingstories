@@ -83,8 +83,9 @@ class FilterCtrl
         @scope.removeFilter = @removeFilter
         # remove an activated theme 
         @scope.removeTheme = @removeTheme
-        # reset all filters
+        # reset filters
         @scope.resetFilters = @resetFilters
+        @scope.resetComparison = @resetComparison
 
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
@@ -103,6 +104,9 @@ class FilterCtrl
         for key, filter of @scope.filters
             if key isnt 'title'
                 filter.value = undefined
+
+    resetComparison : () =>
+        @scope.filters.title.value = undefined
 
     isVisible:(f)=>
         viz_mode = @location.search().visualization
@@ -173,8 +177,6 @@ class FilterCtrl
         Called when filter changes, we retrieve all filter and change the URL in
         consequence
         ###
-        if @scope.filters.title.value?
-            do @resetFilters
         params = @location.search()
         @addFilter(params, key, filter.value) for key, filter of @scope.filters
         @location.search(params)
