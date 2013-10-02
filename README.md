@@ -19,7 +19,7 @@ TODO
 **a. Install python packages:**
 
 ```bash
-sudo apt-get install build-essential git-core python python-pip python-dev mysql node npm libapache2-mod-wsgi
+sudo apt-get install build-essential git-core python python-pip python-dev
 ```
 
 **b. Install virtualenv** a tool to isolate your dependencies
@@ -37,7 +37,8 @@ git clone https://github.com/jplusplus/okf-spending-stories.git
   > Every python dependencies will be installed in this folder to keep your system's environnement clean.
 
 ```bash
-cd okf-spending-stories/ && virtualenv venv --no-site-packages --distribute --prompt=SpendingStories
+cd okf-spending-stories
+virtualenv venv --no-site-packages --distribute --prompt=SpendingStories
 ```
 
 **e. Activate your new virtualenv**
@@ -87,7 +88,17 @@ DATABASES = {
     }
 }
 ```
-TODO: dependences
+
+For Mysql, you will need to install mysql-python, like that:
+
+    sudo apt-get install libmysqlclient-dev
+    pip install mysql-python
+
+and create the database
+
+    mysql -u root -p
+    mysql>  CREATE DATABASE IF NOT EXISTS `<database_name>` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+    mysql> \q
 
 Currently, the dataset backend is sqlite3, very easy to use for development.
 You can change it by _mysql_, _postgres_ or _oracle_.

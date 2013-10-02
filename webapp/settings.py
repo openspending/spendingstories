@@ -12,20 +12,18 @@
 # -----------------------------------------------------------------------------
 import os
 
+ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.pardir))
+APP_PATH  = os.path.dirname(os.path.realpath(__file__))
+
 '''
 Django settings for Open Knowlegdge Foundation//Spending Stories project
-'''  
-
-ROOT_PATH      = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.pardir))
-APP_PATH       = os.path.dirname(os.path.realpath(__file__))
-
+'''
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('edouard', 'edou4rd@gmail.com'),
-    ('pbellon', 'bellon.pierre@gmail.com'),
+    # ("name", "email@email.com"),
 )
 
 MANAGERS = ADMINS
@@ -40,7 +38,7 @@ DATABASES = {
         'HOST'    : '', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT'    : '', # Set to empty string for default.
     }
-}
+} # see documentation here https://docs.djangoproject.com/en/dev/ref/databases/
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
