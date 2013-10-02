@@ -99,7 +99,8 @@ DATABASES = {
 ```
 
 Currently, the dataset backend is sqlite3, very easy to use for development.
-You can change it by _mysql_, _postgres_ or _oracle_.
+You can change it by _mysql_, _postgres_ or _oracle_.  
+[Documentation](https://docs.djangoproject.com/en/1.5/ref/databases/)
 
 #### Example with MySQL
 
