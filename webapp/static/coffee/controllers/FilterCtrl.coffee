@@ -173,6 +173,8 @@ class FilterCtrl
         Called when filter changes, we retrieve all filter and change the URL in
         consequence
         ###
+        if @scope.filters.title.value?
+            do @resetFilters
         params = @location.search()
         @addFilter(params, key, filter.value) for key, filter of @scope.filters
         @location.search(params)
