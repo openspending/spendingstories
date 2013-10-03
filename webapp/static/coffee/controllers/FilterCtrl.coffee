@@ -12,11 +12,20 @@ class FilterCtrl
         # ──────────────────────────────────────────────────────────────────────
         # Are the filters select lists visible
         @scope.filter_visible = false
-        # filter list values 
-        @scope.currency_list = Restangular.all('filters/currencies').getList isUsed:true
-        @scope.country_list  = Restangular.all('filters/countries').getList isUsed:true
-        @scope.theme_list    = Restangular.all('filters/themes').getList isUsed:true
-        @scope.stories_list  = Restangular.all('stories').getList isUsed:true
+
+        # filter list values without Restangular ressources special functions 
+        Restangular.all('filters/currencies').getList(isUsed:true).then((data)=>
+                @scope.currency_list = _.filter(data, _.isObject) 
+        )
+        Restangular.all('filters/countries').getList(isUsed:true).then((data)=> 
+                @scope.country_list  = _.filter(data, _.isObject)
+        )
+        Restangular.all('filters/themes').getList(isUsed:true).then((data)=> 
+                @scope.theme_list    = _.filter(data, _.isObject)
+        )
+        Restangular.all('stories').getList(isUsed:true).then((data)=> 
+                @scope.stories_list  = _.filter(data, _.isObject)
+        )
         # filters models 
         @scope.filters = 
             ### 
@@ -99,6 +108,7 @@ class FilterCtrl
                 @scope.$watchCollection watch_string, @filter
             else
                 @scope.$watch watch_string, @filter
+
 
     resetFilters : () =>
         for key, filter of @scope.filters
