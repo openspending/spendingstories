@@ -41,6 +41,8 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
           (newVal, oldVal)->
             stopLoading()
             element.selectpicker("refresh")
+            selected = _.filter(element.context.children, (e)-> e.selected)[0]
+            $(selected).toggleClass('hidden', !newVal?) 
           , true
         )
       scope.$watch(
