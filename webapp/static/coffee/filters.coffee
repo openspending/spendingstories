@@ -112,42 +112,15 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         return precision
 
     humanizeEquivalent: (story, query) ->
-        sentences = [
-                value:  "roughly matches with",
-                precision: [0.90, 0.95]
-            ,
-                value: "almost equals"
-                precision: [0.95,0.99]
-            ,
-                value: "is an equivalent of"
-                precision: [0.99, 1]
-        ]
-        precision = @getRatioPrecision(story.relevance_ratio, 1)
-        @sentenceBuilder(sentences, precision)
+        "an equivalent of"
 
     humanizeHalf: (story, query) ->
-        sentences = [
-                value:  "fits like half of",
-                precision: [0.9, 0.99]
-            ,
-                value: "is half of"
-                precision: [0.99,1]
-        ]
-        precision = @getRatioPrecision(story.relevance_ratio, 0.5)
-        @sentenceBuilder(sentences, precision)
+        "half of"
 
     humanizeMultiple: (story, query) ->
         ratio = story.relevance_value
-        sentences = [
-                value:  "is #{ratio} times",
-                precision: [0.9, 0.99]
-            ,
-                value: "is #{ratio} × this story"
-                precision: [0.99,1]
-        ]
-        precision = @getRatioPrecision(ratio, story.relevance_ratio)
-        @sentenceBuilder(sentences, precision)
-    
+        "#{ratio} times this story"
+
     humanizePercentage: (story, query) ->
         ratio = story.relevance_value
         if ratio == 0
@@ -164,19 +137,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         result = OSS.round result, decimals
         if result < Math.pow(10,3)
             result = Humanize.intcomma(result, decimals)
-
-        precision = @getRatioPrecision(ratio, story.relevance_ratio)
-        sentences = [
-                value:  "roughly equals #{result}% of",
-                precision: [0.8, 0.95]
-            ,
-                value: "represents #{result}% of"
-                precision: [0.95, 0.99]
-            ,
-                value: "is #{result}% of"
-                precision: [0.99,1]
-        ]
-        @sentenceBuilder(sentences, precision)
+        "#{result}% of"
     
     humanizeTime: (story, query) ->
         m = story.relevance_value['months']
@@ -197,18 +158,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             result_s = "less than 1 day"
         else 
             result_s = result.join(' ')
-
-        sentences = [
-            value:  "is #{result_s} of"
-            precision: [0.8, 0.9]
-        ,
-            value: "worth #{result_s} of"
-            precision: [0.9, 0.97]
-        ,
-            value: "matches #{result_s} of"
-            precision: [0.97, 1]
-        ]
-        @sentenceBuilder(sentences, precision)
+        "#{result_s} of"
 
 angular
     .module('storiesFilters', [])
