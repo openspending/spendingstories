@@ -22,7 +22,8 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
       stopLoading  = -> element.removeClass('loading disabled').attr('disabled', false)
 
       # Init selectpicker on the next loop so ng-options can populate the select
-      $timeout -> element.selectpicker options
+      $timeout -> 
+        element.selectpicker options
 
       # Watch the collection in ngOptions and update selectpicker when it changes.  This works with promises!
       if attr.ngOptions
@@ -40,9 +41,7 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
         scope.$watch("#{attr.ngModel}", 
           (newVal, oldVal)->
             stopLoading()
-            element.selectpicker("refresh")
-            selected = _.filter(element.context.children, (e)-> e.selected)[0]
-            $(selected).toggleClass('hidden', !newVal?) 
+            element.selectpicker "refresh"
           , true
         )
       scope.$watch(
@@ -51,7 +50,7 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
         ,(newVal, oldVal)->
             # this is a custom command to programmaticaly close (not hide!) the 
             # opened dropdown 
-            element.selectpicker('close')
+            element.selectpicker "close"
 
       )
 
