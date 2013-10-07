@@ -15,13 +15,12 @@ If you find a bug/error in this guide please submit a pull request.
 
 The Spending Stories installation consists of setting up the following components: 
 
-
-1. Set up your python environnement
+1. Set up your python environment
 1. Install dependencies
 1. Set up the database (example with MySQL)
 1. Run server (example with mod_wsgi from apache)
 
-### 1. Set up your python environnement
+### 1. Set up your python environment
 
 **a. Install python packages:**
 
@@ -41,7 +40,7 @@ git clone https://github.com/jplusplus/okf-spending-stories.git
 ```
 
 **d.  Create the virtualenv folder for this project**
-  > Every python dependencies will be installed in this folder to keep your system's environnement clean.
+  > Every python dependencies will be installed in this folder to keep your system's environment clean.
 
 ```bash
 cd okf-spending-stories
@@ -144,6 +143,8 @@ Dependency:
     sudo apt-get install libapache2-mod-wsgi
 
 Please see the [documentation](https://docs.djangoproject.com/en/1.5/howto/deployment/wsgi/modwsgi/)
+
+This is a apache configuration which loads the virtualenv : 
 
 ```apacheconf
 WSGIScriptAlias / /<PATH_TO_PROJECT>/webapp/wsgi.py

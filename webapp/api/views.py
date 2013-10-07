@@ -8,7 +8,7 @@
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 16-Aug-2013
+# Last mod : 07-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -31,13 +31,12 @@ from rest_framework          import viewsets
 from rest_framework.response import Response
 from rest_framework          import permissions
 from django.db.models        import Max, Min, Q
-from django.forms            import widgets
 from relevance               import Relevance
 from viewsets                import ChoicesViewSet
 
+import webapp.core.fields
 import serializers
 import filters
-
 
 # -----------------------------------------------------------------------------
 #
@@ -102,7 +101,6 @@ class StoryNestedViewSet(StoryViewSet):
     """
     serializer_class = serializers.StoryNestedSerializer
 
-
 # -----------------------------------------------------------------------------
 #
 #    THEME
@@ -115,11 +113,6 @@ class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset         = Theme.objects.public()
     serializer_class = serializers.ThemeSerializer
 
-class UsedThemeViewSet(ThemeViewSet):
-    serializer_class = serializers.UsedThemeSerializer
-    filter_backends = (serializers.UsedModelFilter,)
-
-
 # -----------------------------------------------------------------------------
 #
 #    CURRENCY
@@ -131,18 +124,6 @@ class CurrencyViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset         = Currency.objects.all()
     serializer_class = serializers.CurrencySerializer
-
-class UsedCurrencyViewSet(CurrencyViewSet):
-    """ 
-    API endpoint to return currencies with an usage status included to know if 
-    the given countries are used in one or more stories. Add an "used" attribute 
-    to returned currencies
-    ### Filters:
-    - `isUsed` (Boolean)
-
-    """ 
-    serializer_class = serializers.UsedCurrencySerializer
-    filter_backends = (serializers.UsedModelFilter,)
 
 # -----------------------------------------------------------------------------
 #
@@ -163,40 +144,45 @@ class MetaViewSet(viewsets.ViewSet):
 
 # -----------------------------------------------------------------------------
 #
+#    FILTERS (which return results)
+#
+# -----------------------------------------------------------------------------
+class FiltersViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        """
+        Provide countries, currencies and themes filters wich return results
+        """
+        filters = {
+            "currency" : [],
+            "theme"    : [],
+            "country"  : []
+        }
+        # currencies
+        currencies = Currency.objects.values("iso_code", "name")
+        for currency in currencies:
+            if Story.objects.public().filter(currency__iso_code=currency['iso_code']).count() > 0 :
+                filters['currency'].append({"key":currency['iso_code'], 'value':currency['name']})
+        # themes
+        themes = Theme.objects.values("slug", "title")
+        for theme in themes:
+            if Story.objects.public().filter(themes__slug=theme['slug']).count() > 0 :
+                filters['theme'].append({"key":theme['slug'], 'value':theme['title']})
+        # countries
+        for country in webapp.core.fields.COUNTRIES:
+            if Story.objects.public().filter(country=country[0]).count() > 0 :
+                filters['country'].append({"key":country[0], 'value':country[1]})
+        return Response(filters)
+
+# -----------------------------------------------------------------------------
+#
 #    COUNTRIES
 #
 # -----------------------------------------------------------------------------
-import webapp.core.fields
 class CountryViewSet(ChoicesViewSet):
     class Meta: 
         choices = webapp.core.fields.COUNTRIES
     def create_element(self, c):
         return {"iso_code": c[0], "name": c[1]}
 
-
-class UsedCountryViewSet(CountryViewSet):
-    """ 
-    API endpoint to return countries with an usage status included to know if 
-    the given countries are used in one or more stories. Add an "used" attribute 
-    to Countries
-    ### Filters:
-    - `isUsed` (Boolean)
-
-    """ 
-    stories = Story.objects.public()
-
-    def create_element(self, c):
-        country = super(UsedCountryViewSet, self).create_element(c)
-        country['used'] = self.is_used(c)
-        return country
-
-    def create_list(self, request):
-        countries = super(UsedCountryViewSet, self).create_list(request)
-        is_used = request.QUERY_PARAMS.get('isUsed', None)
-        if is_used is not None:
-            b_is_used = is_used != 'False' and is_used != 'false'
-            countries = filter(lambda x: x['used'] == b_is_used, countries)
-        return countries
-
-    def is_used(self, c):
-        return self.stories.filter(country=c[0]).count() > 0
+# EOF

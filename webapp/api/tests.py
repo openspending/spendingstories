@@ -55,8 +55,6 @@ def test_ressource(case, ressource, attributes):
             if attr['value'] != None:
                 case.assertEquals(attr['value'], element[attr_k])
 
-
-
 class APIStoryTestCase(SimpleTestCase):
     def setUp(self):
         # Every test needs a client.
