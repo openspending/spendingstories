@@ -8,7 +8,7 @@
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : 06-Aug-2013
-# Last mod : 16-Aug-2013
+# Last mod : 07-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -34,6 +34,7 @@ from django.db.models        import Max, Min, Q
 from relevance               import Relevance
 from viewsets                import ChoicesViewSet
 
+import webapp.core.fields
 import serializers
 
 # -----------------------------------------------------------------------------
@@ -193,7 +194,6 @@ class FiltersViewSet(viewsets.ViewSet):
 #    COUNTRIES
 #
 # -----------------------------------------------------------------------------
-import webapp.core.fields
 class CountryViewSet(ChoicesViewSet):
     class Meta: 
         choices = webapp.core.fields.COUNTRIES
