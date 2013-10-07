@@ -144,6 +144,8 @@ Dependency:
 
 Please see the [documentation](https://docs.djangoproject.com/en/1.5/howto/deployment/wsgi/modwsgi/)
 
+This is a apache configuration which loads the virtualenv : 
+
 ```apacheconf
 WSGIScriptAlias / /<PATH_TO_PROJECT>/webapp/wsgi.py
 WSGIPythonPath /<PATH_TO_PROJECT>:/<PATH_TO_PROJECT>/venv/lib/python2.6/site-packages:/<PATH_TO_PROJECT>/libs
