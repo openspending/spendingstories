@@ -318,4 +318,43 @@ class APIStoryTestCase(SimpleTestCase):
         }
         test_ressource(self, API_FILTERS % 'currencies/?isUsed', attributes)
 
+    def test_api_filters_story_types_list(self):
+        attributes = {
+            'id': {
+                'required': True, 
+                'value': None
+            },
+            'name':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': None
+            }, 
+        }
+        test_ressource(self, API_FILTERS % 'storyTypes/', attributes)
+
+
+    def test_api_filters_story_types_list_filtered(self):
+        attributes = {
+            'id': {
+                'required': True, 
+                'value': None
+            },
+            'name':{
+                'required': True, 
+                'value': None
+            }, 
+            'used':{
+                'required': True,
+                'value': True,
+            }, 
+        }
+        test_ressource(self, API_FILTERS % 'storyTypes/?isUsed', attributes)
+
+
+
+
+
 # EOF
