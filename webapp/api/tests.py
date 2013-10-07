@@ -43,12 +43,12 @@ def test_ressource(case, ressource, attributes):
     response = case.client.get(ressource)
     case.assertEquals(response.status_code, 200, response)
     # print "test_ressource(%s,%s,%s) - response: %s" % (case, ressource, attributes, response
-    case.assertTrue(len(response.data) > 0, ressource)
     for element in response.data:
         element_keys = element.keys()
         for attr_k in attributes.keys():
             attr = attributes[attr_k]
             case.assertTrue(attr_k in element_keys)
+
             if attr['required']:
                 case.assertIsNotNone(element[attr_k])
 
