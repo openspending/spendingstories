@@ -112,7 +112,10 @@ class SearchService
         for key, value of accepted 
             do()->
                 if value?
-                    if key == 'onlySticky'
+                    if key == 'themes'
+                        value = value.split(',')
+                        filters[key] = value
+                    else if key == 'onlySticky'
                         if value == true
                             filters.sticky = 'True'
                         else
