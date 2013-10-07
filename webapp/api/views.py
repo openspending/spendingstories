@@ -36,6 +36,7 @@ from viewsets                import ChoicesViewSet
 
 import webapp.core.fields
 import serializers
+import filters
 
 # -----------------------------------------------------------------------------
 #
@@ -63,25 +64,9 @@ class StoryViewSet(viewsets.ModelViewSet):
     """
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
-    filter_fields      = ('sticky', 'country', 'currency','type',)
+    filter_fields      = ('sticky', 'country', 'currency','type', 'title', 'themes')
+    filter_backends    = (filters.OrFilterBackend,)
     permission_classes = (StoryPermission,)
-
-    def get_queryset(self):
-        queryset = self.queryset
-        if 'themes' in self.request.QUERY_PARAMS:
-            themes = self.request.QUERY_PARAMS['themes'].split(',')
-            qg = None 
-            for theme in themes:
-                if qg is None:
-                    qg = Q(themes__slug=theme)
-                else:
-                    qg |= Q(themes__slug=theme)
-
-            queryset = queryset.filter(qg).distinct()
-        if 'title' in self.request.QUERY_PARAMS:
-            print self.request.QUERY_PARAMS['title']
-            queryset = queryset.filter(title=self.request.QUERY_PARAMS['title']).distinct()
-        return queryset
 
     def create(self, request, pk=None):
         # reset reserved field if not staff

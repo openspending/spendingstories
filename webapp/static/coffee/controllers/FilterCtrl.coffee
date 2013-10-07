@@ -12,17 +12,12 @@ class FilterCtrl
         # ──────────────────────────────────────────────────────────────────────
         # Are the filters select lists visible
         @scope.filter_visible = false
+        Restangular.all('filters').getList().then (data)=>
+            @scope.currency_list = data.currency
+            @scope.country_list = data.country
+            @scope.theme_list = data.theme
 
         # filter list values without Restangular ressources special functions 
-        Restangular.all('filters/currencies').getList(isUsed:true).then((data)=>
-                @scope.currency_list = _.filter(data, _.isObject) 
-        )
-        Restangular.all('filters/countries').getList(isUsed:true).then((data)=> 
-                @scope.country_list  = _.filter(data, _.isObject)
-        )
-        Restangular.all('filters/themes').getList(isUsed:true).then((data)=> 
-                @scope.theme_list    = _.filter(data, _.isObject)
-        )
         Restangular.all('stories').getList(isUsed:true).then((data)=> 
                 @scope.stories_list  = _.filter(data, _.isObject)
         )
