@@ -77,6 +77,9 @@ class StoryViewSet(viewsets.ModelViewSet):
                     qg |= Q(themes__slug=theme)
 
             queryset = queryset.filter(qg).distinct()
+        if 'title' in self.request.QUERY_PARAMS:
+            print self.request.QUERY_PARAMS['title']
+            queryset = queryset.filter(title=self.request.QUERY_PARAMS['title']).distinct()
         return queryset
 
     def create(self, request, pk=None):

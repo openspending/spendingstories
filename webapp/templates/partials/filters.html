@@ -11,7 +11,8 @@
                         ng-model="filters.country.value"
                         selectpicker
                         data-container="body"
-                        title="Choose a country">
+                        title="Choose a country"
+                        ng-change="resetComparison()">
                 </select>
             </div>  
             <div ng-if="isVisible(filters.currency)" class="filter col-sm-3 form-group">
@@ -21,7 +22,8 @@
                         ng-model="filters.currency.value"
                         selectpicker
                         data-container="body"
-                        title="Choose a currency">
+                        title="Choose a currency"
+                        ng-change="resetComparison()">
                 </select>
             </div>
 
@@ -33,15 +35,25 @@
                         title="Choose themes"
                         id="input-themes" 
                         ng-model="filters.themes.value"
-                        multiple>
+                        multiple
+                        ng-change="resetComparison()">
                 </select>
+            </div>
+            <div ng-if="isVisible(filters.title)" class="filter form-group col-sm-3">
+                <label class="control-label sr-only" for="input-title">Title</label>
+                <input type="text" data-container="body" class="form-control"
+                        ng-model="filters.title.value" typeahead-editable="false"
+                        typeahead="story.title for story in stories_list | filter:$viewValue | limitTo:8" placeholder="Title"
+                        removeparentoverflow=".filter-bar"
+                        typeahead-on-select="resetFilters()" />
             </div>
             <div ng-if="isVisible(filters.onlySticky)" class="filter col-sm-3 form-group">
                 <label class="control-label checkbox">
                     Only sticky stories ?
                     <input type="checkbox"
                             id="input-sticky"
-                            ng-model="filters.onlySticky.value"/>
+                            ng-model="filters.onlySticky.value"
+                            ng-change="resetComparison()"/>
                 </label>
             </div>
         </div>

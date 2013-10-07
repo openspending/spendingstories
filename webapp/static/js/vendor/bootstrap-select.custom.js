@@ -192,7 +192,7 @@
         render: function() {
             var _this = this;
 
-            //Update the LI to match the SELECT
+            //Update the LI to match the SELECT<li
             this.$element.find('option').each(function(index) {
                _this.setDisabled(index, $(this).is(':disabled') || $(this).parent().is(':disabled') );
                _this.setSelected(index, $(this).is(':selected') );
@@ -378,7 +378,11 @@
         },
 
         setSelected: function(index, selected) {
-            this.$menu.find('li').eq(index).toggleClass('selected', selected);
+            var li = this.$menu.find('li').eq(index); 
+            var opt = this.$element.find('option').eq(index);
+            li.toggleClass('selected', selected);
+            li.toggleClass('hidden', opt.attr('value') === '?');
+
         },
 
         setDisabled: function(index, disabled) {
