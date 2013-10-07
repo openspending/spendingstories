@@ -199,8 +199,6 @@
             });
 
             var selectedItems = this.$element.find('option:selected').map(function(index,value) {
-                console.log(index, value);
-                console.log($(value).attr('value'))
                 var $this = $(this);
                 var icon = $this.data('icon') && _this.options.showIcon ? '<i class="glyphicon ' + $this.data('icon') + '"></i> ' : '';
                 var subtext;
