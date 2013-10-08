@@ -6,7 +6,7 @@
         <div class="filter-bar row" ng-class="getClass()">
             <div ng-if="isVisible(filters.country)" class="filter col-sm-3 form-group">
                 <label class="control-label sr-only" for="input-country">Country</label>
-                <select ng-options="c.iso_code as c.name for c in country_list"
+                <select ng-options="c.key as c.value for c in country_list"
                         id="input-country"
                         ng-model="filters.country.value"
                         selectpicker
@@ -17,7 +17,7 @@
             </div>  
             <div ng-if="isVisible(filters.currency)" class="filter col-sm-3 form-group">
                 <label class="control-label sr-only" for="input-currency">Currency</label>
-                <select ng-options="c.iso_code as c.name for (iso_code, c) in currency_list"
+                <select ng-options="c.key as c.value for c in currency_list"
                         id="input-currency"
                         ng-model="filters.currency.value"
                         selectpicker
@@ -29,7 +29,7 @@
 
             <div ng-if="isVisible(filters.themes)" class="filter col-sm-3 form-group">
                 <label class="control-label sr-only" for="input-themes">Themes</label>
-                <select ng-options="c.slug as c.title for c in theme_list" 
+                <select ng-options="c.key as c.value for c in theme_list" 
                         selectpicker
                         data-container="body"
                         title="Choose themes"
