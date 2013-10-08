@@ -1,8 +1,8 @@
 <div ng-controller="cardsCtrl" class="cards-content">
     <div class="cards-grid">
-        <h3 ng-hide="true" ng-cloack>[[search.query|humanizeValue:search.currency]]...</h3>
+        <h3 ng-hide="false" ng-cloack>[[search.query|humanizeValue:search.currency]] is</h3>
         <div class="card" 
-             ng-repeat="d in search.results"
+             ng-repeat="d in search.results|filter:cardsFilter"
              ng-init="d.details_visible = false"
              ng-class="{active: d.details_visible, sticky: d.sticky}">
 
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="load-more">
+    <div class="load-more" ng-click="loadMore()">
         <a>
             <i class="icon-plus"></i>
             Load more
