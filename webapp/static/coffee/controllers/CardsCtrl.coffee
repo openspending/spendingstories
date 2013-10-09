@@ -12,6 +12,14 @@ class CardsCtrl
         # ──────────────────────────────────────────────────────────────────────
         # Variables
         @scope.onlyRelevantCards = true
+
+        @scope.currentUrl = do @location.absUrl
+        @scope.currentUrl = @scope.currentUrl.split '?'
+        vars = _.filter (@scope.currentUrl[1].split '&'), (elem) =>
+            not elem.match /^title=/
+        @scope.currentUrl[1] = vars.join '&'
+        @scope.currentUrl = @scope.currentUrl.join '?'
+
         # Functions
         @scope.search = @searchService
         @scope.showDetails = @showDetails
