@@ -7,18 +7,27 @@
 	}
 }
 
-.nav-tabs li.active a,
 .tab-content {
-
-	&, &:hover {		
-		background:#333232;
-		border-color:#333232;
-		color:white;
-	}
+	background:#333232;
+	border:solid 7px white;
+	color:white;
 }
 
-.nav-tabs li a {
-	cursor:pointer;
+.nav-tabs {
+	background:white;
+	border:0;
+	border-left:solid 7px white;
+	border-right:solid 7px white;
+
+	li.active a, li a, li.active a:hover {
+		border:0;
+		cursor:pointer;
+	}
+
+	li.active a, li.active a:hover {
+		background:white;
+		border-bottom:2px solid @brand-primary;
+	}
 }
 
 
