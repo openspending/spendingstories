@@ -6,6 +6,7 @@ class CardsCtrl
     @$inject: ['$scope', 'searchService']
 
     constructor: (@scope, @searchService, @Page) ->
+
         # ──────────────────────────────────────────────────────────────────────
         # scope variables function binding  
         # ──────────────────────────────────────────────────────────────────────
@@ -22,9 +23,11 @@ class CardsCtrl
         d.details_visible = !d.details_visible
 
     filterCards: (c)=>
+        return false unless c? and _.isObject(c)
         if @scope.onlyRelevantCards
             return c.relevance_score > 6
         return true
+
 
     loadMore:()=>
         @scope.onlyRelevantCards = false
