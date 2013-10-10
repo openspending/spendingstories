@@ -66,8 +66,9 @@ class SearchService
         # will update instance variables & convert the query amount in USD if 
         # needed (currency != 'USD')
         # NOTE: theses changes may be optimised if we check changes 
-        #       to avoid $digest
-        @query   = parseInt(params.q)
+        #       to avoid $digest        
+        return if isNaN(params.q)
+        @query   = params.q
         currency = params.c || 'USD'
         # USD doesn't need convertion
         if currency is 'USD'
@@ -110,18 +111,17 @@ class SearchService
         filters  = {}
         accepted = _.pick(params, @accepted_filters)
         for key, value of accepted 
-            do()->
-                if value?
-                    if key == 'themes'
-                        value = value.split(',')
-                        filters[key] = value
-                    else if key == 'onlySticky'
-                        if value == true
-                            filters.sticky = 'True'
-                        else
-                            delete filters.sticky if filters.stick?
+            if value?
+                if key == 'themes'
+                    value = value.split(',')
+                    filters[key] = value
+                else if key == 'onlySticky'
+                    if value == true
+                        filters.sticky = 'True'
                     else
-                        filters[key] = value
+                        delete filters.sticky if filters.stick?
+                else
+                    filters[key] = value
         return filters
 
 angular.module('storiesServices').service "searchService", SearchService
