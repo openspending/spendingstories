@@ -3,7 +3,7 @@ angular.module('storiesServices', [])
 
 
 angular
-    .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters", "ngCookies"])
+    .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters", "ngCookies", "wu.masonry"])
     .run(
         [             
             '$rootScope', 
