@@ -6,7 +6,8 @@
 
 
 @zindex-content: 100;
-@zindex-header : @zindex-content+100;
+@zindex-loading: @zindex-content+100;
+@zindex-header : @zindex-loading+100;
 @zindex-filter : @zindex-header + 10;
 
 @reduce-bg:darken(@body-bg, 3%);
@@ -212,6 +213,26 @@ header {
 		}
 	}
 	
+	.scale-strats.loading, .cards-content.loading {
+		height:100px;
+		overflow:hidden;
+		position:relative;
+
+		&:after {
+			z-index:@zindex-loading;
+			content:"";
+			position:absolute;
+			top:0; 
+			bottom:0; 
+			right:0;
+			left:0;
+	        .progress-striped .progress-bar();
+	        .progress-bar-variant(#333232);
+	        .progress.active .progress-bar();
+	        .opacity(1);
+		}
+	}
+
 	.scale-strats {
 
 		overflow:hidden;
