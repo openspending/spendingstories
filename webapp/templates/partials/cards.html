@@ -19,9 +19,9 @@
 
                     <div class="card-sharing">
                         <h6>Share this story</h6>
-                        <input class="form-control" readonly="true" ng-model="d.url" />
+                        <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
                         <h6>Embed this story</h6>
-                        <textarea readonly="true" class="form-control"></textarea>
+                        <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
                     </div>
 
                     <div class="card-preview">
