@@ -1,4 +1,5 @@
 <div class="summary" ng-cloack>	
-	<p>[[search.query|humanizeValue:search.currency]]</p>
-	<p class="text-muted">matching stories</p>
+	<p class="text-muted" ng-if="mode == 'cards'">Most relevant results.</p>	
+	<p class="text-muted" ng-if="mode == 'scale'">Compared to other stories...</p>	
+	<p>Your query for <strong>[[search.query|humanizeValue:search.currency]]</strong> represents:</p>
 </div>
