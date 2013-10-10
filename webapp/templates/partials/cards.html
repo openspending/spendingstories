@@ -1,7 +1,5 @@
 <div ng-controller="cardsCtrl" class="cards-content">
-    <div class="cards-grid">
-        <h3  ng-cloack>[[search.query|humanizeValue:search.currency]] are</h3>
-        
+    <div class="cards-grid">        
         <h3  ng-cloack ng-hide="filteredCards.length" 
              ng-bind="filteredCards && !filteredCards.length ? 'No relevant cards found' : ''">
              ...

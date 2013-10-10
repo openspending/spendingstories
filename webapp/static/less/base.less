@@ -9,15 +9,15 @@
 @zindex-header : @zindex-content+100;
 @zindex-filter : @zindex-header + 10;
 
+@reduce-bg:darken(@body-bg, 3%);
+@reduce-border:darken(@reduce-bg, 6%);
+
 header {
 	
-	@reduce-bg:darken(@body-bg, 3%);
-	@reduce-border:darken(@reduce-bg, 6%);
-
 	padding:100px 10px;
 	background:@body-bg;
 	z-index:@zindex-header;	
-	margin:auto;	
+	margin:auto;		
 
 	.transition(padding-top 1s);
 	.box-shadow(0 3px 0 0 fade(@body-bg, 40) );	
@@ -65,9 +65,8 @@ header {
 		right:0;
 		width:auto;	
 		padding:0;
-		padding-top:5px;
 		background:@reduce-bg;
-		border-bottom:1px solid @reduce-border;
+		border-bottom:1px solid @reduce-border;		
 
 		h1 {
 			float:left;
@@ -75,11 +74,18 @@ header {
 			margin-right:20px;
 			font-size:150%;	
 			line-height:50px;
+			padding-top:5px;
+			padding-left:10px;
 		}
 	
 		form {
-			margin-top:5px;
-			margin-bottom:5px;
+			border:1px solid @reduce-border;
+			border-top:0;
+			border-bottom:0;
+			padding-top:5px;
+			padding-bottom:5px;
+			height:60px;
+			margin:0;
 			.help-block { display:none; }
 		}	
 
@@ -89,6 +95,7 @@ header {
 		.filters {
 			display: block;
 		}
+
 	}
 
 	.filters {
@@ -181,10 +188,29 @@ header {
 }
 
 #content {
-	margin-top:100px;
+	margin-top:60px;
 	margin-bottom:40px;
 	position:relative;
 	z-index:@zindex-content;
+
+	.summary {
+		font-size:20px;
+		background:white;
+		margin:0;
+		color:@text-color;
+		text-align:left;
+		padding:10px;
+		font-family: @headings-font-family;
+		font-weight:bold;
+
+		p {
+			margin:0;
+			&.text-muted {
+				font-size:80%;
+				font-weight:normal;
+			}
+		}
+	}
 	
 	.scale-strats {
 

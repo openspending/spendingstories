@@ -7,6 +7,10 @@
 	}
 }
 
+.tabbable {
+	border:@reduce-bg 1px solid;
+}
+
 .tab-content {
 	background:#333232;
 	border:solid 7px white;
@@ -14,10 +18,20 @@
 }
 
 .nav-tabs {
+	padding-top:20px;
 	background:white;
 	border:0;
 	border-left:solid 7px white;
 	border-right:solid 7px white;
+	border-bottom:1px solid mix(@reduce-border, white);
+
+	li a {		
+		color:inherit;
+	}
+
+	li.active a {
+		color:black;
+	}
 
 	li.active a, li a, li.active a:hover {
 		border:0;
@@ -27,6 +41,11 @@
 	li.active a, li.active a:hover {
 		background:white;
 		border-bottom:2px solid @brand-primary;
+	}
+
+	li a:hover {	
+		background:white;
+		border-bottom:2px solid mix(@brand-primary, white);
 	}
 }
 

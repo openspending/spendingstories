@@ -1,10 +1,12 @@
 <tabset>
-	<tab heading="Scale visualisation" active="tabs.scale.active" select="changeVisualization(tabs.scale)">
+	<tab heading="Scale visualisation" active="tabs.scale.active" select="changeVisualization(tabs.scale)">		
+        {% include "partials/summary.html" %}
 		{% include "partials/scale.html" %}
 	</tab>
 	<tab heading="Cards visualization"
 		 active='tabs.cards.active' 
-		 select="changeVisualization(tabs.cards)">
+		 select="changeVisualization(tabs.cards)">		 
+        {% include "partials/summary.html" %}
 		{% include "partials/cards.html" %}
 	</tab>
 </tabset>
