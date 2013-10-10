@@ -1,5 +1,5 @@
 angular.module('stories').factory "Page", ->  
-    title = "How much is it really ?"
+    title = defaultTitle = "..."
     #
     #* To Title Case 2.0.1 – http://individed.com/code/to-title-case/
     #* Copyright © 2008–2012 David Gouch. Licensed under the MIT License.
@@ -13,4 +13,7 @@ angular.module('stories').factory "Page", ->
 
     title   : ->title
     setTitle: (newTitle, titleCase=true)-> 
-        title = if titleCase then toTitleCase(newTitle) else newTitle
+        if newTitle?
+            title = if titleCase then toTitleCase(newTitle) else newTitle
+        else
+            title = defaultTitle
