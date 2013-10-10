@@ -3,9 +3,10 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ContributeCtrl
 
-    @$inject: ['$scope', 'Currency','Restangular']
+    @$inject: ['$scope', 'Currency','Restangular', 'Page']
 
-    constructor: (@scope, @Currency, @Restangular)->
+    constructor: (@scope, @Currency, @Restangular, @Page)->
+        @Page.setTitle('Contribute')
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables binding // AngularJS Models 
         # ──────────────────────────────────────────────────────────────────────  
@@ -30,7 +31,14 @@ class ContributeCtrl
         @scope.reset         = @resetForm 
         @scope.submit        = @submitForm
 
-    getForm: (step=@scope.step)=> @scope["stepForm"+step]
+    getForm: (step=@scope.step)=> 
+        if step >= @scope.stepCount
+            title = 'Thanks for contributing'
+        else
+            title = "Contribute / Step #{step+1}"
+
+        @Page.setTitle(title) 
+        @scope["stepForm"+step]
 
     isDone: => @scope.step == @scope.stepCount
     
