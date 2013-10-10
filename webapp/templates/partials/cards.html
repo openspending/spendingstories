@@ -1,4 +1,4 @@
-<div ng-controller="cardsCtrl" class="cards-content">
+<div ng-controller="cardsCtrl" class="cards-content" ng-class="{loading: !search.results}">
     <div class="cards-grid">        
         <h3  ng-cloack ng-hide="filteredCards.length" 
              ng-bind="filteredCards && !filteredCards.length ? 'No relevant cards found' : ''">
@@ -8,9 +8,6 @@
              ng-repeat="d in filteredCards = (search.results | filter:cardsFilter)"
              ng-init="d.details_visible = false"
              ng-class="{active: d.details_visible, sticky: d.sticky}">
-
-
-
 
             <div class="card-body">
                 <div class="card-wrapper" ng-class="d.show">
@@ -73,12 +70,4 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="load-more"
-         ng-click="loadMore()"
-         ng-show="onlyRelevantCards">
-        <a>
-            <i class="icon-plus"></i>
-            Load more
-        </a>
-    </div>
 </div>

@@ -6,7 +6,8 @@
 
 
 @zindex-content: 100;
-@zindex-header : @zindex-content+100;
+@zindex-loading: @zindex-content+100;
+@zindex-header : @zindex-loading+100;
 @zindex-filter : @zindex-header + 10;
 
 @reduce-bg:darken(@body-bg, 3%);
@@ -201,7 +202,6 @@ header {
 		text-align:left;
 		padding:10px;
 		font-family: @headings-font-family;
-		font-weight:bold;
 
 		p {
 			margin:0;
@@ -212,6 +212,26 @@ header {
 		}
 	}
 	
+	.scale-strats.loading, .cards-content.loading {
+		height:100px;
+		overflow:hidden;
+		position:relative;
+
+		&:after {
+			z-index:@zindex-loading;
+			content:"";
+			position:absolute;
+			top:0; 
+			bottom:0; 
+			right:0;
+			left:0;
+	        .progress-striped .progress-bar();
+	        .progress-bar-variant(#333232);
+	        .progress.active .progress-bar();
+	        .opacity(1);
+		}
+	}
+
 	.scale-strats {
 
 		overflow:hidden;
@@ -469,14 +489,14 @@ header {
 		.cards-grid {
 			margin-bottom: 10px;
 			padding-top:  40px;
-			text-align: center;
+			text-align: left;
 		}
 
 		.card {
 			display: inline-block;
 			margin-bottom: 35px;
-			margin-left: 15px;
-			margin-right: 15px;
+			margin-left: 32px;
+			margin-right: 0;
 			width: @cards-width;
 			height: @cards-width*1.2;
 			text-align: left;
