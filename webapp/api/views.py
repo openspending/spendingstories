@@ -28,6 +28,7 @@
 from webapp.core.models      import Story, Theme
 from webapp.currency.models  import Currency
 from rest_framework          import viewsets
+from rest_framework          import filters
 from rest_framework.response import Response
 from rest_framework          import permissions
 from django.db.models        import Max, Min, Q
@@ -36,8 +37,6 @@ from viewsets                import ChoicesViewSet
 
 import webapp.core.fields
 import serializers
-import filters
-
 # -----------------------------------------------------------------------------
 #
 #    STORIES
@@ -65,7 +64,7 @@ class StoryViewSet(viewsets.ModelViewSet):
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
     filter_fields      = ('sticky', 'country', 'currency','type', 'title', 'themes')
-    filter_backends    = (filters.OrFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend,)
     permission_classes = (StoryPermission,)
 
     def create(self, request, pk=None):
