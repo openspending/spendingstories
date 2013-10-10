@@ -76,7 +76,7 @@ class TabsCtrl
 
     onRouteUpdate: =>
         query = (do @location.search).q
-        if not query?
+        if not query? or query is ''
             @location.path '/'
         # if URL change we want to update the tab in consequence
         visualizationMode = @location.search()['visualization']

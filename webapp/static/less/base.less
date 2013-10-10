@@ -464,10 +464,6 @@ header {
 			&:first-child {
 				// margin-left: 0px;
 			}
-			&.active {
-				.card-body .card-preview { left:-1px*@cards-width; }
-				.card-body .card-infos   { left:0; }
-			}			
 
 			&.sticky {
 
@@ -508,6 +504,8 @@ header {
 				left:10px;
 				padding-top:3px;
 				border-top:1px solid #E2E2E2;
+
+				.sharing { float: left; }
 			}
 
 			.card-body {
@@ -515,13 +513,20 @@ header {
 				min-height:120px;
 				position:relative;
 
-				.card-infos, .card-preview {
+				.card-wrapper {
+					position:absolute;
+					.transition(left 0.4s);
+					&.sharing { left: @cards-width; }
+					&.preview { left: 0; }
+					&.infos { left: -@cards-width; }
+				}
+
+				.card-infos, .card-preview, .card-sharing {
 					position:absolute;
 					top:0;
 					bottom:0;
 					left:0;
 					width:@cards-width;
-					.transition(left 0.4s);
 				}
 
 				.card-preview {
@@ -592,6 +597,19 @@ header {
 							left:3px;
 							margin-top:-16px/2px;
 						}
+					}
+				}
+
+				.card-sharing {
+					padding: 20px;
+					left: -@cards-width;
+
+					input, textarea {
+						font-size: 11px;
+					}
+
+					textarea {
+						resize: none;
 					}
 				}
 			}
