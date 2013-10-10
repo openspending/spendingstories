@@ -3,9 +3,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ScaleCtrl
 
-    @$inject: ['$scope', 'searchService', 'Page']
+    @$inject: ['$scope', 'searchService']
 
-    constructor: (@scope, @searchService, @Page) ->
+    constructor: (@scope, @searchService) ->
         @scope.search = @searchService
         # Select the closest story into the stickies as preview 
         @scope.$watch "this.search.results", @onResultsChanged
