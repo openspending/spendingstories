@@ -3,10 +3,9 @@
 # ────────────────────────────────────────────────────────────────────────────── 
 class FilterCtrl
     
-    @$inject: ['$scope', '$routeParams', '$location', 'Currency', 'Restangular']
+    @$inject: ['$scope', '$routeParams', '$location', 'Filters', 'Currency', 'Restangular', ]
     
-    constructor: (@scope, @routeParams, @location, Currency, Restangular)->
-        @searchParams = @location.search()
+    constructor: (@scope, @routeParams, @location, @Filters, Currency, Restangular)->
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables bindings                       
         # ──────────────────────────────────────────────────────────────────────
@@ -18,60 +17,11 @@ class FilterCtrl
             @scope.theme_list = data.theme
 
         # filter list values without Restangular ressources special functions 
-        Restangular.all('stories').getList(isUsed:true).then((data)=> 
-                @scope.stories_list  = _.filter(data, _.isObject)
-        )
+        Restangular.all('stories').getList(isUsed:true).then (data)=> 
+                @scope.stories_list  = _.filter(data, _.isObject)    
         # filters models 
-        @scope.filters = 
-            ### 
-            Each filter can be described as following :
-                @stackable:
-                    the filter can be added to the "filter bar"
-                @type:      
-                    the type of the filter value
-                @value:     
-                    the current filter value 
-                @modes:
-                    array of supported visualization mode for the filter 
-                    will hide the filter if it's not supported and remove 
-                    this parameters from url.
-            ### 
-            onlySticky:
-                stackable: false
-                type: 'boolean'
-                value: @searchParams.onlySticky
-                modes: ['cards']
-            country:
-                name: 'Country'
-                type: 'string'
-                stackable: true 
-                value: @searchParams.country
-                modes: ['cards', 'scale']
-            currency:
-                name: 'Currency'
-                type: 'string'
-                stackable: true
-                value: @searchParams.currency
-                modes: ['cards', 'scale']
-            themes:
-                type: 'array'
-                stackable: false
-                value: if @searchParams.themes? then @searchParams.themes.split(',')
-                modes: ['cards', 'scale']
-            title:
-                name: 'Title'
-                type: 'string'
-                stackable: true
-                value: @searchParams.title
-                modes: ['cards', 'scale']
-            # Not handled for the moment
-            # type:
-                # name: 'Type'
-                # type: 'string'
-                # stackable: true 
-                # value: if @searchParams.type? then @searchParams.type
-                # modes: ['cards', 'scale']
-
+        @scope.filters = @Filters
+        
         # ──────────────────────────────────────────────────────────────────────
         # Scope function bindings                       
         # ──────────────────────────────────────────────────────────────────────
@@ -79,8 +29,6 @@ class FilterCtrl
         @scope.filter = @filter
         # function to show or hide filter pannel 
         @scope.toggleFilters = @toggleFilters
-        @scope.hasActivatedFilters = @hasActivatedFilters
-        @scope.getActivatedFilters = @getActivatedFilters
         # utility function to check if a filter is visible in the current mode 
         @scope.isVisible = @isVisible
         # remove an activated filter 
@@ -123,36 +71,27 @@ class FilterCtrl
         ### 
         @scope.filter_visible = !@scope.filter_visible
 
-    hasActivatedFilters: ()=>
-        themes = @scope.filters.themes.value
-        @getActivatedFilters().length || (themes != undefined && themes.length > 0)
-
-    getActivatedFilters: ()=>
-        # Returns filters that have been activated (i.e: filters set by the user)
-        _.filter(@scope.filters, (f)-> f.value? && f.stackable)
-
     onRouteUpdated: ()=>
         ###
         On URL changes we want to retrieve the URL params of filters and bind 
         them with our @scope.filters model 
         ### 
         viz_mode = @location.search().visualization
-        for f_key, filter of @scope.filters
-            do()=>
-                if _.indexOf(filter.modes, viz_mode) == -1
-                    # if URL has a filter disabled in one mode we have to delete
-                    # it from URL.
-                    @removeFilter(filter)
-                else 
-                    param_value = @routeParams[f_key]
-                    if filter.type is 'array'
-                        if typeof param_value is typeof ""
-                            filter.value = param_value.split(',') if param_value?
-                        else 
-                            filter.value = param_value
-                    else
+        for f_key, filter of @scope.filters            
+            if _.indexOf(filter.modes, viz_mode) == -1
+                # if URL has a filter disabled in one mode we have to delete
+                # it from URL.
+                @removeFilter(filter)
+            else 
+                param_value = @routeParams[f_key]
+                if filter.type is 'array'
+                    if typeof param_value is typeof ""
+                        filter.value = param_value.split(',') if param_value?
+                    else 
                         filter.value = param_value
-                        filter.activated = param_value?
+                else
+                    filter.value = param_value
+                    filter.activated = param_value?
 
     removeTheme: (index)=>
         # Called if user click on a theme to delete it (in activated filters bar)

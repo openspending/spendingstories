@@ -125,44 +125,13 @@ header {
 			margin-top:0px;			
 		}
 
-		&.showFilters, &.hasFilters {			
+		&.showFilters {			
 			border-top:1px solid @reduce-border;
 		}
 
 		.opened-tab {
 			z-index: @zindex-filter + 20;
 			text-align: center;	
-
-			.filters-activated {
-				padding-top:10px;		
-				text-align: left;
-
-				ul {
-					display: inline-block;
-										
-					.label {
-						margin-left: 5px;
-						padding-right:30px;
-						position:relative;
-
-						a {
-							color:white;
-							display:block;
-							position:absolute;
-							right:0;
-							top:0;
-							bottom:0;
-							padding:0 5px;
-							line-height:20px;
-							background:fade(#fff, 15%);						
-						}
-					}
-				}
-
-				a:hover{ 
-					cursor: pointer;
-				}
-			}
 
 			.open-filter-bar {
 				position:absolute;
@@ -209,7 +178,38 @@ header {
 				font-size:80%;
 				font-weight:normal;
 			}
+		}		
+
+		.filters-activated {	
+			text-align: left;
+
+			ul {
+				display: inline-block;
+									
+				.label {
+					margin-right: 5px;
+					padding-right:30px;
+					position:relative;
+
+					a {
+						color:white;
+						display:block;
+						position:absolute;
+						right:0;
+						top:0;
+						bottom:0;
+						padding:0 5px;
+						line-height:20px;
+						background:fade(#fff, 15%);						
+					}
+				}
+			}
+
+			a:hover{ 
+				cursor: pointer;
+			}
 		}
+
 	}
 	
 	.scale-strats.loading, .cards-content.loading {

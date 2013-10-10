@@ -1,4 +1,4 @@
-<div ng-controller="scaleCtrl" class="scale-strats" ng-class="{loading: !search.results}">
+<div ng-controller="scaleCtrl" class="scale-strats">
     <div class="preview-strat">
         <div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">    
             <div class="btn-nav col-xs-1">
