@@ -56,24 +56,21 @@ class Processor(object):
             relevance = 7
         if nice_multiple > 10:
             relevance = 5
-        return Relevance(
-            relevance, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple, ratio / 100
-        )
+        return Relevance(relevance, Relevance.RELEVANCE_TYPE_MULTIPLE, nice_multiple)
 
 
     def __nice_equivalence(self, amount, compared_to):
         """ ratio equivalence if it's 50% """ 
         ratio = amount/compared_to * 100
         relevance = None
-        original_ratio = ratio / 100
         if 90 <= ratio <= 110:
-            relevance =  Relevance(10, Relevance.RELEVANCE_TYPE_EQUIVALENT, 1, original_ratio)
+            relevance =  Relevance(10, Relevance.RELEVANCE_TYPE_EQUIVALENT, 1)
         elif 49 < ratio < 51:
-            relevance =  Relevance(9, Relevance.RELEVANCE_TYPE_HALF, 0.5, original_ratio)
+            relevance =  Relevance(9, Relevance.RELEVANCE_TYPE_HALF, 0.5)
         elif ratio > 100:
             relevance = self.__nice_multiple_for(ratio)
         else:
-            relevance = Relevance(0, Relevance.RELEVANCE_TYPE_NONE, None, original_ratio)
+            relevance = Relevance(0, Relevance.RELEVANCE_TYPE_NONE, None)
         return relevance
 
     def supertypes(self):

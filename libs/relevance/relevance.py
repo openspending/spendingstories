@@ -81,11 +81,10 @@ class Relevance:
     RELEVANCE_TYPE_TIME       = "time"
     RELEVANCE_TYPE_NONE       = "none"
 
-    def __init__(self, score=None, relevance_type=None, value=None, ratio=None):
+    def __init__(self, score=None, relevance_type=None, value=None):
         self.score = score
         self.value = value
         self.type  = relevance_type
-        self.ratio = ratio
 
     def compute(self, amount, compared_to, story_type="discrete", **extra_fields):
         """ choose the right processor related to the nature of the reference (discrete or over_one_year etc...) """
@@ -96,12 +95,11 @@ class Relevance:
 
     def values(self):
         """ return the score and the value as a tuple """
-        return (self.score, self.type, self.value, self.ratio)
+        return (self.score, self.type, self.value)
 
-    def __set_values(self, score, relevance_type=None, value=None, ratio=None):
+    def __set_values(self, score, relevance_type=None, value=None):
         self.score = score
         self.type  = relevance_type
         self.value = value
-        self.ratio = ratio
 
 # EOF

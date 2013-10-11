@@ -26,7 +26,7 @@
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.test.client import Client
 from webapp.core.models import Story
 from django.contrib.auth.models import User
@@ -37,7 +37,8 @@ from relevance import Relevance
 import random
 import warnings
 
-class APIStoryTestCase(SimpleTestCase):
+class APIStoryTestCase(TestCase):
+    fixtures = ['demo_stories.json',]
     def setUp(self):
         # Every test needs a client.
         staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
