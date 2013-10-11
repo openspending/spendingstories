@@ -49,7 +49,7 @@ class SubProcessor(Processor):
                     if nb_days > 0:
                         relevance.score = 7
                     else:
-                        relevance.score = 6
+                        relevance.score = 5
                 else: 
                     if nb_days <= 1:
                         relevance.score = 8
