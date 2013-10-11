@@ -10,10 +10,12 @@
             element.on 'focus', () =>
                 if timer?
                     clearTimeout timer
+                    timer = undefined
                 parent.css 'overflow', 'visible'
             element.on 'blur', () =>
                 timer = setTimeout () =>
+                    timer = undefined
                     parent.css 'overflow', 'hidden'
-                , 500
+                , 100
 
 ]

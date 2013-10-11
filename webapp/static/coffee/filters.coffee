@@ -119,7 +119,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
 
     humanizeMultiple: (story, query) ->
         ratio = story.relevance_value
-        "#{ratio} times this story"
+        "≈ #{ratio} times the"
 
     humanizePercentage: (story, query) ->
         ratio = story.relevance_value
@@ -137,7 +137,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         result = OSS.round result, decimals
         if result < Math.pow(10,3)
             result = Humanize.intcomma(result, decimals)
-        "#{result}% of"
+        "≈ #{result}% of the"
     
     humanizeTime: (story, query) ->
         m = story.relevance_value['months']
@@ -158,7 +158,7 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
             result_s = "less than 1 day"
         else 
             result_s = result.join(' ')
-        "#{result_s} of"
+        "≈ #{result_s} of the"
 
 angular
     .module('storiesFilters', [])

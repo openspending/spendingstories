@@ -8,18 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Currency'
-        db.create_table(u'currency_currency', (
-            ('iso_code', self.gf('django.db.models.fields.CharField')(max_length=3, primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=120)),
-            ('rate', self.gf('django.db.models.fields.FloatField')()),
-        ))
-        db.send_create_signal(u'currency', ['Currency'])
+        # Adding field 'Currency.symbol'
+        db.add_column(u'currency_currency', 'symbol',
+                      self.gf('django.db.models.fields.CharField')(default='&#36;', max_length=30),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Currency'
-        db.delete_table(u'currency_currency')
+        # Deleting field 'Currency.symbol'
+        db.delete_column(u'currency_currency', 'symbol')
 
 
     models = {
@@ -28,6 +25,7 @@ class Migration(SchemaMigration):
             'iso_code': ('django.db.models.fields.CharField', [], {'max_length': '3', 'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
             'rate': ('django.db.models.fields.FloatField', [], {}),
+            'symbol': ('django.db.models.fields.CharField', [], {'max_length': '30'})
         }
     }
 

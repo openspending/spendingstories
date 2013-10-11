@@ -37,7 +37,6 @@ urlpatterns = patterns('',
     # url(r'^',           include('webapp.core.urls')),
     # API & API documentation urls 
     url(r'^api/',       include('webapp.api.urls')),
-    url(r'^api-docs/',  include('rest_framework_docs.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/',     include(admin.site.urls)),
     url(r'^$', 			'webapp.core.views.home', name='home'),    

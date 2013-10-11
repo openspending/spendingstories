@@ -31,6 +31,7 @@ class Currency(models.Model):
     iso_code = models.CharField(primary_key=True, max_length=3)
     name     = models.CharField(max_length=120)
     rate     = models.FloatField()
+    symbol   = models.CharField(max_length=30)
 
     def __unicode__(self):
         return "%s - %s" % (self.name, self.iso_code)

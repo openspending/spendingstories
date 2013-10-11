@@ -1,52 +1,70 @@
-<div ng-controller="cardsCtrl" class="cards-content">
-    <div class="cards-grid">
-        <h3 ng-hide="true" ng-cloack>[[search.query|humanizeValue:search.currency]]...</h3>
-        <div class="card" 
-             ng-repeat="d in search.results"
+<div ng-controller="cardsCtrl" class="cards-content" ng-class="{loading: !search.results}">
+    <div class="cards-grid" masonry="{ transitionDuration: 0 }">        
+        <div ng-if="!filteredCards.length" class="text-center bottom20">
+            No relevant cards found
+            <p class="text-muted" ng-if="hasActivatedFilters()">
+                Too much filters?
+            </p>
+        </div>
+        <div class="card masonry-brick" 
+             ng-repeat="d in filteredCards = (search.results | filter:cardsFilter)"
              ng-init="d.details_visible = false"
              ng-class="{active: d.details_visible, sticky: d.sticky}">
 
-
             <div class="card-body">
+                <div class="card-wrapper" ng-class="d.show">
 
-                <div class="card-preview">     
-                    <h6>                    
-                        [[d|cardEquivalent]]
-                        <i class="icon-bookmark pull-right" ng-if="d.sticky"></i>
-                    </h6>                
-                    <h5>
-                        [[ d.title ]]
-                    </h5>
-                </div>
+                    <div class="card-sharing">
+                        <h6>Share this story</h6>
+                        <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
+                        <h6>Embed this story</h6>
+                        <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
+                    </div>
 
-                <div class="card-infos">
-                    <h6>[[d.value|humanizeValue:d.currency.iso_code]]</h6>
-                    <p>
-                        <i class="icon-calendar"></i> [[d.year]] 
-                        <span ng-if="d.source">
-                            &#8212; <a ng-href="[[d.source]]">Read the story</a>
-                        </span>
-                    </p>
-                    <!--p>
-                        <a class="embed" ng-if="d.details_visible">
-                            <i class="icon-share"></i>&nbsp;Click to copy the embed code
-                        </a>
-                    </p-->
-                    <p class="desc">
-                        [[d.description]]
-                    </p>
+                    <div class="card-preview">
+                        <h6>
+                            [[d|cardEquivalent]]
+                            <i class="icon-bookmark pull-right" ng-if="d.sticky"></i>
+                        </h6>
+                        <h5>
+                            [[ d.title ]]
+                        </h5>
+                    </div>
 
-                    <ul class="list-inline" ng-if="d.themes">                               
-                        <li ng-repeat="theme in d.themes" class="theme">                                
-                            <img ng-src="[[theme.image]]" ng-if="theme.image" />
-                            [[theme.title]]
-                        </li>
-                    </ul>
+                    <div class="card-infos">
+                        <h6>[[d.value|humanizeValue:d.currency.iso_code]]</h6>
+                        <p>
+                            <i class="icon-calendar"></i> [[d.year]]
+                            <span ng-if="d.source">
+                                &#8212; <a ng-href="[[d.source]]">Read the story</a>
+                            </span>
+                        </p>
+                        <!--p>
+                            <a class="embed" ng-if="d.details_visible">
+                                <i class="icon-share"></i>&nbsp;Click to copy the embed code
+                            </a>
+                        </p-->
+                        <p class="desc">
+                            [[d.description]]
+                        </p>
+
+                        <ul class="list-inline" ng-if="d.themes">
+                            <li ng-repeat="theme in d.themes" class="theme">
+                                <img ng-src="[[theme.image]]" ng-if="theme.image" />
+                                [[theme.title]]
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
 
             <div class="card-footer">
-                <a ng-click="showDetails(d)" class="toggler">
+                <a ng-click="showSharing(d)" class='sharing toggler clickable'>
+                    <i class="icon-share"></i>
+                    Share
+                </a>
+                <a ng-click="showDetails(d)" class="toggler clickable">
                     <i class="icon-eye-open"></i>
                     More info
                 </a>
@@ -54,10 +72,4 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="load-more">
-        <a>
-            <i class="icon-plus"></i>
-            Load more
-        </a>
-    </div>
-</div>  
+</div>

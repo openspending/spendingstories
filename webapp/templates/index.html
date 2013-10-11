@@ -10,24 +10,28 @@
 
 {% block extrajs %}
     {% compress js %}
+        <script type="text/javascript"   src="{% static 'js/vendor/bootstrap-select.custom.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/bootstrap.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/d3.v3.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/fuse.min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/humanize.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/masonry.min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/underscore-min.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/modernizr.custom.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/imagesloaded.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-cookies.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-resource.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/ui-bootstrap-custom-tpls-0.5.0.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/restangular.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/underscore-min.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/bootstrap.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/bootstrap-select.custom.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/humanize.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/d3.v3.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/fuse.min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-masonry.min.js' %}"></script>
 
         <script type="text/coffeescript" src="{% static 'coffee/app.coffee' %}"></script>    
         <script type="text/coffeescript" src="{% static 'coffee/controllers/CardsCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/ContributeCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/FilterCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/HeaderCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/HomeCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/PageCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/ScaleCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/TabsCtrl.coffee' %}"></script>
@@ -37,6 +41,7 @@
         <script type="text/coffeescript" src="{% static 'coffee/directives/RemoveParentOverflow.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Currency.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Filters.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Meta.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Page.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Search.coffee' %}"></script>

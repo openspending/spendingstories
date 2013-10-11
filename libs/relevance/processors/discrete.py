@@ -35,23 +35,24 @@ class SubProcessor(Processor):
         """ compute the relevance for a discrete reference """
         relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
         ratio = (amount/compared_to) * 100
-        # print "compute(%f, %f) - ratio: %f " % (amount, compared_to, ratio)
-
+        rounded_ratio = round(ratio)
         if not relevance.type in self.supertypes():
             # if it has not been yet processed as: equivalent, half or multiple
             if relevance.type is Relevance.RELEVANCE_TYPE_HALF:
                 relevance.value = 0.5
             else:
                 relevance.type  = Relevance.RELEVANCE_TYPE_PERCENTAGE
-                rounded_ratio = round(ratio)
                 if ratio > 1:
                     if   self.is_multiple_of(ratio, 10, 0.5):
                         relevance.score = 8
                     elif self.is_multiple_of(ratio, 5, 0.5):
                         relevance.score = 7
+                    elif self.is_multiple_of(ratio, 1, 0.01):
+                        relevance.score = 6
+                    else:
+                        relevance.score = 5
                 else:
-                    relevance.score = 6
-
+                    relevance.score = 5
                 relevance.value = rounded_ratio / 100
         return relevance
 
