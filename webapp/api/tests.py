@@ -38,7 +38,7 @@ import random
 import warnings
 
 class APIStoryTestCase(TestCase):
-    fixtures = ['demo_stories.json',]
+    fixtures = ['api_dataset.json',]
     def setUp(self):
         # Every test needs a client.
         staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
@@ -79,7 +79,7 @@ class APIStoryTestCase(TestCase):
         story = {
             'type'       : "discrete",
             'country'    : 'BGR',
-            'currency'   : u'GNF',
+            'currency'   : u'EUR',
             'description': None,
             'source'     : 'http://www.okf.org',
             'status'     : 'published',
