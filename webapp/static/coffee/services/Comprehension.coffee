@@ -169,7 +169,7 @@ SEARCH_SET_DATA = [
         type: TYPES.number
     ,
         id: 32
-        value: 1e11
+        value: 1e12
         name: "trillion"
         type: TYPES.number
     ,
