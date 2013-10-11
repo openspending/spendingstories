@@ -69,7 +69,7 @@
             "manufactoring-construction"
         ], 
         "source": "http://www.okf.org/", 
-        "extras": "{\"coucou\":\"pouet\"}", 
+        "extras": "{}", 
         "inflation_last_year": 2012, 
         "year": 2007, 
         "current_value": 150653.60762260066, 
