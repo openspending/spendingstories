@@ -8,7 +8,7 @@
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : 16-Aug-2013
-# Last mod : 21-Aug-2013
+# Last mod : 11-oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -78,8 +78,9 @@ class Relevance:
     RELEVANCE_TYPE_EQUIVALENT = "equivalent"
     RELEVANCE_TYPE_MULTIPLE   = "multiple"
     RELEVANCE_TYPE_PERCENTAGE = "percentage"
-    RELEVANCE_TYPE_TIME       = "time"
-    RELEVANCE_TYPE_NONE       = "none"
+    RELEVANCE_TYPE_WEEK       = "weeks"
+    RELEVANCE_TYPE_MONTH      = "months"
+    RELEVANCE_TYPE_DAY        = "days"
 
     def __init__(self, score=None, relevance_type=None, value=None):
         self.score = score
@@ -90,7 +91,11 @@ class Relevance:
         """ choose the right processor related to the nature of the reference (discrete or over_one_year etc...) """
         import processors
         processor = eval("processors.%s.SubProcessor()" % story_type)
-        self.__set_values(*processor.compute(float(amount), float(compared_to), **extra_fields).values())
+        relevance = processor.compute(float(amount), float(compared_to), **extra_fields)
+        if relevance:
+            self.__set_values(*relevance.values())
+        else:
+            self.__set_values(0)
         return self.values()
 
     def values(self):

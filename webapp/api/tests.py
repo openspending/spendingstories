@@ -8,7 +8,7 @@
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : 14-Aug-2013
-# Last mod : 16-Aug-2013
+# Last mod : 11-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -107,7 +107,7 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.data['sticky'], False)
 
     def test_api_relevances(self):
-        TOLERENCE = 95
+        TOLERENCE = 97
         count     = {}
         for x in range(100):
             relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
@@ -119,34 +119,15 @@ class APIStoryTestCase(TestCase):
             assert len(response.data) > 0
             for story in response.data:
                 self.assertIsNotNone(story['relevance_score'])
-                self.assertFalse(story['relevance_type'] is Relevance.RELEVANCE_TYPE_NONE)
                 if story['relevance_score'] > 8:
                     count[relevance_for] += 1
                     if story['type'] is 'over_one_year':
                         accepted_types = (
-                            Relevance.RELEVANCE_TYPE_TIME, 
                             Relevance.RELEVANCE_TYPE_MULTIPLE, 
                             Relevance.RELEVANCE_TYPE_EQUIVALENCE,
                             Relevance.RELEVANCE_TYPE_HALF,
                         )
                         self.asserTrue(story['relevance_type'] in accepted_types)
-                    if story['relevance_type'] is Relevance.RELEVANCE_TYPE_TIME:
-                        value = story['relevance_value']
-                        day_value = story['current_value_usd'] / 360 
-                        reverse_computing = (value['months'] * 30 + value['weeks'] * 7 + value['days']) * day_value
-                        accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
-
-                        debug = "\n"
-                        debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
-                        debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
-                        debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
-                        debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
-                        debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
-                        debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
-                        debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
-                        debug += "\n--------------------------------------"
-                        if accuracy < TOLERENCE:
-                            warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
                     if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_MULTIPLE, Relevance.RELEVANCE_TYPE_HALF) :
                         reverse_computing = float(story['relevance_value']) * story['current_value_usd']
                         accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
@@ -161,6 +142,23 @@ class APIStoryTestCase(TestCase):
                         debug += "\n--------------------------------------"
                         if accuracy < TOLERENCE:
                             warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
+                if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_WEEK, Relevance.RELEVANCE_TYPE_MONTH) :
+                    if story['relevance_type'] == Relevance.RELEVANCE_TYPE_WEEK:
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']/52
+                    elif story['relevance_type'] == Relevance.RELEVANCE_TYPE_MONTH:
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']/12
+                    accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+                    debug = "\n"
+                    debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
+                    debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
+                    debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
+                    debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
+                    debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
+                    debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
+                    debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
+                    debug += "\n--------------------------------------"
+                    if accuracy < TOLERENCE:
+                        warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
         count = sorted(count.iteritems(), key=itemgetter(1), reverse=True)
         # pp(count[:5])
 
