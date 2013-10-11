@@ -67,8 +67,8 @@ class SearchService
         # needed (currency != 'USD')
         # NOTE: theses changes may be optimised if we check changes 
         #       to avoid $digest        
-        return if isNaN(params.q)
-        @query   = params.q
+        return if isNaN(parseInt(params.q))
+        @query   = parseInt(params.q)
         currency = params.c || 'USD'
         # USD doesn't need convertion
         if currency is 'USD'
