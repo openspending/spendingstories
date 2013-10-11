@@ -13,12 +13,12 @@ If you find a bug/error in this guide please submit a pull request.
 
 ### Overview
 
-The Spending Stories installation consists of setting up the following components: 
+The __Spending Stories__ installation consists of setting up the following components: 
 
-1. Set up your python environment
-1. Install dependencies
-1. Set up the database (example with MySQL)
-1. Run server (example with mod_wsgi from apache)
+1. [Set up your python environment](#1-set-up-your-python-environment)
+1. [Install dependencies](#2-install-dependencies)
+1. [Set up the database (example with MySQL)](#3-set-up-the-database)
+1. [Run server (example with mod_wsgi from apache)](#4-run-server)
 
 ### 1. Set up your python environment
 
@@ -142,7 +142,7 @@ Dependency:
 
     sudo apt-get install libapache2-mod-wsgi
 
-Please see the [documentation](https://docs.djangoproject.com/en/1.5/howto/deployment/wsgi/modwsgi/)
+Please see the [documentation](https://docs.djangoproject.com/en/1.5/howto/deployment/wsgi/modwsgi/) about the deployement with mod_wsgi.
 
 This is a apache configuration which loads the virtualenv : 
 
@@ -157,3 +157,22 @@ Allow from all
 </Files>
 </Directory>
 ```
+
+## Presentation of the application
+
+__Spending Stories__ is built with [Django](https://www.djangoproject.com/), a Python Web framework.
+
+It's composed of :
+
+* a Web application
+* an API (Available end-points listed on the page `http://<domain_name>/api`)
+* some scripts to update data (with a new inflation by example)  
+
+
+HTML pages are located in `webapp/templates`  
+Static files (css, javascript, images etc...) are located in `webapp/static`
+
+
+## How to customize Spending Stories
+
+TODO (Where are the views representing the stories, how to change the branding)

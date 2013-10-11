@@ -43,14 +43,6 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                <div ng-if="isVisible(filters.title)" class="filter form-group col-sm-6">
-                    <label class="control-label sr-only" for="input-title">Title</label>
-                    <input type="text" data-container="body" class="form-control"
-                            ng-model="filters.title.value" typeahead-editable="false"
-                            typeahead="story.title for story in stories_list | filter:$viewValue | limitTo:8" placeholder="Compare with a story"
-                            removeparentoverflow=".filter-bar"
-                            typeahead-on-select="resetFilters()" />
-                </div>
                 <div ng-if="isVisible(filters.onlySticky)" class="filter col-sm-6 form-group">
                     <label class="control-label checkbox">
                         Only sticky stories            
@@ -59,6 +51,15 @@
                                 ng-model="filters.onlySticky.value"
                                 ng-change="resetComparison()"/>
                     </label>
+                </div>
+                <div ng-if="isVisible(filters.title)" class="filter form-group col-sm-6 compare">
+                    <label class="control-label sr-only" for="input-title">Title</label>
+                    <input type="text" data-container="body" class="form-control"
+                            ng-model="filters.title.value" typeahead-editable="false"
+                            typeahead="story.title for story in stories_list | filter:$viewValue | limitTo:8" 
+                            placeholder="Compare with a story"
+                            removeparentoverflow=".filter-bar"
+                            typeahead-on-select="resetFilters()" />
                 </div>
             </div>
         </div>

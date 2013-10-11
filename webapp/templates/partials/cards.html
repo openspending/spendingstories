@@ -1,10 +1,12 @@
 <div ng-controller="cardsCtrl" class="cards-content" ng-class="{loading: !search.results}">
-    <div class="cards-grid">        
-        <h3  ng-cloack ng-hide="filteredCards.length" 
-             ng-bind="filteredCards && !filteredCards.length ? 'No relevant cards found' : ''">
-             ...
-        </h3>
-        <div class="card" 
+    <div class="cards-grid" masonry="{ transitionDuration: 0 }">        
+        <div ng-if="!filteredCards.length" class="text-center bottom20">
+            No relevant cards found
+            <p class="text-muted" ng-if="hasActivatedFilters()">
+                Too much filters?
+            </p>
+        </div>
+        <div class="card masonry-brick" 
              ng-repeat="d in filteredCards = (search.results | filter:cardsFilter)"
              ng-init="d.details_visible = false"
              ng-class="{active: d.details_visible, sticky: d.sticky}">
