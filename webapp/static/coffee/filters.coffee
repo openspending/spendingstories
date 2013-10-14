@@ -103,7 +103,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
                 equivalent = @humanizePercentage(story, query)
             when @RELEVANCE_TYPES.month, @RELEVANCE_TYPES.week, @RELEVANCE_TYPES.day
                 equivalent = @humanizeTime(story, query)
-        console.log('humanizeEquivalent result:', equivalent,' from story: ', story)
         equivalent
 
     getRatioPrecision: (a, b) ->
@@ -147,7 +146,6 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
     
     humanizeTime: (story, query) ->
         time_value = story.relevance_value
-        console.log(@RELEVANCE_TYPES, story.relevance_type)
         switch story.relevance_type
             when @RELEVANCE_TYPES.month
                 time_unit = "month"
@@ -180,26 +178,22 @@ angular
     )
     .filter("toQueryCurrency", ["searchService", "Currency", (searchService, Currency)->  
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)-> 
-                return null unless angular.isNumber value
                 _fromCurrency = Currency.list[fromCurrency]
                 _toCurrency = Currency.list[toCurrency]
-                converted = value
-                
-                if _fromCurrency? and _toCurrency?                             
-                    # Convertion needed
-                    if _toCurrency.iso_code isnt _fromCurrency.iso_code
-                        # Initial value must be converted to dollars
-                        if _fromCurrency.iso_code isnt 'USD'
-                            # Initial value is now converted to dollar
-                            converted = converted/fromCurrency.rate
-                        # If the final currency isn't dollar
-                        if _toCurrency.iso_code isnt 'USD'
-                            # The value is now into the targeted currency
-                            converted = converted*toCurrency.rate
-                    return OSS.humanize(converted, _toCurrency.name, (converted > 1))
-                else 
-                    return ""
-                
+                converted = parseInt(value)
+                return null unless angular.isNumber(converted) and _fromCurrency? and _toCurrency? 
+                # Convertion needed
+                if _toCurrency.iso_code isnt _fromCurrency.iso_code
+                    # Initial value must be converted to dollars
+                    if _fromCurrency.iso_code isnt 'USD'
+                        # Initial value is now converted to dollar
+                        converted = converted/_fromCurrency.rate
+                    # If the final currency isn't dollar
+                    if _toCurrency.iso_code isnt 'USD'
+                        # The value is now into the targeted currency
+                        converted = converted*_toCurrency.rate
+                return OSS.humanize(converted, _toCurrency.name, (converted > 1))
+            
         ]
     )
     .filter("humanizeValue", ["Currency", (Currency)->
