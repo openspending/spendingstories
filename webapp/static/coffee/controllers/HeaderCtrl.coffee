@@ -1,7 +1,7 @@
 class HeaderCtrl
     @$inject: ['$scope', '$routeParams', '$location','$filter','comprehensionService', 'Currency']
 
-    constructor: (@scope, @routeParams, @location,@filter, @comprehension, @Currency)->
+    constructor: (@scope, @routeParams, @location, @filter, @comprehension, @Currency)->
         @searchParams = @location.search()
         @scope.currenciesLoaded = @Currency.loaded
         @scope.user_query = undefined
@@ -14,7 +14,10 @@ class HeaderCtrl
         @scope.getHeaderClass = =>
             # If we aren't on the homepage
             # return a class that reduce the header
-            if _.indexOf(['/', ''], @location.path()) is -1  then 'reduce'
+            if _.indexOf(['/', ''], @location.path()) is -1
+                'reduce'
+            else
+                @scope.user_query = undefined
 
         # Submit function to go to the search form
         @scope.search = @onSearch
