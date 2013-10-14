@@ -6,14 +6,15 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
     STORY_TYPES: 
         discrete:   'discrete'
         continous:  'over_one_year'
-        population: 'per_population' # FIXME: not handled yet
 
     RELEVANCE_TYPES: 
         equivalent: 'equivalent'
         half:       'half'
         multiple:   'multiple'
         percentage: 'percentage'
-        time:       'time'
+        week:       'weeks'
+        month:      'months'
+        day:        'days'
 
     getFloatPart: (value_f)->
         float_part_s = String(value_f).split('.')[1]
@@ -90,17 +91,20 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
                 currency: currency object got from Currencies API
             }
         ###
+
         switch story.relevance_type
             when @RELEVANCE_TYPES.equivalent
-                return @humanizeEquivalent(story, query)
+                equivalent = @humanizeEquivalent(story, query)
             when @RELEVANCE_TYPES.half
-                return @humanizeHalf(story, query)
+                equivalent = @humanizeHalf(story, query)
             when @RELEVANCE_TYPES.multiple
-                return @humanizeMultiple(story, query)
+                equivalent = @humanizeMultiple(story, query)
             when @RELEVANCE_TYPES.percentage
-                return @humanizePercentage(story, query)
-            when @RELEVANCE_TYPES.time
-                return @humanizeTime(story, query)
+                equivalent = @humanizePercentage(story, query)
+            when @RELEVANCE_TYPES.month, @RELEVANCE_TYPES.week, @RELEVANCE_TYPES.day
+                equivalent = @humanizeTime(story, query)
+        console.log('humanizeEquivalent result:', equivalent,' from story: ', story)
+        equivalent
 
     getRatioPrecision: (a, b) ->
         # return the absolute precision between `a` and `b` params 
@@ -115,7 +119,12 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         "an equivalent of"
 
     humanizeHalf: (story, query) ->
-        "half of"
+        if story.type is @STORY_TYPES.discrete
+            equivalent = "50%"
+        else 
+            equivalent = "6 months"
+
+        "≈ #{equivalent} of the"
 
     humanizeMultiple: (story, query) ->
         ratio = story.relevance_value
@@ -123,15 +132,12 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
 
     humanizePercentage: (story, query) ->
         ratio = story.relevance_value
-        if ratio == 0
-            ratio = story.relevance_ratio
-        percentage = ratio * 100
         decimals = 1
-        result = percentage
-        if percentage >= 1 
+        result = ratio
+        if ratio >= 1 
             decimals = 0
-        if percentage < 1
-            decimals = OSS.getDecimalNumber(percentage)
+        if ratio < 1
+            decimals = OSS.getDecimalNumber(ratio)
             if decimals == 0
                 decimals = 1
         result = OSS.round result, decimals
@@ -140,25 +146,19 @@ OSS = OpenSpendingStories = window.SpendingStories = window.SpendingStories ||
         "≈ #{result}% of the"
     
     humanizeTime: (story, query) ->
-        m = story.relevance_value['months']
-        w = story.relevance_value['weeks']
-        d = story.relevance_value['days']
+        time_value = story.relevance_value
+        console.log(@RELEVANCE_TYPES, story.relevance_type)
+        switch story.relevance_type
+            when @RELEVANCE_TYPES.month
+                time_unit = "month"
+            when @RELEVANCE_TYPES.week
+                time_unit = "week"
+            when @RELEVANCE_TYPES.day 
+                time_unit = "day"
+
         story_value = story.current_value_usd
-        story_day_value = story_value / 360
-        time_value = (m * 30 + w * 7 + d) * story_day_value 
-        precision = @getRatioPrecision(time_value, story_value) 
-        result =  []
-        months_part = @stupidPlural("#{m} month", m)
-        weeks_part  = @stupidPlural("#{w} week",  w)
-        days_part   = @stupidPlural("#{d} day",   d) 
-        result.push(months_part) if m > 0
-        result.push(weeks_part)  if w > 0 
-        result.push(days_part)   if d > 0 and w == 0 or d > 1 and w > 0 
-        if d is 0 and w is 0 and d is 0
-            result_s = "less than 1 day"
-        else 
-            result_s = result.join(' ')
-        "≈ #{result_s} of the"
+        equivalent = @stupidPlural("#{time_value} #{time_unit}", time_value)
+        return "#{equivalent} of the"
 
 angular
     .module('storiesFilters', [])
