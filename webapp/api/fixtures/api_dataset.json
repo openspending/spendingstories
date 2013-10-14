@@ -1,6 +1,24 @@
 [
 {
     "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "pony", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-09-30T09:02:02.559Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$MmsuLde1BNXu$MXQyr59v2RoAe2YN2dTNdvPkKcIH23ejdQQaU/rZa50=", 
+        "email": "my@pony.com", 
+        "date_joined": "2013-09-30T09:01:30.604Z"
+    }
+},
+{
+    "pk": 1, 
     "model": "core.story", 
     "fields": {
         "status": "refused", 

@@ -8,7 +8,7 @@
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : 21-Aug-2013
-# Last mod : 21-Aug-2013
+# Last mod : 11-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -26,79 +26,31 @@
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
 
+# TODO
+#  [ ] DAYS 
+#  [ ] tolerance
+
 from relevance import Processor, Relevance
-import math
 
 class SubProcessor(Processor):
 
     def compute(self, amount, compared_to, *args, **kwargs):
         """ compute the relevance for an over_one_year reference """
         relevance = super(SubProcessor, self).compute(amount, compared_to, *args, **kwargs)
-        time_equivalence =  Relevance.RELEVANCE_TYPE_TIME
-        if not relevance.type in self.supertypes():
-            # if it has not been yet processed as: equivalent, half or multiple
-            relevance.type = time_equivalence
-            equivalence    = self._compute_value(amount, compared_to)
-
-            nb_months = equivalence['months']
-            nb_weeks  = equivalence['weeks']
-            nb_days   = equivalence['days']
-
-            if nb_months == 0:
-                if nb_weeks == 0:
-                    if nb_days > 0:
-                        relevance.score = 7
-                    else:
-                        relevance.score = 5
-                else: 
-                    if nb_days <= 1:
-                        relevance.score = 8
-                    else:
-                        relevance.score = 6
-            else: 
-                if nb_weeks == 0 and nb_days <= 1:
-                    relevance.score = 8
-                else:
-                    if nb_days <= 1:
-                        relevance.score = 7
-                    else:
-                        relevance.score = 6
-
-            relevance.value = equivalence
+        if not relevance and amount < compared_to:
+            # compute the story amount equivalence for 1 day
+            one_day   = compared_to / 365.25
+            one_week  = compared_to / 52
+            one_month = compared_to / 12
+            if amount < one_week and amount >= (one_day - one_day * 0.05):
+                relevance = Relevance(6, Relevance.RELEVANCE_TYPE_DAY, int(amount / one_day))
+            elif amount < one_month:
+                # compute into weeks
+                if amount >= one_week and amount % one_week <= one_day * 0.25:
+                    relevance = Relevance(7, Relevance.RELEVANCE_TYPE_WEEK, int(amount / one_week))
+            # compute into month
+            elif amount % one_month < one_week * 0.25:
+                relevance = Relevance(8, Relevance.RELEVANCE_TYPE_MONTH, int(amount / one_month))
         return relevance
-
-    def _compute_value(self, amount, compared_to):
-        """
-        This function assume amount < compared_to
-        """ 
-        assert(amount < compared_to)
-        dict_values = {
-            'months': 0,
-            'weeks':  0,
-            'days':   0
-        }
-        # compute the story amount equivalence for 1 day
-        total_days  = 360
-        months_days = total_days / 12
-        weeks_days  = 7
-
-
-        one_day   = compared_to / total_days
-        total_nb_days  = amount / one_day
-        if total_nb_days < 1:
-            # in that case it's useless to compute a time equivalence
-            weeks  = 0
-            months = 0
-            days   = 1 if total_nb_days > 0.9 else 0 
-        else: 
-            weeks  = math.floor((total_nb_days / weeks_days  ) % 4  )
-            months = math.floor((total_nb_days / months_days ) % 12 )
-            days   = math.floor(total_nb_days % 7)
-       
-        dict_values['weeks']  = weeks
-        dict_values['months'] = months
-        dict_values['days']   = days
-        return dict_values
-
 
 # EOF

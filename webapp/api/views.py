@@ -81,14 +81,13 @@ class StoryViewSet(viewsets.ModelViewSet):
         relevance_for = request.QUERY_PARAMS.get('relevance_for')
         if relevance_for:
             for i, story in enumerate(response.data):
-                score, _type, value, ratio = Relevance().compute(
+                score, _type, value = Relevance().compute(
                     amount      = relevance_for,
                     compared_to = story['current_value_usd'],
                     story_type  = story['type'])
                 story['relevance_score'] = score
                 story['relevance_type' ] = _type
                 story['relevance_value'] = value
-                story['relevance_ratio'] = ratio
                 response.data[i] = story
             # order by relevance score
             response.data = sorted(response.data, cmp=lambda x,y: cmp(y['relevance_score'], x['relevance_score']))

@@ -8,7 +8,7 @@
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
 # Creation : 14-Aug-2013
-# Last mod : 16-Aug-2013
+# Last mod : 11-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -26,7 +26,7 @@
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.test.client import Client
 from webapp.core.models import Story
 from django.contrib.auth.models import User
@@ -37,25 +37,8 @@ from relevance import Relevance
 import random
 import warnings
 
-API_FILTERS = '/api/filters/%s'
-# generic method to perform some tests 
-def test_ressource(case, ressource, attributes):
-    response = case.client.get(ressource)
-    case.assertEquals(response.status_code, 200, response)
-    # print "test_ressource(%s,%s,%s) - response: %s" % (case, ressource, attributes, response
-    case.assertTrue(len(response.data) > 0, ressource)
-    for element in response.data:
-        element_keys = element.keys()
-        for attr_k in attributes.keys():
-            attr = attributes[attr_k]
-            case.assertTrue(attr_k in element_keys)
-            if attr['required']:
-                case.assertIsNotNone(element[attr_k])
-
-            if attr['value'] != None:
-                case.assertEquals(attr['value'], element[attr_k])
-
-class APIStoryTestCase(SimpleTestCase):
+class APIStoryTestCase(TestCase):
+    fixtures = ['api_dataset.json',]
     def setUp(self):
         # Every test needs a client.
         staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
@@ -96,7 +79,7 @@ class APIStoryTestCase(SimpleTestCase):
         story = {
             'type'       : "discrete",
             'country'    : 'BGR',
-            'currency'   : u'GNF',
+            'currency'   : u'EUR',
             'description': None,
             'source'     : 'http://www.okf.org',
             'status'     : 'published',
@@ -124,7 +107,7 @@ class APIStoryTestCase(SimpleTestCase):
         self.assertEquals(response.data['sticky'], False)
 
     def test_api_relevances(self):
-        TOLERENCE = 94
+        TOLERENCE = 97
         count     = {}
         for x in range(100):
             relevance_for = random.randint(1,200) * int("1" + "0" * random.randint(1,15))
@@ -135,58 +118,35 @@ class APIStoryTestCase(SimpleTestCase):
             self.assertEquals(response.status_code, 200)
             assert len(response.data) > 0
             for story in response.data:
-                # we check all attribute that should be presents 
                 self.assertIsNotNone(story['relevance_score'])
-                self.assertIsNotNone(story['relevance_type' ])      
-                
-                self.assertIsNotNone(story['relevance_ratio'])
-                self.assertIsNotNone(story['relevance_value'])
-                
-                relevance_type = story['relevance_type' ]
-
-                self.assertFalse(relevance_type is Relevance.RELEVANCE_TYPE_NONE)
-                count[relevance_for] += 1
-                if story['type'] is 'over_one_year':
-                    accepted_types = (
-                        Relevance.RELEVANCE_TYPE_TIME, 
-                        Relevance.RELEVANCE_TYPE_MULTIPLE, 
-                        Relevance.RELEVANCE_TYPE_EQUIVALENT,
-                        Relevance.RELEVANCE_TYPE_HALF,
-                    )
-                    self.assertTrue(relevance_type in accepted_types)
-
-
-                if relevance_type is Relevance.RELEVANCE_TYPE_TIME:
-                    # we will check time equivalence
-                    value = story['relevance_value']
-                    story_day_value = story['current_value_usd'] / 360
-
-                    self.assertIsNotNone(value['months'])
-                    self.assertIsNotNone(value['weeks'])
-                    self.assertIsNotNone(value['days'])
-
-                    reverse_ratio     = story['relevance_ratio'] * story['current_value_usd'] 
-                    reverse_computing = (value['months'] * 30 + value['weeks'] * 7 + value['days']) * story_day_value
-
-                    accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
-
-                    debug = "\n"
-                    debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
-                    debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
-                    debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
-                    debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
-                    debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
-                    debug += "\n{0:20}: {1}"          .format("relevance_ratio"  , story['relevance_ratio'])
-                    debug += "\n{0:20}: {1}"          .format("day value"        , story_day_value)
-                    debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
-                    debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
-                    debug += "\n--------------------------------------"
-                    if accuracy < TOLERENCE:
-                        warnings.warn("time equivalence accurency under %s%%: %s" % (TOLERENCE, debug))
-
-                
-                if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_MULTIPLE, Relevance.RELEVANCE_TYPE_HALF) :
-                    reverse_computing = float(story['relevance_value']) * story['current_value_usd']
+                if story['relevance_score'] > 8:
+                    count[relevance_for] += 1
+                    if story['type'] is 'over_one_year':
+                        accepted_types = (
+                            Relevance.RELEVANCE_TYPE_MULTIPLE, 
+                            Relevance.RELEVANCE_TYPE_EQUIVALENCE,
+                            Relevance.RELEVANCE_TYPE_HALF,
+                        )
+                        self.asserTrue(story['relevance_type'] in accepted_types)
+                    if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_MULTIPLE, Relevance.RELEVANCE_TYPE_HALF) :
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']
+                        accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
+                        debug = "\n"
+                        debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
+                        debug += "\n{0:20}: {1} (id: {2})".format('story value'      , story['current_value_usd'], story['id'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_score'  , story['relevance_score'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_type'   , story['relevance_type'])
+                        debug += "\n{0:20}: {1}"          .format('relevance_value'  , story['relevance_value'])
+                        debug += "\n{0:20}: {1}"          .format("reverse_computing", reverse_computing)
+                        debug += "\n{0:20}: {1}%"         .format("accuracy"         , accuracy)
+                        debug += "\n--------------------------------------"
+                        if accuracy < TOLERENCE:
+                            warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
+                if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_WEEK, Relevance.RELEVANCE_TYPE_MONTH) :
+                    if story['relevance_type'] == Relevance.RELEVANCE_TYPE_WEEK:
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']/52
+                    elif story['relevance_type'] == Relevance.RELEVANCE_TYPE_MONTH:
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']/12
                     accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
                     debug = "\n"
                     debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
@@ -201,121 +161,5 @@ class APIStoryTestCase(SimpleTestCase):
                         warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
         count = sorted(count.iteritems(), key=itemgetter(1), reverse=True)
         # pp(count[:5])
-
-    def test_api_filters_countries_list(self):
-        attributes = {
-            'iso_code':{
-                'required': True, 
-                'value': None
-            }, 
-            'used':{
-                'required': True,
-                'value': None
-            }, 
-            'name':{
-                'required': True,
-                'value': None
-            }
-        }
-        test_ressource(self, API_FILTERS % 'countries/', attributes)
-
-
-    def test_api_filters_countries_list_filtered(self):
-        attributes = {
-            'iso_code':{
-                'required': True, 
-                'value': None
-            }, 
-            'used':{
-                'required': True,
-                'value': True,
-            }, 
-            'name':{
-                'required': True,
-                'value': None
-            }
-        }
-        test_ressource(self, API_FILTERS % 'countries/?isUsed', attributes)
-
-
-
-    def test_api_filters_themes_list(self):
-        attributes = {
-            'description':{
-                'required': False, 
-                'value': None
-            },
-            'title':{
-                'required': True,
-                'value': None
-            }, 
-            'slug':{
-                'required': True,
-                'value': None
-            },
-            'used':{
-                'required': True,
-                'value': None
-            },
-        }
-        test_ressource(self, API_FILTERS % 'themes/', attributes)
-
-
-    def test_api_filters_themes_list_filtered(self):
-        attributes = {
-            'description':{
-                'required': False, 
-                'value': None
-            },
-            'title':{
-                'required': True,
-                'value': None
-            }, 
-            'slug':{
-                'required': True,
-                'value': None
-            },
-            'used':{
-                'required': True,
-                'value': True,
-            },
-        }
-        test_ressource(self, API_FILTERS % 'themes/?isUsed', attributes)    
-
-
-    def test_api_filters_currencies_list(self):
-        attributes = {
-            'iso_code':{
-                'required': True, 
-                'value': None
-            }, 
-            'used':{
-                'required': True,
-                'value': None
-            }, 
-            'name':{
-                'required': True,
-                'value': None
-            }
-        }
-        test_ressource(self, API_FILTERS % 'currencies/', attributes)
-
-
-    def test_api_filters_currencies_list_filtered(self):
-        attributes = {
-            'iso_code':{
-                'required': True, 
-                'value': None
-            }, 
-            'used':{
-                'required': True,
-                'value': True,
-            }, 
-            'name':{
-                'required': True,
-                'value': None
-            }
-        }
-        test_ressource(self, API_FILTERS % 'currencies/?isUsed', attributes)
 
 # EOF
