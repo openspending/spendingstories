@@ -5,9 +5,10 @@ class HeaderCtrl
         @searchParams = @location.search()
         @scope.currenciesLoaded = @Currency.loaded
         @scope.user_query = undefined
-        @scope.user_query = 
-            number: parseInt(@searchParams.q)
-            currency: @searchParams.c 
+        if @searchParams.q?
+            @scope.user_query = 
+                number: parseInt(@searchParams.q)
+                currency: @searchParams.c 
 
         # Update the header size according the location
         @scope.getHeaderClass = =>
