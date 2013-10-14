@@ -16,7 +16,8 @@ class CardsCtrl
         @scope.currentUrl = do @location.absUrl
         @scope.currentUrl = @scope.currentUrl.split '?'
         vars = _.filter (@scope.currentUrl[1].split '&'), (elem) =>
-            not elem.match /^title=/
+            not elem.match /^title=/ and not /^visualization/
+        vars.visualization = 'cards'
         @scope.currentUrl[1] = vars.join '&'
         @scope.currentUrl = @scope.currentUrl.join '?'
 
