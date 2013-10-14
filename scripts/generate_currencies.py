@@ -1,49 +1,197 @@
 #!/usr/bin/env python
+# coding=utf-8
 import os, requests, sys
 from django.conf import settings
 
 os.environ['PYTHONPATH'] = ROOT_PATH = settings.ROOT_PATH
 
-currencies = {
-    "CNY": { "name" : "Chinese yuan renminbi", "symbol" : "&#165;" },
-    "JPY": { "name" : "Japanese yen", "symbol" : "&#165;" },
-    "USD": { "name" : "US dollar", "symbol" : "&#36;" },
-    "EUR": { "name" : "EU euro", "symbol" : "&#8364;" },
-    "GBP": { "name" : "British pound", "symbol" : "&#163;" },
-    "BRL": { "name" : "Brazilian real", "symbol" : "&#82;&#36;" },
-    "AUD": { "name" : "Australian dollar", "symbol" : "&#36;" },
-    "KRW": { "name" : "South Korean won", "symbol" : "&#8361;" },
-    "CAD": { "name" : "Canadian dollar", "symbol" : "&#36;" },
-    "INR": { "name" : "Indian rupee", "symbol" : "" },
-    "CHF": { "name" : "Swiss franc", "symbol" : "&#67;&#72;&#70;" },
-    "HKD": { "name" : "Hong Kong SAR dollar", "symbol" : "&#36;" },
-    "TWD": { "name" : "Taiwan New dollar", "symbol" : "&#78;&#84;&#36;" },
-    "RUB": { "name" : "Russian ruble", "symbol" : "&#1088;&#1091;&#1073;" },
-    "MXN": { "name" : "Mexican peso", "symbol" : "&#36;" },
-    "THB": { "name" : "Thai baht", "symbol" : "&#3647;" },
-    "MYR": { "name" : "Malaysian ringgit", "symbol" : "&#82;&#77;" },
-    "SEK": { "name" : "Swedish krona", "symbol" : "&#107;&#114;" },
-    "SGD": { "name" : "Singapore dollar", "symbol" : "&#36;" },
-    "TRY": { "name" : "Turkish lira", "symbol" : "" },
-    "SAR": { "name" : "Saudi riyal", "symbol" : "&#65020;" },
-    "IDR": { "name" : "Indonesian rupiah", "symbol" : "&#82;&#112;" },
-    "NOK": { "name" : "Norwegian krone", "symbol" : "&#107;&#114;" },
-    "PLN": { "name" : "Polish zloty", "symbol" : "&#122;&#322;" },
-    "ZAR": { "name" : "South African rand", "symbol" : "&#82;" },
-    "AED": { "name" : "UAE dirham", "symbol" : "" },
-    "DKK": { "name" : "Danish krone", "symbol" : "&#107;&#114;" },
-    "ILS": { "name" : "Israeli new shekel", "symbol" : "&#8362;" },
-    "CLP": { "name" : "Chilean peso", "symbol" : "&#36;" },
-    "EGP": { "name" : "Egyptian pound", "symbol" : "&#163;" },
-    "VEF": { "name" : "Venezuelan bolivar fuerte", "symbol" : "&#66;&#115;" },
-    "VND": { "name" : "Vietnamese dong", "symbol" : "&#8363;" },
-    "NZD": { "name" : "New Zealand dollar", "symbol" : "&#36;" },
-    "CZK": { "name" : "Czech koruna", "symbol" : "&#75;&#269;" },
-    "COP": { "name" : "Colombian peso", "symbol" : "&#36;" },
-    "DZD": { "name" : "Algerian dinar", "symbol" : "" },
-    "ARS": { "name" : "Argentine peso", "symbol" : "&#36;" }
+CURRENCIES = {
+    "USD": {
+        "name": "US dollar", 
+        "symbol": "$",
+        "priority": 1
+    },
+    "EUR": {
+        "name": "EU euro", 
+        "symbol": "€",
+        "priority": 1
+    },
+    "JPY": {
+        "name": "Japanese yen", 
+        "symbol": "¥",
+        "priority": 1
+    },
+    "GBP": {
+        "name": "British pound", 
+        "symbol": "£",
+        "priority": 1
+    },
+    "AUD": {
+        "name": "Australian dollar", 
+        "symbol": "$",
+        "priority": 2
+    },
+    "CHF": {
+        "name": "Swiss franc", 
+        "symbol": "CHF",
+        "priority": 2
+    },
+    "CAD": {
+        "name": "Canadian dollar", 
+        "symbol": "$",
+        "priority": 2
+    },
+    "HKD": {
+        "name": "Hong Kong SAR dollar", 
+        "symbol": "$",
+        "priority": 2
+    },
+    "SEK": {
+        "name": "Swedish krona", 
+        "symbol": "kr",
+        "priority": 2
+    },
+    "NZD": {
+        "name": "New Zealand dollar", 
+        "symbol": "$",
+        "priority": 2
+    },
+    "KRW": {
+        "name": "South Korean won", 
+        "symbol": "₩",
+        "priority": 2
+    },
+    "SGD": {
+        "name": "Singapore dollar", 
+        "symbol": "$",
+        "priority": 2
+    },
+    "NOK": {
+        "name": "Norwegian krone", 
+        "symbol": "kr",
+        "priority": 2
+    },
+    "MXN": {
+        "name": "Mexican peso", 
+        "symbol": "$",
+        "priority": 2
+    },
+    "INR": {
+        "name": "Indian rupee", 
+        "symbol": "₹",
+        "priority": 2
+    },
+    "CNY": {
+        "name": "Chinese yuan renminbi", 
+        "symbol": "¥",
+        "priority": 3
+    },
+    "BRL": {
+        "name": "Brazilian real", 
+        "symbol": "R$",
+        "priority": 3
+    },
+    "TWD": {
+        "name": "Taiwan New dollar", 
+        "symbol": "NT$",
+        "priority": 3
+    },
+    "RUB": {
+        "name": "Russian ruble", 
+        "symbol": "руб",
+        "priority": 3
+    },
+    "THB": {
+        "name": "Thai baht", 
+        "symbol": "฿",
+        "priority": 3
+    },
+    "MYR": {
+        "name": "Malaysian ringgit", 
+        "symbol": "RM",
+        "priority": 3
+    },
+    "TRY": {
+        "name": "Turkish lira", 
+        "symbol": "\u20BA",
+        "priority": 3
+    },
+    "SAR": {
+        "name": "Saudi riyal", 
+        "symbol": "﷼",
+        "priority": 3
+    },
+    "IDR": {
+        "name": "Indonesian rupiah", 
+        "symbol": "Rp",
+        "priority": 3
+    },
+    "PLN": {
+        "name": "Polish zloty", 
+        "symbol": "zł",
+        "priority": 3
+    },
+    "ZAR": {
+        "name": "South African rand", 
+        "symbol": "R",
+        "priority": 3
+    },
+    "AED": {
+        "name": "UAE dirham", 
+        "symbol": "",
+        "priority": 3
+    },
+    "DKK": {
+        "name": "Danish krone", 
+        "symbol": "kr",
+        "priority": 3
+    },
+    "ILS": {
+        "name": "Israeli new shekel", 
+        "symbol": "₪",
+        "priority": 3
+    },
+    "CLP": {
+        "name": "Chilean peso", 
+        "symbol": "$",
+        "priority": 3
+    },
+    "EGP": {
+        "name": "Egyptian pound", 
+        "symbol": "£",
+        "priority": 3
+    },
+    "VEF": {
+        "name": "Venezuelan bolivar fuerte", 
+        "symbol": "Bs",
+        "priority": 3
+    },
+    "VND": {
+        "name": "Vietnamese dong", 
+        "symbol": "₫",
+        "priority": 3
+    },
+    "CZK": {
+        "name": "Czech koruna", 
+        "symbol": "Kč",
+        "priority": 3
+    },
+    "COP": {
+        "name": "Colombian peso", 
+        "symbol": "$",
+        "priority": 3
+    },
+    "DZD": {
+        "name": "Algerian dinar", 
+        "symbol": "دج",
+        "priority": 3
+    },
+    "ARS": {
+        "name": "Argentine peso", 
+        "symbol": "$",
+        "priority": 3
+    }
 }
-
 
 # OpenExchangeRates API base url
 OER_API_BASE_URL = "http://openexchangerates.org/api/latest.json?app_id=%s"
@@ -53,7 +201,9 @@ def get_rates(app_id):
     return r.json()
 
 
-def create_currency_object(name, iso_code, rate, symbol):
+def create_currency_object(iso_code, rate):
+    # find and create the appropriated currency object 
+    currency = CURRENCIES[iso_code]
     model_name = 'currency.currency'
     currency = {
         'pk': iso_code,
@@ -61,32 +211,24 @@ def create_currency_object(name, iso_code, rate, symbol):
         'fields': {
             'iso_code': iso_code,
             'rate': rate,
-            'name': name,
-            'symbol': symbol
+            'name': currency['name'],
+            'symbol': currency['symbol'],
+            'priority': currency['priority']
         }
     }
     return currency
 
 def create_currencies(api_key):
-    json = get_rates(api_key)
-    latest_rates = json['rates']
-    currs = []
+    # get the latest exchange rates 
+    latest_rates = get_rates(api_key)['rates']
+    currencies = []
 
     for iso_code in latest_rates:
-        if iso_code in currencies:
-            currency     = currencies[iso_code]
-            name         = currency["name"]
-            rate         = latest_rates[iso_code]
-            symbol       = currency["symbol"]
-            currency     = create_currency_object(
-                name=name,
-                iso_code=iso_code,
-                rate=rate,
-                symbol=symbol
-            )
-            currs.append(currency)
-
-    return currs
+        if iso_code in CURRENCIES:
+            rate     = latest_rates[iso_code]
+            currency = create_currency_object(iso_code=iso_code, rate=rate)
+            currencies.append(currency)
+    return currencies
 
 def show_usage():
     print "Currencies rates generator usage.\n\n"\
@@ -109,8 +251,3 @@ if len(sys.argv) > 1:
 else:
     print "\nMissing arguments, please check usage:\n\n"
     show_usage()
-
-
-
-
-
