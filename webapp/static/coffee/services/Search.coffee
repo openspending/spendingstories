@@ -82,7 +82,7 @@ class SearchService
             @query_usd = if c? then @query/c.rate else null
         # The currency isn't loaded yet
         else
-            @Currency.get(currency).then (c)->
+            @Currency.get(currency).then (c)=>
                 @currency = c.iso_code
                 @query_usd = if c? then @query/c.rate else null
     
