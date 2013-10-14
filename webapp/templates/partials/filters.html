@@ -58,7 +58,6 @@
                             ng-model="filters.title.value" typeahead-editable="false"
                             typeahead="story.title for story in search.results | filter:relevanceFilter | filter:$viewValue | limitTo:8"
                             placeholder="Compare with a story"
-                            removeparentoverflow=".filter-bar"
                             typeahead-on-select="resetFilters()" />
                 </div>
             </div>
