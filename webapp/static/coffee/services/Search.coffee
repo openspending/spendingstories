@@ -90,7 +90,7 @@ class SearchService
         # will fire a new request on API with the new paramters
         @results = @Restangular.copy(@results) if @results?
         @results = @Restangular.all('stories-nested').getList(@getAPIParams(params))
-     
+
     getAPIParams: (newParams)=>
         # extract the parameters from URL that will be used to request the API
         _.extend(@getFiltersParams(newParams), @getExtraParams(newParams))

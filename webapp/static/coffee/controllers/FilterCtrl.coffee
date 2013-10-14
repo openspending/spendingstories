@@ -3,9 +3,9 @@
 # ────────────────────────────────────────────────────────────────────────────── 
 class FilterCtrl
     
-    @$inject: ['$scope', '$routeParams', '$location', 'Filters', 'Currency', 'Restangular', ]
+    @$inject: ['$scope', '$routeParams', '$location', 'Filters', 'Currency', 'Restangular', 'searchService']
     
-    constructor: (@scope, @routeParams, @location, @Filters, Currency, Restangular)->
+    constructor: (@scope, @routeParams, @location, @Filters, Currency, Restangular, Search)->
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables bindings                       
         # ──────────────────────────────────────────────────────────────────────
@@ -16,10 +16,8 @@ class FilterCtrl
             @scope.country_list = data.country
             @scope.theme_list = data.theme
 
-        # filter list values without Restangular ressources special functions 
-        Restangular.all('stories').getList(isUsed:true).then (data)=> 
-                @scope.stories_list  = _.filter(data, _.isObject)    
-        # filters models 
+        @scope.search = Search
+
         @scope.filters = @Filters
         
         # ──────────────────────────────────────────────────────────────────────
@@ -39,6 +37,8 @@ class FilterCtrl
         @scope.resetFilters = @resetFilters
         @scope.resetComparison = @resetComparison
 
+        @scope.relevanceFilter = @relevanceFilter
+
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
         # ──────────────────────────────────────────────────────────────────────
@@ -52,6 +52,11 @@ class FilterCtrl
             else
                 @scope.$watch watch_string, @filter
 
+    relevanceFilter : (story) =>
+        return no unless story? and _.isObject(story)
+        if story.relevance_score?
+            return story.relevance_score > 6
+        return yes
 
     resetFilters : () =>
         for key, filter of @scope.filters
