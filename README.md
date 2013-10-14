@@ -61,9 +61,9 @@ source .env
 pip install -r requirements_core.txt
 ```
 
-**b. Install compilers for *Less* and *CoffeeScript* **
+__b. Install compilers for *Less* and *CoffeeScript*__
 
-__If you don't have already nodejs installed__:
+If you don't have already nodejs installed:
 
 ```bash
 sudo apt-get update
