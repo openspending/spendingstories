@@ -34,6 +34,7 @@
                             <span class="left05" ng-if="d.source">&#8212;</span>
                             <a href="[[d.source]]" ng-if="d.source" tooltip="[[d.source]]" class="left05" target="_blank" tooltip-append-to-body="true">
                                 <span translate>READ_THE_STORY</span>
+                                <span translate>SCALE_READ_STORY_BUTTON</span>
                                 <!-- <span class="sr-only">source</span> -->
                             </a>
                         </span>
@@ -57,10 +58,9 @@
                     &#9654;
                 </a>
             </div>
-
         </div>
     </div>
-    <h3 translate>TOP_STORIES</h3>            
+    <h3 translate>SCALE_TOP_STORIES_TITLE</h3>            
     <div class="top-strat">
         <scale-points
             data="search.results"
@@ -73,7 +73,7 @@
             filter="{sticky: true}"></scale-points>
     </div>
 
-    <h3 translate>OTHER_STORIES</h3>
+    <h3 translate>SCALE_OTHER_STORIES_TITLE</h3>
     <div class="other-strat">
         <scale-points
             ng-if="search.results.length"

@@ -1,13 +1,15 @@
 <div class="summary" ng-cloack>	
 	<div class="row">
 		<div class="col-xs-6">
-			<p class="text-muted" ng-if="mode == 'cards'">Most relevant results.</p>	
-			<p class="text-muted" ng-if="mode == 'scale'">Compared to other stories...</p>	
-			<p>Your query for <strong>[[search.query|humanizeValue:search.currency]]</strong> represents:</p>
+			<p class="text-muted" ng-if="mode == 'cards'" translate>SUMMARY_TEXT_CARDS</p>
+			<p class="text-muted" ng-if="mode == 'scale'" translate>SUMMARY_TEXT_SCALE</p>
+			<p><span translate>SUMMARY_YOUR_QUERY</span>&nbsp;
+               <strong>[[search.query|humanizeValue:search.currency]]</strong>&nbsp;
+               <span translate>SUMMARY_QUERY_REPRESENTS</span></p>
 		</div>
 		<div class="col-xs-6">			
             <div class="filters-activated row" ng-if="hasActivatedFilters()">
-                <p class="text-muted">Active filters:</p>
+                <p class="text-muted" translate>SUMMARY_ACTIVE_FILTERS_TEXT</p>
                 <ul class="list-inline">
                     <li class="filter-activated label label-default"
                         ng-repeat="f in getActivatedFilters()">
@@ -17,7 +19,7 @@
                     <li class="filter-activated label label-default"
                         ng-repeat="t in filters.themes.value">
                         <a ng-click="removeTheme($index)">&#215;</a>
-                        <span>Theme: [[t]]</span>
+                        <span><span translate>SUMMARY_THEME</span> [[t]]</span>
                     </li>
                 </ul>
             </div>

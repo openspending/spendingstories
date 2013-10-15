@@ -1,9 +1,9 @@
 <div ng-controller="cardsCtrl" class="cards-content" ng-class="{loading: !search.results}">
     <div class="cards-grid" masonry="{ transitionDuration: 0 }">        
         <div ng-if="!filteredCards.length" class="text-center bottom20">
-            <span translate>NO_RELEVANT_CARDS</span>
+            <span translate>CARDS_NO_RESULTS_TEXT</span>
             <p class="text-muted" ng-if="hasActivatedFilters()" translate>
-                TOO_MUCH_FILTERS
+                CARDS_TOO_MUCH_FILTERS
             </p>
         </div>
         <div class="card masonry-brick" 
@@ -15,9 +15,9 @@
                 <div class="card-wrapper" ng-class="d.show">
 
                     <div class="card-sharing">
-                        <h6 translate>SHARE_THIS_STORY</h6>
+                        <h6 translate>CARDS_SHARE_THIS_STORY_TITLE</h6>
                         <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
-                        <h6 translate>EMBED_THIS_STORY</h6>
+                        <h6 translate>CARDS_EMBED_THIS_STORY_TITLE</h6>
                         <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
                     </div>
 
@@ -36,7 +36,7 @@
                         <p>
                             <i class="icon-calendar"></i> [[d.year]]
                             <span ng-if="d.source">
-                                &#8212; <a ng-href="[[d.source]]" translate>READ_THE_STORY</a>
+                                &#8212; <a ng-href="[[d.source]]" translate>CARDS_SOURCE_BUTTON</a>
                             </span>
                         </p>
                         <!--p>
@@ -61,13 +61,10 @@
 
             <div class="card-footer">
                 <a ng-click="showSharing(d)" class='sharing toggler clickable'>
-                    <i class="icon-share"></i>
-                    <span translate>SHARE</span>
-                </a>
+                    <i class="icon-share"></i>&nbsp;[[ 'CARDS_SHARE_STORY_BUTTON' | translate ]]</a>
+
                 <a ng-click="showDetails(d)" class="toggler clickable">
-                    <i class="icon-eye-open"></i>
-                    <span translate>MORE_INFO</span>
-                </a>
+                    <i class="icon-eye-open"></i>&nbsp;[[ 'CARDS_MORE_INFO_BUTTON' | translate ]]</a>
             </div>
         </div>
     </div>
