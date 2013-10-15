@@ -84,5 +84,6 @@ class StoryAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Story, StoryAdmin)
 admin.site.register(models.Theme, ThemeAdmin)
+admin.site.register(models.Page)
 
 # EOF
