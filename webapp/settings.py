@@ -229,6 +229,13 @@ REST_FRAMEWORK = {
 # Compatibility with AngularJS
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
+# TinyMCE configuration
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'theme_advanced_buttons1': 'bold,italic,underline,strikethrough,|,bullist,numlist,outdent,indent,blockquote,|,undo,redo,removeformat,|,link,unlink,image',
+    'cleanup_on_startup': True,
+}
+
 # Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
     try:

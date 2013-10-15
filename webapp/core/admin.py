@@ -89,6 +89,7 @@ class StoryAdmin(admin.ModelAdmin):
 #
 # -----------------------------------------------------------------------------
 class PageAdmin(admin.ModelAdmin):
+    list_display    = ('title',)
     readonly_fields = ('slug',)
     form            = forms.PageForm
     fieldsets       = (
