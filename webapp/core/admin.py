@@ -90,16 +90,7 @@ class StoryAdmin(admin.ModelAdmin):
 # -----------------------------------------------------------------------------
 class PageAdmin(admin.ModelAdmin):
     list_display    = ('title',)
-    readonly_fields = ('slug',)
     form            = forms.PageForm
-    fieldsets       = (
-        ("Admin fields", {
-            'fields': ('title', 'content')
-        }),
-        ("Auto computed fields", {
-            'fields': readonly_fields
-        })
-    )
 
 admin.site.register(models.Story, StoryAdmin)
 admin.site.register(models.Theme, ThemeAdmin)

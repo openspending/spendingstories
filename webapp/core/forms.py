@@ -65,6 +65,7 @@ class StoryForm(forms.ModelForm):
 # -----------------------------------------------------------------------------
 class PageForm(forms.ModelForm):
 	title   = forms.CharField()
+	slug    = forms.CharField()
 	content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 
 # EOF
