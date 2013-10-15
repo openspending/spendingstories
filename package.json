@@ -1,0 +1,12 @@
+{
+  "name": "okf-spending-stories",
+  "version": "0.1.0",
+  "dependencies": {
+    "coffee-script":"~1.6.3",
+    "less":"~1.4.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-angular-translate":"~0.1.0"
+  }
+}
