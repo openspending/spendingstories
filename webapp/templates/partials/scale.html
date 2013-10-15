@@ -1,7 +1,7 @@
 <div ng-controller="scaleCtrl" class="scale-strats">
     <div class="preview-strat">
         <div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">
-            <div id="sharemodal-[[d.id]]" class="modal fade">
+            <div id="sharemodal-[[d.id]]" class="modal fade" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">

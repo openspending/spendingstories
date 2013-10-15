@@ -4,22 +4,17 @@
 class CardsCtrl
 
 
-    @$inject: ['$scope', '$location', 'searchService']
+    @$inject: ['$scope', 'searchService', 'shareService']
 
-    constructor: (@scope, @location, @searchService, @Page) ->
+    constructor: (@scope, @searchService, Share, @Page) ->
         # ──────────────────────────────────────────────────────────────────────
         # scope variables function binding
         # ──────────────────────────────────────────────────────────────────────
         # Variables
         @scope.onlyRelevantCards = true
 
-        @scope.currentUrl = do @location.absUrl
-        @scope.currentUrl = @scope.currentUrl.split '?'
-        vars = _.filter (@scope.currentUrl[1].split '&'), (elem) =>
-            not elem.match /^title=/ and not /^visualization/
-        vars.visualization = 'cards'
-        @scope.currentUrl[1] = vars.join '&'
-        @scope.currentUrl = @scope.currentUrl.join '?'
+        # For sharing purpose
+        @scope.currentUrl = Share.getSharingUrl 'cards'
 
         # Functions
         @scope.search = @searchService
