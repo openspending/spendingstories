@@ -229,14 +229,6 @@ REST_FRAMEWORK = {
 # Compatibility with AngularJS
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
-# TinyMCE configuration
-TINYMCE_DEFAULT_CONFIG = {
-    'theme': 'advanced',
-    'theme_advanced_buttons1': 'bold,italic,underline,strikethrough,|,bullist,numlist,outdent,indent,blockquote,|,undo,redo,removeformat,|,link,unlink,image',
-    'cleanup_on_startup': True,
-}
-TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/vendor/tiny_mce/tiny_mce.js")
-
 # Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
     try:
@@ -246,5 +238,13 @@ if os.environ.get('HEROKU', None):
             from settings_heroku import *
         except ImportError:
             pass
+
+# TinyMCE configuration
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'theme_advanced_buttons1': 'bold,italic,underline,strikethrough,|,bullist,numlist,outdent,indent,blockquote,|,undo,redo,removeformat,|,link,unlink,image',
+    'cleanup_on_startup': True,
+}
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/vendor/tiny_mce/tiny_mce.js")
 
 # EOF
