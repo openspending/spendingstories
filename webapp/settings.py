@@ -235,6 +235,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_buttons1': 'bold,italic,underline,strikethrough,|,bullist,numlist,outdent,indent,blockquote,|,undo,redo,removeformat,|,link,unlink,image',
     'cleanup_on_startup': True,
 }
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "js/vendor/tiny_mce/tiny_mce.js")
 
 # Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
