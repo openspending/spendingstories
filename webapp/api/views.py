@@ -192,5 +192,6 @@ class CountryViewSet(ChoicesViewSet):
 class PagesViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Page.objects.all()
     serializer_class = serializers.PageSerializer
+    filter_fields      = ('slug',)
 
 # EOF
