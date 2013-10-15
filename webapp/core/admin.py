@@ -82,8 +82,26 @@ class StoryAdmin(admin.ModelAdmin):
         }
         js = ("js/vendor/jquery-1.9.1.js", "js/vendor/jquery-ui-1.10.3.custom.min.js", "js/admin-story-script.js")
 
+
+# -----------------------------------------------------------------------------
+#
+#    PAGE
+#
+# -----------------------------------------------------------------------------
+class PageAdmin(admin.ModelAdmin):
+    readonly_fields = ('slug',)
+    form            = forms.PageForm
+    fieldsets       = (
+        ("Admin fields", {
+            'fields': ('title', 'content')
+        }),
+        ("Auto computed fields", {
+            'fields': readonly_fields
+        })
+    )
+
 admin.site.register(models.Story, StoryAdmin)
 admin.site.register(models.Theme, ThemeAdmin)
-admin.site.register(models.Page)
+admin.site.register(models.Page, PageAdmin)
 
 # EOF

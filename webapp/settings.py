@@ -174,6 +174,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken', # REST API Token Authentication
     'compressor',               # Compresses linked and inline JavaScript or CSS into a single cached file.
     'south',                    # helps with database migrations
+    'tinymce',                  # wysiwyg editor
     # Internal applications added 
     'webapp.api',
     'webapp.core',
