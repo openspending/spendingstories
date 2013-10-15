@@ -25,7 +25,7 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
-from webapp.core.models      import Story, Theme
+from webapp.core.models      import Story, Theme, Page
 from webapp.currency.models  import Currency
 from rest_framework          import viewsets
 from rest_framework          import filters
@@ -183,5 +183,14 @@ class CountryViewSet(ChoicesViewSet):
         choices = webapp.core.fields.COUNTRIES
     def create_element(self, c):
         return {"iso_code": c[0], "name": c[1]}
+
+# -----------------------------------------------------------------------------
+#
+#    PAGES
+#
+# -----------------------------------------------------------------------------
+class PagesViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Page.objects.all()
+    serializer_class = serializers.PageSerializer
 
 # EOF
