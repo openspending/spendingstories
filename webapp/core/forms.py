@@ -34,6 +34,7 @@ from django.conf import settings
 import datetime
 import widgets
 import fields
+from tinymce.widgets import TinyMCE
 
 AVAILABLE_YEAR_PER_COUNTRY = json.load(file(os.path.join(settings.ROOT_PATH, 'data/years_available_per_country.json')))
 
@@ -56,5 +57,15 @@ class StoryForm(forms.ModelForm):
 		if not year in years and year != datetime.date.today().year:
 			raise forms.ValidationError("For this country, are available: %s" % years)
 		return year
+
+# -----------------------------------------------------------------------------
+#
+#    PAGE
+#
+# -----------------------------------------------------------------------------
+class PageForm(forms.ModelForm):
+	title   = forms.CharField()
+	slug    = forms.CharField()
+	content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
 
 # EOF
