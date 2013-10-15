@@ -175,4 +175,13 @@ Static files (css, javascript, images etc...) are located in `webapp/static`
 
 ## How to customize Spending Stories
 
+### Regenerate translations files
+If you added some i18n strings into spending stories you need to regenerate the localization files. 
+We use two systems for internationalization, one for django and one for angular.  
+
+1. Django's translations 
+This system is used for translation happening in python script files & templates (understand: template that will)
+
+2. AngularJS translations
+
 TODO (Where are the views representing the stories, how to change the branding)
