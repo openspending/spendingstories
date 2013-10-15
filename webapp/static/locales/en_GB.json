@@ -1,5 +1,18 @@
 {
-    "OTHER_TEST": "Other test",
     "": "",
-    "TEST": "Test"
+    "NO_RELEVANT_CARDS": "No relevant cards found",
+    "TOO_MUCH_FILTERS": "Too much filters?",
+    "SHARE_THIS_STORY": "Share this story",
+    "EMBED_THIS_STORY": "Embed this story",
+    "READ_THE_STORY": "Read the story",
+    "SHARE": "Share",
+    "MORE_INFO": "More info",
+    "HEADER_APP_TITLE": "Spending Stories",
+    "HEADER_AUTHOR_BY": "by",
+    "HEADER_CONTRIBUTE": "Contribute",
+    "HEADER_SAMPLE_QUERY": "Example queries: 15 million euros, 12 billion yens, 4500000 PLN",
+    "SCALE_COST": "Cost",
+    "SCALE_COST_IN": "in",
+    "TOP_STORIES": "Top stories",
+    "OTHER_STORIES": "Other stories"
 }

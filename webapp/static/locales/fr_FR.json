@@ -1,5 +1,18 @@
 {
-    "OTHER_TEST": "Autre test",
     "": "",
-    "TEST": "Tester"
+    "NO_RELEVANT_CARDS": "Aucune carte pertinente trouvée",
+    "TOO_MUCH_FILTERS": "Trop de filtres ?",
+    "SHARE_THIS_STORY": "Partager cette histoire",
+    "EMBED_THIS_STORY": "Intégrer cette histoire",
+    "READ_THE_STORY": "Lire cette histoire",
+    "SHARE": "Partager",
+    "MORE_INFO": "Plus d'infos",
+    "HEADER_APP_TITLE": "Spending Stories",
+    "HEADER_AUTHOR_BY": "par",
+    "HEADER_CONTRIBUTE": "Contribuer",
+    "HEADER_SAMPLE_QUERY": "Exemples de requêtes: 15 million d'euros, 12 milliards de yens, 4500000 PLN",
+    "SCALE_COST": "Coûte",
+    "SCALE_COST_IN": "en",
+    "TOP_STORIES": "Histoires marquantes",
+    "OTHER_STORIES": "Autres histoires"
 }
