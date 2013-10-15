@@ -16,3 +16,6 @@ def partial(request, partial_name=None):
         return render_to_response(template_name, context_instance=RequestContext(request))
     except TemplateDoesNotExist:
         raise Http404
+
+def embed(request):
+    return render_to_response('embed.html', context_instance=RequestContext(request))

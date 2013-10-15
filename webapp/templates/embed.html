@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load compress %}
+
+{% block extracss %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/less" href="{% static 'less/embed.less' %}"  media="all">
+    {% endcompress %}
+{% endblock %}
+
+{% block extrajs %}
+    {% compress js %}
+        <script type="text/javascript"   src="{% static 'js/vendor/bootstrap-select.custom.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/bootstrap.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/humanize.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/masonry.min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/underscore-min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/modernizr.custom.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/imagesloaded.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-cookies.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-resource.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/ui-bootstrap-custom-tpls-0.5.0.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/restangular.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-masonry.min.js' %}"></script>
+
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/EmbedCtrl.coffee' %}"></script>
+
+        <script type="text/coffeescript" src="{% static 'coffee/services/Page.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Search.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Currency.coffee' %}"></script>
+
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/PageCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div ng-controller="embedCtrl" id="content">
+        <div class='cards-content' ng-cloak>
+            <div class="card masonry-brick" 
+                 ng-class="{active: d.details_visible, sticky: d.sticky}">
+
+                <div class="card-body">
+                    <div class="card-wrapper" ng-class="d.show">
+
+                        <div class="card-sharing">
+                            <h6>Share this story</h6>
+                            <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
+                            <h6>Embed this story</h6>
+                            <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
+                        </div>
+
+                        <div class="card-preview">
+                            <h6>
+                                [[d|cardEquivalent]]
+                                <i class="icon-bookmark pull-right" ng-if="d.sticky"></i>
+                            </h6>
+                            <h5>
+                                [[ d.title ]]
+                            </h5>
+                        </div>
+
+                        <div class="card-infos">
+                            <h6>[[d.value|humanizeValue:d.currency.iso_code]]</h6>
+                            <p>
+                                <i class="icon-calendar"></i> [[d.year]]
+                                <span ng-if="d.source">
+                                    &#8212; <a ng-href="[[d.source]]">Read the story</a>
+                                </span>
+                            </p>
+                            <!--p>
+                                <a class="embed" ng-if="d.details_visible">
+                                    <i class="icon-share"></i>&nbsp;Click to copy the embed code
+                                </a>
+                            </p-->
+                            <p class="desc">
+                                [[d.description]]
+                            </p>
+
+                            <ul class="list-inline" ng-if="d.themes">
+                                <li ng-repeat="theme in d.themes" class="theme">
+                                    <img ng-src="[[theme.image]]" ng-if="theme.image" />
+                                    [[theme.title]]
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a ng-click="showDetails(d)" class="toggler clickable">
+                        <i class="icon-eye-open"></i>
+                        More info
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

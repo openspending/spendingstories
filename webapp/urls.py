@@ -42,4 +42,5 @@ urlpatterns = patterns('',
     url(r'^$', 			'webapp.core.views.home', name='home'),    
     url(r'^partial/(?P<partial_name>([a-zA-Z0-9_\-/]+))\.html$', 'webapp.core.views.partial', name='partial'),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^embed', 'webapp.core.views.embed'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # serving media folder in debug mode
