@@ -3,9 +3,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ScaleCtrl
 
-    @$inject: ['$scope', 'searchService']
+    @$inject: ['$scope', 'searchService', '$location']
 
-    constructor: (@scope, @searchService) ->
+    constructor: (@scope, @searchService, location) ->
         @scope.search = @searchService
         # Select the closest story into the stickies as preview 
         @scope.$watch "this.search.results", @onResultsChanged
@@ -22,6 +22,16 @@ class ScaleCtrl
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
         @scope.$watch 'previewedStory', @changeTitle
+
+        # For sharing purpose
+        @scope.currentUrl = do location.absUrl
+        @scope.currentUrl = @scope.currentUrl.split '?'
+        vars = _.filter (@scope.currentUrl[1].split '&'), (elem) =>
+            not elem.match /^title=/ and not /^visualization/
+        vars.visualization = 'scale'
+        @scope.currentUrl[1] = vars.join '&'
+        @scope.currentUrl = @scope.currentUrl.join '?'
+
 
     
     changeTitle: =>
