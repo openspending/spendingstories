@@ -1,9 +1,9 @@
 <div ng-controller="cardsCtrl" class="cards-content" ng-class="{loading: !search.results}">
     <div class="cards-grid" masonry="{ transitionDuration: 0 }">        
         <div ng-if="!filteredCards.length" class="text-center bottom20">
-            No relevant cards found
-            <p class="text-muted" ng-if="hasActivatedFilters()">
-                Too much filters?
+            <span translate>NO_RELEVANT_CARDS</span>
+            <p class="text-muted" ng-if="hasActivatedFilters()" translate>
+                TOO_MUCH_FILTERS
             </p>
         </div>
         <div class="card masonry-brick" 
@@ -15,9 +15,9 @@
                 <div class="card-wrapper" ng-class="d.show">
 
                     <div class="card-sharing">
-                        <h6>Share this story</h6>
+                        <h6 translate>SHARE_THIS_STORY</h6>
                         <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
-                        <h6>Embed this story</h6>
+                        <h6 translate>EMBED_THIS_STORY</h6>
                         <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
                     </div>
 
@@ -36,7 +36,7 @@
                         <p>
                             <i class="icon-calendar"></i> [[d.year]]
                             <span ng-if="d.source">
-                                &#8212; <a ng-href="[[d.source]]">Read the story</a>
+                                &#8212; <a ng-href="[[d.source]]" translate>READ_THE_STORY</a>
                             </span>
                         </p>
                         <!--p>
@@ -62,11 +62,11 @@
             <div class="card-footer">
                 <a ng-click="showSharing(d)" class='sharing toggler clickable'>
                     <i class="icon-share"></i>
-                    Share
+                    <span translate>SHARE</span>
                 </a>
                 <a ng-click="showDetails(d)" class="toggler clickable">
                     <i class="icon-eye-open"></i>
-                    More info
+                    <span translate>MORE_INFO</span>
                 </a>
             </div>
         </div>

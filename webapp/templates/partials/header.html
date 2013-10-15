@@ -1,15 +1,18 @@
 <header ng-controller="headerCtrl" ng-class="getHeaderClass()" stick-to-top>
 	<div class="container">
 		<h1>
-			<a ng-href="/">Spending Stories</a>
-			<i>by <a href="http://www.okf.org/" target="_blank">OKF</a></i>
+			<a ng-href="/" translate>HEADER_APP_TITLE</a>
+			<i>
+				<span translate>HEADER_AUTHOR_BY</span>
+				<a href="http://www.okf.org/" target="_blank">OKF</a>
+			</i>
 		</h1>
 
 		<ul class="list-inline links pull-right">
 			<li>
 				<a ng-href="#/contribute/">
 					<i class="icon-edit"></i>
-					Contribute
+					<span translate>HEADER_CONTRIBUTE</span>
 				</a>
 			</li>
 		</ul>
@@ -28,7 +31,7 @@
 					<input type="submit" class="btn btn-primary" value="Compare" />
 				</div>
 			</div>
-			<span class="help-block">Example queries: 15 million euros, 12 billion yens, 4500000 PLN</span>
+			<span class="help-block" translate>HEADER_SAMPLE_QUERY</span>
 		</form>
 
 	</div>
