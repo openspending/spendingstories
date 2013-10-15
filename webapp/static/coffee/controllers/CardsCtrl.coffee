@@ -15,6 +15,7 @@ class CardsCtrl
 
         # For sharing purpose
         @scope.currentUrl = Share.getSharingUrl 'cards'
+        @scope.embedUrl = do Share.getEmbedUrl
 
         # Functions
         @scope.search = @searchService

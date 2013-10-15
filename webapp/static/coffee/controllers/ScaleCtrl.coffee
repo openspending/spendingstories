@@ -25,7 +25,7 @@ class ScaleCtrl
 
         # For sharing purpose
         @scope.currentUrl = Share.getSharingUrl 'scale'
-
+        @scope.embedUrl = do Share.getEmbedUrl
 
     
     changeTitle: =>
