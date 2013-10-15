@@ -3,7 +3,10 @@ angular.module('storiesServices', [])
 
 
 angular
-    .module('stories', ["ui.bootstrap", "restangular", "storiesServices", "storiesFilters", "ngCookies", "wu.masonry"])
+    .module('stories', [
+        "ui.bootstrap", "restangular", "storiesServices", "storiesFilters", 
+        "ngCookies", "wu.masonry", "pascalprecht.translate"
+    ])
     .run(
         [             
             '$rootScope', 
@@ -17,10 +20,17 @@ angular
         [
             '$interpolateProvider', 
             '$routeProvider', 
+            '$translateProvider',
             'RestangularProvider',  
             '$httpProvider',
             '$cookiesProvider',
-            ($interpolateProvider, $routeProvider, RestangularProvider, $http, $cookies)->
+            ($interpolateProvider, $routeProvider, $translateProvider, RestangularProvider, $http, $cookies)->
+                $translateProvider.useStaticFilesLoader 
+                    prefix: 'static/locales/'
+                    suffix: '.json'
+
+                $translateProvider.preferredLanguage('en_GB')
+
                 RestangularProvider.setBaseUrl("/api")
                 RestangularProvider.setRequestSuffix('/')
                 # All services will be cached
