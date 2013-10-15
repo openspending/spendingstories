@@ -76,7 +76,7 @@ sudo apt-get install nodejs
 and then install them
 
 ```bash
-cat npm_requirements.txt | sudo xargs npm -g install
+npm install
 ```
 
 ### 3. Set up the database
