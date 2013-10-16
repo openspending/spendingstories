@@ -1,4 +1,8 @@
 {
+    "HUMANIZE_MONTH": "{value, plural, zero {month} one {month} other {months}}",
+    "HUMANIZE_OF_THE": "of the",
+    "HUMANIZE_WEEK": "{value, plural, zero {week} one {week} other {weeks}}",
+    "HUMANIZE_DAY": "{value, plural, zero {day} one {day} other {days}}",
     "": "",
     "CARDS_SHARE_STORY_BUTTON": "Share",
     "CARDS_MORE_INFO_BUTTON": "More info",
@@ -6,7 +10,7 @@
     "CARDS_TOO_MUCH_FILTERS": "Too much filters?",
     "CARDS_SHARE_THIS_STORY_TITLE": "Share this story",
     "CARDS_EMBED_THIS_STORY_TITLE": "Embed this story",
-    "CARDS_SOURCE_BUTTON": "",
+    "CARDS_SOURCE_BUTTON": "Read this story",
     "CONTRIBUTE_SPENDING_QUESTION": "What is the spending of your story?",
     "CONTRIBUTE_STORY_QUESTION": "What is your story about?",
     "CONTRIBUTE_STORY_DESCRIPTION": "Describe your story",
