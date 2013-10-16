@@ -17,6 +17,9 @@ module.exports = (grunt)->
                 src: angular_files,
                 suffix: ".json"
                 dest: "webapp/static/locales"
+                interpolate: 
+                    startSymbol: '[['
+                    endSymbol: ']]'
         # auto generate i18n json files 
         watch:
             i18n:
