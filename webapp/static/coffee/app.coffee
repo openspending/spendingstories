@@ -30,6 +30,7 @@ angular
                     suffix: '.json'
 
                 $translateProvider.preferredLanguage('en_GB')
+                $translateProvider.useMessageFormatInterpolation()
 
                 RestangularProvider.setBaseUrl("/api")
                 RestangularProvider.setRequestSuffix('/')
