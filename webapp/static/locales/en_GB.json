@@ -1,6 +1,7 @@
 {
-    "HUMANIZE_MONTH": "{value, plural, zero {month} one {month} other {months}}",
+    "HUMANIZE_MULTIPLE": "{value, plural, zero {time} one {time} other {times}} the",
     "HUMANIZE_OF_THE": "of the",
+    "HUMANIZE_MONTH": "{value, plural, zero {month} one {month} other {months}}",
     "HUMANIZE_WEEK": "{value, plural, zero {week} one {week} other {weeks}}",
     "HUMANIZE_DAY": "{value, plural, zero {day} one {day} other {days}}",
     "": "",
