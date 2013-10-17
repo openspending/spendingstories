@@ -25,12 +25,12 @@ angular
             '$httpProvider',
             '$cookiesProvider',
             ($interpolateProvider, $routeProvider, $translateProvider, RestangularProvider, $http, $cookies)->
-                $translateProvider.useStaticFilesLoader 
+                $translateProvider.useStaticFilesLoader
                     prefix: 'static/locales/'
                     suffix: '.json'
 
+                # $translateProvider.preferredLanguage('en_GB')
                 $translateProvider.preferredLanguage('en_GB')
-                $translateProvider.useMessageFormatInterpolation()
 
                 RestangularProvider.setBaseUrl("/api")
                 RestangularProvider.setRequestSuffix('/')

@@ -25,7 +25,6 @@
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-resource.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-translate.min.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-translate-loader-static-files.min.js' %}"></script>
-        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-translate-interpolation-messageformat.min.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/ui-bootstrap-custom-tpls-0.5.0.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/restangular.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-masonry.min.js' %}"></script>
@@ -34,6 +33,7 @@
         <script type="text/coffeescript" src="{% static 'coffee/controllers/CardsCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/ContributeCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/FilterCtrl.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/controllers/LanguageCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/HeaderCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/HomeCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/controllers/PageCtrl.coffee' %}"></script>
@@ -57,14 +57,22 @@
     {% include "partials/header.html" %}
     <div ng-view id="content" class="container"></div>
     <footer>
-        <div class="container">            
+        <div class="container">        
             <div class="row">
-                <div class="col-sm-6 col-md-3 col-md-offset-6 col">
+                <div class="col-sm-1 col-md-2" ng-controller="languageCtrl">
+                    <ul class="language-list">
+                        <li ng-repeat="l in languages">
+                            <a ng-click="changeLanguage(l)">[[ l.name ]]</a>
+                        </lI>
+                    </ul>
+
+                </div>
+                <div class="col-sm-offset-1 col-sm-5 col-md-3 col-md-offset-4 col">
                     <a href="http://okfn.org" target="_blank">
                         <img src="{% static 'img/okfn-logo.png' %}" />
                     </a>
                 </div>
-                <div class="col-sm-6 col-md-3 col">                    
+                <div class="col-sm-5 col-md-3 col">                    
                     <a href="http://jplusplus.org" target="_blank">
                         <img src="{% static 'img/jpp-logo.png' %}" />
                     </a>
