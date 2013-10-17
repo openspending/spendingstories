@@ -616,7 +616,6 @@
     $.fn.selectpicker = function(option, event) {
        //get the args of the outer function..
        var args = arguments;
-       console.log(args);
        var value;
        var chain = this.each(function() {
             if ($(this).is('select')) {
