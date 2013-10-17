@@ -45,6 +45,9 @@ class HumanizeService
         Math.round(value * Math.pow(10, decimals))/Math.pow(10, decimals) 
 
 
+    pluralize: (opts)=>
+        if Math.abs(opts.value) <= 1 then opts.single else opts.plural 
+
     humanize: (value, suffix, plural=false)=>
         return null unless value?
         # use it to humanize some amount and add a suffix (that can be 
@@ -88,7 +91,7 @@ class HumanizeService
         @$translate("HUMANIZE_EQUIVALENT")
 
     humanizeMultiple: (value) =>
-        multiple_wording = @$translate('HUMANIZE_MULTIPLE', {value: value})
+        multiple_wording = @pluralize({ value: value, single: @$translate("HUMANIZE_MULTIPLE"), plural: @$translate("HUMANIZE_MULTIPLE_PLURAL")})
         "≈ #{value} #{multiple_wording}"
 
     humanizePercentage: (value)=>
@@ -111,12 +114,14 @@ class HumanizeService
         # Please don't refactor
         switch type
             when @RELEVANCE_TYPES.month
-                time_unit_translated = @$translate("HUMANIZE_MONTH", { value: value })
+                time_unit_translated = @pluralize({ value: value, single: @$translate("HUMANIZE_MONTH"), plural: @$translate("HUMANIZE_MONTHS") })
             when @RELEVANCE_TYPES.week
-                time_unit_translated = @$translate("HUMANIZE_WEEK" , { value: value })
+                time_unit_translated = @pluralize({ value: value, single: @$translate("HUMANIZE_WEEK"),  plural: @$translate("HUMANIZE_WEEKS")  })
             when @RELEVANCE_TYPES.day 
-                time_unit_translated = @$translate("HUMANIZE_DAY"  , { value: value })
+                time_unit_translated = @pluralize({ value: value, single: @$translate("HUMANIZE_DAY"),   plural: @$translate("HUMANIZE_DAYS")   })
+        
         word_end = @$translate('HUMANIZE_OF_THE')
+
         "#{value} #{time_unit_translated} #{word_end}"
 
 
