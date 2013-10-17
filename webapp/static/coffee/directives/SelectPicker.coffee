@@ -14,6 +14,7 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
   selectpicker =
     restrict: 'A'
     link: (scope, element, attr) ->
+      scope.title = attr.title if attr.title?
 
       # Take a hash of options from the selectpicker directive
       options = scope.$eval(attr.selectpicker) or {}
@@ -22,7 +23,8 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
       stopLoading  = -> element.removeClass('loading disabled').attr('disabled', false)
 
       # Init selectpicker on the next loop so ng-options can populate the select
-      $timeout -> 
+      $timeout ->
+        options = _.extend(options, {title: attr.title }) if attr.title? # little trick to get the title translation work
         element.selectpicker options
 
       # Watch the collection in ngOptions and update selectpicker when it changes.  This works with promises!
@@ -44,6 +46,14 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
             element.selectpicker "refresh"
           , true
         )
+      scope.$watch(
+        ()->
+          attr.title
+        , (newVal, oldVal)->
+          stopLoading()
+          element.selectpicker "refresh", {title: newVal}
+        , true
+      )
       scope.$watch(
         ()->
           $location.path()
