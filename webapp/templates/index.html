@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-sm-1 col-md-2" ng-controller="languageCtrl">
                     <ul class="language-list">
-                        <li ng-repeat="l in languages">
+                        <li class="language" ng-class="language === l.name ? 'activated' : ''" ng-repeat="l in languages">
                             <a ng-click="changeLanguage(l)">[[ l.name ]]</a>
                         </lI>
                     </ul>
