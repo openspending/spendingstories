@@ -20,7 +20,6 @@
         this.$button = null;
         this.$menu = null;
         this.$dropdown = null;
-
         //Merge defaults, options and data-attributes to make our options
         this.options = $.extend({}, $.fn.selectpicker.defaults, this.$element.data(), typeof options == 'object' && options);
 
@@ -369,7 +368,10 @@
             if (this.options.container) this.$menu.hide();
         },
 
-        refresh: function() {
+        refresh: function(opts) {
+            if (opts && opts.title) {
+                this.options.title = opts.title; 
+            }
             this.reloadLi();
             this.render();
             this.setWidth();
@@ -614,6 +616,7 @@
     $.fn.selectpicker = function(option, event) {
        //get the args of the outer function..
        var args = arguments;
+       console.log(args);
        var value;
        var chain = this.each(function() {
             if ($(this).is('select')) {
