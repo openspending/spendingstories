@@ -202,15 +202,14 @@ SEARCH_OPTS =
     treshold: 0.3
 
 class Comprehension
-    @$inject : ['$window', 'Currency']
+    @$inject : ['$translate', 'Currency']
 
-    constructor : ($window, @currency) ->
+    constructor : ($translate, @currency) ->
         # when currencies will be filtered:
         # add currencies to SEARCH_SET_DATA with format:
         # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
         @searchSet = new Fuse SEARCH_SET_DATA, SEARCH_OPTS
-        @language  = ($window.navigator.userLanguage || $window.navigator.language).substr(0, 2)
-
+        @language  = $translate.preferredLanguage().substr(0, 2)
         @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
 
     getPropositions : (query) =>
@@ -288,7 +287,7 @@ class Comprehension
         return @original_query.indexOf(term)
 
     atomize = (str)=>
-        _.without(str.split(/[\s+|-]/), '', 'and', '+' , '.')
+        _.without(str.split(/[\s+|-]/), '', 'and', '+' , '.', ',')
 
     searchValue: (term)=>
         _.map ([_.first @searchSet.search term]), (elem) =>
