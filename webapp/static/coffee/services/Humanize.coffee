@@ -85,7 +85,7 @@ class HumanizeService
         return precision
 
     humanizeEquivalent: (story)=>
-        "an equivalent"
+        @$translate("HUMANIZE_EQUIVALENT")
 
     humanizeMultiple: (value) =>
         multiple_wording = @$translate('HUMANIZE_MULTIPLE', {value: value})

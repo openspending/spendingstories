@@ -1,4 +1,5 @@
 {
+    "HUMANIZE_EQUIVALENT": "an equivalent of the",
     "HUMANIZE_MULTIPLE": "{value, plural, zero {time} one {time} other {times}} the",
     "HUMANIZE_OF_THE": "of the",
     "HUMANIZE_MONTH": "{value, plural, zero {month} one {month} other {months}}",
