@@ -209,7 +209,7 @@ class Comprehension
         # add currencies to SEARCH_SET_DATA with format:
         # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
         @searchSet = new Fuse SEARCH_SET_DATA, SEARCH_OPTS
-        @language  = $translate.preferredLanguage().substr(0, 2)
+        @language  = $translate.proposedLanguage().substr(0, 2)
         @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
 
     getPropositions : (query) =>
