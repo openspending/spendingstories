@@ -1,4 +1,9 @@
 {
+    "HUNDRED": "cent",
+    "THOUSAND": "mille",
+    "MILLION": "million",
+    "BILLION": "milliard",
+    "TRILLION": "billion",
     "HUMANIZE_EQUIVALENT": "un équivalent de",
     "HUMANIZE_MULTIPLE": "fois",
     "HUMANIZE_MULTIPLE_PLURAL": "fois",

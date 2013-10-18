@@ -1,4 +1,9 @@
 {
+    "HUNDRED": "hundred",
+    "THOUSAND": "thousand",
+    "MILLION": "million",
+    "BILLION": "billion",
+    "TRILLION": "trillion",
     "HUMANIZE_EQUIVALENT": "an equivalent of the",
     "HUMANIZE_MULTIPLE": "time",
     "HUMANIZE_MULTIPLE_PLURAL": "times",

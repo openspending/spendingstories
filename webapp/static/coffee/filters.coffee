@@ -1,6 +1,6 @@
 angular
     .module('storiesFilters', [])
-    .filter('thousandSeparator', -> Humanize.intcomma)
+    .filter('thousandSeparator', ['humanizeService', (OSS)-> OSS.intcomma ])
     .filter('truncate', -> 
         # took from https://gist.github.com/danielcsgomes/2478654
         return (text, length, end='') ->
@@ -85,9 +85,9 @@ angular
                 result = OSS.round result, decimals
  
                 if result < Math.pow(10,3) || result > Math.pow(10, 15)
-                    result = Humanize.intcomma(result, decimals)
+                    result = OSS.intcomma(result, decimals)
                 else
-                    result = Humanize.intword(result, decimals)
+                    result = OSS.intword(result, decimals)
  
                 if use_percentage
                     result = result + '%'

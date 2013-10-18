@@ -1,3 +1,22 @@
+number_format = (number, decimals, dec_point, thousands_sep) =>
+    # http://kevin.vanzonneveld.net
+    # +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    # +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    # +     bugfix by: Michael White (http://crestidg.com)
+    # +     bugfix by: Benjamin Lupton
+    # +     bugfix by: Allan Jensen (http://www.winternet.no)
+    # +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)    
+    # *     example 1: number_format(1234.5678, 2, '.', '');
+    # *     returns 1: 1234.57  
+    n = number
+    c = (if isNaN(decimals = Math.abs(decimals)) then 2 else decimals)
+    d = (if dec_point is `undefined` then "," else dec_point)
+    t = (if thousands_sep is `undefined` then "." else thousands_sep)
+    s = (if n < 0 then "-" else "")
+    i = parseInt(n = Math.abs(+n or 0).toFixed(c)) + ""
+    j = (if (j = i.length) > 3 then j % 3 else 0)
+    s + ((if j then i.substr(0, j) + t else "")) + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + ((if c then d + Math.abs(n - i).toFixed(c).slice(2) else ""))
+
 # Utililty toolbelt for our filters
 class HumanizeService
     STORY_TYPES: 
@@ -16,6 +35,56 @@ class HumanizeService
     @$inject: ['$translate']
 
     constructor:(@$translate)->
+
+
+    intcomma:(number, decimals) ->
+        ###
+        Took from [JS-Humanize](https://github.com/milanvrekic/JS-humanize)
+        Converts an integer to a string containing commas every three digits.
+
+        Examples:
+
+            4500 becomes 4,500.
+            45000 becomes 45,000.
+            450000 becomes 450,000.
+            4500000 becomes 4,500,000.
+        ###
+        decimals = (if decimals is `undefined` then 0 else decimals)
+        number_format number, decimals, ".", ","
+
+
+
+    intword: (number) =>
+        ###
+        Took from [Humanize.js](https://github.com/milanvrekic/JS-humanize)
+        Converts a large integer to a friendly text representation. Works best for numbers over 1 million.
+
+        Examples:
+        1000000 becomes 1.0 million.
+        1200000 becomes 1.2 million.
+        1200000000 becomes 1.2 billion.
+        ### 
+        number = parseInt(number)
+        if number < 1000000
+            return number
+        else if number < 100
+            return @intcomma(number, 1)
+        else if number < 1000
+            return @intcomma(number / 100, 1) + " #{@$translate('HUNDRED')}"
+        else if number < 100000
+            return @intcomma(number / 1000.0, 1) + " #{@$translate('THOUSAND')}"
+        else if number < 1000000
+            return @intcomma(number / 100000.0, 1) + " #{@$translate('HUNDRED')} #{@$translate('THOUSAND')}"
+        else if number < 1000000000
+            return @intcomma(number / 1000000.0, 1) + " #{@$translate('MILLION')}"
+        else if number < 1000000000000 #senseless on a 32 bit system probably.
+            return @intcomma(number / 1000000000.0, 1) + " #{@$translate('BILLION')}"
+        else if number < 1000000000000000
+            return @intcomma(number / 1000000000000.0, 1) + " #{@$translate('TRILLION')}"
+        else
+            return "" + number # too big.
+
+
 
     getFloatPart: (value_f)=>
         float_part_s = String(value_f).split('.')[1]
@@ -55,9 +124,9 @@ class HumanizeService
         if plural
             suffix += 's'
         if value < Math.pow(10, 6) || value > Math.pow(10, 15)
-            Humanize.intcomma(value) + " " + suffix
+            @intcomma(value) + " " + suffix
         else
-            Humanize.intword(value) + " " + suffix
+            @intword(value) + " " + suffix
 
     humanizeEquivalence: (story, query)=>
         return null unless story?
@@ -105,7 +174,7 @@ class HumanizeService
                 decimals = 1
         result = @round result, decimals
         if result < Math.pow(10,3)
-            result = Humanize.intcomma(result, decimals)
+            result = @intcomma(result, decimals)
 
         word_end = @$translate('HUMANIZE_OF_THE')
         "≈ #{result}% #{word_end}"
