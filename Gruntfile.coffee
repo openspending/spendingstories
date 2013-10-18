@@ -51,4 +51,4 @@ module.exports = (grunt)->
         updateSupportedLanguages
 
     grunt.registerTask 'makemessages', ['i18nextract:dev']
-    grunt.registerTask 'default', ['available_tasks', 'update_supported_languages']
+    grunt.registerTask 'default', ['available_tasks']
