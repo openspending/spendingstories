@@ -3,13 +3,11 @@ angular
     .filter('thousandSeparator', -> Humanize.intcomma)
     .filter('truncate', -> 
         # took from https://gist.github.com/danielcsgomes/2478654
-        return (text, length, end) ->
+        return (text, length, end='') ->
             if !angular.isString(text)
                 return text
             if isNaN(length)
                 length = 10
- 
-            end = "..." unless end?
 
             if text.length <= length || (text.length - end.length) <= length
                 return text
