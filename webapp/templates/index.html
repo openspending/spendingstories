@@ -45,6 +45,7 @@
         <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Currency.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Filters.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Languages.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Meta.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Page.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/services/Search.coffee' %}"></script>
@@ -61,8 +62,8 @@
             <div class="row">
                 <div class="col-sm-1 col-md-2" ng-controller="languageCtrl">
                     <ul class="language-list">
-                        <li class="language" ng-class="language === l.name ? 'activated' : ''" ng-repeat="l in languages">
-                            <a ng-click="changeLanguage(l)">[[ l.name ]]</a>
+                        <li class="language" ng-class="language === l.code ? 'activated' : ''" ng-repeat="l in languages">
+                            <a ng-click="changeLanguage(l)">[[ l.name|truncate:2|uppercase ]]</a>
                         </lI>
                     </ul>
 
