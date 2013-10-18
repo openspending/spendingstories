@@ -17,6 +17,7 @@ module.exports = (grunt)->
     updateSupportedLanguages = ->
         supportedFilePath = packageConfiguration.locales.folder + 'supported.json'
         grunt.file.write(supportedFilePath, JSON.stringify(packageConfiguration.locales.supportedLanguages))
+        grunt.log.writeln("File 'supported.json' updated in #{packageConfiguration.locales.folder} folder")
 
 
     # Project configuration.

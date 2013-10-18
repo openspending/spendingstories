@@ -200,7 +200,13 @@ This part covers the following topics:
     This will tell to the grunt's angular-translate task to generate the files for each
     languages when the `i18nextract:dev` task (or its alias: `makemessages`) is executed.
 
-    | Note: this task is automated by running `grunt watch`
+    > Note: this task is automated by running `grunt watch`
 
-2.  Edit LanguageCtrl.coffee
-First you need to configure 
+2.  Launch grunt `update_supported_languages` task 
+
+    ```bash
+    $> grunt update_supported_languages
+      Running "update_supported_languages" task
+      File 'supported.json' updated in webapp/static/locales/ folder
+    ```
+
