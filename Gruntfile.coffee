@@ -28,6 +28,8 @@ module.exports = (grunt)->
 
     # Load the angular translate task
     grunt.loadNpmTasks('grunt-contrib-watch')
+    grunt.loadNpmTasks('grunt-available-tasks')
     grunt.loadNpmTasks('grunt-angular-translate')
 
-    grunt.registerTask 'default', ['watch']
+    grunt.registerTask 'makemessages', ['i18nextract:dev']
+    grunt.registerTask 'default', ['available_tasks']
