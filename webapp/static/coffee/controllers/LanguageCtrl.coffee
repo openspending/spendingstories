@@ -1,20 +1,26 @@
+# LanguageCtrl is responsible of switching languages
 class LanguageCtrl
-    @$inject: ['$scope','$translate']
+    @$inject: ['$scope','$translate', 'languagesService']
     
-    constructor: (@scope, @$translate)->
-        @scope.languages = [
-                name: 'FR'
-                code: 'fr_FR'
-            ,
-                name: 'EN'
-                code: 'en_GB'
-        ]
+    constructor: (@scope, @$translate, @languages)->
+
+        @scope.languages = @languages.supportedLanguages
+
         @scope.changeLanguage = @changeLanguage
 
+        @scope.$watch =>
+            @$translate.uses()
+        , (newVal, oldVal)=>
+            @scope.language = newVal
 
+        @scope.$watch =>
+            # when supportLanguages is loaded from JSON we update scope.languages
+                @languages.supportedLanguages
+            , =>
+                @scope.languages = @languages.supportedLanguages
 
     changeLanguage: (l)=>
-        @scope.language = l.name
+        # called when user click on a language in language list
         @$translate.uses(l.code)
 
 
