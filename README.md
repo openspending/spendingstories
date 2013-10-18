@@ -188,9 +188,19 @@ tools for angular applications:
 - [jplusplus/grunt-angular-translate](https://github.com/jplusplus/grunt-angular-translate) , a fork of [grunt-angular-translate](https://github.com/firehist/grunt-angular-translate). Automate the update of locales. 
 
 This part covers the following topics: 
-- how to add a supported language
-- how to add some translation
+
+- how to add a language
+- how to add/edit some translation
 - how to edit translations  
 
 ### Add a language
+1. Edit the `package.json`
+    Change the `supportedLanguages` value to add/remove a supported languages.
+    
+    This will tell to the grunt's angular-translate task to generate the files for each
+    languages when the `i18nextract:dev` task (or its alias: `makemessages`) is executed.
+
+    | Note: this task is automated by running `grunt watch`
+
+2.  Edit LanguageCtrl.coffee
 First you need to configure 

@@ -6,15 +6,28 @@ module.exports = (grunt)->
         'webapp/templates/partials/*.html' # our templates     
         'webapp/templates/partials/**/*.html' # our templates     
     ]
+    
+    packageConfiguration = grunt.file.readJSON('package.json')
+    
+    getLangISOCodes = ->
+        for lang in packageConfiguration.locales.supportedLanguages
+            lang.code
+
+
+    updateSupportedLanguages = ->
+        supportedFilePath = packageConfiguration.locales.folder + 'supported.json'
+        grunt.file.write(supportedFilePath, JSON.stringify(packageConfiguration.locales.supportedLanguages))
+
+
     # Project configuration.
     grunt.initConfig 
-        # global application package
-        pkg: grunt.file.readJSON('package.json')
+           # global application package
+        pkg: packageConfiguration
         # i18n & angular translate configuration 
         i18nextract:
             dev:
-                lang: ['en_GB', 'fr_FR'],
-                src: angular_files,
+                lang: getLangISOCodes()
+                src: angular_files
                 suffix: ".json"
                 dest: "webapp/static/locales"
                 interpolation: 
@@ -25,11 +38,16 @@ module.exports = (grunt)->
             i18n:
                 files: angular_files
                 tasks: ['i18nextract:dev']
+        
 
     # Load the angular translate task
     grunt.loadNpmTasks('grunt-contrib-watch')
     grunt.loadNpmTasks('grunt-available-tasks')
     grunt.loadNpmTasks('grunt-angular-translate')
 
+    grunt.registerTask 'update_supported_languages',
+        'Update or create the supported.json files in the locales folder', 
+        updateSupportedLanguages
+
     grunt.registerTask 'makemessages', ['i18nextract:dev']
-    grunt.registerTask 'default', ['available_tasks']
+    grunt.registerTask 'default', ['available_tasks', 'update_supported_languages']
