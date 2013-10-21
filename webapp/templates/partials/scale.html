@@ -17,15 +17,17 @@
                 </div>
             </div>
 
-            <div class="btn-nav col-xs-1" ng-if="search.results.length > 1">
-                <a ng-if="$first" class="disabled btn">
-                    &#9664;
-                </a>
-                <a ng-if="!$first" 
-                   class="btn previous"
-                   ng-click="previousStoryPreview()">
-                    &#9664;
-                </a>
+            <div class="btn-nav col-xs-1">
+                <span ng-if="search.results.length > 1">
+                    <a ng-if="$first" class="disabled btn">
+                        &#9664;
+                    </a>
+                    <a ng-if="!$first"
+                       class="btn previous"
+                       ng-click="previousStoryPreview()">
+                        &#9664;
+                    </a>
+                </span>
             </div>
 
             <div class="col-xs-10">
@@ -65,15 +67,17 @@
                 </div>
             </div>
         
-            <div class="btn-nav col-xs-1" ng-if="search.results.length > 1">
-                <a ng-if="!$last" 
-                   class="btn next"
-                   ng-click="nextStoryPreview()">
-                    &#9654;
-                </a>
-                <a ng-if="$last" class="disabled btn">
-                    &#9654;
-                </a>
+            <div class="btn-nav col-xs-1">
+                <span ng-if="search.results.length > 1">
+                    <a ng-if="!$last"
+                       class="btn next"
+                       ng-click="nextStoryPreview()">
+                        &#9654;
+                    </a>
+                    <a ng-if="$last" class="disabled btn">
+                        &#9654;
+                    </a>
+                </span>
             </div>
 
         </div>
