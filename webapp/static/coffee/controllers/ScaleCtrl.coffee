@@ -24,10 +24,11 @@ class ScaleCtrl
         @scope.$watch 'previewedStory', @changeTitle
 
         # For sharing purpose
-        @scope.currentUrl = Share.getSharingUrl 'scale'
-        @scope.embedUrl = do Share.getEmbedUrl
+        @scope.sharingAddress = (d) ->
+            Share.getSharingAddress d.title
+        @scope.embedFrame = (d) ->
+            Share.getEmbedFrame d.title
 
-    
     changeTitle: =>
         parent_scope = @scope.$parent
         parent_scope.setTitle parent_scope.MODES.scale, @scope.previewedStory.title if @scope.previewedStory?

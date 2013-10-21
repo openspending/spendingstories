@@ -13,16 +13,18 @@ class CardsCtrl
         # Variables
         @scope.onlyRelevantCards = true
 
-        # For sharing purpose
-        @scope.currentUrl = Share.getSharingUrl 'cards'
-        @scope.embedUrl = do Share.getEmbedUrl
-
         # Functions
         @scope.search = @searchService
         @scope.showDetails = @showDetails
         @scope.showSharing = @showSharing
         @scope.cardsFilter = @filterCards
         @scope.loadMore = @loadMore
+
+        # For sharing purpose
+        @scope.sharingAddress = (d) ->
+            Share.getSharingAddress d.title, 'cards'
+        @scope.embedFrame = (d) ->
+            Share.getEmbedFrame d.title
 
     showDetails: (d)=>
         # show a card detail
