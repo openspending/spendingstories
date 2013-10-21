@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="btn-nav col-xs-1">
+            <div class="btn-nav col-xs-1" ng-if="search.results.length > 1">
                 <a ng-if="$first" class="disabled btn">
                     &#9664;
                 </a>
@@ -65,7 +65,7 @@
                 </div>
             </div>
         
-            <div class="btn-nav col-xs-1">
+            <div class="btn-nav col-xs-1" ng-if="search.results.length > 1">
                 <a ng-if="!$last" 
                    class="btn next"
                    ng-click="nextStoryPreview()">
