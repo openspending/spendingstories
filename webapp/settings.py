@@ -244,6 +244,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme': 'advanced',
     'theme_advanced_buttons1': 'bold,italic,underline,strikethrough,|,bullist,numlist,outdent,indent,blockquote,|,undo,redo,removeformat,|,link,unlink,image',
     'cleanup_on_startup': True,
+    'plugins' : "inlinepopups",
 }
 
 # EOF

@@ -77,4 +77,4 @@ COMPRESS_CSS_FILTERS = (
 )
 
 # TinyMCE configuration
-TINYMCE_JS_URL = os.path.join(STATIC_URL, "tiny_mce/tiny_mce.js")
+TINYMCE_JS_URL = os.path.join(STATIC_URL, "tiny_mce", "tiny_mce.js")
