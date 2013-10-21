@@ -34,7 +34,7 @@ from django.conf import settings
 import datetime
 import widgets
 import fields
-from tinymce.widgets import TinyMCE
+from redactor.widgets import RedactorEditor
 
 AVAILABLE_YEAR_PER_COUNTRY = json.load(file(os.path.join(settings.ROOT_PATH, 'data/years_available_per_country.json')))
 
@@ -66,6 +66,6 @@ class StoryForm(forms.ModelForm):
 class PageForm(forms.ModelForm):
 	title   = forms.CharField()
 	slug    = forms.CharField()
-	content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+	content = forms.CharField(widget=RedactorEditor(allow_file_upload=False,allow_image_upload=False))
 
 # EOF

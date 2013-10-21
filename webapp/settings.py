@@ -174,7 +174,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken', # REST API Token Authentication
     'compressor',               # Compresses linked and inline JavaScript or CSS into a single cached file.
     'south',                    # helps with database migrations
-    'tinymce',                  # wysiwyg editor
+    'redactor',                  # wysiwyg editor
     # Internal applications added 
     'webapp.api',
     'webapp.core',
@@ -229,6 +229,10 @@ REST_FRAMEWORK = {
 # Compatibility with AngularJS
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
+REDACTOR_OPTIONS = {
+    'lang': 'en'
+}
+
 # Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
     try:
@@ -238,13 +242,5 @@ if os.environ.get('HEROKU', None):
             from settings_heroku import *
         except ImportError:
             pass
-
-# TinyMCE configuration
-TINYMCE_DEFAULT_CONFIG = {
-    'theme': 'advanced',
-    'theme_advanced_buttons1': 'bold,italic,underline,strikethrough,|,bullist,numlist,outdent,indent,blockquote,|,undo,redo,removeformat,|,link,unlink,image',
-    'cleanup_on_startup': True,
-    'plugins' : "inlinepopups",
-}
 
 # EOF

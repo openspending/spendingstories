@@ -4,4 +4,4 @@ dj-database-url==0.2.2
 gunicorn==0.17.2
 django-storages==1.1.8
 boto==2.9.9
-django-tinymce==1.5.1
+django-wysiwyg-redactor
