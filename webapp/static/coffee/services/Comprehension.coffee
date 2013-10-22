@@ -172,24 +172,6 @@ SEARCH_SET_DATA = [
         value: 1e12
         name: "trillion"
         type: TYPES.number
-    ,
-        id: 33
-        value: 'EUR'
-        symbol: '€'
-        name: 'Euro'
-        type: TYPES.currency
-    ,
-        id: 33
-        value: 'GBP'
-        symbol: '£'
-        name: 'British Pound'
-        type: TYPES.currency
-    ,
-        id: 33
-        value: 'USD'
-        symbol: '$'
-        name: 'US Dollar'
-        type: TYPES.currency
 ]
 
 DECIMAL_CARACTER = {
@@ -208,8 +190,17 @@ class Comprehension
         # when currencies will be filtered:
         # add currencies to SEARCH_SET_DATA with format:
         # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
-        @searchSet = new Fuse SEARCH_SET_DATA, SEARCH_OPTS
         @language  = ($window.navigator.userLanguage || $window.navigator.language).substr(0, 2)
+
+        (do @currency.all.getList).then (data) =>
+            _.map data, (curr) =>
+                SEARCH_SET_DATA.push
+                    value : curr.iso_code
+                    symbol : curr.symbol
+                    name : curr.name
+                    type : TYPES.currency
+                    priority : curr.priority
+            @searchSet = new Fuse SEARCH_SET_DATA, SEARCH_OPTS
 
         @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
 
@@ -236,9 +227,8 @@ class Comprehension
             terms =
                 'number': query_numbers if query_numbers
 
-
         numbers    = @extractNumbersFromTerms(terms[TYPES.number])
-        currencies = terms[TYPES.currency]
+        currencies = _.first (_.sortBy terms[TYPES.currency], (term) => term.priority), 3
 
         #Set default values if nothing was found
         currencies = (defaultCurrencies @currency) if not currencies? or currencies.length <= 0
@@ -291,10 +281,14 @@ class Comprehension
         _.without(str.split(/[\s+|-]/), '', 'and', '+' , '.')
 
     searchValue: (term)=>
-        _.map ([_.first @searchSet.search term]), (elem) =>
+        results = _.map (@searchSet.search term), (elem) =>
             _.extend elem,
                 index : @getTermPosition term
                 term : term
+        if results[0].type is TYPES.number
+            return _.first results
+        else
+            _.filter results, (result) -> result.type is TYPES.currency
 
     matchCurrency = (query, currency) =>
         currencies = []
