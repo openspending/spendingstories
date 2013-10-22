@@ -1,0 +1,6 @@
+coffee-script@1.6.3
+less@1.4.1
+grunt@~0.4.1
+grunt-contrib-watch@0.5.3
+grunt-available-tasks@~0.1.1
+grunt-angular-translate@git://github.com/jplusplus/grunt-angular-translate.git
