@@ -1,15 +1,33 @@
 <div ng-controller="scaleCtrl" class="scale-strats">
     <div class="preview-strat">
-        <div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">    
+        <div ng-repeat="d in search.results|filter:{sticky: previewedStory.sticky}|orderBy:'current_value_usd'" class="row preview" ng-show="d.id == previewedStory.id">
+            <div id="sharemodal-[[d.id]]" class="modal fade" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <div class="modal-sharing">
+                                <h6>Share this story</h6>
+                                <input class="form-control" readonly="true" value="[[sharingAddress(d)]]" />
+                                <h6>Embed this story</h6>
+                                <textarea readonly="true" class="form-control">[[embedFrame(d)]]</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="btn-nav col-xs-1">
-                <a ng-if="$first" class="disabled btn">
-                    &#9664;
-                </a>
-                <a ng-if="!$first" 
-                   class="btn previous"
-                   ng-click="previousStoryPreview()">
-                    &#9664;
-                </a>
+                <span ng-if="search.results.length > 1">
+                    <a ng-if="$first" class="disabled btn">
+                        &#9664;
+                    </a>
+                    <a ng-if="!$first"
+                       class="btn previous"
+                       ng-click="previousStoryPreview()">
+                        &#9664;
+                    </a>
+                </span>
             </div>
 
             <div class="col-xs-10">
@@ -18,6 +36,9 @@
                 </div>                  
 
                 <div class="col-sm-9 col-md-10">
+                    <a data-toggle='modal' data-target="#sharemodal-[[d.id]]" class='clickable sharelink'>
+                        <i class='icon-share'></i> Share
+                    </a>
                     <h5 ng-cloak>
                         [[search.query|humanizeValue:search.currency]] 
                         [[d|queryEquivalent]]</h5>
@@ -48,14 +69,16 @@
             </div>
         
             <div class="btn-nav col-xs-1">
-                <a ng-if="!$last" 
-                   class="btn next"
-                   ng-click="nextStoryPreview()">
-                    &#9654;
-                </a>
-                <a ng-if="$last" class="disabled btn">
-                    &#9654;
-                </a>
+                <span ng-if="search.results.length > 1">
+                    <a ng-if="!$last"
+                       class="btn next"
+                       ng-click="nextStoryPreview()">
+                        &#9654;
+                    </a>
+                    <a ng-if="$last" class="disabled btn">
+                        &#9654;
+                    </a>
+                </span>
             </div>
         </div>
     </div>

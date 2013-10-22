@@ -146,4 +146,20 @@ class Story(models.Model):
             self.current_value_usd   = self.current_value / self.currency.rate
         super(Story, self).save(*args, **kwargs)
 
+# -----------------------------------------------------------------------------
+#
+#    PAGE
+#
+# -----------------------------------------------------------------------------
+class Page(models.Model):
+    title   = models.CharField(_('Page title'), max_length=240)
+    slug    = models.SlugField(_('Page slug'), max_length=240)
+    content = models.TextField(_('Page content'))
+
+    def save(self, *args, **kwargs):
+        # Newly created object, so set slug
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Page, self).save(*args, **kwargs)
+
 # EOF

@@ -3,9 +3,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ScaleCtrl
 
-    @$inject: ['$scope', 'searchService']
+    @$inject: ['$scope', 'searchService', 'shareService']
 
-    constructor: (@scope, @searchService) ->
+    constructor: (@scope, @searchService, Share) ->
         @scope.search = @searchService
         # Select the closest story into the stickies as preview 
         @scope.$watch "this.search.results", @onResultsChanged
@@ -23,7 +23,12 @@ class ScaleCtrl
         @scope.previousStoryPreview = @previousStoryPreview
         @scope.$watch 'previewedStory', @changeTitle
 
-    
+        # For sharing purpose
+        @scope.sharingAddress = (d) ->
+            Share.getSharingAddress d.title
+        @scope.embedFrame = (d) ->
+            Share.getEmbedFrame d.title
+
     changeTitle: =>
         parent_scope = @scope.$parent
         parent_scope.setTitle parent_scope.MODES.scale, @scope.previewedStory.title if @scope.previewedStory?

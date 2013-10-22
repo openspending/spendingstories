@@ -37,6 +37,7 @@ router.register(r'stories'             , views.StoryViewSet       , base_name="s
 router.register(r'stories-nested'      , views.StoryNestedViewSet , base_name="stories-nested" )
 router.register(r'themes'              , views.ThemeViewSet       , base_name="themes"         )
 router.register(r'filters'             , views.FiltersViewSet     , base_name="filters"        )
+router.register(r'pages'               , views.PagesViewSet       , base_name="pages"          )
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browseable API.

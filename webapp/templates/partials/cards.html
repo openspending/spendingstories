@@ -16,9 +16,9 @@
 
                     <div class="card-sharing">
                         <h6 translate>CARDS_SHARE_THIS_STORY_TITLE</h6>
-                        <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
+                        <input class="form-control" readonly="true" value="[[sharingAddress(d)]]" />
                         <h6 translate>CARDS_EMBED_THIS_STORY_TITLE</h6>
-                        <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
+                        <textarea readonly="true" class="form-control">[[embedFrame(d)]]</textarea>
                     </div>
 
                     <div class="card-preview">

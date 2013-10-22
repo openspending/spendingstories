@@ -57,5 +57,9 @@ angular
                         controller: 'contributeCtrl'
                         templateUrl: "./partial/contribute.html"
                     )
+                    .when('/about',
+                        controller: 'staticPageCtrl'
+                        templateUrl: './partial/staticpage.html'
+                    )
         ]
     )

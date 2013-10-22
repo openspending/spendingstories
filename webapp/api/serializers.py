@@ -27,7 +27,7 @@
 
 from rest_framework import serializers 
 from webapp.currency.models import Currency
-from webapp.core.models import Story, Theme
+from webapp.core.models import Story, Theme, Page
 
 class ThemeSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField('get_image')
@@ -51,6 +51,10 @@ class StoryNestedSerializer(StorySerializer):
     currency = CurrencySerializer(read_only=True)
     class Meta:
         model = Story
+
+class PageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page
 
 # EOF
 
