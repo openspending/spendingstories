@@ -202,15 +202,19 @@ SEARCH_OPTS =
     treshold: 0.3
 
 class Comprehension
-    @$inject : ['$translate', 'Currency']
+    @$inject : ['$translate', '$rootScope', 'Currency']
 
-    constructor : ($translate, @currency) ->
+    constructor : ($translate, @rootScope, @currency) ->
         # when currencies will be filtered:
         # add currencies to SEARCH_SET_DATA with format:
         # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
         @searchSet = new Fuse SEARCH_SET_DATA, SEARCH_OPTS
-        @language  = $translate.proposedLanguage().substr(0, 2)
-        @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
+        @rootScope.$watch ()->
+                $translate.uses()
+            , (newVal, oldVal)=>
+                return unless newVal?
+                @language = newVal.substr(0, 2)
+                @local_decimal_caracter = DECIMAL_CARACTER[@language] or DECIMAL_CARACTER['en']
 
     getPropositions : (query) =>
         #LowerCase the query for easier comparisons

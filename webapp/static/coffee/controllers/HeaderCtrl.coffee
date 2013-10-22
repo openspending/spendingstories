@@ -1,7 +1,9 @@
 class HeaderCtrl
-    @$inject: ['$scope', '$routeParams', '$location','$filter','comprehensionService', 'Currency']
+    @$inject: [
+        '$scope', '$routeParams', '$location','$filter',
+        'comprehensionService', 'Currency', 'humanizeService']
 
-    constructor: (@scope, @routeParams, @location, @filter, @comprehension, @Currency)->
+    constructor: (@scope, @routeParams, @location, @filter, @comprehension, @Currency, @Humanize)->
         @searchParams = @location.search()
         @scope.currenciesLoaded = @Currency.loaded
         @scope.user_query = undefined
@@ -28,6 +30,12 @@ class HeaderCtrl
                 @Currency.loaded
             , (val)=>
                 @scope.currenciesLoaded = val
+
+        @scope.$watch ()=>
+                @comprehension.language
+            ,  (val)=>
+                @scope.language = val
+
 
     onSearch: =>
         params = {}
