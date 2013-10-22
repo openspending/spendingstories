@@ -20,7 +20,7 @@
 		<form  class="form-horizontal" role="form" ng-submit="search()">
 			<div class="input-group">
 				<input type="text" ng-required class="form-control"
-					   ng-if="currenciesLoaded"
+					   ng-if="currenciesLoaded && language"
 					   ng-model="user_query"
 					   placeholder="How much is it really?"
 					   typeahead="prop as (prop.number|humanizeValue:prop.currency) for prop in propositions($viewValue) | limitTo: 8"
