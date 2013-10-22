@@ -3,8 +3,10 @@
 		<h1>
 			<a ng-href="/" translate>HEADER_APP_TITLE</a>
 			<i>
-				<span translate>HEADER_AUTHOR_BY</span>
-				<a href="http://www.okf.org/" target="_blank">OKF</a>
+				<span>
+					[[ 'HEADER_AUTHOR_BY' | translate ]]<a href="http://www.okf.org/" target="_blank">OKF</a>
+				</span>
+				
 			</i>
 		</h1>
 
@@ -28,7 +30,7 @@
 					   typeahead-on-select="$parent.user_query = user_query; search()"
 					   typeahead-input-formatter="user_query.number|humanizeValue:user_query.currency"/>
 				<div class="input-group-btn relative">
-					<input type="submit" class="btn btn-primary" value="Compare" />
+					<input type="submit" class="btn btn-primary" value="[[ 'HEADER_COMPARE_BUTTON' | translate ]]" />
 				</div>
 			</div>
 			<span class="help-block" translate>HEADER_SAMPLE_QUERY</span>
