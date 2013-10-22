@@ -1,6 +1,6 @@
 angular
     .module('storiesFilters', [])
-    .filter('thousandSeparator', ['humanizeService', (OSS)-> OSS.intcomma ])
+    .filter('thousandSeparator', ['humanizeService', (Humanize)-> Humanize.intcomma ])
     .filter('truncate', -> 
         # took from https://gist.github.com/danielcsgomes/2478654
         return (text, length, end='') ->
@@ -14,7 +14,7 @@ angular
             else
                 return String(text).substring(0, length-end.length) + end
     )
-    .filter("toQueryCurrency", ["searchService", "Currency","humanizeService", (searchService, Currency, OSS)->  
+    .filter("toQueryCurrency", ["searchService", "Currency","humanizeService", (searchService, Currency, Humanize)->  
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)-> 
                 _fromCurrency = Currency.list[fromCurrency]
                 _toCurrency = Currency.list[toCurrency]
@@ -30,15 +30,15 @@ angular
                     if _toCurrency.iso_code isnt 'USD'
                         # The value is now into the targeted currency
                         converted = converted*_toCurrency.rate
-                return OSS.humanize(converted, _toCurrency.name, (converted > 1))
+                return Humanize.humanizeValue converted, _toCurrency.name, (converted > 1)
             
         ]
     )
-    .filter("humanizeValue", ["Currency","humanizeService", (Currency, OSS)->
+    .filter("humanizeValue", ["Currency","humanizeService", (Currency, Humanize)->
             return (value, currency="USD") ->
                 return null unless angular.isNumber value
                 _currency = Currency.list[currency]
-                if _currency? then OSS.humanize value, _currency.name, value > 1 else "" 
+                if _currency? then Humanize.humanizeValue value, _currency.name
 
         ]
     )
@@ -61,7 +61,7 @@ angular
     .filter("decimalSeparator", ->
         return (n, dec=".")-> (n+"").replace /\./, dec
     )
-    .filter("queryEquivalent", ["searchService","humanizeService", (searchService, OSS)-> 
+    .filter("queryEquivalent", ['$translate', "searchService","humanizeService", ($translate, searchService, Humanize)-> 
             return (d)->
                 return "" unless d.current_value_usd?
                 value = d.current_value_usd
@@ -70,7 +70,7 @@ angular
                 use_percentage = true
                 decimals = 1
 
-                wording_begin = "are"
+                wording_begin = Humanize.pluralize(value: searchService.query, single: $translate('HUMANIZE_IS'), plural: $translate('HUMANIZE_ARE'))
                 if percentage > 100
                     use_percentage = false
                     result = ratio
@@ -79,30 +79,33 @@ angular
                     if percentage >= 1 
                         decimals = 0
                     if percentage < 1
-                        decimals = OSS.getDecimalNumber(percentage)
+                        decimals = Humanize.getDecimalNumber(percentage)
                         if decimals == 0
                             decimals = 1
-                result = OSS.round result, decimals
+                result = Humanize.round result, decimals
  
                 if result < Math.pow(10,3) || result > Math.pow(10, 15)
-                    result = OSS.intcomma(result, decimals)
+                    result = Humanize.intcomma(result, decimals)
                 else
-                    result = OSS.intword(result, decimals)
+                    result = Humanize.intword(result, decimals)
  
                 if use_percentage
-                    result = result + '%'
-                    wording_end = 'of'
+                    result += '%'
+                    wording_end = $translate('HUMANIZE_OF')
                  else
-                    wording_end = "times"
+                    wording_end = Humanize.pluralize
+                                        value: value
+                                        single: $translate('HUMANIZE_MULTIPLE')
+                                        plural: $translate('HUMANIZE_MULTIPLE_PLURAL')
 
-                return "are #{result} #{wording_end}"
+                return "#{wording_begin} #{result} #{wording_end}"
 
         ]
     )
-    .filter("cardEquivalent", ["searchService", "Currency","humanizeService", (searchService, Currency, OSS)->
+    .filter("cardEquivalent", ["searchService", "Currency","humanizeService", (searchService, Currency, Humanize)->
             return (story)->
                 return null unless story?
-                OSS.humanizeEquivalence story, 
+                Humanize.humanizeEquivalence story,
                     currency: Currency.list[searchService.currency]
                     value:searchService.query_usd
         ]

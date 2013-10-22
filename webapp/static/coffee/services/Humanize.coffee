@@ -69,22 +69,38 @@ class HumanizeService
             return number
         else if number < 100
             return @intcomma(number, 1)
+
         else if number < 1000
-            return @intcomma(number / 100, 1) + " #{@$translate('HUNDRED')}"
+            final_number = number / 100
+            wording = @pluralize value: final_number, single: @$translate('HUNDRED'), plural: @$translate('HUNDRED_PLURAL')  
+            return "#{@intcomma(final_number, 1)} #{wording}"
+
         else if number < 100000
-            return @intcomma(number / 1000.0, 1) + " #{@$translate('THOUSAND')}"
+            final_number = number / 1000.0
+            wording = @pluralize value: final_number, single: @$translate('THOUSAND') , plural: @$translate('THOUSAND_PLURAL')
+            return "#{@intcomma(final_number, 1)} #{wording}"
+
         else if number < 1000000
-            return @intcomma(number / 100000.0, 1) + " #{@$translate('HUNDRED')} #{@$translate('THOUSAND')}"
+            final_number = number / 100000.0
+            hundred  = @pluralize value: final_number, single: @$translate('HUNDRED'), plural: @$translate('HUNDRED_PLURAL')
+            return "#{@intcomma(final_number, 1)} #{hundred} #{@$translate('THOUSAND_PLURAL')}"
+
         else if number < 1000000000
-            return @intcomma(number / 1000000.0, 1) + " #{@$translate('MILLION')}"
+            final_number = number / 1000000.0
+            wording = @pluralize value: final_number, single: @$translate('MILLION'), plural: @$translate('MILLION_PLURAL')
+            return "#{@intcomma(final_number, 1)} #{wording}"
+
         else if number < 1000000000000 #senseless on a 32 bit system probably.
-            return @intcomma(number / 1000000000.0, 1) + " #{@$translate('BILLION')}"
+            final_number = number / 1000000000.0
+            wording = @pluralize value: final_number, single: @$translate('BILLION'), plural: @$translate('BILLION_PLURAL')
+            return "#{@intcomma(final_number, 1)} #{wording}"
+
         else if number < 1000000000000000
-            return @intcomma(number / 1000000000000.0, 1) + " #{@$translate('TRILLION')}"
+            final_number = number / 1000000000000.0
+            wording = @pluralize value: final_number, single: @$translate('TRILLION'), plural: @$translate('TRILLION_PLURAL')
+            return "#{@intcomma(final_number, 1)} #{wording}"
         else
             return "" + number # too big.
-
-
 
     getFloatPart: (value_f)=>
         float_part_s = String(value_f).split('.')[1]
@@ -114,19 +130,29 @@ class HumanizeService
         Math.round(value * Math.pow(10, decimals))/Math.pow(10, decimals) 
 
 
-    pluralize: (opts)=>
-        if Math.abs(opts.value) <= 1 then opts.single else opts.plural 
+    pluralLimit: ()=>
+        parseInt(@$translate('PLURAL_LIMIT')) or 1
 
-    humanize: (value, suffix, plural=false)=>
+    pluralize: (opts)=>
+        if Math.abs(opts.value) > @pluralLimit() then (opts.plural or opts.single + 's') else opts.single
+
+    humanizeValue: (value, suffix)=>
         return null unless value?
         # use it to humanize some amount and add a suffix (that can be 
+        suffix = @pluralize value: value, single: suffix
         # pluralized if needed)
-        if plural
-            suffix += 's'
         if value < Math.pow(10, 6) || value > Math.pow(10, 15)
-            @intcomma(value) + " " + suffix
+            wording = @intcomma(value)
         else
-            @intword(value) + " " + suffix
+            wording = @intword(value)
+        union_word = @$translate('HUMANIZE_CURRENCY_UNION_WORD')
+        unless _.isEmpty(union_word)
+            union = " #{union_word} "
+        else
+            union = ' '
+
+        "#{wording}#{union}#{suffix}"
+        
 
     humanizeEquivalence: (story, query)=>
         return null unless story?
