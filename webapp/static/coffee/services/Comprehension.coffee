@@ -231,7 +231,8 @@ class Comprehension
                 'number': query_numbers if query_numbers
 
         numbers    = @extractNumbersFromTerms(terms[TYPES.number])
-        currencies = _.first (_.sortBy terms[TYPES.currency], (term) => term.priority), 3
+        currencies = _.first (_.sortBy (_.uniq terms[TYPES.currency]), (term) =>
+            term.priority), 3
 
         #Set default values if nothing was found
         currencies = (defaultCurrencies @currency) if not currencies? or currencies.length <= 0
