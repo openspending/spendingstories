@@ -36,8 +36,7 @@ class HumanizeService
 
     constructor:(@$translate)->
 
-
-    intcomma:(number, decimals) ->
+    intcomma:(number, decimals) =>
         ###
         Took from [JS-Humanize](https://github.com/milanvrekic/JS-humanize)
         Converts an integer to a string containing commas every three digits.
@@ -50,7 +49,7 @@ class HumanizeService
             4500000 becomes 4,500,000.
         ###
         decimals = (if decimals is `undefined` then 0 else decimals)
-        number_format number, decimals, ".", ","
+        number_format number, decimals, @$translate('HUMANIZE_DECIMAL_SEP'), @$translate('HUMANIZE_THOUSAND_SEP')
 
 
 
@@ -69,7 +68,6 @@ class HumanizeService
             return number
         else if number < 100
             return @intcomma(number, 1)
-
         else if number < 1000
             final_number = number / 100
             wording = @pluralize value: final_number, single: @$translate('HUNDRED'), plural: @$translate('HUNDRED_PLURAL')  
@@ -140,13 +138,14 @@ class HumanizeService
         return null unless value?
         # use it to humanize some amount and add a suffix (that can be 
         suffix = @pluralize value: value, single: suffix
+        use_wording = value >= Math.pow(10, 6) and value <= Math.pow(10, 15)
         # pluralized if needed)
-        if value < Math.pow(10, 6) || value > Math.pow(10, 15)
-            wording = @intcomma(value)
-        else
+        if use_wording
             wording = @intword(value)
+        else
+            wording = @intcomma(value)
         union_word = @$translate('HUMANIZE_CURRENCY_UNION_WORD')
-        unless _.isEmpty(union_word)
+        unless _.isEmpty(union_word) or !use_wording
             union = " #{union_word} "
         else
             union = ' '
