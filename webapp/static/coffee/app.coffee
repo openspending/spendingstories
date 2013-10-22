@@ -26,7 +26,7 @@ angular
             '$cookiesProvider',
             ($interpolateProvider, $routeProvider, $translateProvider, RestangularProvider, $http, $cookies)->
                 $translateProvider.useStaticFilesLoader
-                    prefix: 'static/locales/'
+                    prefix: STATIC_URL + '/locales/'
                     suffix: '.json'
 
                 # $translateProvider.preferredLanguage('en_GB')

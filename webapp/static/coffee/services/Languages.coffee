@@ -10,7 +10,7 @@ class LanguagesService
             "code": "en_GB"
         }]
         @supportedLanguages = defaultLanguages
-        @http( method: 'GET', url: 'static/locales/supported.json' )
+        @http( method: 'GET', url: STATIC_URL + '/locales/supported.json' )
             .success (data)=>
                 @supportedLanguages = data
 
