@@ -13,7 +13,7 @@
 		<div ng-show="isDone()">
 			<p class="bottom0" translate>CONTRIBUTE_THANKS_MESSAGE</p>
 			<p class="bottom20" translate>CONTRIBUTE_APPROVING_MESSAGE</p>
-			 <button type="button" class="btn btn-default" ng-click="reset()">Contribute again!</button>	
+			 <button type="button" class="btn btn-default" ng-click="reset()">[[ 'CONTRIBUTE_AGAIN_BUTTON' | translate ]]</button>	
 		</div>
 
 		<p ng-hide="isDone()" translate>CONTRIBUTE_PLEASE_CONTRIBUTE_MESSAGE</p>
@@ -34,8 +34,8 @@
 	
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 0" ng-form="stepForm0">
 		<div class="form-group">
-			<label class="control-label" for="input-currency" translate>
-				CONTRIBUTE_CURRENCY_LABEL
+			<label class="control-label" for="input-currency">
+				[['CONTRIBUTE_CURRENCY_LABEL' | translate ]]
 			</label>
 			<select ng-options="c.iso_code as c.name for (iso_code, c) in currencies" 					
 					id="input-currency" 
@@ -46,7 +46,7 @@
 		<div class="form-group">
 			<label class="control-label" for="input-value" translate>CONTRIBUTE_AMOUNT_LABEL</label>
 			<p class="pull-right">[[story.value|humanizeValue:story.currency.iso_code]]</p>
-			<input required type="number" class="form-control" placeholder="Ex: 14367000 for 14,367,000" id="input-value" name="value" ng-model="story.value" />
+			<input required type="number" class="form-control" placeholder="Ex: 14367000 [[ 'CONTRIBUTE_FOR' | translate ]] 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block" translate>
 				CONTRIBUTE_AMOUNT_HELP_BLOCK
 			</p>
@@ -134,8 +134,8 @@
 	 			</div>
 			</div>
 			<div class="col-xs-6 col-sm-3 text-right">
-				<button type="button" class="btn btn-primary" ng-disabled="!getForm().$valid" ng-show="step < stepCount-1" ng-click="step = step + 1" translate>
-					CONTRIBUTE_CONTINUE_BUTTON
+				<button type="button" class="btn btn-primary" ng-disabled="!getForm().$valid" ng-show="step < stepCount-1" ng-click="step = step + 1">
+					[[ 'CONTRIBUTE_CONTINUE_BUTTON' | translate ]]
 				</button>
 				<button type="submit" class="btn btn-primary" ng-disabled="!contribForm.$valid" ng-show="step == stepCount-1" translate>
 					CONTRIBUTE_SUBMIT_BUTTON
