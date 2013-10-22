@@ -7,9 +7,9 @@
                         <div class="modal-body">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <div class="modal-sharing">
-                                <h6>Share this story</h6>
+                                <h6>[[ 'SHARE_THIS_STORY_TITLE' | translate ]]</h6>
                                 <input class="form-control" readonly="true" value="[[sharingAddress(d)]]" />
-                                <h6>Embed this story</h6>
+                                <h6>[[ 'EMBED_THIS_STORY_TITLE' | translate ]]</h6>
                                 <textarea readonly="true" class="form-control">[[embedFrame(d)]]</textarea>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
 
                 <div class="col-sm-9 col-md-10">
                     <a data-toggle='modal' data-target="#sharemodal-[[d.id]]" class='clickable sharelink'>
-                        <i class='icon-share'></i> Share
+                        <i class='icon-share'></i> [[ 'SHARE_STORY_BUTTON' | translate ]]
                     </a>
                     <h5 ng-cloak>
                         [[search.query|humanizeValue:search.currency]] 
