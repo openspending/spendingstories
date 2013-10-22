@@ -1,4 +1,16 @@
 module.exports = (grunt)->
+    
+    locales = {
+        folder: "webapp/static/locales/",
+        supportedLanguages: [
+                name: "French",
+                code: "fr_FR"
+            , 
+                name: "English",
+                code: "en_GB"
+        ]
+    }
+
     angular_files = [
         'webapp/static/coffee/*.coffee',  # our scripts 
         'webapp/static/coffee/**/*.coffee',  # our scripts 
@@ -7,23 +19,20 @@ module.exports = (grunt)->
         'webapp/templates/partials/**/*.html' # our templates     
     ]
     
-    packageConfiguration = grunt.file.readJSON('package.json')
-    
     getLangISOCodes = ->
-        for lang in packageConfiguration.locales.supportedLanguages
+        for lang in locales.supportedLanguages
             lang.code
 
 
     updateSupportedLanguages = ->
-        supportedFilePath = packageConfiguration.locales.folder + 'supported.json'
-        grunt.file.write(supportedFilePath, JSON.stringify(packageConfiguration.locales.supportedLanguages))
-        grunt.log.writeln("File 'supported.json' updated in #{packageConfiguration.locales.folder} folder")
+        supportedFilePath = locales.folder + 'supported.json'
+        grunt.file.write(supportedFilePath, JSON.stringify(locales.supportedLanguages))
+        grunt.log.writeln("File 'supported.json' updated in #{locales.folder} folder")
 
 
     # Project configuration.
     grunt.initConfig 
            # global application package
-        pkg: packageConfiguration
         # i18n & angular translate configuration 
         i18nextract:
             dev:
