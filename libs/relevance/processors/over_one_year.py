@@ -42,8 +42,9 @@ class SubProcessor(Processor):
             one_day   = compared_to / 365.25
             one_week  = compared_to / 52
             one_month = compared_to / 12
-            if amount < one_week and amount >= (one_day - one_day * 0.05):
-                relevance = Relevance(6, Relevance.RELEVANCE_TYPE_DAY, int(amount / one_day))
+            if amount < one_week:
+                if  amount > one_day and amount % one_day <= one_day * .1:
+                    relevance = Relevance(6, Relevance.RELEVANCE_TYPE_DAY, int(amount / one_day))
             elif amount < one_month:
                 # compute into weeks
                 if amount >= one_week and amount % one_week <= one_day * 0.25:
