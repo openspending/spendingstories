@@ -191,7 +191,7 @@ This part covers the following topics:
 
 - how to add a language
 - how to add/edit some translation
-- how to edit translations  
+- what is not fully translated for the moment
 
 ### Add a language
 1. Edit the `package.json`
@@ -209,4 +209,28 @@ This part covers the following topics:
       Running "update_supported_languages" task
       File 'supported.json' updated in webapp/static/locales/ folder
     ```
+3. Update the new generated locales file at `/webapp/static/locales/<you locale>.json`
 
+### Add or edit translation
+
+1. Add translation in the code/in the template files
+    You have to choose a translation key. We use the following naming convention:
+    - the key must be in uppercase and underscore (e.g `A_TRANSLATION_KEY`)
+    - the key describe what it translate and where.
+        - the first part of the key is the name of the script or the template containing the key. <br/>
+        Ex: a key in `contribute.html` will start by `CONTRIBUTE_`
+        - the last part is the description of the content, or the word if it can be described otherwise.<br/>
+        Ex: the translation key of the 'Compare' button contained in the `header.html` template will be `HEADER_COMPARE_BUTTON`
+
+    > Note: for template translation prefer the filters over the directive
+    ``` html
+    <!-- good: --> 
+    <a href="">[[ 'MY_TRADUCTION' | translate ]]</a>
+    <!-- not good: --> 
+    <a href="" translate>MY_TRADUCTION</a>
+    ```
+
+2. Update the translation files to add the new keys. 
+    | Note: All new created key can be collected by running `grunt makemessages`. 
+     This can also be automated by running `grunt watch` before doing some edition. 
+2. Edit your translations in the `webapp/static/locales/<language>.json` files.
