@@ -10,3 +10,4 @@ requests==1.2.3
 south==0.8.1
 BeautifulSoup==3.2.1
 dj-static==0.0.5
+django-wysiwyg-redactor==0.3.6
