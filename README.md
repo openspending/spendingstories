@@ -231,6 +231,7 @@ This part covers the following topics:
     ```
 
 2. Update the translation files to add the new keys. 
-    | Note: All new created key can be collected by running `grunt makemessages`. 
-     This can also be automated by running `grunt watch` before doing some edition. 
-2. Edit your translations in the `webapp/static/locales/<language>.json` files.
+    > Note: All new created key can be collected by running `grunt makemessages`. <br/>
+     This can also be automated by running `grunt watch` before doing some editions.
+
+3. Edit your translations in the `webapp/static/locales/<language>.json` files.

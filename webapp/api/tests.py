@@ -142,11 +142,13 @@ class APIStoryTestCase(TestCase):
                         debug += "\n--------------------------------------"
                         if accuracy < TOLERENCE:
                             warnings.warn("accurency under %s%%: %s" % (TOLERENCE, debug))
-                if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_WEEK, Relevance.RELEVANCE_TYPE_MONTH) :
+                if story['relevance_type'] in (Relevance.RELEVANCE_TYPE_WEEK, Relevance.RELEVANCE_TYPE_MONTH, Relevance.RELEVANCE_TYPE_DAY) :
                     if story['relevance_type'] == Relevance.RELEVANCE_TYPE_WEEK:
                         reverse_computing = float(story['relevance_value']) * story['current_value_usd']/52
                     elif story['relevance_type'] == Relevance.RELEVANCE_TYPE_MONTH:
                         reverse_computing = float(story['relevance_value']) * story['current_value_usd']/12
+                    elif story['relevance_type'] == Relevance.RELEVANCE_TYPE_DAY:
+                        reverse_computing = float(story['relevance_value']) * story['current_value_usd']/365.25
                     accuracy = min(reverse_computing, relevance_for) / max(reverse_computing, relevance_for) * 100
                     debug = "\n"
                     debug += "\n{0:20}: {1}"          .format('user query'       , relevance_for)
