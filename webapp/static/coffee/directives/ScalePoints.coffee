@@ -167,9 +167,12 @@ angular.module('stories')
                         left: xpr(converted_current_value: t)
 
                 scope.axisLabelClass = (t)->
+                    klasses = []
                     if scale(t) > (workspaceWidth - 100)
-                        return "aligned-right"
-
+                        klasses.push("aligned-right")
+                    if t > 1e6
+                        klasses.push("smaller")
+                    return klasses.join(' ')
                 # Function that return the point css
                 scope.pointStyle = (d)->
                     # if it's not optimized (e.g: if we change the scale it's
