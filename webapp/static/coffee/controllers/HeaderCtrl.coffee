@@ -36,19 +36,33 @@ class HeaderCtrl
             ,  (val)=>
                 @scope.language = val
 
+        @scope.clicked = no
 
     onSearch: =>
         params = {}
-        if @scope.user_query?
+
+        # Get the first suggestion as our query when the Compare button is clicked
+        if @scope.compareclick
+            if @scope.searchform.query.$viewValue?
+                query = _.first (@getPropositions @scope.searchform.query.$viewValue)
+                @scope.user_query = query
+                @scope.searchform.query.$setViewValue do =>
+                    (@filter 'humanizeValue') query.number, query.currency
+                do @scope.searchform.query.$render
+
+        if @scope.user_query? or @scope.compareclick
             params = _.extend @location.search(), {
                 q: @scope.user_query.number
                 c: @scope.user_query.currency
             }
+
         if _.indexOf(@location.path(), 'search') == -1
             @location.path('/search/').search(params)
         else
             # Update path
             @location.search(params)
+
+        @scope.compareclick = no
 
     getPropositions: (viewValue) =>
             @comprehension.getPropositions viewValue
