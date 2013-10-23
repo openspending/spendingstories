@@ -19,18 +19,17 @@
 			</li>
 		</ul>
 
-		<form  class="form-horizontal" role="form" ng-submit="search()">
+		<form autocomplete="off" name='searchform' class="form-horizontal" role="form" ng-submit="search()">
 			<div class="input-group">
 				<input type="text" ng-required class="form-control"
 					   ng-if="currenciesLoaded && language"
 					   ng-model="user_query"
 					   placeholder="[[ 'HEADER_SEARCH_PLACEHOLDER' | translate ]]"
 					   typeahead="prop as (prop.number|humanizeValue:prop.currency) for prop in propositions($viewValue) | limitTo: 8"
-					   typeahead-wait-ms="1"
 					   typeahead-on-select="$parent.user_query = user_query; search()"
-					   typeahead-input-formatter="user_query.number|humanizeValue:user_query.currency"/>
+					   typeahead-input-formatter="user_query.number|humanizeValue:user_query.currency" name="query" />
 				<div class="input-group-btn relative">
-					<input type="submit" class="btn btn-primary" value="[[ 'HEADER_COMPARE_BUTTON' | translate ]]" />
+					<input ng-click="compareclick = true" type="submit" class="btn btn-primary" value="[[ 'HEADER_COMPARE_BUTTON' | translate ]]" />
 				</div>
 			</div>
 			<span class="help-block" translate>HEADER_SAMPLE_QUERY</span>

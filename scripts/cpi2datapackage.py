@@ -70,7 +70,7 @@ def write_csv(rows, filename=None):
     # Set the file as stdout if no filename, else open the file for writing
     output = sys.stdout if filename is None else open(filename, 'w')
     # Create the csv writer
-    csvwriter = csv.writer(output)
+    csvwriter = csv.writer(output, lineterminator="\n")
     # Write all the rows
     csvwriter.writerows(rows)
     # Close the output file (or stdout)

@@ -28,8 +28,10 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 # Apply WSGI middleware here.
-# from helloworld.wsgi import HelloWorldApplication
-# application = HelloWorldApplication(application)
+
+# dj-static is a Django middleware utility that allows to properly 
+# serve static assets from production with a WSGI server like Gunicorn.
+# See https://github.com/kennethreitz/dj-static
 from dj_static import Cling
 application = Cling(application)
 

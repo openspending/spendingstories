@@ -3,6 +3,14 @@
 2013, Journalism++  
 GNU General Public License
 
+## Overview
+
+1. [How to install Spending Stories](#how-to-install-spending-stories)
+1. [Presentation of the application](#presentation-of-the-application)
+1. [How to customize Spending Stories](#how-to-customize-spending-stories)
+1. [How to translate Spending Stories](#how-to-translate-spending-stories)
+1. [Update stories with last currencies and cpi](#update-stories-with-last-currencies-and-cpi)
+
 ## How to install Spending Stories
 
 ### Important notes
@@ -235,3 +243,13 @@ This part covers the following topics:
      This can also be automated by running `grunt watch` before doing some editions.
 
 3. Edit your translations in the `webapp/static/locales/<language>.json` files.
+
+## Update stories with last currencies and cpi
+
+```bash
+./scripts/update_cpi.py
+./scripts/update_currencies.py <api key from https://openexchangerates.org/signup/free>
+./scripts/recompute_stories.py
+```
+
+and restart the application in order to reload the new dataset.

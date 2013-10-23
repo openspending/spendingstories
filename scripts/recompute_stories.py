@@ -7,8 +7,8 @@
 # -----------------------------------------------------------------------------
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
-# Creation : 06-Aug-2013
-# Last mod : 07-Aug-2013
+# Creation : 23-Oct-2013
+# Last mod : 23-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -26,28 +26,19 @@
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-
-Create a json file which contains the list of available years for each country
-in the `data/cpi/cpi.csv` file.
-
-This json file will be used in order to check the user entries for dates and
-to show dynamically the available dates if the country is known.
-
+Recompute all the stories
 """
-import csv
-import json
-results = {}
 
-with open("data/cpi/cpi.csv") as cpi_file:
-    spamreader = csv.reader(cpi_file, delimiter=',', quotechar='"')
-    spamreader.next()
-    for row in spamreader:
-        country, code, year, cpi = row
-    	if not code in results:
-    		results[code] = []
-    	results[code].append(int(year))
+import os
+from django.conf import settings
+from webapp.core.models import Story
 
-with open("data/years_available_per_country.json", "w") as output:
-	output.write(json.dumps(results))
+os.environ['PYTHONPATH'] = ROOT_PATH = settings.ROOT_PATH
+
+if __name__ == "__main__":
+    for story in Story.objects.all():
+        story.set_current_value()
+        story.save()
+    exit()
 
 # EOF

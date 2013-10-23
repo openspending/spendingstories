@@ -125,6 +125,12 @@ class Story(models.Model):
     class Meta:
         verbose_name_plural = "stories"
 
+    def set_current_value(self):
+        inflation_amount, inflation_year = utils.get_inflation(amount=self.value, year=self.year, country=self.country)
+        self.current_value       = inflation_amount
+        self.inflation_last_year = inflation_year
+        self.current_value_usd   = self.current_value / self.currency.rate
+
     def save(self, *args, **kwargs):
         '''
         save in database
@@ -140,10 +146,7 @@ class Story(models.Model):
         or previous_instance.value    != self.value \
         or previous_instance.currency != self.currency \
         or previous_instance.year     != self.year:
-            inflation_amount, inflation_year = utils.get_inflation(amount=self.value, year=self.year, country=self.country)
-            self.current_value       = inflation_amount
-            self.inflation_last_year = inflation_year
-            self.current_value_usd   = self.current_value / self.currency.rate
+            self.set_current_value()
         super(Story, self).save(*args, **kwargs)
 
 # -----------------------------------------------------------------------------

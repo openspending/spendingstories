@@ -7,8 +7,8 @@
 # -----------------------------------------------------------------------------
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
-# Creation : 21-Aug-2013
-# Last mod : 21-Aug-2013
+# Creation : 06-Aug-2013
+# Last mod : 23-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -25,26 +25,39 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
+"""
 
-class AngularCSRFRename(object):
-    """ 
-    * The CSRF HTTP header name can't be changed in Django (must be X-CSRFToken)
-    * The CSRF HTTP header name can't be changed in Angular (must be X-XSRF-TOKEN)
-    * The CSRF cookie name can't be changed in Angular (must be XSRF-TOKEN)
-    
-    So to get the Django and AngularJS CSRF/XSRF implementations to play nicely together, 
-    we have to get Django to send a properly-named CSRF cookie (the cookie name is configurable, thankfully) 
-    and make it aware of AngularJS's X-XSRF-TOKEN header by copying it to X-CSRFToken in request.META
+Create or update a json file which contains the list of available years for each country
+in the `data/cpi/cpi.csv` file.
 
-        From http://bluehat.us/posts/django-angularjs-and-csrf-xsrf-protection.html
-    """
+This json file will be used in order to check the user entries for dates and
+to show dynamically the available dates if the country is known.
 
-    ANGULAR_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+"""
 
-    def process_request(self, request):
-        if self.ANGULAR_HEADER_NAME in request.META:
-            request.META['HTTP_X_CSRFTOKEN'] = request.META[self.ANGULAR_HEADER_NAME]
-            del request.META[self.ANGULAR_HEADER_NAME]
-        return None
+import csv
+import json
+import os
+from django.conf import settings
+
+ROOT_PATH = settings.ROOT_PATH
+
+if __name__ == "__main__":
+
+    results = {}
+
+    with open(os.path.join(ROOT_PATH, "data", "cpi", "cpi.csv")) as cpi_file:
+        spamreader = csv.reader(cpi_file, delimiter=',', quotechar='"')
+        spamreader.next()
+        for row in spamreader:
+            country, code, year, cpi = row
+            if not code in results:
+                results[code] = []
+            results[code].append(int(year))
+
+    with open(os.path.join(ROOT_PATH, "data", "years_available_per_country.json"), "w") as output:
+        output.write(json.dumps(results))
+
+    exit()
 
 # EOF

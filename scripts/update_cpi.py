@@ -7,8 +7,8 @@
 # -----------------------------------------------------------------------------
 # License : GNU General Public License
 # -----------------------------------------------------------------------------
-# Creation : 21-Aug-2013
-# Last mod : 21-Aug-2013
+# Creation : 23-Oct-2013
+# Last mod : 23-Oct-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
 # 
@@ -25,26 +25,25 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
+"""
+Update the CPI local data from a remote source,
+Update the available years list
+"""
 
-class AngularCSRFRename(object):
-    """ 
-    * The CSRF HTTP header name can't be changed in Django (must be X-CSRFToken)
-    * The CSRF HTTP header name can't be changed in Angular (must be X-XSRF-TOKEN)
-    * The CSRF cookie name can't be changed in Angular (must be XSRF-TOKEN)
-    
-    So to get the Django and AngularJS CSRF/XSRF implementations to play nicely together, 
-    we have to get Django to send a properly-named CSRF cookie (the cookie name is configurable, thankfully) 
-    and make it aware of AngularJS's X-XSRF-TOKEN header by copying it to X-CSRFToken in request.META
+import os
+from django.conf import settings
+from subprocess import call
 
-        From http://bluehat.us/posts/django-angularjs-and-csrf-xsrf-protection.html
-    """
+os.environ['PYTHONPATH'] = ROOT_PATH = settings.ROOT_PATH
 
-    ANGULAR_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
-
-    def process_request(self, request):
-        if self.ANGULAR_HEADER_NAME in request.META:
-            request.META['HTTP_X_CSRFTOKEN'] = request.META[self.ANGULAR_HEADER_NAME]
-            del request.META[self.ANGULAR_HEADER_NAME]
-        return None
+if __name__ == "__main__":
+    cpi2datapackage_script  = os.path.join(ROOT_PATH, 'scripts', 'cpi2datapackage.py')
+    updateavailyears_script = os.path.join(ROOT_PATH, 'scripts', 'update_available_years.py')
+    cpi_output              = os.path.join(ROOT_PATH, "data", "cpi", "cpi.csv")
+    print "Updating %s from remote source" % cpi_output
+    call([cpi2datapackage_script, "-o", cpi_output])
+    print "Updating available years list"
+    call([updateavailyears_script])
+    exit()
 
 # EOF
