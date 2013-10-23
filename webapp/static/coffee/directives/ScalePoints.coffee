@@ -1,7 +1,7 @@
 angular.module('stories')
     .directive "scalePoints", ['Currency', (Currency)->
         # Returned object to that defines the directive
-        restrict: "EAC"
+        restrict: "EA"
         templateUrl: "/partial/scale-points.html"
         replace: true
         scope:
@@ -24,15 +24,16 @@ angular.module('stories')
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
             workspaceWidth = if scope.overview() then element.innerWidth() else 6000
-            
+
             # Get optional visualization opt
             pointWidth  = if scope.overview() then scope.pointWidth()  or 25 else scope.pointWidthBig()  or 200
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
             # Scope values to monitor            
-            monitored = ["rulerValue", "rulerCurrency"] #, "data"]
             # Watch those values
-            scope.$watch monitored.join("||"), ->update()
+            monitored = ['rulerValue', 'rulerCurrency']
+            angular.forEach monitored, (monitor_key)->
+                scope.$watch monitor_key, -> update()
 
             addPoint = (point)->
                 lines = scope.lines

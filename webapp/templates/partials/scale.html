@@ -82,11 +82,11 @@
             </div>
         </div>
     </div>
-    <h3 translate>SCALE_TOP_STORIES_TITLE</h3>            
+    <h3 translate>SCALE_TOP_STORIES_TITLE</h3>
     <div class="top-strat">
         <scale-points
-            data="search.results"
-            ng-if="search.results.length"
+            ng-if="topStories.length"
+            data="topStories"
             story="previewedStory.id"
             currency="search.currency"
             click="pointSelection"
@@ -94,19 +94,18 @@
             overview="true"
             filter="{sticky: true}"></scale-points>
     </div>
-
     <h3 translate>SCALE_OTHER_STORIES_TITLE</h3>
     <div class="other-strat">
         <scale-points
-            ng-if="search.results.length"
-            data="search.results"
+            ng-if="otherStories.length"
+            data="otherStories"
             ruler="search.query"
             currency="search.currency"
             story="previewedStory.id"
             click="pointSelection"
             point-height="16"
             point-width="16"
-            overview="true"
-            filter="{sticky: false}"></scale-points>
+            overview="true"></scale-points>
+        </div>
     </div>
 </div>

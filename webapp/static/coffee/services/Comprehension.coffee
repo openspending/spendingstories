@@ -231,8 +231,11 @@ class Comprehension
                 'number': query_numbers if query_numbers
 
         numbers    = @extractNumbersFromTerms(terms[TYPES.number])
-        currencies = _.first (_.sortBy (_.uniq terms[TYPES.currency]), (term) =>
-            term.priority), 3
+
+        counts = _.countBy terms[TYPES.currency], 'name'
+        currencies = _.map (_.uniq terms[TYPES.currency]), (c) =>
+            _.extend c, _priority : c.priority - counts[c.name]
+        currencies = _.first (_.sortBy currencies, '_priority'), 3
 
         #Set default values if nothing was found
         currencies = (defaultCurrencies @currency) if not currencies? or currencies.length <= 0
@@ -242,7 +245,6 @@ class Comprehension
         _.map currencies, (currency) =>
             _.map numbers, (number) =>
                 propositions.push
-                    label : "#{number} #{currency.name}"
                     currency : currency.value
                     number : number
         # Finally return the propositions
@@ -293,30 +295,6 @@ class Comprehension
             return _.first results
         else
             _.filter results, (result) -> result.type is TYPES.currency
-
-    matchCurrency = (query, currency) =>
-        currencies = []
-        for key, value of currency.list
-            currencies.push
-                iso : key
-                name : value.name
-
-        #Keep exactly matched ISO codes
-        words = query.split(/\s+/)
-        matches = []
-        _.map words, (word) =>
-            _.map currencies, (curr) =>
-                if (do curr.iso.toLowerCase) is word
-                    matches.push [curr.name, curr.iso]
-
-        #Fuzzy search !
-        options =
-            keys : ['iso', 'name']
-        matched = (new Fuse currencies, options).search query
-
-        #Finally return the matches
-        _.union matches, _.map matched, (match) =>
-            [match.name, match.iso]
 
     defaultCurrencies = (currency) =>
         _.map ['USD', 'EUR', 'GBP'], (iso) ->
