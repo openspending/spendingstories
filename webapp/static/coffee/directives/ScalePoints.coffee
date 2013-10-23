@@ -1,9 +1,7 @@
-called = 0
-
 angular.module('stories')
     .directive "scalePoints", ['Currency', (Currency)->
         # Returned object to that defines the directive
-        restrict: "EAC"
+        restrict: "EA"
         templateUrl: "/partial/scale-points.html"
         replace: true
         scope:
@@ -33,10 +31,9 @@ angular.module('stories')
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
             # Scope values to monitor            
             # Watch those values
-            monitored = ['rulerValue', 'rulerCurrency', 'data.length']
+            monitored = ['rulerValue', 'rulerCurrency']
             angular.forEach monitored, (monitor_key)->
-                scope.$watch monitor_key, (n, o) ->
-                    update() if scope.$parent.mode isnt 'cards'
+                scope.$watch monitor_key, -> update()
 
             addPoint = (point)->
                 lines = scope.lines
@@ -47,7 +44,6 @@ angular.module('stories')
 
             # Isolate the scale initialization to allow dynamique updating
             update = (optimized = false)->
-                console.log "update() called #{called++} times"
                 if !optimized
                     scope.lines = []
 
