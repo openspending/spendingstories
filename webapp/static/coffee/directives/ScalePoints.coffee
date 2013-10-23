@@ -1,3 +1,5 @@
+called = 0
+
 angular.module('stories')
     .directive "scalePoints", ['Currency', (Currency)->
         # Returned object to that defines the directive
@@ -24,14 +26,17 @@ angular.module('stories')
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
             workspaceWidth = if scope.overview() then element.innerWidth() else 6000
-            
+
             # Get optional visualization opt
             pointWidth  = if scope.overview() then scope.pointWidth()  or 25 else scope.pointWidthBig()  or 200
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
             # Scope values to monitor            
             # Watch those values
-            scope.$watch '["rulerValue", "rulerCurrency", "data"]', ->update()
+            monitored = ['rulerValue', 'rulerCurrency', 'data.length']
+            angular.forEach monitored, (monitor_key)->
+                scope.$watch monitor_key, (n, o) ->
+                    update() if scope.$parent.mode isnt 'cards'
 
             addPoint = (point)->
                 lines = scope.lines
@@ -42,6 +47,7 @@ angular.module('stories')
 
             # Isolate the scale initialization to allow dynamique updating
             update = (optimized = false)->
+                console.log "update() called #{called++} times"
                 if !optimized
                     scope.lines = []
 
