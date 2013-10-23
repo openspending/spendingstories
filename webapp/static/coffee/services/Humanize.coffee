@@ -143,7 +143,10 @@ class HumanizeService
         if use_wording
             wording = @intword(value)
         else
-            wording = @intcomma(value)
+            if value < 1
+                wording = value
+            else
+                wording = @intcomma(value)
         union_word = @$translate('HUMANIZE_CURRENCY_UNION_WORD')
         unless _.isEmpty(union_word) or !use_wording
             union = " #{union_word} "
