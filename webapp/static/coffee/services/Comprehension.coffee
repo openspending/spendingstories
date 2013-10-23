@@ -232,12 +232,10 @@ class Comprehension
 
         numbers    = @extractNumbersFromTerms(terms[TYPES.number])
 
-        plucked = _.groupBy (_.pluck terms[TYPES.currency], 'name')
+        counts = _.countBy terms[TYPES.currency], 'name'
         currencies = _.map (_.uniq terms[TYPES.currency]), (c) =>
-            _.extend c,
-                _priority : c.priority - plucked[c.name].length
-        currencies = _.first (_.sortBy currencies, (term) =>
-            term._priority), 3
+            _.extend c, _priority : c.priority - counts[c.name]
+        currencies = _.first (_.sortBy currencies, '_priority'), 3
 
         #Set default values if nothing was found
         currencies = (defaultCurrencies @currency) if not currencies? or currencies.length <= 0
