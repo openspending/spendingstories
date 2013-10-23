@@ -85,19 +85,16 @@
     <h3 translate>SCALE_TOP_STORIES_TITLE</h3>
     <div class="top-strat">
         <scale-points
-            ng-if="topStories.length"
             data="topStories"
             story="previewedStory.id"
             currency="search.currency"
             click="pointSelection"
             ruler="search.query"
-            overview="true"
-            filter="{sticky: true}"></scale-points>
+            overview="true"></scale-points>
     </div>
     <h3 translate>SCALE_OTHER_STORIES_TITLE</h3>
     <div class="other-strat">
         <scale-points
-            ng-if="otherStories.length"
             data="otherStories"
             ruler="search.query"
             currency="search.currency"
