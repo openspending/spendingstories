@@ -26,15 +26,17 @@
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-Heroku environment variables:
-AWS_ACCESS_KEY_ID:       <AWS_KEY>
-AWS_SECRET_ACCESS_KEY:   <AWS_PWD>
-AWS_STORAGE_BUCKET_NAME: <BUCKET_NAME>
-BUILDPACK_URL:           git://github.com/vied12/heroku-buildpack-django.git
-HEROKU:                  True
-PATH:                    bin:node_modules/.bin:/app/bin:/usr/local/bin:/usr/bin:/bin
-PYTHONPATH:              webapp/:libs/
-DATABASE_URL             postgres://<POSTGRES_URL>
+Heroku environment variables needed:
+
+	AWS_ACCESS_KEY_ID:       <AWS_KEY>
+	AWS_SECRET_ACCESS_KEY:   <AWS_PWD>
+	AWS_STORAGE_BUCKET_NAME: <BUCKET_NAME>
+	BUILDPACK_URL:           git://github.com/vied12/heroku-buildpack-django.git
+	HEROKU:                  True
+	PATH:                    bin:node_modules/.bin:/app/bin:/usr/local/bin:/usr/bin:/bin
+	PYTHONPATH:              webapp/:libs/
+	DATABASE_URL             postgres://<POSTGRES_URL>
+
 """
 HEROKU = True
 
