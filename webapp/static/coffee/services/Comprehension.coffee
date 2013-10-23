@@ -187,9 +187,6 @@ class Comprehension
     @$inject : ['$translate', '$rootScope', 'Currency']
 
     constructor : ($translate, @rootScope, @currency) ->
-        # when currencies will be filtered:
-        # add currencies to SEARCH_SET_DATA with format:
-        # {value: <iso code>, symbol: <unicode symbol>, name: <full currency name }
         @rootScope.$watch ()->
                 $translate.uses()
             , (newVal, oldVal)=>
