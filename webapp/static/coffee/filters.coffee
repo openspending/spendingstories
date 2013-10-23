@@ -18,7 +18,10 @@ angular
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)-> 
                 _fromCurrency = Currency.list[fromCurrency]
                 _toCurrency = Currency.list[toCurrency]
-                converted = parseInt(value)
+                if value > 1
+                    converted = parseInt(value)
+                else
+                    converted = value
                 return null unless angular.isNumber(converted) and _fromCurrency? and _toCurrency? 
                 # Convertion needed
                 if _toCurrency.iso_code isnt _fromCurrency.iso_code
@@ -30,6 +33,8 @@ angular
                     if _toCurrency.iso_code isnt 'USD'
                         # The value is now into the targeted currency
                         converted = converted*_toCurrency.rate
+                pow = Math.pow 10, decimals
+                converted = (Math.round converted * pow) / pow
                 return Humanize.humanizeValue converted, _toCurrency.name, (converted > 1)
             
         ]
