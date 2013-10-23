@@ -272,7 +272,7 @@ class Comprehension
                 else
                     return (memo or 0) + (term.value or 0)
             , 0 )
-        [sum]
+        if sum > 0 then [sum] else undefined
 
     parseNumber = (str_number)->
         number = str_number.split(@local_decimal_caracter)
