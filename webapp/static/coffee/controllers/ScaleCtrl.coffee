@@ -7,9 +7,9 @@ class ScaleCtrl
 
     constructor: (@scope, @searchService, Share, @Restangular)->
         @scope.search = @searchService
-        @scope.search.results.then @onResultsChanged
         # Select the closest story into the stickies as preview 
-        @scope.$watch "this.search.results", @onResultsChanged
+        @scope.search.results.then @onResultsChanged
+        @scope.$watch "search.results", @onResultsChanged
         # Visualization mode
         @scope.overview = false
         # Toggle overview mode
@@ -34,24 +34,23 @@ class ScaleCtrl
         parent_scope = @scope.$parent
         parent_scope.setTitle parent_scope.MODES.scale, @scope.previewedStory.title if @scope.previewedStory?
 
-    onResultsChanged: (data)=>
-        @scope.topStories   = @Restangular.copy(@scope.topStories)   if @scope.topStories?
-        @scope.otherStories = @Restangular.copy(@scope.otherStories) if @scope.otherStories?
-        @scope.topStories   = _.where(data, {sticky: true })
-        @scope.otherStories = _.where(data, {sticky: false})
-        # Value to be closed to
-        goal = @scope.search.query_usd;
-        # Index of the closest value
-        closestIdx = 0;
-        # Get only stories that are sticky
-        data = _.where data, sticky: true
-        _.each data, (d, idx)->
-            # Current closest value
-            closest    = data[closestIdx].current_value_usd
-            # Update the closest's idx if needed
-            closestIdx = idx if Math.abs(d.current_value_usd - goal) < Math.abs(closest - goal)                
-        # Set the value
-        @scope.previewedStory = data[closestIdx] if data[closestIdx]?
+    onResultsChanged: (results)=>
+        
+            @scope.topStories   = _.filter results, (d)-> _.isObject(d) && d.sticky == true
+            @scope.otherStories = _.filter results, (d)-> _.isObject(d) && d.sticky == false
+            # Value to be closed to
+            goal = @scope.search.query_usd;
+            # Index of the closest value
+            closestIdx = 0;
+            # Get only stories that are sticky
+            data = _.where data, sticky: true
+            _.each data, (d, idx)->
+                # Current closest value
+                closest    = data[closestIdx].current_value_usd
+                # Update the closest's idx if needed
+                closestIdx = idx if Math.abs(d.current_value_usd - goal) < Math.abs(closest - goal)                
+            # Set the value
+            @scope.previewedStory = data[closestIdx] if data[closestIdx]?
 
     setPreviewedStory: (d)=>
         @scope.previewedStory = d

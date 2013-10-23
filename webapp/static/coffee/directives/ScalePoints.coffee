@@ -24,32 +24,35 @@ angular.module('stories')
             workspace      = d3.select(element[0])
             # Width of the workspace according to its parent
             workspaceWidth = if scope.overview() then element.innerWidth() else 6000
+            scope.lines = []
+            scope.harmonized = false
+
 
             # Get optional visualization opt
             pointWidth  = if scope.overview() then scope.pointWidth()  or 25 else scope.pointWidthBig()  or 200
             pointHeight = if scope.overview() then scope.pointHeight() or 25 else scope.pointHeightBig() or 60
             pointGap    = if scope.overview() then scope.pointGap()    or 7  else scope.pointGapBig()    or 7
-            # Scope values to monitor            
+            # Scope values to monitor
             # Watch those values
-            monitored = ['rulerValue', 'rulerCurrency']
+            monitored = ['rulerValue', 'rulerCurrency', 'data']
             angular.forEach monitored, (monitor_key)->
-                scope.$watch monitor_key, -> update()
+                scope.$watch monitor_key, -> update(false)
 
             addPoint = (point)->
-                lines = scope.lines
                 lines = scope.lines = scope.lines || []
-                lines[point.line] = {} unless lines[point.line]
-                lines[point.line][point.id] = point
+                lines[point.line] = lines[point.line] || []
+                lines[point.line].push(point)
 
 
             # Isolate the scale initialization to allow dynamique updating
             update = (optimized = false)->
+                dataset = scope.dataset = scope.data
+                scope.optimized = optimized
                 if !optimized
+                    scope.lines.length = 0;
                     scope.lines = []
-
                 # Data must be loaded
                 return unless scope.data? and scope.data.length                                 
-
                 # Ruler that "split" the screen
                 rulerValue     = 1*scope.rulerValue or -1
 
@@ -65,8 +68,6 @@ angular.module('stories')
                     scope.rulerRate = if rulerRate? then rulerRate else 1
                 # No ruler rate
                 scope.rulerRate = 1
-
-                dataset = scope.data
                 # Filter dataset if we received a filter
                 filter  = scope.filter()
                 # Filter is a function
@@ -81,8 +82,6 @@ angular.module('stories')
                     story.converted_current_value = story.current_value_usd / scope.rulerRate
                     return story
 
-                # Put the processed data into a dedicated field
-                scope.dataset = dataset
                 # Bounds values (using sorted list)            
                 min = Math.min dataset[0].converted_current_value, rulerValue 
                 min = if min < 1 then 1 else min
@@ -121,9 +120,11 @@ angular.module('stories')
                     lines = scope.lines
                     ### 
                     Reposition all points to avoid overlapping
-                    ### 
+                    ###
+
                     # this algorithm work on a sorted list (from lower to higher)
                     lines[0] = _.sortBy lines[0], (e)-> e.x
+
                     harmonize = (line)->
                         ###
                         Will loop over a line and remove all overlapping elements
@@ -140,17 +141,17 @@ angular.module('stories')
                             return as result 
                         ### 
                         last_good_point = null # the reference point 
-                        bad_points = {}
+                        bad_points = []
                         for i,n of line
-                            do()->
-                                if !last_good_point or Math.abs(n.x - last_good_point.x) >= (pointWidth + pointGap)
-                                    # if the current point is the first point or if he's not overlapping
-                                    # with the last good point then we set it as the new reference point 
-                                    last_good_point = n
-                                if last_good_point.id != n.id
-                                    n.line += 1
-                                    bad_points[i] = n
-                                    delete line[i]
+                            print_lgp = if last_good_point? then last_good_point.line else null
+                            if !last_good_point? or Math.abs(n.x - last_good_point.x) >= (pointWidth + pointGap)
+                                # if the current point is the first point or if he's not overlapping
+                                # with the last good point then we set it as the new reference point 
+                                last_good_point = n
+                            if last_good_point.id != n.id
+                                n.line += 1
+                                bad_points.push(n)
+                                delete line[i]
                         # we return the sorted remaining overlapping points 
                         _.sortBy bad_points, (e)-> e.x
 
@@ -179,7 +180,7 @@ angular.module('stories')
                     # if it's not optimized (e.g: if we change the scale it's
                     # not optimized anymore) we have to reinitialize these 
                     # that help us to place the point during optimization
-                    if !optimized
+                    if !d.line?
                         d.line = 0
                         d.x = x(d)
 
