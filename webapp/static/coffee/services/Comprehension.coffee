@@ -247,7 +247,6 @@ class Comprehension
         _.map currencies, (currency) =>
             _.map numbers, (number) =>
                 propositions.push
-                    label : "#{number} #{currency.name}"
                     currency : currency.value
                     number : number
         # Finally return the propositions
