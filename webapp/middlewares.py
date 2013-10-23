@@ -27,7 +27,20 @@
 
 
 class AngularCSRFRename(object):
+    """ 
+    * The CSRF HTTP header name can't be changed in Django (must be X-CSRFToken)
+    * The CSRF HTTP header name can't be changed in Angular (must be X-XSRF-TOKEN)
+    * The CSRF cookie name can't be changed in Angular (must be XSRF-TOKEN)
+    
+    So to get the Django and AngularJS CSRF/XSRF implementations to play nicely together, 
+    we have to get Django to send a properly-named CSRF cookie (the cookie name is configurable, thankfully) 
+    and make it aware of AngularJS's X-XSRF-TOKEN header by copying it to X-CSRFToken in request.META
+
+        From http://bluehat.us/posts/django-angularjs-and-csrf-xsrf-protection.html
+    """
+
     ANGULAR_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+
     def process_request(self, request):
         if self.ANGULAR_HEADER_NAME in request.META:
             request.META['HTTP_X_CSRFTOKEN'] = request.META[self.ANGULAR_HEADER_NAME]
