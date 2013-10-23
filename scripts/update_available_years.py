@@ -37,12 +37,15 @@ to show dynamically the available dates if the country is known.
 
 import csv
 import json
+import os
+
+ROOT_PATH = os.path.join(os.path.dirname(__file__), os.pardir)
 
 if __name__ == "__main__":
 
     results = {}
 
-    with open("data/cpi/cpi.csv") as cpi_file:
+    with open(os.path.join(ROOT_PATH, "data", "cpi", "cpi.csv")) as cpi_file:
         spamreader = csv.reader(cpi_file, delimiter=',', quotechar='"')
         spamreader.next()
         for row in spamreader:
@@ -51,7 +54,7 @@ if __name__ == "__main__":
                 results[code] = []
             results[code].append(int(year))
 
-    with open("data/years_available_per_country.json", "w") as output:
+    with open(os.path.join(ROOT_PATH, "data", "years_available_per_country.json"), "w") as output:
         output.write(json.dumps(results))
 
     exit()
