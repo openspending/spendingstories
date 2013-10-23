@@ -27,14 +27,12 @@
 
 """
 Update the CPI local data from a remote source,
-Update the available years list,
-Recompute all the stories with new data
+Update the available years list
 """
 
 import os
 from django.conf import settings
 from subprocess import call
-from webapp.core.models import Story
 
 os.environ['PYTHONPATH'] = ROOT_PATH = settings.ROOT_PATH
 
@@ -46,10 +44,6 @@ if __name__ == "__main__":
     call([cpi2datapackage_script, "-o", cpi_output])
     print "Updating available years list"
     call([updateavailyears_script])
-    print "recompute stories"
-    for story in Story.objects.all():
-    	story.set_current_value()
-    	story.save()
     exit()
 
 # EOF
