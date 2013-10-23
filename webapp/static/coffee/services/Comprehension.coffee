@@ -296,30 +296,6 @@ class Comprehension
         else
             _.filter results, (result) -> result.type is TYPES.currency
 
-    matchCurrency = (query, currency) =>
-        currencies = []
-        for key, value of currency.list
-            currencies.push
-                iso : key
-                name : value.name
-
-        #Keep exactly matched ISO codes
-        words = query.split(/\s+/)
-        matches = []
-        _.map words, (word) =>
-            _.map currencies, (curr) =>
-                if (do curr.iso.toLowerCase) is word
-                    matches.push [curr.name, curr.iso]
-
-        #Fuzzy search !
-        options =
-            keys : ['iso', 'name']
-        matched = (new Fuse currencies, options).search query
-
-        #Finally return the matches
-        _.union matches, _.map matched, (match) =>
-            [match.name, match.iso]
-
     defaultCurrencies = (currency) =>
         _.map ['USD', 'EUR', 'GBP'], (iso) ->
             name : currency.list[iso].name
