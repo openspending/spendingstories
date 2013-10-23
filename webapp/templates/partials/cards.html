@@ -38,12 +38,10 @@
                             <span ng-if="d.source">
                                 &#8212; <a ng-href="[[d.source]]" translate>CARDS_SOURCE_BUTTON</a>
                             </span>
+                            <span class="inflation">
+                                (≈[[d.current_value_usd|toQueryCurrency]] in [[d.inflation_last_year]])
+                            </span>
                         </p>
-                        <!--p>
-                            <a class="embed" ng-if="d.details_visible">
-                                <i class="icon-share"></i>&nbsp;Click to copy the embed code
-                            </a>
-                        </p-->
                         <p class="desc">
                             [[d.description]]
                         </p>
