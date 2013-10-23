@@ -38,8 +38,9 @@ to show dynamically the available dates if the country is known.
 import csv
 import json
 import os
+from django.conf import settings
 
-ROOT_PATH = os.path.join(os.path.dirname(__file__), os.pardir)
+ROOT_PATH = settings.ROOT_PATH
 
 if __name__ == "__main__":
 
