@@ -202,7 +202,7 @@ This part covers the following topics:
 - what is not fully translated for the moment
 
 ### Add a language
-1. Edit the `package.json`
+1. Edit the `Gruntfile.coffee`
     Change the `supportedLanguages` value to add/remove a supported languages.
     
     This will tell to the grunt's angular-translate task to generate the files for each
@@ -243,6 +243,22 @@ This part covers the following topics:
      This can also be automated by running `grunt watch` before doing some editions.
 
 3. Edit your translations in the `webapp/static/locales/<language>.json` files.
+
+### What is not fully translated
+#### User query
+User query comprehension works only in French & English for the moment.
+The way we understand the amounts and currencies entered by user is based on a fuzzy search. 
+This means all terms that will be recognized have to be entered in an array. 
+If you look at the [getSearchSetData](https://github.com/jplusplus/okf-spending-stories/blob/master/webapp/static/coffee/services/Comprehension.coffee#L140)  method in the `Comprehension`
+service you can see all translated term in our array. <br/>
+
+This way of doing cannot work with German for instance because a lot of numbers are constructed with
+others. 
+Fuzzy search can work but the search data set (the data that will be used to perform the search) have to be build
+by an algorithm because of the tremendous amount of numbers. 
+
+#### Currencies' names
+All currencies' names are not translated, this is why you can see some "12 millards de US dollars"
 
 ## Update stories with last currencies and cpi
 
