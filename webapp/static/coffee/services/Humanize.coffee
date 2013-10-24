@@ -161,7 +161,8 @@ class HumanizeService
     humanizeEquivalence: (story, query)=>
         return null unless story?
         value = story.relevance_value
-        switch story.relevance_type
+        type  = story.relevance_type
+        switch type
             when @RELEVANCE_TYPES.equivalent
                 equivalent = @humanizeEquivalent(value)
             when @RELEVANCE_TYPES.half
@@ -174,7 +175,7 @@ class HumanizeService
             when @RELEVANCE_TYPES.percentage
                 equivalent = @humanizePercentage(value)
             when @RELEVANCE_TYPES.month, @RELEVANCE_TYPES.week, @RELEVANCE_TYPES.day
-                equivalent = @humanizeTime(value)
+                equivalent = @humanizeTime(value, type)
         equivalent
 
     getRatioPrecision: (a, b)=>
@@ -220,7 +221,6 @@ class HumanizeService
                 time_unit_translated = @pluralize({ value: value, single: @$translate("HUMANIZE_DAY"),   plural: @$translate("HUMANIZE_DAYS")   })
         
         word_end = @$translate('HUMANIZE_OF_THE')
-
         "#{value} #{time_unit_translated} #{word_end}"
 
 
