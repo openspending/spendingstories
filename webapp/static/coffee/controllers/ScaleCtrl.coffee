@@ -37,19 +37,29 @@ class ScaleCtrl
     onResultsChanged: (results)=>
         @scope.topStories   = _.filter results, (d)-> _.isObject(d) && d.sticky == true
         @scope.otherStories = _.filter results, (d)-> _.isObject(d) && d.sticky == false
-        # Value to be closed to
-        goal = @scope.search.query_usd;
-        # Index of the closest value
-        closestIdx = 0;
-        # Get only stories that are sticky
-        results = _.where results, sticky: true
-        _.each results, (d, idx)->
-            # Current closest value
-            closest    = results[closestIdx].current_value_usd
-            # Update the closest's idx if needed
-            closestIdx = idx if Math.abs(d.current_value_usd - goal) < Math.abs(closest - goal)                
+
         # Set the value
-        @scope.previewedStory = results[closestIdx] if results[closestIdx]?
+        if @scope.topStories.length
+            @scope.previewedStory = @findPreviewedStory(@scope.topStories)
+        else if @scope.otherStories.length
+            @scope.previewedStory = @findPreviewedStory(@scope.otherStories)
+        else
+            @scope.previewedStory = undefined
+
+
+    findPreviewedStory: (stories)=>
+        # Index of the closest value
+        closestIdx = 0
+        # Value to be closed to
+        goal = @scope.search.query_usd
+        _.each stories, (d, idx)->
+            # Current closest value
+            closest    = stories[closestIdx].current_value_usd
+            # Update the closest's idx if needed
+            closestIdx = idx if Math.abs(d.current_value_usd - goal) < Math.abs(closest - goal)   
+        
+        stories[closestIdx]
+
 
     setPreviewedStory: (d)=>
         @scope.previewedStory = d
