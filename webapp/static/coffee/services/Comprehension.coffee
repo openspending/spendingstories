@@ -16,7 +16,7 @@ class Comprehension
                 @$translate.uses()
             , (newVal, oldVal)=>
                 return unless newVal?
-                @search_set_data = @getSearchSet()
+                @search_set_data = @getSearchSetData()
                 @local_decimal_caracter = @$translate('HUMANIZE_DECIMAL_SEP')
 
                 (do @currency.all.getList).then (data) =>
