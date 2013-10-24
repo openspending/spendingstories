@@ -47,7 +47,6 @@ class ContributeCtrl
             title = @$translate('CONTRIBUTE_THANKS_MESSAGE')
         else
             title = "#{@$translate('CONTRIBUTE_TITLE')} / #{@$translate('STEP')} #{@scope.step+1}"
-        console.log 'title:', title
         @Page.setTitle(title)
 
     isDone: => @scope.step == @scope.stepCount
