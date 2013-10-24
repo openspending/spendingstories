@@ -82,7 +82,7 @@
             </div>
         </div>
     </div>
-    <h3 translate>SCALE_TOP_STORIES_TITLE</h3>
+    <h3 ng-if="topStories.length"> <span ng-show="otherStories.length" translate>SCALE_TOP_STORIES_TITLE</span></h3>
     <div class="top-strat">
         <scale-points
             data="topStories"
@@ -90,9 +90,10 @@
             currency="search.currency"
             click="pointSelection"
             ruler="search.query"
-            overview="true"></scale-points>
+            overview="true">
+        </scale-points>
     </div>
-    <h3 translate>SCALE_OTHER_STORIES_TITLE</h3>
+    <h3 ng-if="otherStories.length"> <span ng-show="topStories.length" translate>SCALE_OTHER_STORIES_TITLE</span></h3>
     <div class="other-strat">
         <scale-points
             data="otherStories"
@@ -102,7 +103,13 @@
             click="pointSelection"
             point-height="16"
             point-width="16"
-            overview="true"></scale-points>
-        </div>
+            overview="true">
+        </scale-points>
+    </div>
+    <div ng-if="!topStories.length && !otherStories.length" class="text-center bottom20">
+            <span translate>SCALE_NO_RESULTS_TEXT</span>
+            <p class="text-muted" translate>
+                TOO_MUCH_FILTERS
+            </p>
     </div>
 </div>
