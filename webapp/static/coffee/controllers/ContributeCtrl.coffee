@@ -3,9 +3,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ContributeCtrl
 
-    @$inject: ['$scope', 'Currency','Restangular', 'Page']
+    @$inject: ['$scope', '$translate', 'Currency','Restangular', 'Page']
 
-    constructor: (@scope, @Currency, @Restangular, @Page)->
+    constructor: (@scope, @$translate, @Currency, @Restangular, @Page)->
         @Page.setTitle('Contribute')
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables binding // AngularJS Models 
@@ -21,7 +21,6 @@ class ContributeCtrl
         @scope.themes     = Restangular.all("themes").getList()    
         # The story to build
         @scope.story      = currency: 'USD'
-
         # ──────────────────────────────────────────────────────────────────────
         # Scope function binding 
         # ──────────────────────────────────────────────────────────────────────
@@ -30,15 +29,26 @@ class ContributeCtrl
         @scope.progressStyle = @progressStyle
         @scope.reset         = @resetForm 
         @scope.submit        = @submitForm
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope $watch(s)
+        # ──────────────────────────────────────────────────────────────────────
+        @scope.$watch => 
+                @$translate.uses()
+            , ()=>
+                @updateTitle()
+                            
 
-    getForm: (step=@scope.step)=> 
-        if step >= @scope.stepCount
-            title = 'Thanks for contributing'
-        else
-            title = "Contribute / Step #{step+1}"
-
-        @Page.setTitle(title) 
+    getForm: (step=@scope.step)=>
+        @updateTitle()
         @scope["stepForm"+step]
+
+    updateTitle: ()=>
+        if @scope.step >= @scope.stepCount
+            title = @$translate('CONTRIBUTE_THANKS_MESSAGE')
+        else
+            title = "#{@$translate('CONTRIBUTE_TITLE')} / #{@$translate('STEP')} #{@scope.step+1}"
+        console.log 'title:', title
+        @Page.setTitle(title)
 
     isDone: => @scope.step == @scope.stepCount
     
