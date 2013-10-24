@@ -12,12 +12,17 @@ class Comprehension
 
     constructor: (@$translate, @rootScope, @currency) ->
         @search_set_data = []
+        # we set a watch on used language to initialize our search set 
+        # every time user switch language.
         @rootScope.$watch ()=>
                 @$translate.uses()
             , (newVal, oldVal)=>
                 return unless newVal?
                 @search_set_data = @getSearchSetData()
                 @local_decimal_caracter = @$translate('HUMANIZE_DECIMAL_SEP')
+                and_str = @$translate('AND')
+                of_str  = @$translate('OF')
+                @rejected_terms = ['', '+', '.', ',', and_str, of_str]
 
                 (do @currency.all.getList).then (data) =>
                     _.map data, (curr) =>
@@ -41,7 +46,7 @@ class Comprehension
 
         # First step: extract numbers from query (query is changed)
         [query_numbers, @query] = @extractNumbersFromQuery @query
-        terms = _.map atomize(@query), @searchValue if @query isnt ""
+        terms = _.map @atomize(@query), @searchValue if @query isnt ""
         if terms?
             terms = _.groupBy(_.flatten(terms), 'type')
             number_terms = terms[TYPES.number] || []
@@ -73,7 +78,8 @@ class Comprehension
         propositions
 
     extractNumbersFromQuery: (query) =>
-        query_numbers = query.match(/\d{1,3}([,|\.]?\s*\d{1,3})*/g)
+        # will remove all decimal numbers from user query, query is mutated. 
+        query_numbers = query.match(/\d+([,|\.]?\s*\d+)*/g)
         numbers = undefined
         if query_numbers?
             numbers = for number in query_numbers
@@ -81,13 +87,14 @@ class Comprehension
                     query  = query.replace(number, '')
                     return {
                         index: @getTermPosition(number)
-                        value: parseNumber(number)
+                        value: @parseNumber(number)
                         type:  TYPES.number
                     }
         return [numbers, query]
 
     extractNumbersFromTerms: (terms) =>
-        sum = _.reduce(terms, (memo, term)->
+        filtered_terms = _.filter terms, (t)-> _.isNumber t.value 
+        sum = _.reduce(filtered_terms, (memo, term)->
                 return term.value if memo is 0
                 if term.value > memo
                     return (memo or 1) * (term.value or 1)
@@ -96,17 +103,21 @@ class Comprehension
             , 0 )
         if sum > 0 then [sum] else undefined
 
-    parseNumber = (str_number)->
+    parseNumber: (str_number)=>
+        return if _.isEmpty str_number or str_number is ' '
         number = str_number.split(@local_decimal_caracter)
         sub_numbers = number[0].match(/\d+/g)
+        dec_numbers = number[1].match(/\d+/g) if number[1]?
         if sub_numbers? then n = sub_numbers.join('') else n = str_number
-        return parseInt(n)
+        if dec_numbers? then d = dec_numbers.join('') else d = '0'
+        numberz = parseInt(n) + parseFloat('0.' + d) 
+        return numberz
 
     getTermPosition: (term)=>
         return @original_query.indexOf(term)
 
-    atomize = (str)=>
-        _.without(str.split(/[\s+|-]/), '', 'and', '+' , '.', ',')
+    atomize: (str)=>
+        _.difference(str.split(/[\s+|-]/), @rejected_terms)
 
     searchValue: (term)=>
         results = _.map (@searchSet.search term), (elem) =>

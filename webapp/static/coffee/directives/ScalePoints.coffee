@@ -88,7 +88,7 @@ angular.module('stories')
                 max = Math.max dataset[dataset.length-1].converted_current_value, rulerValue
                 
                 # And extend the scale with the bounds, it's good to note that 
-                # we use a log base 20 to have cool values on the ticks                    
+                # we use a log 20 base to have cool (Cool ? Yes, cool) ticks                    
                 scale = d3.scale.log()
                           .base(20)
                           .domain([ min, max ])
