@@ -54,17 +54,8 @@ class TabsCtrl
         @scope.removeFilter        = @removeFilter
         @scope.removeTheme         = @removeTheme
 
-    setTitle: (tab, title)=>
-        @scope.tabs[tab].title = title 
-        @updateTitle()
-
-
-    updateTitle: =>
-        title =  @scope.mode
-        subtitle = @scope.tabs[@scope.mode].title
-        if subtitle?
-            title = "#{title} / #{subtitle}"
-        @Page.setTitle title
+    setTitle: (title)=>
+        @Page.setTitle(title)
 
     isCardsMode: ()=>
         @scope.mode == @MODES.cards

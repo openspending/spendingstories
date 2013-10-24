@@ -4,9 +4,10 @@
 class CardsCtrl
 
 
-    @$inject: ['$scope', 'searchService', 'shareService']
+    @$inject: ['$scope', '$translate', 'searchService', 'shareService']
 
-    constructor: (@scope, @searchService, Share, @Page) ->
+    constructor: (@scope, @$translate, @searchService, Share, @Page) ->
+        @scope.$parent.setTitle(@$translate('SEARCH_CARDS_TAB_HEADING'))
         # ──────────────────────────────────────────────────────────────────────
         # scope variables function binding
         # ──────────────────────────────────────────────────────────────────────
@@ -19,7 +20,6 @@ class CardsCtrl
         @scope.showSharing = @showSharing
         @scope.cardsFilter = @filterCards
         @scope.loadMore = @loadMore
-
         # For sharing purpose
         @scope.sharingAddress = (d) ->
             Share.getSharingAddress d.title, 'cards'
