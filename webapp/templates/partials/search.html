@@ -1,12 +1,16 @@
 <tabset>
-	<tab heading="[[ 'SEARCH_SCALE_TAB_HEADING' | translate ]]" active="tabs.scale.active" select="changeVisualization(tabs.scale)">		
-        {% include "partials/summary.html" %}
-		{% include "partials/scale.html" %}
+	<tab heading="[[ 'SEARCH_SCALE_TAB_HEADING' | translate ]]" active="tabs.scale.active" select="changeVisualization(tabs.scale)">
+		<div ng-if="mode == MODES.scale">
+	        {% include "partials/summary.html" %}
+			{% include "partials/scale.html" %}
+		</div>
 	</tab>
 	<tab heading="[[ 'SEARCH_CARDS_TAB_HEADING' | translate ]]"
 		 active='tabs.cards.active' 
-		 select="changeVisualization(tabs.cards)">		 
-        {% include "partials/summary.html" %}
-		{% include "partials/cards.html" %}
+		 select="changeVisualization(tabs.cards)">
+		<div ng-if="mode == MODES.cards">
+        	{% include "partials/summary.html" %}
+			{% include "partials/cards.html" %}
+		</div>
 	</tab>
 </tabset>
