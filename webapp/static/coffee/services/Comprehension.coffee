@@ -3,25 +3,14 @@ TYPES = {
     currency: 'currency'
 }
 
-# Search set is the set who will be used for fuzzy searching values.
-# It regroups currencies and numbers to get the most relevant result for each
-# search term
-
-
-
-DECIMAL_CARACTER = {
-    'fr': ','
-    'en': '.'
-}
-
 SEARCH_OPTS =
     keys: ['name', 'value', 'symbol']
     treshold: 0.3
 
 class Comprehension
-    @$inject : ['$translate', '$rootScope', 'Currency']
+    @$inject: ['$translate', '$rootScope', 'Currency']
 
-    constructor : (@$translate, @rootScope, @currency) ->
+    constructor: (@$translate, @rootScope, @currency) ->
         @search_set_data = []
         @rootScope.$watch ()=>
                 @$translate.uses()
@@ -40,7 +29,7 @@ class Comprehension
                             priority : curr.priority
                     @searchSet = new Fuse @search_set_data, SEARCH_OPTS
 
-    getPropositions : (query) =>
+    getPropositions: (query) =>
         #LowerCase the query for easier comparisons
         @original_query = query
         @query = do query.toLowerCase
@@ -137,7 +126,10 @@ class Comprehension
     defaultNumbers = () =>
         [100000]
 
-    getSearchSet: ()=>
+    getSearchSetData: ()=>
+        # Search set is the set who will be used for fuzzy searching values.
+        # It regroups currencies and numbers to get the most relevant result for each
+        # search term
         SEARCH_SET_DATA = [
                 id: 0
                 value: 0
