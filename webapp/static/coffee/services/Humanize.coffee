@@ -127,12 +127,14 @@ class HumanizeService
         # Über rounding 
         Math.round(value * Math.pow(10, decimals))/Math.pow(10, decimals) 
 
-
-    pluralLimit: ()=>
-        parseInt(@$translate('PLURAL_LIMIT')) or 1
-
     pluralize: (opts)=>
-        if Math.abs(opts.value) > @pluralLimit() then (opts.plural or opts.single + 's') else opts.single
+        is_plural = (value)=>
+            limit = parseInt(@$translate('PLURAL_LIMIT')) or 1
+            if limit is 1
+                return value > limit
+            else
+                return value >= limit
+        if is_plural(opts.value) then (opts.plural or opts.single + 's') else opts.single
 
     humanizeValue: (value, suffix)=>
         return null unless value?
