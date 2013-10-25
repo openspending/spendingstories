@@ -142,10 +142,11 @@ class HumanizeService
             # use it to humanize some amount and add a suffix (that can be 
             suffix = @pluralize value: value, single: suffix
 
-        # do we need to use number words ? 
-        use_wording = value >= Math.pow(10, 6) and value <= Math.pow(10, 15)
-        if use_wording
+        use_words = value >= Math.pow(10, 6) and value <= Math.pow(10, 15)
+        # if value is between 1 million and 1 000 trillions we use words
+        if use_words 
             wording = @intword(value)
+        # else we use the comma notations
         else
             # do we need to use the comma notation (1,000,000) or not ?
             if value < 1
@@ -155,7 +156,7 @@ class HumanizeService
 
         # some languages like French need some union words to express an amount
         # like 'million' or 'milliard' need to be expressed like example
-        # ex: 1 billion US Dollars => 1 milliard 'de' US dollars
+        # ex: 2 billion USD => 2 milliards 'de' USD
         union_word = @$translate('HUMANIZE_CURRENCY_UNION_WORD')
         union = ' '
         unless _.isEmpty(union_word) or !use_wording
@@ -165,21 +166,33 @@ class HumanizeService
         
 
     humanizeEquivalence: (story, query)=>
+        # used to get the equivalence wording between a story and the user query
         return null unless story?
         value = story.relevance_value
         type  = story.relevance_type
+        # in function of the relevance type we have different kind of equivalence
         switch type
+            # equivalent type means story amount is equivalent (==) to the query
+            # amount 
             when @RELEVANCE_TYPES.equivalent
                 equivalent = @humanizeEquivalent(value)
+            # half type means story amount is equal to half of the user query
             when @RELEVANCE_TYPES.half
                 if story.type is @STORY_TYPES.discrete
                     equivalent = @humanizePercentage(50)
                 else
                     equivalent = @humanizeTime(6, @RELEVANCE_TYPES.month)
+            # multiple type is set when story can be expressed as a multiple of 
+            # the user query (story amount = query * x)
             when @RELEVANCE_TYPES.multiple
                 equivalent = @humanizeMultiple(value)
+            # similar to multiple type, except that the multiple is inferior to 
+            # one, story amount is a percentage of the user query 
             when @RELEVANCE_TYPES.percentage
                 equivalent = @humanizePercentage(value)
+            # time equivalences are set when the story is a repeatable event
+            # like a year budget for example, in that case the equivalence is 
+            # express in units of times (like month(s), week(s) and day(s))
             when @RELEVANCE_TYPES.month, @RELEVANCE_TYPES.week, @RELEVANCE_TYPES.day
                 equivalent = @humanizeTime(value, type)
         equivalent
