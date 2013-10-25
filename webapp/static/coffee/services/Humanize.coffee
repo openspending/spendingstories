@@ -108,24 +108,30 @@ class HumanizeService
         return parseInt(String(value_f).split('.')[0])
 
     getDecimalNumber: (value_f, max_decimals=5)=>
+        # utility method to know the number of 0 after comma in a float
         return 0 unless value_f? and value_f isnt 0
-        float_part_s = String(value_f).split('.')[1]
-        i = 0
-        if value_f <= (1 / Math.pow(10, max_decimals)) 
+        exp = parseInt(value_f.toExponential().split('e')[1])
+        nb_decimal = Math.abs(exp)
+        if nb_decimal <= max_decimals
+            return nb_decimal
+        else 
             return max_decimals
-        else
-            if float_part_s
-                c = float_part_s[i]
-                while (c == '0') && (i <= max_decimals) 
-                    do()->
-                        c = float_part_s[i]
-                        i += 1
-        return i
 
     round: (value, decimals=2)=>
         return null unless value?
         # Über rounding 
-        Math.round(value * Math.pow(10, decimals))/Math.pow(10, decimals) 
+        # operating on floats can get tricky, so to round with a number of 
+        # decimals we use a simple solution
+        # 1. we multiple the given `value` to 10 power (number of decimal)
+        #    This way 0.0003 to be round to 2 decimal will be 0.03
+        to_be_rounded = value * Math.pow(10, decimals)
+        # 2. we round that value, if it's < 1 it will result 0, in that case 
+        #    we set the result to one. 0.03 => 1
+        rounded = Math.round(to_be_rounded) or 1
+        # 3. we divide the rounded number by 10 power (numbero of decimal)
+        #    this way we can retrieve a float number rounded, therefor, 0.00003 
+        #    will be rounded to 0.01
+        rounded / Math.pow(10, decimals) 
 
     pluralize: (opts)=>
         is_plural = (value)=>
