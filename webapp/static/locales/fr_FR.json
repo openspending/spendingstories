@@ -2,6 +2,7 @@
     "HUMANIZE_IS": "représente",
     "HUMANIZE_ARE": "représentent",
     "HUMANIZE_OF": "de",
+    "HUMANIZE_LESS_THAN": "moins de",
     "HUMANIZE_MULTIPLE": "fois",
     "HUMANIZE_MULTIPLE_PLURAL": "fois",
     "SEARCH_CARDS_TAB_HEADING": "Visualisation en Grille",

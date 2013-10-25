@@ -2,6 +2,7 @@
     "HUMANIZE_IS": "is",
     "HUMANIZE_ARE": "are",
     "HUMANIZE_OF": "of",
+    "HUMANIZE_LESS_THAN": "less than",
     "HUMANIZE_MULTIPLE": "time",
     "HUMANIZE_MULTIPLE_PLURAL": "times",
     "SEARCH_CARDS_TAB_HEADING": "Cards visualization",

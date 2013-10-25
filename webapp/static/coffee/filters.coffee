@@ -96,26 +96,29 @@ angular
                         if decimals == 0
                             decimals = 1
 
-                result   = Humanize.round result, decimals
+                result = Humanize.round result, decimals
                 # if result number have less decimals than the original float 
                 # we need to be sure to have the right number of decimals  
                 decimals = Humanize.getDecimalNumber result 
  
                 if result < Math.pow(10,3) || result > Math.pow(10, 15)
-                    result = Humanize.intcomma(result, decimals)
+                    result_str = Humanize.intcomma(result, decimals)
                 else
-                    result = Humanize.intword(result, decimals)
+                    result_str = Humanize.intword(result, decimals)
  
                 if use_percentage
-                    result += '%'
+                    result_str += '%'
                     wording_end = $translate('HUMANIZE_OF')
+                    if result <= Math.pow(10, -5) and percentage < result 
+                        lt = $translate('HUMANIZE_LESS_THAN')
+                        wording_begin = "#{wording_begin} #{lt}"
                  else
                     wording_end = Humanize.pluralize
                                         value: value
                                         single: $translate('HUMANIZE_MULTIPLE')
                                         plural: $translate('HUMANIZE_MULTIPLE_PLURAL')
 
-                return "#{wording_begin} #{result} #{wording_end}"
+                return "#{wording_begin} #{result_str} #{wording_end}"
 
         ]
     )

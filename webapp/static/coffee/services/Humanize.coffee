@@ -51,8 +51,6 @@ class HumanizeService
         decimals = (if decimals is `undefined` then 0 else decimals)
         number_format number, decimals, @$translate('HUMANIZE_DECIMAL_SEP'), @$translate('HUMANIZE_THOUSAND_SEP')
 
-
-
     intword: (number) =>
         ###
         Took from [Humanize.js](https://github.com/milanvrekic/JS-humanize)
@@ -165,7 +163,7 @@ class HumanizeService
         # ex: 2 billion USD => 2 milliards 'de' USD
         union_word = @$translate('HUMANIZE_CURRENCY_UNION_WORD')
         union = ' '
-        unless _.isEmpty(union_word) or !use_wording
+        unless _.isEmpty(union_word) or !use_words
             union += "#{union_word} "
 
         "#{wording}#{union}#{suffix}"
