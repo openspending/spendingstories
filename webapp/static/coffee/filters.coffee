@@ -46,6 +46,14 @@ angular
                 if _currency? then Humanize.humanizeValue value, _currency.name
 
         ]
+    )    
+    .filter("humanizeValueISO", ["Currency","humanizeService", (Currency, Humanize)->
+            return (value, currency="USD") ->
+                return null unless angular.isNumber value
+                _currency = Currency.list[currency]
+                if _currency? then Humanize.humanizeValue value, _currency.iso_code, false
+
+        ]
     )
     .filter("nl2br", ->
         return (str='')-> (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br />$2')

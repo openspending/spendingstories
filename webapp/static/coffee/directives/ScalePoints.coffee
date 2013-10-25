@@ -172,8 +172,6 @@ angular.module('stories')
                     klasses = []
                     if scale(t) > (workspaceWidth - 100)
                         klasses.push("aligned-right")
-                    if t > 1e6
-                        klasses.push("smaller")
                     return klasses.join(' ')
                 # Function that return the point css
                 scope.pointStyle = (d)->

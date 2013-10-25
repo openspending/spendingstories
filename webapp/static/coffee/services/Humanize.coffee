@@ -136,10 +136,12 @@ class HumanizeService
                 return value >= limit
         if is_plural(opts.value) then (opts.plural or opts.single + 's') else opts.single
 
-    humanizeValue: (value, suffix)=>
+    humanizeValue: (value, suffix, pluralizeSuffix=true)=>
         return null unless value?
-        # use it to humanize some amount and add a suffix (that can be 
-        suffix = @pluralize value: value, single: suffix
+        if pluralizeSuffix
+            # use it to humanize some amount and add a suffix (that can be 
+            suffix = @pluralize value: value, single: suffix
+        
         use_wording = value >= Math.pow(10, 6) and value <= Math.pow(10, 15)
         # pluralized if needed)
         if use_wording
