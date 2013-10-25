@@ -141,21 +141,25 @@ class HumanizeService
         if pluralizeSuffix
             # use it to humanize some amount and add a suffix (that can be 
             suffix = @pluralize value: value, single: suffix
-        
+
+        # do we need to use number words ? 
         use_wording = value >= Math.pow(10, 6) and value <= Math.pow(10, 15)
-        # pluralized if needed)
         if use_wording
             wording = @intword(value)
         else
+            # do we need to use the comma notation (1,000,000) or not ?
             if value < 1
                 wording = value
             else
                 wording = @intcomma(value)
+
+        # some languages like French need some union words to express an amount
+        # like 'million' or 'milliard' need to be expressed like example
+        # ex: 1 billion US Dollars => 1 milliard 'de' US dollars
         union_word = @$translate('HUMANIZE_CURRENCY_UNION_WORD')
+        union = ' '
         unless _.isEmpty(union_word) or !use_wording
-            union = " #{union_word} "
-        else
-            union = ' '
+            union += "#{union_word} "
 
         "#{wording}#{union}#{suffix}"
         
