@@ -95,7 +95,11 @@ angular
                         decimals = Humanize.getDecimalNumber(percentage)
                         if decimals == 0
                             decimals = 1
-                result = Humanize.round result, decimals
+
+                result   = Humanize.round result, decimals
+                # if result number have less decimals than the original float 
+                # we need to be sure to have the right number of decimals  
+                decimals = Humanize.getDecimalNumber result 
  
                 if result < Math.pow(10,3) || result > Math.pow(10, 15)
                     result = Humanize.intcomma(result, decimals)
