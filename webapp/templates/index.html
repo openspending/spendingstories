@@ -62,13 +62,7 @@
         <div class="container">        
             <div class="row">
                 <div class="col-sm-1 col-md-2">
-                    <div ng-controller="languageCtrl">
-                        <ul class="language-list">
-                            <li class="language" ng-class="language === l.code ? 'activated' : ''" ng-repeat="l in languages">
-                                <a ng-click="changeLanguage(l)">[[ l.name|truncate:2|uppercase ]]</a>
-                            </li>
-                        </ul>
-                    </div>
+                    {% include "partials/languages.html" %}
                     <div class="col links">
                         <a href="#/about">[[about]]</a>
                     </div>

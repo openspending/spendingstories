@@ -18,7 +18,7 @@
             var STATIC_URL = window.STATIC_URL = window.STATIC_URL || "{% static '' %}";
         </script>
     </head>
-    <body>        
+    <body ng-cloak>        
         {% block content %}{% endblock %}           
 
         {% compress js %}    
