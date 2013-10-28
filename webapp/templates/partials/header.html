@@ -6,7 +6,6 @@
 				<span>
 					[[ 'HEADER_AUTHOR_BY' | translate ]]<a href="http://www.okfn.org/" target="_blank">OKF</a>
 				</span>
-				
 			</i>
 		</h1>
 
@@ -32,7 +31,12 @@
 					<input ng-click="compareclick = true" type="submit" class="btn btn-primary" value="[[ 'HEADER_COMPARE_BUTTON' | translate ]]" />
 				</div>
 			</div>
-			<span class="help-block" translate>HEADER_SAMPLE_QUERY</span>
+			<span class="help-block">
+				<span translate>HEADER_SAMPLE_QUERY_INTRO</span>
+				<a href="/#/search?q=12000000&c=GBP" translate>HEADER_SAMPLE_QUERY_1</a>,
+				<a href="/#/search?q=5000&c=USD" translate>HEADER_SAMPLE_QUERY_2</a>,
+				<a href="/#/search?q=300000&c=EUR" translate>HEADER_SAMPLE_QUERY_3</a>
+			</span>
 		</form>
 
 	</div>
