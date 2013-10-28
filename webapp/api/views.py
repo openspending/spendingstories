@@ -43,6 +43,9 @@ import serializers
 #
 # -----------------------------------------------------------------------------
 class StoryPermission(permissions.BasePermission):
+    """
+    Permissions for Stories
+    """
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             # Check permissions for read-only request
@@ -60,6 +63,45 @@ class StoryPermission(permissions.BasePermission):
 class StoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows story to be viewed or edited.
+    Results can be filtered using the following fields:
+    
+    ### Filter fields 
+
+    - **sticky** &nbsp; `Boolean`  <br/>
+
+        Will filter stories based on their `sticky` attribute (Sticky stories are tabloid stories selected by administrators).<br/>
+        *Possible values:* `True`, `False`, `''` *(empty is understood as True)*<br/>
+    
+    - **country** &nbsp; `String`  <br/>
+
+        Will filter stories based on the given country<br/>
+        *Possible values:* The iso code of the wanted country, see [/api/countries/](/api/countries/) for more details.
+
+    
+    - **currency** &nbsp; `String`  <br/>
+        
+        Will filter stories based on the given currency<br/>
+        *Possible values:* The iso code of the wanted currency, see [/api/currencies/](/api/currencies/) for more details.
+    
+    - **type** &nbsp; `String`  <br/>
+        
+        Will filter stories based on their type.<br/>
+        *Possible values:* `over_one_year`, `discrete`, see [the wiki page](/api/currencies/) for more details.
+
+
+    - **title** &nbsp; `String`  <br/>
+
+        Will filter stories based on their title.<br/>
+
+    
+    - **themes** &nbsp; `String`  - *stackable* <br/>
+    
+        Will filter stories based on their theme(s).<br/>
+        > **Note:** this attribute is stackable. This means you can add multiple times the same attribute to the URL.<br/>
+        > `GET /api/stories/?themes=aid&themes=health` will return all stories having `aid` **OR** `health` in their themes 
+
+
+
     """
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
