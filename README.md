@@ -183,8 +183,19 @@ Static files (css, javascript, images etc...) are located in `webapp/static`
 
 ## How to customize Spending Stories
 
-TODO (Where are the views representing the stories, how to change the branding, title, logo, colors)
+### Title
 
+Spending Stories' title is defined in a [translation variable](#add-or-edit-translation): `HEADER_APP_TITLE`. However, if you want to change the HTML title tag, you have to manually modify it in `webapp/templates/base.html`.
+
+### Colors
+
+Colors are defined in [less](http://lesscss.org/) variables. They can be overridden in `webapp/static/less/base.less`.
+
+Notable variables:
+
+* `body-bg`: defines the page background
+* `brand-primary`: defines color for links, buttons and sticky cards' background
+* `strat-main-color`: defines the visualization background color
 
 ## How to translate Spending Stories
 
