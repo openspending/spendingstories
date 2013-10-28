@@ -4,7 +4,6 @@
 @import 'bootstrap-overload.less';
 @import 'vendor/bootstrap-select.less';
 
-
 @zindex-content: 100;
 @zindex-loading: @zindex-content+100;
 @zindex-header : @zindex-loading+100;
@@ -12,6 +11,8 @@
 
 @reduce-bg:darken(@body-bg, 3%);
 @reduce-border:darken(@reduce-bg, 6%);
+
+@strat-main-color: #403F3F;
 
 header {
 	
@@ -240,7 +241,7 @@ header {
 			right:0;
 			left:0;
 	        .progress-striped .progress-bar();
-	        .progress-bar-variant(#333232);
+	        .progress-bar-variant(darken(@strat-main-color, 5));
 	        .progress.active .progress-bar();
 	        .opacity(1);
 		}
@@ -325,12 +326,11 @@ header {
 		}
 
 		.top-strat, .other-strat {
-			@main-color: #403F3F;
-			@shadow-color: darken(@main-color, 10);
-			@graduation-color: lighten(@main-color, 65);
+			@strat-shadow-color: darken(@strat-main-color, 10);
+			@strat-graduation-color: lighten(@strat-main-color, 65);
 
 			clear:left;
-			background:@main-color;			
+			background:@strat-main-color;			
 			overflow:auto;
 			z-index:@zindex-content+50;
 			position:relative;
@@ -444,14 +444,14 @@ header {
 				height: 30px;
 
 				width: 100%;
-				border-bottom: solid 3px @shadow-color;
+				border-bottom: solid 3px @strat-shadow-color;
 
 				.tick {
 					height: 30%;
 					bottom:0;
 					width: 0px;
 					border:solid 5px transparent;
-					border-bottom-color:@shadow-color;	
+					border-bottom-color:@strat-shadow-color;	
 
 					&.small {					
 						height: 30%;
@@ -467,7 +467,7 @@ header {
 
 					.axis-label {
 						font-weight: bold;
-						color: lighten(@graduation-color, 20);
+						color: lighten(@strat-graduation-color, 20);
 						font-size: 0.70em;
 						min-width: @label-width;
 						text-align: center;
@@ -509,7 +509,7 @@ header {
 				left:50%;
 				margin-left:-10px;
 				border:transparent 10px solid;				
-				border-top-color:#333232;
+				border-top-color: darken(@strat-main-color, 5);
 			}		
 		}
 	}	
