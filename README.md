@@ -183,7 +183,7 @@ Static files (css, javascript, images etc...) are located in `webapp/static`
 
 ## How to customize Spending Stories
 
-TODO (Where are the views representing the stories, how to change the branding)
+TODO (Where are the views representing the stories, how to change the branding, title, logo, colors)
 
 
 ## How to translate Spending Stories
