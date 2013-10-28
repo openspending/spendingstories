@@ -43,8 +43,8 @@ class SearchService
         # ──────────────────────────────────────────────────────────────────────
         # First initialization of instance attributes
         # ──────────────────────────────────────────────────────────────────────
-        @updateStories(searchParams)
-        @updateQuery(searchParams)
+        @updateQuery searchParams, () =>
+            @updateStories searchParams
 
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
@@ -62,7 +62,7 @@ class SearchService
         @updateQuery(params)
         @updateStories(params)
         
-    updateQuery: (params)=>
+    updateQuery: (params, cb = angular.noop)=>
         # will update instance variables & convert the query amount in USD if 
         # needed (currency != 'USD')
         # NOTE: theses changes may be optimised if we check changes 
@@ -74,21 +74,25 @@ class SearchService
         if currency is 'USD'
             @query_usd = @query 
             @currency  = currency
+            do cb
         # Performs a USD convertion
         # The currency is already available
         else if @Currency.list[currency]?
             c = @Currency.list[currency]
             @currency = c.iso_code
             @query_usd = if c? then @query/c.rate else null
+            do cb
         # The currency isn't loaded yet
         else
             @Currency.get(currency).then (c)=>
                 @currency = c.iso_code
                 @query_usd = if c? then @query/c.rate else null
+                do cb
     
     updateStories: (params)=>
         # will fire a new request on API with the new paramters
         @results = @Restangular.copy(@results) if @results?
+        console.log @getAPIParams(params)
         @results = @Restangular.all('stories-nested').getList(@getAPIParams(params))
 
     getAPIParams: (newParams)=>
