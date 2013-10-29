@@ -30,6 +30,8 @@ class ScaleCtrl
         @scope.embedFrame = (d)->
             Share.getEmbedFrame d.title
 
+        @scope.setLoading no
+
     changeTitle: =>
         parent_scope = @scope.$parent
         parent_scope.setTitle @scope.previewedStory.title if @scope.previewedStory?

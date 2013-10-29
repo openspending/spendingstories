@@ -26,6 +26,8 @@ class CardsCtrl
         @scope.embedFrame = (d) ->
             Share.getEmbedFrame d.title
 
+        @scope.setLoading no
+
     showDetails: (d)=>
         # show a card detail
         d.show = if d.show is 'infos' then 'preview' else 'infos'

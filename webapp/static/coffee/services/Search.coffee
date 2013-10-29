@@ -92,7 +92,6 @@ class SearchService
     updateStories: (params)=>
         # will fire a new request on API with the new paramters
         @results = @Restangular.copy(@results) if @results?
-        console.log @getAPIParams(params)
         @results = @Restangular.all('stories-nested').getList(@getAPIParams(params))
 
     getAPIParams: (newParams)=>
