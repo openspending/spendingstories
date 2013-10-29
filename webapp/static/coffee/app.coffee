@@ -43,8 +43,7 @@ angular
                 $interpolateProvider.endSymbol   ']]'
 
                 # Avoid to see translation key
-                resolveTranslate =
-                    factory: ($translate)->
+                resolveTranslate = ($translate)->
                         $translate.uses()
 
 
@@ -54,25 +53,25 @@ angular
                         # Routing without templates: http://stackoverflow.com/a/14412057/885541
                         template: '<!-- leave not empty to avoid useless loading (and bugs) ! -->'
                         controller: 'homeCtrl'
-                        resolve: resolveTranslate
+                        resolve:  resolveTranslate
                     )
                     .when('/search/', 
                         controller: 'tabsCtrl'
                         templateUrl: "./partial/search.html"
                         reloadOnSearch: false
-                        resolve: resolveTranslate 
+                        resolve:  resolveTranslate 
 
                     )
                     .when('/contribute/',
                         controller: 'contributeCtrl'
                         templateUrl: "./partial/contribute.html"
-                        resolve: resolveTranslate  
+                        resolve:  resolveTranslate  
 
                     )
                     .when('/about',
                         controller: 'staticPageCtrl'
                         templateUrl: './partial/staticpage.html'
-                        resolve: resolveTranslate  
+                        resolve:  resolveTranslate  
 
                     )
         ]
