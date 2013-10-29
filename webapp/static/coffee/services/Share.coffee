@@ -14,9 +14,11 @@ class ShareService
         "q=#{search.q}&c=#{search.c}"
 
     getSharingAddress : (title, viz='scale') =>
+        title = encodeURIComponent title
         (do @getBaseUrl) + "/#/search/?#{do @getBaseSearch}&visualization=#{viz}&title=#{title}"
 
     getEmbedFrame : (title) =>
+        title = encodeURIComponent title
         url = do @getBaseUrl
         url += "/embed?#{do @getBaseSearch}&title=#{title}"
         '<iframe src="' + url + '" width="244" height="242" frameborder="0"></iframe>'

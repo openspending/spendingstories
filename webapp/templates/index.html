@@ -57,7 +57,7 @@
 
 {% block content %}
     {% include "partials/header.html" %}
-    <div ng-view id="content" class="container"></div>
+    <div ng-view id="content" class="container" ng-class="{loading: loading, home : getContentClass()}"></div>
     <footer>
         <div class="container">        
             <div class="row">

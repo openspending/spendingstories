@@ -226,8 +226,12 @@ header {
 		}
 
 	}
-	
-	.scale-strats.loading, .cards-content.loading {
+
+	&.loading, .scale-strats.loading, .cards-content.loading {
+		&.home {
+			display: none;
+		}
+
 		height:100px;
 		overflow:hidden;
 		position:relative;
@@ -244,6 +248,20 @@ header {
 	        .progress-bar-variant(darken(@strat-main-color, 5));
 	        .progress.active .progress-bar();
 	        .opacity(1);
+		}
+	}
+
+	&.loading {
+		background: #fff;
+		border-left: 10px solid @body-bg;
+		border-right: 10px solid @body-bg;
+		height: 200px;
+
+		&:after {
+			top:7px;
+			bottom:7px;
+			right:7px;
+			left:7px;
 		}
 	}
 
