@@ -9,7 +9,8 @@ angular
     ])
     .run(
         [             
-            '$rootScope', 
+            '$rootScope',
+            '$location',
             ($rootScope, $location)->
                 # Location available within templates
                 $rootScope.location = $location
@@ -43,8 +44,8 @@ angular
                 $interpolateProvider.endSymbol   ']]'
 
                 # Avoid to see translation key
-                resolveTranslate = ($translate)->
-                        $translate.uses()
+                resolveTranslate = ($scope)->
+                        $scope.$on '$translateLoadingSuccess'
 
 
                 # Bind routes to the controllers
