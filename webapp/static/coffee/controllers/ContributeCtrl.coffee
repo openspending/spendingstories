@@ -6,7 +6,6 @@ class ContributeCtrl
     @$inject: ['$scope', '$translate', 'Currency','Restangular', 'Page']
 
     constructor: (@scope, @$translate, @Currency, @Restangular, @Page)->
-        @Page.setTitle(@$translate('CONTRIBUTE_TITLE'))
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables binding // AngularJS Models 
         # ──────────────────────────────────────────────────────────────────────  
@@ -37,7 +36,7 @@ class ContributeCtrl
                 @$translate.uses()
             , ()=>
                 @updateTitle()
-                
+
         @scope.$parent.setLoading false
                             
 
