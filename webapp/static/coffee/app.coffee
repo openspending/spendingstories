@@ -50,8 +50,6 @@ angular
                     .when('/',
                         # Routing without templates: http://stackoverflow.com/a/14412057/885541
                         template: '<!-- leave not empty to avoid useless loading (and bugs) ! -->'
-                        controller: 'homeCtrl'
-                        reloadOnSearch: false
                     )
                     .when('/search/', 
                         controller: 'tabsCtrl'
