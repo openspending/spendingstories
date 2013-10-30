@@ -14,6 +14,19 @@
 
 @strat-main-color: #403F3F;
 
+body {
+	&:after {
+		z-index: @zindex-header;
+		.transition(opacity 1s);
+		.opacity(0);
+	}
+	&.loading:after {
+		opacity: 1 !important;
+		background-color: @body-bg;
+	}
+
+}
+
 header {
 	
 	padding:100px 10px;
