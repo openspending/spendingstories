@@ -14,11 +14,22 @@ class EmbedCtrl
 
 angular.module 'storiesServices', []
 angular.module 'storiesFilters', []
-(angular.module 'stories', ['restangular', 'storiesServices', 'storiesFilters'])
-.config ['RestangularProvider', '$interpolateProvider', (RestangularProvider, $interpolateProvider) ->
+(angular.module 'stories', ['restangular', 'storiesServices', 'storiesFilters', "pascalprecht.translate"])
+.run(['$rootScope', ($rootScope)->
+    $rootScope.translationLoaded = false
+    $rootScope.$on '$translateLoadingSuccess', ()->
+        $rootScope.translationLoaded = true
+])
+.config ['RestangularProvider', '$interpolateProvider', '$translateProvider', (RestangularProvider, $interpolateProvider, $translateProvider) ->
+    $translateProvider.useStaticFilesLoader
+                prefix: STATIC_URL + 'locales/'
+                suffix: '.json'
+    $translateProvider.preferredLanguage('en_GB')
+
     RestangularProvider.setBaseUrl("/api")
     RestangularProvider.setRequestSuffix('/')
     RestangularProvider.setDefaultHttpFields cache: true
+
     $interpolateProvider.startSymbol '[['
     $interpolateProvider.endSymbol   ']]'
 ]

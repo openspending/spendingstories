@@ -22,6 +22,8 @@
         <script type="text/javascript"   src="{% static 'js/vendor/angular/ui-bootstrap-custom-tpls-0.5.0.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/restangular.js' %}"></script>
         <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-masonry.min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-translate.min.js' %}"></script>
+        <script type="text/javascript"   src="{% static 'js/vendor/angular/angular-translate-loader-static-files.min.js' %}"></script>
 
         <script type="text/coffeescript" src="{% static 'coffee/controllers/EmbedCtrl.coffee' %}"></script>
 
@@ -31,6 +33,7 @@
 
         <script type="text/coffeescript" src="{% static 'coffee/controllers/PageCtrl.coffee' %}"></script>
         <script type="text/coffeescript" src="{% static 'coffee/filters.coffee' %}"></script>
+        <script type="text/coffeescript" src="{% static 'coffee/services/Humanize.coffee' %}"></script>
     {% endcompress %}
 {% endblock %}
 
@@ -44,10 +47,10 @@
                     <div class="card-wrapper" ng-class="d.show">
 
                         <div class="card-sharing">
-                            <h6>Share this story</h6>
+                            <h6 translate>SHARE_THIS_STORY_TITLE</h6>
                             <input class="form-control" readonly="true" value="[[currentUrl]]&title=[[d.title]]" />
-                            <h6>Embed this story</h6>
-                            <textarea readonly="true" class="form-control"><iframe></iframe></textarea>
+                            <h6 translate>EMBED_THIS_STORY_TITLE</h6>
+                            <textarea readonly="true" class="form-control"></textarea>
                         </div>
 
                         <div class="card-preview">
@@ -65,7 +68,7 @@
                             <p>
                                 <i class="icon-calendar"></i> [[d.year]]
                                 <span ng-if="d.source">
-                                    &#8212; <a ng-href="[[d.source]]">Read the story</a>
+                                    &#8212; <a ng-href="[[d.source]]" translate>CARDS_SOURCE_BUTTON</a>
                                 </span>
                             </p>
                             <!--p>
@@ -91,7 +94,7 @@
                 <div class="card-footer">
                     <a ng-click="showDetails(d)" class="toggler clickable">
                         <i class="icon-eye-open"></i>
-                        More info
+                        [[ 'CARDS_MORE_INFO_BUTTON' | translate ]]
                     </a>
                 </div>
             </div>
