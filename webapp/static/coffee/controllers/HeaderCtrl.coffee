@@ -1,9 +1,11 @@
 class HeaderCtrl
     @$inject: [
+        # AngularJS + vendor dependencies injection
         '$scope', '$routeParams', '$location','$filter', '$translate'
+        # Custom services injection 
         'comprehensionService', 'Currency', 'humanizeService']
 
-    constructor: (@scope, @routeParams, @location, @filter, @$translate ,@comprehension, @Currency, @Humanize)->
+    constructor: (@scope,@routeParams,@location,@filter,@$translate,@Comprehension,@Currency,@Humanize)->
         @searchParams = @location.search()
         @scope.currenciesLoaded = @Currency.loaded
         @scope.user_query = undefined
@@ -65,7 +67,7 @@ class HeaderCtrl
         @scope.compareclick = no
 
     getPropositions: (viewValue) =>
-            @comprehension.getPropositions viewValue
+            @Comprehension.getPropositions viewValue
 
 
 angular.module('stories').controller 'headerCtrl', HeaderCtrl
