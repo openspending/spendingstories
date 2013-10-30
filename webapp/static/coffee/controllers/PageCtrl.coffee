@@ -10,12 +10,7 @@ class PageCtrl
         @scope.loading = yes
 
         @scope.getContentClass = =>
-            # If we aren't on the homepage
-            # return a class that reduce the header
-            if _.indexOf(['/', ''], @location.path()) is -1
-                no
-            else
-                yes
+            _.indexOf(['/', ''], @location.path()) isnt -1
 
         @scope.setLoading = (loading) =>
             @scope.loading = loading
