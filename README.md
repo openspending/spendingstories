@@ -183,6 +183,8 @@ Static files (css, javascript, images etc...) are located in `webapp/static`
 
 ## How to customize Spending Stories
 
+Spending Stories uses [Twitter Bootstrap](http://getbootstrap.com/) for its style.
+
 ### Title
 
 Spending Stories' title is defined in a [translation variable](#add-or-edit-translation): `HEADER_APP_TITLE`. However, if you want to change the HTML title tag, you have to manually modify it in `webapp/templates/base.html`.
@@ -198,7 +200,13 @@ Notable variables:
 * `strat-main-color`: defines the visualization background color
 * `text-color`: defines the color for most of the texts
 
-Acceptable values are hexadecimal colors (`#000000`), rgb colors (`rgb(0,0,0)`) or [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names).
+Acceptable values are hexadecimal colors, rgb colors or [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names):
+
+```css
+@body-bg: rgb(80, 80, 80);
+@strat-main-color: #403F3F;
+@text-color: black;
+```
 
 ## How to translate Spending Stories
 
