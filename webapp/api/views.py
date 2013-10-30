@@ -62,7 +62,9 @@ class StoryPermission(permissions.BasePermission):
             return True
 
 class StoryViewSet(viewsets.ModelViewSet):
-    __doc__ = """API endpoint that allows story to be viewed or edited.""" + documentation.STORY_ENDPOINT
+    """
+    API endpoint that allows story to be viewed or edited.
+    """
 
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
@@ -97,7 +99,10 @@ class StoryViewSet(viewsets.ModelViewSet):
         return response
 
 class StoryNestedViewSet(StoryViewSet):
-    __doc__ = """API endpoint that allows story to be viewed in a nested mode.""" + documentation.STORY_ENDPOINT 
+    """
+    API endpoint that allows story to be viewed in a nested mode.
+    """
+     
     serializer_class = serializers.StoryNestedSerializer
 
 # -----------------------------------------------------------------------------
