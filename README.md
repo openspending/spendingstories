@@ -196,6 +196,9 @@ Notable variables:
 * `body-bg`: defines the page background
 * `brand-primary`: defines color for links, buttons and sticky cards' background
 * `strat-main-color`: defines the visualization background color
+* `text-color`: defines the color for most of the texts
+
+Acceptable values are hexadecimal colors (`#000000`), rgb colors (`rgb(0,0,0)`) or [HTML color names](https://en.wikipedia.org/wiki/Web_colors#HTML_color_names).
 
 ## How to translate Spending Stories
 
