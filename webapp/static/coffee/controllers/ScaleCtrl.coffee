@@ -32,9 +32,7 @@ class ScaleCtrl
 
         @scope.setLoading no
 
-    changeTitle: =>
-        parent_scope = @scope.$parent
-        parent_scope.setTitle @scope.previewedStory.title if @scope.previewedStory?
+    changeTitle: => @scope.setTitle @scope.previewedStory.title if @scope.previewedStory?
 
     onResultsChanged: (results)=>
         @scope.topStories   = _.filter results, (d)-> _.isObject(d) && d.sticky == true

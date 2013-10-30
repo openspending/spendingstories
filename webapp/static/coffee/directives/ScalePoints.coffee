@@ -194,7 +194,7 @@ angular.module('stories')
                     # placed and that update() method wasn't called by our 
                     # harmonization algorithm. 
                     if this.$last && !optimized 
-                        this.$parent.harmonizePoints()
+                        this.harmonizePoints()
                         
                     return style
 

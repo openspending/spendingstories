@@ -37,7 +37,7 @@ class ContributeCtrl
             , ()=>
                 @updateTitle()
 
-        @scope.$parent.setLoading false
+        @scope.setLoading false
                             
 
     getForm: (step=@scope.step)=>

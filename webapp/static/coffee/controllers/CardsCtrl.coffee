@@ -7,7 +7,8 @@ class CardsCtrl
     @$inject: ['$scope', '$translate', 'searchService', 'shareService']
 
     constructor: (@scope, @$translate, @searchService, Share, @Page) ->
-        @scope.$parent.setTitle(@$translate('SEARCH_CARDS_TAB_HEADING'))
+        # inherited method from TabsCtrl
+        @scope.setTitle(@$translate('SEARCH_CARDS_TAB_HEADING'))
         # ──────────────────────────────────────────────────────────────────────
         # scope variables function binding
         # ──────────────────────────────────────────────────────────────────────
