@@ -14,6 +14,8 @@ angular
             ($rootScope, $location)->
                 # Location available within templates
                 $rootScope.location = $location
+                $rootScope.$on '$translateLoadingSuccess', ()->
+                    $rootScope.translationLoaded = true
         ]
 
     )
@@ -42,19 +44,6 @@ angular
                 $interpolateProvider.startSymbol '[['
                 $interpolateProvider.endSymbol   ']]'
 
-                # Avoid to see translation key
-                resolveTranslate = 
-                    translationLoaded: ['$rootScope', '$q', ($rootScope, $q)->
-                            dfr = $q.defer()
-                            unless $rootScope.translationLoaded
-                                $rootScope.$on '$translateLoadingSuccess', (data)->
-                                    $rootScope.translationLoaded = true
-                                    dfr.resolve($rootScope.translationLoaded)
-                            else
-                                dfr.resolve($rootScope.translationLoaded)
-                            return dfr.promise
-                        ]
-
                 # Bind routes to the controllers
                 $routeProvider
                     .when('/',
@@ -62,23 +51,19 @@ angular
                         template: '<!-- leave not empty to avoid useless loading (and bugs) ! -->'
                         controller: 'homeCtrl'
                         reloadOnSearch: false
-                        resolve:  resolveTranslate
                     )
                     .when('/search/', 
                         controller: 'tabsCtrl'
                         templateUrl: "./partial/search.html"
                         reloadOnSearch: false
-                        resolve:  resolveTranslate
                     )
                     .when('/contribute/',
                         controller: 'contributeCtrl'
                         templateUrl: "./partial/contribute.html"
-                        resolve:  resolveTranslate
                     )
                     .when('/about',
                         controller: 'staticPageCtrl'
                         templateUrl: './partial/staticpage.html'
-                        resolve:  resolveTranslate
                     )
         ]
     )
