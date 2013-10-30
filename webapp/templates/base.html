@@ -18,7 +18,7 @@
             var STATIC_URL = window.STATIC_URL = window.STATIC_URL || "{% static '' %}";
         </script>
     </head>
-    <body ng-cloak ng-init="$root.translationLoaded=false" ng-class="{loading: !$root.translationLoaded}">
+    <body ng-cloak class="loading" ng-class="{loading: !translationLoaded}">
         {% block content %}{% endblock %}
 
         {% compress js %}    
