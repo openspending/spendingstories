@@ -12,6 +12,7 @@ class StaticPageCtrl
                 # Scope attributes
                 @scope.title = page.title
                 @scope.content = page.content
+                @scope.$parent.setLoading false
             else
                 # If the page does not exist, redirect to /
                 @location.path '/'

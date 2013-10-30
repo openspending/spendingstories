@@ -6,14 +6,15 @@ class ContributeCtrl
     @$inject: ['$scope', '$translate', 'Currency','Restangular', 'Page']
 
     constructor: (@scope, @$translate, @Currency, @Restangular, @Page)->
-        @Page.setTitle('Contribute')
+        @Page.setTitle(@$translate('CONTRIBUTE_TITLE'))
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables binding // AngularJS Models 
         # ──────────────────────────────────────────────────────────────────────  
         # Start from the first step
         @scope.stepCount  = 3
         @scope.step 	  = 0
-        @scope.loading    = false
+
+        
         # Currencies list
         @scope.currencies = Currency.list
         # Countries list
@@ -36,6 +37,8 @@ class ContributeCtrl
                 @$translate.uses()
             , ()=>
                 @updateTitle()
+                
+        @scope.$parent.setLoading false
                             
 
     getForm: (step=@scope.step)=>
