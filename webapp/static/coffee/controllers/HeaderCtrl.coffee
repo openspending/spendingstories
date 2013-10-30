@@ -3,9 +3,9 @@ class HeaderCtrl
         # AngularJS + vendor dependencies injection
         '$scope', '$routeParams', '$location','$filter', '$translate'
         # Custom services injection 
-        'comprehensionService', 'Currency', 'humanizeService']
+        'comprehensionService', 'Currency', 'humanizeService', 'Page']
 
-    constructor: (@scope,@routeParams,@location,@filter,@$translate,@Comprehension,@Currency,@Humanize)->
+    constructor: (@scope,@routeParams,@location,@filter,@$translate,@Comprehension,@Currency,@Humanize, @Page)->
         @searchParams = @location.search()
         @scope.currenciesLoaded = @Currency.loaded
         @scope.user_query = undefined
@@ -18,10 +18,15 @@ class HeaderCtrl
         @scope.getHeaderClass = =>
             # If we aren't on the homepage
             # return a class that reduce the header
-            if _.indexOf(['/', ''], @location.path()) is -1
+            if !@isOnHome()
                 'reduce'
             else
                 @scope.user_query = undefined
+                key = 'HEADER_SEARCH_PLACEHOLDER'
+                title = $translate(key)
+                if title isnt key
+                    @Page.setTitle title
+
 
         # Submit function to go to the search form
         @scope.search = @onSearch
@@ -39,6 +44,9 @@ class HeaderCtrl
                 @scope.language = val
 
         @scope.clicked = no
+
+    isOnHome: =>
+        !(_.indexOf(['/', ''], @location.path()) is -1)
 
     onSearch: =>
         params = {}
