@@ -14,7 +14,6 @@ angular
             ($rootScope, $location)->
                 # Location available within templates
                 $rootScope.location = $location
-                $rootScope.translationLoaded = false
                 $rootScope.$on '$translateLoadingSuccess', ()->
                     $rootScope.translationLoaded = true
         ]
