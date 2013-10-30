@@ -18,8 +18,8 @@
             var STATIC_URL = window.STATIC_URL = window.STATIC_URL || "{% static '' %}";
         </script>
     </head>
-    <body ng-cloak>        
-        {% block content %}{% endblock %}           
+    <body ng-cloak ng-class="{loading: !translationLoaded}">
+        {% block content %}{% endblock %}
 
         {% compress js %}    
             <script type="text/javascript" src="{% static 'js/vendor/jquery-1.9.1.js' %}"></script>
