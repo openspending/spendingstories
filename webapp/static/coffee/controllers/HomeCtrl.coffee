@@ -1,7 +1,8 @@
 # HomeCtrl is used to set title when / route is reached 
 class HomeCtrl
-    @$inject: ['Page']
+    @$inject: ['$translate', 'Page']
 
-    constructor: (@Page)-> @Page.setTitle('How much is it really')
+    constructor: ($translate, @Page)->
+        @Page.setTitle($translate('HEADER_SEARCH_PLACEHOLDER'))
 
 angular.module('stories').controller 'homeCtrl', HomeCtrl
