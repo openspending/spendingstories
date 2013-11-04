@@ -3,9 +3,6 @@ module.exports = (grunt)->
     locales = {
         folder: "webapp/static/locales/",
         supportedLanguages: [
-                name: "French",
-                code: "fr_FR"
-            , 
                 name: "English",
                 code: "en_GB"
         ]
