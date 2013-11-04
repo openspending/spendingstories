@@ -48,24 +48,24 @@ class StoryPermission(permissions.BasePermission):
     Permissions for Stories
     """
     def has_permission(self, request, view):
+        # Authorize if it's a read request 
         if request.method in permissions.SAFE_METHODS:
             # Check permissions for read-only request
             return True
-        elif request.method == 'DELETE':
-            # Check permissions for delete request
-            if request.user and request.user.is_staff:
+        # Authorize if user wants to create a story
+        elif request.method is 'POST':
+            return True
+        # Else we check if user is a staff to edit stories
+        else:
+            if request.user.is_staff:
                 return True
             else:
                 return False
-        else:
-            # Check permissions for write request
-            return True
 
 class StoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows story to be viewed or edited.
     """
-
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
     filter_fields      = ('sticky', 'country', 'currency','type', 'title', 'themes')
@@ -102,7 +102,7 @@ class StoryNestedViewSet(StoryViewSet):
     """
     API endpoint that allows story to be viewed in a nested mode.
     """
-     
+
     serializer_class = serializers.StoryNestedSerializer
 
 # -----------------------------------------------------------------------------
