@@ -27,6 +27,7 @@ The __Spending Stories__ installation consists of setting up the following compo
 1. [Install dependencies](#2-install-dependencies)
 1. [Set up the database (example with MySQL)](#3-set-up-the-database)
 1. [Run server (example with mod_wsgi from apache)](#4-run-server)
+2. [Set up your superuser](#5-set-up-your-superuser)
 
 ### 1. Set up your python environment
 
@@ -166,6 +167,18 @@ Allow from all
 </Directory>
 ```
 
+### 5. Set up your superuser
+
+In order to add [stories][wiki-stories] you have to configure your user base. 
+If you already synced your database you must have been prompted to configure a
+superuser. 
+
+If you skipped this step then you have to run the following command: 
+
+```
+python manage.py createsuperuser
+```
+
 ## Presentation of the application
 
 __Spending Stories__ is built with [Django](https://www.djangoproject.com/), a Python Web framework.
@@ -286,6 +299,8 @@ This part covers the following topics:
   All currencies' names are not translated, this is why you can see some "12 millards de US dollars"
 
 ## Update stories with last currencies and cpi
+It's important to note that the conversion rates & the consumer price indexes we use 
+to deal with [inflation][wiki-inflation] need to be refreshed by hand: 
 
 ```bash
 ./scripts/update_cpi.py
@@ -294,3 +309,6 @@ This part covers the following topics:
 ```
 
 and restart the application in order to reload the new dataset.
+
+[wiki-stories]:http://github.com/jplusplus/okf-spending-stories/wiki/About-this-project#stories
+[wiki-inflation]:http://github.com/jplusplus/okf-spending-stories/wiki/About-this-project#inflation
