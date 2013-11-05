@@ -6,12 +6,15 @@ class ScaleCtrl
     @$inject: ['$scope', 'searchService', 'shareService', 'Restangular']
 
     constructor: (@scope, @searchService, Share, @Restangular)->
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope variables
+        # ──────────────────────────────────────────────────────────────────────
         @scope.search = @searchService
-        # Select the closest story into the stickies as preview 
-        @scope.search.results.then @onResultsChanged
-        @scope.$watch "search.results", @onResultsChanged
         # Visualization mode
         @scope.overview = false
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope functions binding
+        # ──────────────────────────────────────────────────────────────────────
         # Toggle overview mode
         @scope.toggleOverview = -> @scope.overview = not @scope.overview
         # True if the given value is the equivalent of the query
@@ -22,13 +25,21 @@ class ScaleCtrl
         @scope.nextStoryPreview = @nextStoryPreview 
         # Select the previous story 
         @scope.previousStoryPreview = @previousStoryPreview
-        @scope.$watch 'previewedStory', @changeTitle
-
+        
         # For sharing purpose
         @scope.sharingAddress = (d)->
             Share.getSharingAddress d.title
         @scope.embedFrame = (d)->
             Share.getEmbedFrame d.title
+
+        # ──────────────────────────────────────────────────────────────────────
+        # Scope watch & other bindings 
+        # ──────────────────────────────────────────────────────────────────────
+        # Select the closest story into the stickies as preview 
+        @scope.search.results.then @onResultsChanged
+        @scope.$watch "search.results", @onResultsChanged
+        @scope.$watch 'previewedStory', @changeTitle
+
 
         @scope.setLoading no
 
