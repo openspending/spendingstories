@@ -310,5 +310,5 @@ to deal with [inflation][wiki-inflation] need to be refreshed by hand:
 
 and restart the application in order to reload the new dataset.
 
-[wiki-stories]:/jplusplus/okf-spending-stories/wiki/About-this-project#stories
-[wiki-inflation]:/jplusplus/okf-spending-stories/wiki/About-this-project#inflation
+[wiki-stories]:http://github.com/jplusplus/okf-spending-stories/wiki/About-this-project#stories
+[wiki-inflation]:http://github.com/jplusplus/okf-spending-stories/wiki/About-this-project#inflation
