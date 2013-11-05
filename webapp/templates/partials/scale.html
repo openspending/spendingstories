@@ -108,7 +108,7 @@
     </div>
     <div ng-if="!topStories.length && !otherStories.length" class="text-center bottom20">
             <span translate>SCALE_NO_RESULTS_TEXT</span>
-            <p class="text-muted" translate>
+            <p class="text-muted" ng-if="hasActivatedFilters()" translate>
                 TOO_MUCH_FILTERS
             </p>
     </div>
