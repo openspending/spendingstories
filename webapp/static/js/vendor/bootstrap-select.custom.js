@@ -447,7 +447,6 @@
 
                 //Dont run if we have been disabled
                 if (!_this.isDisabled() && !$(this).parent().hasClass('disabled')) {
-                    console.log('AUCUN PROBLEME TKT', _this)
                     var $options = _this.$element.find('option');
                     var $option = $options.eq(clickedIndex);
 
