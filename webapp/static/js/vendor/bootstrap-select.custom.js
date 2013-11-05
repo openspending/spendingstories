@@ -346,7 +346,7 @@
             this.$newElement.on('click', function(e) {
                 getPlacement($(this));
                 $drop.appendTo(_this.options.container);
-                $drop.toggleClass('open', !$(this).hasClass('open'));
+                $drop.toggleClass('open', !$(this).hasClass('open') && !_this.isDisabled());
                 $drop.append(_this.$menu);
                 _this.$dropdown = $drop;
             });
@@ -403,10 +403,12 @@
             var _this = this;
             if (this.isDisabled()) {
                 this.$button.addClass('disabled');
+                this.$button.attr('disabled', '');
                 this.$button.attr('tabindex','-1');
             } else if (this.$button.hasClass('disabled')) {
                 this.$button.removeClass('disabled');
                 this.$button.removeAttr('tabindex');
+                this.$button.removeAttr('disabled')
             }
             this.$button.click(function() {
                 return !_this.isDisabled();
@@ -427,9 +429,9 @@
                 e.stopPropagation();
             });
 
-            this.$newElement.on('click', function() {
-                _this.setSize();
-            });
+            // this.$newElement.on('click', function() {
+            //     _this.setSize();
+            // });
 
             this.$menu.on('click', 'li a', function(e) {
                 var clickedIndex = $(this).parent().index(),
@@ -445,6 +447,7 @@
 
                 //Dont run if we have been disabled
                 if (!_this.isDisabled() && !$(this).parent().hasClass('disabled')) {
+                    console.log('AUCUN PROBLEME TKT', _this)
                     var $options = _this.$element.find('option');
                     var $option = $options.eq(clickedIndex);
 
@@ -476,7 +479,7 @@
             });
 
             this.$element.change(function() {
-                _this.render()
+                // _this.render()
             });
         },
 

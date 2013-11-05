@@ -19,8 +19,15 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
       # Take a hash of options from the selectpicker directive
       options = scope.$eval(attr.selectpicker) or {}
 
-      startLoading = -> element.addClass('loading disabled').attr('disabled', true)
-      stopLoading  = -> element.removeClass('loading disabled').attr('disabled', false)
+      startLoading = -> element.addClass('loading disabled')
+      stopLoading  = -> 
+        disabled = false
+        if attr.ngDisabled?
+          disabled = scope.$eval(attr.ngDisabled) 
+          
+        element.toggleClass('disabled', disabled)
+        element.removeClass('loading')
+
 
       # Init selectpicker on the next loop so ng-options can populate the select
       $timeout ->
