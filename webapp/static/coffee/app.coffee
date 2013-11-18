@@ -63,5 +63,9 @@ angular
                         controller: 'staticPageCtrl'
                         templateUrl: './partial/staticpage.html'
                     )
+                    .when('/faq',
+                        controller: 'staticPageCtrl'
+                        templateUrl: './partial/staticpage.html'
+                    )
         ]
     )
