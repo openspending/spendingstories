@@ -8,4 +8,4 @@ env:
 
 install: "pip install -r requirements_core.txt"
 # command to run tests
-script: exportpython manage.py test api
+script: manage.py test api
