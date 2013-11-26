@@ -53,7 +53,7 @@ class StoryPermission(permissions.BasePermission):
             # Check permissions for read-only request
             return True
         # Authorize if user wants to create a story
-        elif request.method is 'POST':
+        elif request.method == 'POST':
             return True
         # Else we check if user is a staff to edit stories
         else:
