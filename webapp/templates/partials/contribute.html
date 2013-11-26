@@ -37,7 +37,7 @@
 			<label class="control-label" for="input-currency">
 				[['CONTRIBUTE_CURRENCY_LABEL' | translate ]]
 			</label>
-			<select ng-options="c.iso_code as c.name for (iso_code, c) in currencies" 					
+			<select ng-options="c.iso_code as c.name for c in currencies"
 					id="input-currency" 
 					ng-model="story.currency"
 			        selectpicker
