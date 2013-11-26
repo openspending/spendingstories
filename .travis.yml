@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+# command to install dependencies
+env:
+  - PYTHONPATH=./:libs/
+
+install: "pip install -r requirements_core.txt"
+# command to run tests
+script: python manage.py test

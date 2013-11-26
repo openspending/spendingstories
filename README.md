@@ -3,6 +3,8 @@
 2013, Journalism++  
 GNU General Public License
 
+[![Build Status](https://travis-ci.org/jplusplus/okf-spending-stories.png?branch=master)](https://travis-ci.org/jplusplus/okf-spending-stories)
+
 ## Overview
 
 1. [How to install Spending Stories](#how-to-install-spending-stories)
