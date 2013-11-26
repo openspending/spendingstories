@@ -38,5 +38,5 @@ class Currency(models.Model):
         return "%s - %s" % (self.name, self.iso_code)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['priority', 'name']
 # EOF
