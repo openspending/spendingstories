@@ -45,7 +45,7 @@
 		</div>	
 		<div class="form-group">
 			<label class="control-label" for="input-value" translate>CONTRIBUTE_AMOUNT_LABEL</label>
-			<p class="pull-right">[[story.value|humanizeValue:story.currency.iso_code]]</p>
+			<p class="pull-right">[[story.value|humanizeValue:story.currency]]</p>
 			<input required type="number" class="form-control" placeholder="Ex: 14367000 [[ 'CONTRIBUTE_FOR' | translate ]] 14,367,000" id="input-value" name="value" ng-model="story.value" />
 			<p class="help-block" translate>
 				CONTRIBUTE_AMOUNT_HELP_BLOCK
@@ -55,7 +55,7 @@
 
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
 		<div class="breadcrumb">
-			<strong>[[story.value|humanizeValue:story.currency.iso_code]]</strong> <span translate>CONTRIBUTE_AMOUNT_IS</span>
+			<strong>[[story.value|humanizeValue:story.currency]]</strong> <span translate>CONTRIBUTE_AMOUNT_IS</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-title" translate>CONTRIBUTE_STORY_TITLE_LABEL</label>
@@ -81,7 +81,7 @@
 	
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 2"  ng-form="stepForm2">
 		<div class="breadcrumb">
-			<strong>[[story.value|currency:story.currency]]</strong> <span translate>CONTRIBUTE_IS_THE_COST_OF</span> <strong>[[story.title]]</strong>.
+			<strong>[[story.value|humanizeValue:story.currency]]</strong> <span translate>CONTRIBUTE_IS_THE_COST_OF</span> <strong>[[story.title]]</strong>.
 			<span translate>CONTRIBUTE_MORE_INFO_QUESTION</span>
 		</div>
 		<div class="form-group">
