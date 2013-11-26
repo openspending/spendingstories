@@ -145,7 +145,6 @@ class HumanizeService
         if pluralizeSuffix
             # use it to humanize some amount and add a suffix (that can be 
             suffix = @pluralize value: value, single: suffix
-
         use_words = value >= Math.pow(10, 6) and value <= Math.pow(10, 15)
         # if value is between 1 million and 1 000 trillions we use words
         if use_words 

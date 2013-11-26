@@ -77,17 +77,18 @@ class SearchService
             do cb
         # Performs a USD convertion
         # The currency is already available
-        else if @Currency.list[currency]?
-            c = @Currency.list[currency]
+        else if @Currency.get(currency)?
+            c = @Currency.get(currency)
             @currency = c.iso_code
             @query_usd = if c? then @query/c.rate else null
             do cb
+        # NOTE: commented because get() doesn't provide a `then` method but an object.
         # The currency isn't loaded yet
-        else
-            @Currency.get(currency).then (c)=>
-                @currency = c.iso_code
-                @query_usd = if c? then @query/c.rate else null
-                do cb
+        # else
+        #     @Currency.get(currency).then (c)=>
+        #         @currency = c.iso_code
+        #         @query_usd = if c? then @query/c.rate else null
+        #         do cb
     
     updateStories: (params)=>
         # will fire a new request on API with the new paramters

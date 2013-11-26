@@ -62,8 +62,8 @@ angular.module('stories')
                     # accoding the top left corner of the workspace
                     element.css("position", "relative")
 
-                if Currency.list[scope.rulerCurrency]?
-                    rulerRate = Currency.list[scope.rulerCurrency].rate
+                if Currency.get(scope.rulerCurrency)?
+                    rulerRate = Currency.get(scope.rulerCurrency).rate
                     # if rulerRate is defined we set it to the scope otherwise we set it like USD
                     scope.rulerRate = if rulerRate? then rulerRate else 1
                 # No ruler rate

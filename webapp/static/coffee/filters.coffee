@@ -16,8 +16,8 @@ angular
     )
     .filter("toQueryCurrency", ["searchService", "Currency","humanizeService", (searchService, Currency, Humanize)->  
             return (value, fromCurrency='USD', toCurrency=searchService.currency, decimals=2)-> 
-                _fromCurrency = Currency.list[fromCurrency]
-                _toCurrency = Currency.list[toCurrency]
+                _fromCurrency = Currency.get(fromCurrency)
+                _toCurrency = Currency.get(toCurrency)
                 if value > 1
                     converted = parseInt(value)
                 else
@@ -42,7 +42,7 @@ angular
     .filter("humanizeValue", ["Currency","humanizeService", (Currency, Humanize)->
             return (value, currency="USD") ->
                 return null unless angular.isNumber value
-                _currency = Currency.list[currency]
+                _currency = Currency.get(currency)
                 if _currency? then Humanize.humanizeValue value, _currency.name
 
         ]
@@ -50,7 +50,7 @@ angular
     .filter("humanizeValueISO", ["Currency","humanizeService", (Currency, Humanize)->
             return (value, currency="USD") ->
                 return null unless angular.isNumber value
-                _currency = Currency.list[currency]
+                _currency = Currency.get(currency)
                 if _currency? then Humanize.humanizeValue value, _currency.iso_code, false
 
         ]
@@ -126,7 +126,7 @@ angular
             return (story)->
                 return null unless story?
                 Humanize.humanizeEquivalence story,
-                    currency: Currency.list[searchService.currency]
+                    currency: Currency.get(searchService.currency)
                     value:searchService.query_usd
         ]
     )

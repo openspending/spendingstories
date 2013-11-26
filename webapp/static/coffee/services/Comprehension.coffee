@@ -131,7 +131,7 @@ class Comprehension
 
     defaultCurrencies = (currency) =>
         _.map ['USD', 'EUR', 'GBP'], (iso) ->
-            name : currency.list[iso].name
+            name : currency.get(iso).name
             value : iso
 
     defaultNumbers = () =>
