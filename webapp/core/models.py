@@ -32,7 +32,7 @@ from django.template.defaultfilters import slugify
 from django.db import models
 import fields
 import datetime
-import utils
+import inflation
 
 YEAR_CHOICES = []
 for r in range(1999, (datetime.datetime.now().year + 1)):
@@ -126,7 +126,7 @@ class Story(models.Model):
         verbose_name_plural = "stories"
 
     def set_current_value(self):
-        inflation_amount, inflation_year = utils.get_inflation(amount=self.value, year=self.year, country=self.country)
+        inflation_amount, inflation_year = inflation.get_inflation(amount=self.value, year=self.year, country=self.country)
         self.current_value       = inflation_amount
         self.inflation_last_year = inflation_year
         self.current_value_usd   = self.current_value / self.currency.rate
