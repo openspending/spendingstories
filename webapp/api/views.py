@@ -31,13 +31,13 @@ from rest_framework          import viewsets
 from rest_framework          import filters
 from rest_framework.response import Response
 from rest_framework          import permissions
-from django.db.models        import Max, Min, Q
+from django.conf             import settings
+from django.db.models        import Max, Min
 from relevance               import Relevance
 from viewsets                import ChoicesViewSet
 
 import webapp.core.fields
 import serializers
-import documentation
 # -----------------------------------------------------------------------------
 #
 #    STORIES
@@ -160,22 +160,38 @@ class FiltersViewSet(viewsets.ViewSet):
         filters = {
             "currency" : [],
             "theme"    : [],
-            "country"  : []
+            "country"  : [],
+            "lang"     : []
         }
         # currencies
         currencies = Currency.objects.values("iso_code", "name")
         for currency in currencies:
             if Story.objects.public().filter(currency__iso_code=currency['iso_code']).count() > 0 :
-                filters['currency'].append({"key":currency['iso_code'], 'value':currency['name']})
+                filters['currency'].append({
+                        'key':currency['iso_code'], 
+                        'value':currency['name']
+                })
         # themes
         themes = Theme.objects.values("slug", "title")
         for theme in themes:
             if Story.objects.public().filter(themes__slug=theme['slug']).count() > 0 :
-                filters['theme'].append({"key":theme['slug'], 'value':theme['title']})
+                filters['theme'].append({
+                        'key':theme['slug'], 
+                        'value':theme['title']
+                })
         # countries
         for country in webapp.core.fields.COUNTRIES:
             if Story.objects.public().filter(country=country[0]).count() > 0 :
-                filters['country'].append({"key":country[0], 'value':country[1]})
+                filters['country'].append({
+                        'key':country[0], 
+                        'value':country[1]
+                })
+
+        for language in settings.SUPPORTED_LANGUAGES:
+            filters['lang'].append({
+                    'key': language[0], 
+                    "value": language[1]
+            })
         return Response(filters)
 
 # -----------------------------------------------------------------------------

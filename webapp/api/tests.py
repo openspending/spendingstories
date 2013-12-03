@@ -26,15 +26,15 @@
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from django.test import TestCase
-from django.test.client import Client
-from webapp.core.models import Story
-from webapp.currency.models import Currency
-from django.contrib.auth.models import User
+from django.test                     import TestCase
+from django.test.client              import Client
+from webapp.core.models              import Story
+from webapp.currency.models          import Currency
+from django.contrib.auth.models      import User
 from rest_framework.authtoken.models import Token
-from operator import itemgetter
-from pprint import pprint as pp
-from relevance import Relevance
+from operator                        import itemgetter
+from pprint                          import pprint as pp
+from relevance                       import Relevance
 import random
 import warnings
 
@@ -135,12 +135,15 @@ class APIStoryTestCase(TestCase):
         response = self.client.get('/api/stories/?lang=%s' % lang) 
         for story in response.data:
             self.assertEquals(story['lang'], lang)
-        print response.data
         find_fr = lambda x: x['id'] == self.story_fr.pk
         self.assertIsNotNone(filter(find_fr, response.data))
 
-
-
+    def test_filter_list(self):
+        response = self.client.get('/api/filters/')
+        data = response.data
+        lang = data.get('lang')
+        self.assertIsNotNone(lang)
+        self.assertGreater(len(lang), 0)
 
     def test_api_relevances(self):
         TOLERENCE = 97
