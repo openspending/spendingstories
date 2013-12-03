@@ -7,10 +7,10 @@ env:
   - PYTHONPATH=./:libs/
 
 install: 
-	- pip install -r requirements_core.txt
-	- python manage.py syncdb
+  - pip install -r requirements_core.txt
+  - python manage.py syncdb
 # command to run tests
 script: 
-	- coverage run --source=webapp python manage.py test
+  - coverage run --source=webapp python manage.py test
 after_success:
-	- coveralls 
+  - coveralls 
