@@ -1,12 +1,7 @@
 module.exports = (grunt)->
+    shell = require('shelljs')
     
-    locales = {
-        folder: "webapp/static/locales/",
-        supportedLanguages: [
-                name: "English",
-                code: "en_GB"
-        ]
-    }
+    DJANGOSETTINGS = JSON.parse shell.exec("python scripts/print_django_settings.py").output
 
     angular_files = [
         'webapp/static/coffee/*.coffee',  # our scripts 
@@ -15,25 +10,13 @@ module.exports = (grunt)->
         'webapp/templates/partials/*.html' # our templates     
         'webapp/templates/partials/**/*.html' # our templates     
     ]
-    
-    getLangISOCodes = ->
-        for lang in locales.supportedLanguages
-            lang.code
-
-
-    updateSupportedLanguages = ->
-        supportedFilePath = locales.folder + 'supported.json'
-        grunt.file.write(supportedFilePath, JSON.stringify(locales.supportedLanguages))
-        grunt.log.writeln("File 'supported.json' updated in #{locales.folder} folder")
-
 
     # Project configuration.
-    grunt.initConfig 
-           # global application package
+    grunt.config.init
         # i18n & angular translate configuration 
         i18nextract:
             dev:
-                lang: getLangISOCodes()
+                lang: DJANGOSETTINGS.SUPPORTED_LANGUAGES.map (e)-> e[0]
                 src: angular_files
                 suffix: ".json"
                 dest: "webapp/static/locales"
@@ -44,17 +27,17 @@ module.exports = (grunt)->
         watch:
             i18n:
                 files: angular_files
-                tasks: ['i18nextract:dev']
+                tasks: ['makemessages']
         
 
+
     # Load the angular translate task
-    grunt.loadNpmTasks('grunt-contrib-watch')
-    grunt.loadNpmTasks('grunt-available-tasks')
     grunt.loadNpmTasks('grunt-angular-translate')
+    grunt.loadNpmTasks('grunt-available-tasks')
+    grunt.loadNpmTasks('grunt-contrib-watch')
+    grunt.loadNpmTasks('grunt-shell')
 
-    grunt.registerTask 'update_supported_languages',
-        'Update or create the supported.json files in the locales folder', 
-        updateSupportedLanguages
-
-    grunt.registerTask 'makemessages', ['i18nextract:dev']
+    grunt.registerTask 'makemessages', 'i18nextract:dev' 
     grunt.registerTask 'default', ['available_tasks']
+
+    
