@@ -7,7 +7,8 @@ env:
   - PYTHONPATH=./:libs/
 
 install: 
-  - pip install -r requirements_core.txt
+  - pip install --use-mirrors -r requirements_core.txt
+  - pip install --use-mirrors coveralls
   - python manage.py syncdb --noinput
 # command to run tests
 script: 
