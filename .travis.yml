@@ -7,11 +7,11 @@ env:
   - PYTHONPATH=./:libs/
 
 install: 
-  - pip install --use-mirrors -r requirements_core.txt
-  - pip install --use-mirrors coveralls
+  - pip install -r requirements_core.txt
+  - pip install coveralls
   - python manage.py syncdb --noinput
 # command to run tests
 script: 
-  - coverage run --source=webapp python manage.py test
+  - coverage run --source=webapp ./manage.py test
 after_success:
   - coveralls 
