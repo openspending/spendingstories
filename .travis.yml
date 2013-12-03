@@ -8,7 +8,7 @@ env:
 
 install: 
   - pip install -r requirements_core.txt
-  - python manage.py syncdb
+  - python manage.py syncdb --noinput
 # command to run tests
 script: 
   - coverage run --source=webapp python manage.py test
