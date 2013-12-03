@@ -29,6 +29,7 @@
 from django.test import TestCase
 from django.test.client import Client
 from webapp.core.models import Story
+from webapp.currency.models import Currency
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from operator import itemgetter
@@ -38,12 +39,43 @@ import random
 import warnings
 
 class APIStoryTestCase(TestCase):
+    """
+    Major Test Case about API usage
+    """
+
     fixtures = ['api_dataset.json',]
     def setUp(self):
         # Every test needs a client.
         staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
         self.staff_client    = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
         self.client          = Client()
+        self.story           =  {
+            'type'       : "discrete",
+            'country'    : 'BGR',
+            'currency'   : u'EUR',
+            'description': None,
+            'source'     : 'http://www.okf.org',
+            'status'     : 'published',
+            'sticky'     : True,
+            'themes'     : [],
+            'title'      : 'Velit ipsum augue',
+            'value'      : 1420000,
+            'year'       : 2003
+        }
+        self.story_fr, created = Story.objects.get_or_create(
+            type='discrete', 
+            country='FRA', 
+            currency=Currency.objects.get(iso_code=u'EUR'), 
+            lang='fr_FR',
+            description=None,
+            source='http://www.okf.org',
+            status='published',
+            sticky=True,
+            title='Velit ipsum augue',
+            value=1420000,
+            year=2003
+        )
+        self.story_fr.save()
 
     def test_api_story_list(self):
         response = self.client.get('/api/stories/')
@@ -69,42 +101,46 @@ class APIStoryTestCase(TestCase):
         response = self.client.get('/api/stories-nested/%s/' % story.pk)
         self.assertEquals(response.status_code, 200, response)
 
-    def test_api_permissions(self):
-        """
-        PERMISSIONS TESTED :
-            [ ]  staff        POST
-            [ ]  no-auth      POST
-            [ ]  regular user POST
-        """
-        story = {
-            'type'       : "discrete",
-            'country'    : 'BGR',
-            'currency'   : u'EUR',
-            'description': None,
-            'source'     : 'http://www.okf.org',
-            'status'     : 'published',
-            'sticky'     : True,
-            'themes'     : [],
-            'title'      : 'Velit ipsum augue',
-            'value'      : 1420000,
-            'year'       : 2003}
-        # staff
-        response = self.staff_client.post('/api/stories/', story)
+
+    def test_create_story_staff(self):
+        response = self.staff_client.post('/api/stories/', self.story)
         self.assertEquals(response.status_code, 201)
         self.assertEquals(response.data['status'], 'published')
         self.assertEquals(response.data['sticky'], True)
-        # no-auth
-        response = self.client.post('/api/stories/', story)
+
+    def test_create_story_no_auth(self):
+        response = self.client.post('/api/stories/', self.story)
         self.assertEquals(response.status_code, 201)
         self.assertEquals(response.data['status'], 'pending')
         self.assertEquals(response.data['sticky'], False)
-        # regular user
+
+    def test_create_story_user(self):
         user, created = User.objects.get_or_create(username="pouet", email="pouet@pouet.org")
         regular_token, created = Token.objects.get_or_create(user=user)
         self.regular_client    = Client(HTTP_AUTHORIZATION="Token %s" % regular_token.key)
+        response = self.regular_client.post('/api/stories/', self.story)
         self.assertEquals(response.status_code, 201)
         self.assertEquals(response.data['status'], 'pending')
         self.assertEquals(response.data['sticky'], False)
+
+
+    def test_filter_by_lang_en(self):
+        lang = 'en_GB'
+        response = self.client.get('/api/stories/?lang=%s' % lang) 
+        for story in response.data:
+            self.assertEquals(story['lang'], lang)
+
+    def test_filter_by_lang_fr(self):
+        lang = 'fr_FR'
+        response = self.client.get('/api/stories/?lang=%s' % lang) 
+        for story in response.data:
+            self.assertEquals(story['lang'], lang)
+        print response.data
+        find_fr = lambda x: x['id'] == self.story_fr.pk
+        self.assertIsNotNone(filter(find_fr, response.data))
+
+
+
 
     def test_api_relevances(self):
         TOLERENCE = 97

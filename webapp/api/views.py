@@ -68,7 +68,7 @@ class StoryViewSet(viewsets.ModelViewSet):
     """
     queryset           = Story.objects.public()
     serializer_class   = serializers.StorySerializer
-    filter_fields      = ('sticky', 'country', 'currency','type', 'title', 'themes')
+    filter_fields      = ('sticky', 'country', 'currency','type', 'title', 'themes', 'lang')
     filter_backends = (filters.DjangoFilterBackend,)
     permission_classes = (StoryPermission,)
 
