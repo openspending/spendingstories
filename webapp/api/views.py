@@ -205,6 +205,18 @@ class CountryViewSet(ChoicesViewSet):
     def create_element(self, c):
         return {"iso_code": c[0], "name": c[1]}
 
+
+# -----------------------------------------------------------------------------
+#
+#    COUNTRIES
+#
+# -----------------------------------------------------------------------------
+class LanguageViewSet(ChoicesViewSet):
+    class Meta: 
+        choices = settings.SUPPORTED_LANGUAGES
+    def create_element(self, lang):
+        return {"code": lang[0], "name": lang[1]}
+
 # -----------------------------------------------------------------------------
 #
 #    PAGES

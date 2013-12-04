@@ -25,7 +25,7 @@
 #     You should have received a copy of the GNU General Public License
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
-
+from django.conf                     import settings
 from django.test                     import TestCase
 from django.test.client              import Client
 from webapp.core.models              import Story
@@ -44,12 +44,18 @@ class APIStoryTestCase(TestCase):
     """
 
     fixtures = ['api_dataset.json',]
+
     def setUp(self):
         # Every test needs a client.
-        staff_token, created = Token.objects.get_or_create(user=User.objects.filter(is_staff=True)[0])
-        self.staff_client    = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
-        self.client          = Client()
-        self.story           =  {
+        staff_user             = User.objects.filter(is_staff=True)[0]
+        staff_token,   created = Token.objects.get_or_create(user=staff_user)
+        regular_user,  created = User.objects.get_or_create(username="pouet", email="pouet@pouet.org")
+        regular_token, created = Token.objects.get_or_create(user=regular_user)
+        self.regular_client    = Client(HTTP_AUTHORIZATION="Token %s" % regular_token.key)
+        self.staff_client      = Client(HTTP_AUTHORIZATION="Token %s" % staff_token.key)
+        self.client            = Client()
+
+        self.story             =  {
             'type'       : "discrete",
             'country'    : 'BGR',
             'currency'   : u'EUR',
@@ -62,19 +68,22 @@ class APIStoryTestCase(TestCase):
             'value'      : 1420000,
             'year'       : 2003
         }
-        self.story_fr, created = Story.objects.get_or_create(
-            type='discrete', 
-            country='FRA', 
-            currency=Currency.objects.get(iso_code=u'EUR'), 
-            lang='fr_FR',
-            description=None,
-            source='http://www.okf.org',
-            status='published',
-            sticky=True,
-            title='Velit ipsum augue',
-            value=1420000,
-            year=2003
-        )
+
+        self.story_fr_args = {
+            'type'        : 'discrete', 
+            'country'     : 'FRA', 
+            'currency'    : Currency.objects.get(iso_code=u'EUR'), 
+            'lang'        : 'fr_FR',
+            'description' : None,
+            'source'      : 'http://www.okf.org',
+            'status'      : 'published',
+            'sticky'      : True,
+            'title'       : 'Velit ipsum augue',
+            'value'       : 1420000,
+            'year'        : 2003
+        }
+
+        self.story_fr, created = Story.objects.get_or_create(**self.story_fr_args)
         self.story_fr.save()
 
     def test_api_story_list(self):
@@ -115,13 +124,40 @@ class APIStoryTestCase(TestCase):
         self.assertEquals(response.data['sticky'], False)
 
     def test_create_story_user(self):
-        user, created = User.objects.get_or_create(username="pouet", email="pouet@pouet.org")
-        regular_token, created = Token.objects.get_or_create(user=user)
-        self.regular_client    = Client(HTTP_AUTHORIZATION="Token %s" % regular_token.key)
         response = self.regular_client.post('/api/stories/', self.story)
         self.assertEquals(response.status_code, 201)
         self.assertEquals(response.data['status'], 'pending')
         self.assertEquals(response.data['sticky'], False)
+
+    def test_created_story_fields(self):
+        """
+        Desc: test that every given object field will be set to a new story
+        """
+        story_args = {  
+            'type'        : 'over_one_year', 
+            'country'     : 'USA', 
+            'currency'    : u'EUR', 
+            'lang'        : 'fr_FR',
+            'description' : 'My description',
+            'source'      : 'http://www.okf.org',
+            'title'       : 'Velit ipsum augue',
+            'value'       : 33330000,
+            'year'        : 2003
+        }
+
+        response = self.regular_client.post('/api/stories/', story_args)
+        self.assertEquals(response.status_code, 201)
+        latest_story = Story.objects.latest('created_at')
+        for key in story_args:
+            val = story_args[key]
+            story_val = getattr(latest_story, key)
+            field = Story._meta.get_field_by_name(key)[0]
+            # if the current field is a related to another model story_val 
+            # must be the related model primary key
+            if hasattr(field, 'related'):
+                story_val = story_val.pk 
+
+            self.assertEquals(story_val, val)
 
 
     def test_filter_by_lang_en(self):
@@ -144,6 +180,19 @@ class APIStoryTestCase(TestCase):
         lang = data.get('lang')
         self.assertIsNotNone(lang)
         self.assertGreater(len(lang), 0)
+
+    def test_language_list(self):
+        response = self.client.get('/api/languages/')
+        self.assertIsNotNone(response.data)
+        self.assertEquals(len(response.data), len(settings.SUPPORTED_LANGUAGES))
+        for lang in settings.SUPPORTED_LANGUAGES:
+            find_lang = lambda x: x['code'] == lang[0]
+            response_lang = filter(find_lang, response.data)[0]
+            self.assertIsNotNone(response_lang)
+            self.assertTrue(response_lang['name'] == lang[1])
+
+
+
 
     def test_api_relevances(self):
         TOLERENCE = 97

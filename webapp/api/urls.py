@@ -32,12 +32,13 @@ import views
 router = routers.DefaultRouter()
 router.register(r'countries'           , views.CountryViewSet     , base_name="countries"      )
 router.register(r'currencies'          , views.CurrencyViewSet    , base_name="currencies"     )
+router.register(r'filters'             , views.FiltersViewSet     , base_name="filters"        )
+router.register(r'languages'           , views.LanguageViewSet    , base_name="languages"      )
 router.register(r'meta'                , views.MetaViewSet        , base_name="meta"           )
+router.register(r'pages'               , views.PagesViewSet       , base_name="pages"          )
 router.register(r'stories'             , views.StoryViewSet       , base_name="stories"        )
 router.register(r'stories-nested'      , views.StoryNestedViewSet , base_name="stories-nested" )
 router.register(r'themes'              , views.ThemeViewSet       , base_name="themes"         )
-router.register(r'filters'             , views.FiltersViewSet     , base_name="filters"        )
-router.register(r'pages'               , views.PagesViewSet       , base_name="pages"          )
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browseable API.
