@@ -82,6 +82,8 @@
     "CONTRIBUTE_PLEASE_CONTRIBUTE_MESSAGE": "If you have a spending or budget data point that you can contribute, please give some basic information here.",
     "CONTRIBUTE_AMOUNT_LABEL": "Amount",
     "CONTRIBUTE_AMOUNT_HELP_BLOCK": "Insert a round number without any space or separator",
+    "CONTRIBUTE_STORY_LANG_LABEL": "",
+    "CONTRIBUTE_STORY_LANG_HELP_BLOCK": "",
     "CONTRIBUTE_AMOUNT_IS": "is ...",
     "CONTRIBUTE_STORY_TITLE_LABEL": "Give a title to your story",
     "CONTRIBUTE_STORY_DESCRIPTION_LABEL": "Give a description to your story",
