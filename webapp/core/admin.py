@@ -60,16 +60,16 @@ make_pending.short_description = _("Mark selected contributions as pending")
 
 class StoryAdmin(admin.ModelAdmin):
     actions           = [make_published, make_refused, make_pending]
-    list_display      = ('title', 'value', 'current_value_usd', 'currency', 'country','year', 'sticky', 'created_at', 'type', 'status')
+    list_display      = ('title', 'value', 'current_value_usd', 'currency', 'country','year', 'sticky', 'created_at', 'type', 'lang', 'status')
     readonly_fields   = ('current_value', 'current_value_usd', 'inflation_last_year', 'created_at')
     search_fields     = ('title', 'value', 'current_value_usd', 'country')
     list_editable     = ('sticky',)
-    list_filter       = ('status', 'sticky', 'type', 'themes', 'currency', 'country')
+    list_filter       = ('status', 'sticky', 'type', 'themes', 'currency', 'country', 'lang')
     filter_horizontal = ('themes',)
     form              = forms.StoryForm
     fieldsets         = (
         ("Admin fields", {
-            'fields': ('status', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'type', 'themes', 'extras')
+            'fields': ('status','lang', 'sticky', 'title', 'description', 'source', 'value', 'currency', 'country', 'year', 'type', 'themes', 'extras')
         }),
         ('Auto computed fields', {
             'fields': readonly_fields
