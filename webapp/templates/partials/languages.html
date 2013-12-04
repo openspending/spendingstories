@@ -1,7 +1,7 @@
 <div ng-controller="languageCtrl">
-    <ul class="language-list" ng-if="languages.length && languages.length > 1">
-        <li class="language" ng-class="current_lang.key === lang.key ? 'activated' : ''" ng-repeat="lang in languages">
-            <a ng-click="changeLanguage(lang)">[[ lang.key|truncate:2|uppercase ]]</a>
+    <ul class="language-list" ng-if="languages.all.length && languages.all.length > 1">
+        <li class="language" ng-class="languages.current === lang.code ? 'activated' : ''" ng-repeat="lang in languages.all">
+            <a ng-click="changeLanguage(lang.code)">[[ lang.code|truncate:2|uppercase ]]</a>
         </li>
     </ul>
 </div>
