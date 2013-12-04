@@ -1,8 +1,8 @@
 # LanguageCtrl is responsible of switching languages
 class LanguageCtrl
-    @$inject: ['$scope','$translate', '$location' ,'languagesService']
+    @$inject: ['$scope', '$location' ,'languagesService']
     
-    constructor: (@scope, @$translate, @location, @languages)->
+    constructor: (@scope, @location, @languages)->
 
         @scope.languages      = @languages
         @scope.changeLanguage = @changeLanguage
@@ -12,7 +12,7 @@ class LanguageCtrl
         @scope.$watch 'languages.current', @currentLangChanged, yes
         @scope.$watch =>
             # when supportLanguages is loaded from JSON we update scope.languages
-                @languages.all
+                @languages.list
             , =>
                 if @init_url_lang?
                     @changeLanguage(@init_url_lang)

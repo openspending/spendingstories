@@ -4,7 +4,7 @@ class LanguagesService
     @$inject: ['Restangular', '$translate']
     
     constructor: (Restangular, @translate)->
-        @all = Restangular.all('languages').getList()
+        @list = Restangular.all('languages').getList()
         @current = @translate.uses()
         
     setCurrent: (lang=@translate.uses())=>

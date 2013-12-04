@@ -3,9 +3,9 @@
 # ──────────────────────────────────────────────────────────────────────────────
 class ContributeCtrl
 
-    @$inject: ['$scope', '$translate', 'Currency','Restangular', 'Page']
+    @$inject: ['$scope', '$translate', 'Restangular', 'Currency', 'languagesService','Page']
 
-    constructor: (@scope, @$translate, @Currency, @Restangular, @Page)->
+    constructor: (@scope, @$translate,  @Restangular, @Currency, @Languages, @Page)->
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables binding // AngularJS Models 
         # ──────────────────────────────────────────────────────────────────────  
@@ -13,12 +13,12 @@ class ContributeCtrl
         @scope.stepCount  = 3
         @scope.step 	  = 0
 
-        
         # Currencies list
         @scope.currencies = Currency.list
+        @scope.languages  = Languages.list
         # Countries list
         @scope.countries  = Restangular.all("countries").getList()    
-        @scope.themes     = Restangular.all("themes").getList()    
+        @scope.themes     = Restangular.all("themes").getList()
         # The story to build
         @scope.story      = currency: 'USD'
         # ──────────────────────────────────────────────────────────────────────
