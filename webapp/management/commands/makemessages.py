@@ -11,7 +11,7 @@ from optparse \
     import make_option
 import os
 
-def grunt(cmd):
+def grunt(cmd): 
     os.system('grunt %s'  % cmd)
 
 class Command(BaseMakeMessages):
