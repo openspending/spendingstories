@@ -24,7 +24,7 @@
 # 
 #     You should have received a copy of the GNU General Public License
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
-
+from django.utils.translation import ugettext_lazy as _
 import os
 
 ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.pardir))
@@ -70,9 +70,9 @@ TIME_ZONE = 'Europe/London'
 LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = (
-    ('en_GB', "English"),
-    ('fr_FR', "French"),
-    ('de_DE', "German"),
+    ('en_GB', _("English")),
+    ('fr_FR', _("French")),
+    ('de_DE', _("German")),
 )
 
 SITE_ID = 1
