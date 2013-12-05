@@ -184,8 +184,8 @@ class APIStoryTestCase(TestCase):
     def test_language_list(self):
         response = self.client.get('/api/languages/')
         self.assertIsNotNone(response.data)
-        self.assertEquals(len(response.data), len(settings.SUPPORTED_LANGUAGES))
-        for lang in settings.SUPPORTED_LANGUAGES:
+        self.assertEquals(len(response.data), len(settings.LANGUAGES))
+        for lang in settings.LANGUAGES:
             find_lang = lambda x: x['code'] == lang[0]
             response_lang = filter(find_lang, response.data)[0]
             self.assertIsNotNone(response_lang)

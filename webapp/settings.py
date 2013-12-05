@@ -69,7 +69,7 @@ TIME_ZONE = 'Europe/London'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SUPPORTED_LANGUAGES = (
+LANGUAGES = (
     ('en_GB', "English"),
     ('fr_FR', "French"),
     ('de_DE', "German"),
@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     'south',                    # helps with database migrations
     'redactor',                  # wysiwyg editor
     # Internal applications added 
+    'webapp',
     'webapp.api',
     'webapp.core',
     'webapp.currency',

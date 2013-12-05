@@ -187,7 +187,7 @@ class FiltersViewSet(viewsets.ViewSet):
                         'value':country[1]
                 })
 
-        for language in settings.SUPPORTED_LANGUAGES:
+        for language in settings.LANGUAGES:
             filters['lang'].append({
                     'key': language[0], 
                     "value": language[1]
@@ -213,7 +213,7 @@ class CountryViewSet(ChoicesViewSet):
 # -----------------------------------------------------------------------------
 class LanguageViewSet(ChoicesViewSet):
     class Meta: 
-        choices = settings.SUPPORTED_LANGUAGES
+        choices = settings.LANGUAGES
     def create_element(self, lang):
         return {"code": lang[0], "name": lang[1]}
 
