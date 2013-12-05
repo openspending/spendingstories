@@ -1,7 +1,9 @@
 module.exports = (grunt)->
     shell = require('shelljs')
-    
-    DJANGOSETTINGS = JSON.parse shell.exec("python scripts/print_django_settings.py").output
+    cmd_opts   = 
+        silent: true 
+    cmd_result = shell.exec("python scripts/print_django_settings.py", cmd_opts)
+    DJANGOSETTINGS = JSON.parse cmd_result.output
 
     angular_files = [
         'webapp/static/coffee/*.coffee',  # our scripts 
@@ -16,7 +18,7 @@ module.exports = (grunt)->
         # i18n & angular translate configuration 
         i18nextract:
             dev:
-                lang: DJANGOSETTINGS.SUPPORTED_LANGUAGES.map (e)-> e[0]
+                lang: DJANGOSETTINGS.LANGUAGES.map (e)-> e[0]
                 src: angular_files
                 suffix: ".json"
                 dest: "webapp/static/locales"
