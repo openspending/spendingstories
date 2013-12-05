@@ -225,9 +225,11 @@ Acceptable values are hexadecimal colors, rgb colors or [HTML color names](https
 
 ## How to translate Spending Stories
 
-The Spending Stories translation is focused on the front-end of the application. 
-This explains why we do not use the regular django translation system but dedicated
-tools for angular applications:
+The Spending Stories translation is focused on the front-end of the application.
+However we're also using the django default translation system to translate some
+string that come from the django application (the server) of this project.
+
+The front-end translation system is composed of the following tools:
 
 - [angular-translate](http://pascalprecht.github.io/angular-translate/), make angular application translation easy.  
 - [jplusplus/grunt-angular-translate](https://github.com/jplusplus/grunt-angular-translate) , a fork of [grunt-angular-translate](https://github.com/firehist/grunt-angular-translate). Automate the update of locales. 
@@ -239,22 +241,19 @@ This part covers the following topics:
 - what is not fully translated for the moment
 
 ### Add a language
-1. Edit the `Gruntfile.coffee`
-    Change the `supportedLanguages` value to add/remove a supported languages.
+1. Edit the `webapp/settings.py`
+    Change the `LANGUAGES` variable value to add/remove a supported languages.
     
-    This will tell to the grunt's angular-translate task to generate the files for each
+    This will tel's angular-translate task to generate the files for each
     languages when the `i18nextract:dev` task (or its alias: `makemessages`) is executed.
 
     > Note: this task is automated by running `grunt watch`
 
-2.  Launch grunt `update_supported_languages` task 
+2.  Launch `py manage.py makemessages`
 
-    ```bash
-    $> grunt update_supported_languages
-      Running "update_supported_languages" task
-      File 'supported.json' updated in webapp/static/locales/ folder
-    ```
-3. Update the new generated locales file at `/webapp/static/locales/<you locale>.json`
+3. Update the new generated locales files at 
+  - `/webapp/static/locales/<you locale>.json` for static application translations
+  - `/conf/locales/` for the django application translations
 
 ### Add or edit translation
 
