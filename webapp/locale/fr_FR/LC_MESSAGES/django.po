@@ -1,886 +1,876 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+msgstr "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-05 15:55+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-12-06 06:49-0500\n"
+"Last-Translator: edou4rd <edou4rd@gmail.com>\n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: crowdin.net\n"
 
 #: settings.py:73
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: settings.py:74
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: settings.py:75
 msgid "German"
-msgstr ""
+msgstr "German"
 
 #: core/admin.py:51
 msgid "Mark selected contributions as published"
-msgstr ""
+msgstr "Mark selected contributions as published"
 
 #: core/admin.py:55
 msgid "Mark selected contributions as refused"
-msgstr ""
+msgstr "Mark selected contributions as refused"
 
 #: core/admin.py:59
 msgid "Mark selected contributions as pending"
-msgstr ""
+msgstr "Mark selected contributions as pending"
 
 #: core/fields.py:40
 msgid "Afghanistan (AFG)"
-msgstr ""
+msgstr "Afghanistan (AFG)"
 
 #: core/fields.py:41
 msgid "Albania (ALB)"
-msgstr ""
+msgstr "Albania (ALB)"
 
 #: core/fields.py:42
 msgid "Algeria (DZA)"
-msgstr ""
+msgstr "Algeria (DZA)"
 
 #: core/fields.py:43
 msgid "Angola (AGO)"
-msgstr ""
+msgstr "Angola (AGO)"
 
 #: core/fields.py:44
 msgid "Antigua and Barbuda (ATG)"
-msgstr ""
+msgstr "Antigua and Barbuda (ATG)"
 
 #: core/fields.py:45
 msgid "Argentina (ARG)"
-msgstr ""
+msgstr "Argentina (ARG)"
 
 #: core/fields.py:46
 msgid "Armenia (ARM)"
-msgstr ""
+msgstr "Armenia (ARM)"
 
 #: core/fields.py:47
 msgid "Aruba (ABW)"
-msgstr ""
+msgstr "Aruba (ABW)"
 
 #: core/fields.py:48
 msgid "Australia (AUS)"
-msgstr ""
+msgstr "Australia (AUS)"
 
 #: core/fields.py:49
 msgid "Austria (AUT)"
-msgstr ""
+msgstr "Austria (AUT)"
 
 #: core/fields.py:50
 msgid "Azerbaijan (AZE)"
-msgstr ""
+msgstr "Azerbaijan (AZE)"
 
 #: core/fields.py:51
 msgid "Bahamas (BHS)"
-msgstr ""
+msgstr "Bahamas (BHS)"
 
 #: core/fields.py:52
 msgid "Bahrain (BHR)"
-msgstr ""
+msgstr "Bahrain (BHR)"
 
 #: core/fields.py:53
 msgid "Bangladesh (BGD)"
-msgstr ""
+msgstr "Bangladesh (BGD)"
 
 #: core/fields.py:54
 msgid "Barbados (BRB)"
-msgstr ""
+msgstr "Barbados (BRB)"
 
 #: core/fields.py:55
 msgid "Belarus (BLR)"
-msgstr ""
+msgstr "Belarus (BLR)"
 
 #: core/fields.py:56
 msgid "Belgium (BEL)"
-msgstr ""
+msgstr "Belgium (BEL)"
 
 #: core/fields.py:57
 msgid "Belize (BLZ)"
-msgstr ""
+msgstr "Belize (BLZ)"
 
 #: core/fields.py:58
 msgid "Benin (BEN)"
-msgstr ""
+msgstr "Benin (BEN)"
 
 #: core/fields.py:59
 msgid "Bhutan (BTN)"
-msgstr ""
+msgstr "Bhutan (BTN)"
 
 #: core/fields.py:60
 msgid "Bolivia (BOL)"
-msgstr ""
+msgstr "Bolivia (BOL)"
 
 #: core/fields.py:61
 msgid "Bosnia and Herzegovina (BIH)"
-msgstr ""
+msgstr "Bosnia and Herzegovina (BIH)"
 
 #: core/fields.py:62
 msgid "Botswana (BWA)"
-msgstr ""
+msgstr "Botswana (BWA)"
 
 #: core/fields.py:63
 msgid "Brazil (BRA)"
-msgstr ""
+msgstr "Brazil (BRA)"
 
 #: core/fields.py:64
 msgid "Brunei Darussalam (BRN)"
-msgstr ""
+msgstr "Brunei Darussalam (BRN)"
 
 #: core/fields.py:65
 msgid "Bulgaria (BGR)"
-msgstr ""
+msgstr "Bulgaria (BGR)"
 
 #: core/fields.py:66
 msgid "Burkina Faso (BFA)"
-msgstr ""
+msgstr "Burkina Faso (BFA)"
 
 #: core/fields.py:67
 msgid "Burundi (BDI)"
-msgstr ""
+msgstr "Burundi (BDI)"
 
 #: core/fields.py:68
 msgid "Cambodia (KHM)"
-msgstr ""
+msgstr "Cambodia (KHM)"
 
 #: core/fields.py:69
 msgid "Cameroon (CMR)"
-msgstr ""
+msgstr "Cameroon (CMR)"
 
 #: core/fields.py:70
 msgid "Canada (CAN)"
-msgstr ""
+msgstr "Canada (CAN)"
 
 #: core/fields.py:71
 msgid "Cape Verde (CPV)"
-msgstr ""
+msgstr "Cape Verde (CPV)"
 
 #: core/fields.py:72
 msgid "Central African Republic (CAF)"
-msgstr ""
+msgstr "Central African Republic (CAF)"
 
 #: core/fields.py:73
 msgid "Chad (TCD)"
-msgstr ""
+msgstr "Chad (TCD)"
 
 #: core/fields.py:74
 msgid "Chile (CHL)"
-msgstr ""
+msgstr "Chile (CHL)"
 
 #: core/fields.py:75
 msgid "China (CHN)"
-msgstr ""
+msgstr "China (CHN)"
 
 #: core/fields.py:76
 msgid "China - Hong Kong (HKG)"
-msgstr ""
+msgstr "China - Hong Kong (HKG)"
 
 #: core/fields.py:77
 msgid "China - Macao (MAC)"
-msgstr ""
+msgstr "China - Macao (MAC)"
 
 #: core/fields.py:78
 msgid "Colombia (COL)"
-msgstr ""
+msgstr "Colombia (COL)"
 
 #: core/fields.py:79
 msgid "Comoros (COM)"
-msgstr ""
+msgstr "Comoros (COM)"
 
 #: core/fields.py:80
 msgid "Congo (COG)"
-msgstr ""
+msgstr "Congo (COG)"
 
 #: core/fields.py:81
 msgid "Costa Rica (CRI)"
-msgstr ""
+msgstr "Costa Rica (CRI)"
 
 #: core/fields.py:82
 msgid "Cote d'Ivoire (CIV)"
-msgstr ""
+msgstr "Cote d'Ivoire (CIV)"
 
 #: core/fields.py:83
 msgid "Croatia (HRV)"
-msgstr ""
+msgstr "Croatia (HRV)"
 
 #: core/fields.py:84
 msgid "Cyprus (CYP)"
-msgstr ""
+msgstr "Cyprus (CYP)"
 
 #: core/fields.py:85
 msgid "Czech Republic (CZE)"
-msgstr ""
+msgstr "Czech Republic (CZE)"
 
 #: core/fields.py:86
 msgid "Denmark (DNK)"
-msgstr ""
+msgstr "Denmark (DNK)"
 
 #: core/fields.py:87
 msgid "Djibouti (DJI)"
-msgstr ""
+msgstr "Djibouti (DJI)"
 
 #: core/fields.py:88
 msgid "Dominica (DMA)"
-msgstr ""
+msgstr "Dominica (DMA)"
 
 #: core/fields.py:89
 msgid "Dominican Republic (DOM)"
-msgstr ""
+msgstr "Dominican Republic (DOM)"
 
 #: core/fields.py:90
 msgid "Ecuador (ECU)"
-msgstr ""
+msgstr "Ecuador (ECU)"
 
 #: core/fields.py:91
 msgid "Egypt (EGY)"
-msgstr ""
+msgstr "Egypt (EGY)"
 
 #: core/fields.py:92
 msgid "El Salvador (SLV)"
-msgstr ""
+msgstr "El Salvador (SLV)"
 
 #: core/fields.py:93
 msgid "Equatorial Guinea (GNQ)"
-msgstr ""
+msgstr "Equatorial Guinea (GNQ)"
 
 #: core/fields.py:94
 msgid "Estonia (EST)"
-msgstr ""
+msgstr "Estonia (EST)"
 
 #: core/fields.py:95
 msgid "Ethiopia (ETH)"
-msgstr ""
+msgstr "Ethiopia (ETH)"
 
 #: core/fields.py:96
 msgid "Fiji (FJI)"
-msgstr ""
+msgstr "Fiji (FJI)"
 
 #: core/fields.py:97
 msgid "Finland (FIN)"
-msgstr ""
+msgstr "Finland (FIN)"
 
 #: core/fields.py:98
 msgid "France (FRA)"
-msgstr ""
+msgstr "France (FRA)"
 
 #: core/fields.py:99
 msgid "Gabon (GAB)"
-msgstr ""
+msgstr "Gabon (GAB)"
 
 #: core/fields.py:100
 msgid "Gambia (GMB)"
-msgstr ""
+msgstr "Gambia (GMB)"
 
 #: core/fields.py:101
 msgid "Georgia (GEO)"
-msgstr ""
+msgstr "Georgia (GEO)"
 
 #: core/fields.py:102
 msgid "Germany (DEU)"
-msgstr ""
+msgstr "Germany (DEU)"
 
 #: core/fields.py:103
 msgid "Ghana (GHA)"
-msgstr ""
+msgstr "Ghana (GHA)"
 
 #: core/fields.py:104
 msgid "Greece (GRC)"
-msgstr ""
+msgstr "Greece (GRC)"
 
 #: core/fields.py:105
 msgid "Grenada (GRD)"
-msgstr ""
+msgstr "Grenada (GRD)"
 
 #: core/fields.py:106
 msgid "Guatemala (GTM)"
-msgstr ""
+msgstr "Guatemala (GTM)"
 
 #: core/fields.py:107
 msgid "Guinea (GIN)"
-msgstr ""
+msgstr "Guinea (GIN)"
 
 #: core/fields.py:108
 msgid "Guinea-Bissau (GNB)"
-msgstr ""
+msgstr "Guinea-Bissau (GNB)"
 
 #: core/fields.py:109
 msgid "Guyana (GUY)"
-msgstr ""
+msgstr "Guyana (GUY)"
 
 #: core/fields.py:110
 msgid "Haiti (HTI)"
-msgstr ""
+msgstr "Haiti (HTI)"
 
 #: core/fields.py:111
 msgid "Honduras (HND)"
-msgstr ""
+msgstr "Honduras (HND)"
 
 #: core/fields.py:112
 msgid "Hungary (HUN)"
-msgstr ""
+msgstr "Hungary (HUN)"
 
 #: core/fields.py:113
 msgid "Iceland (ISL)"
-msgstr ""
+msgstr "Iceland (ISL)"
 
 #: core/fields.py:114
 msgid "India (IND)"
-msgstr ""
+msgstr "India (IND)"
 
 #: core/fields.py:115
 msgid "Indonesia (IDN)"
-msgstr ""
+msgstr "Indonesia (IDN)"
 
 #: core/fields.py:116
 msgid "Iran (IRN)"
-msgstr ""
+msgstr "Iran (IRN)"
 
 #: core/fields.py:117
 msgid "Iraq (IRQ)"
-msgstr ""
+msgstr "Iraq (IRQ)"
 
 #: core/fields.py:118
 msgid "Ireland (IRL)"
-msgstr ""
+msgstr "Ireland (IRL)"
 
 #: core/fields.py:119
 msgid "Israel (ISR)"
-msgstr ""
+msgstr "Israel (ISR)"
 
 #: core/fields.py:120
 msgid "Italy (ITA)"
-msgstr ""
+msgstr "Italy (ITA)"
 
 #: core/fields.py:121
 msgid "Jamaica (JAM)"
-msgstr ""
+msgstr "Jamaica (JAM)"
 
 #: core/fields.py:122
 msgid "Japan (JPN)"
-msgstr ""
+msgstr "Japan (JPN)"
 
 #: core/fields.py:123
 msgid "Jordan (JOR)"
-msgstr ""
+msgstr "Jordan (JOR)"
 
 #: core/fields.py:124
 msgid "Kazakhstan (KAZ)"
-msgstr ""
+msgstr "Kazakhstan (KAZ)"
 
 #: core/fields.py:125
 msgid "Kenya (KEN)"
-msgstr ""
+msgstr "Kenya (KEN)"
 
 #: core/fields.py:126
 msgid "Kuwait (KWT)"
-msgstr ""
+msgstr "Kuwait (KWT)"
 
 #: core/fields.py:127
 msgid "Kyrgyzstan (KGZ)"
-msgstr ""
+msgstr "Kyrgyzstan (KGZ)"
 
 #: core/fields.py:128
 msgid "Lao People's Democratic Republic (LAO)"
-msgstr ""
+msgstr "Lao People's Democratic Republic (LAO)"
 
 #: core/fields.py:129
 msgid "Latvia (LVA)"
-msgstr ""
+msgstr "Latvia (LVA)"
 
 #: core/fields.py:130
 msgid "Lebanon (LBN)"
-msgstr ""
+msgstr "Lebanon (LBN)"
 
 #: core/fields.py:131
 msgid "Lesotho (LSO)"
-msgstr ""
+msgstr "Lesotho (LSO)"
 
 #: core/fields.py:132
 msgid "Liberia (LBR)"
-msgstr ""
+msgstr "Liberia (LBR)"
 
 #: core/fields.py:133
 msgid "Libyan Arab Jamahiriya (LBY)"
-msgstr ""
+msgstr "Libyan Arab Jamahiriya (LBY)"
 
 #: core/fields.py:134
 msgid "Lithuania (LTU)"
-msgstr ""
+msgstr "Lithuania (LTU)"
 
 #: core/fields.py:135
 msgid "Luxembourg (LUX)"
-msgstr ""
+msgstr "Luxembourg (LUX)"
 
 #: core/fields.py:136
 msgid "Macedonia (MKD)"
-msgstr ""
+msgstr "Macedonia (MKD)"
 
 #: core/fields.py:137
 msgid "Madagascar (MDG)"
-msgstr ""
+msgstr "Madagascar (MDG)"
 
 #: core/fields.py:138
 msgid "Malawi (MWI)"
-msgstr ""
+msgstr "Malawi (MWI)"
 
 #: core/fields.py:139
 msgid "Malaysia (MYS)"
-msgstr ""
+msgstr "Malaysia (MYS)"
 
 #: core/fields.py:140
 msgid "Maldives (MDV)"
-msgstr ""
+msgstr "Maldives (MDV)"
 
 #: core/fields.py:141
 msgid "Mali (MLI)"
-msgstr ""
+msgstr "Mali (MLI)"
 
 #: core/fields.py:142
 msgid "Malta (MLT)"
-msgstr ""
+msgstr "Malta (MLT)"
 
 #: core/fields.py:143
 msgid "Mauritania (MRT)"
-msgstr ""
+msgstr "Mauritania (MRT)"
 
 #: core/fields.py:144
 msgid "Mauritius (MUS)"
-msgstr ""
+msgstr "Mauritius (MUS)"
 
 #: core/fields.py:145
 msgid "Mexico (MEX)"
-msgstr ""
+msgstr "Mexico (MEX)"
 
 #: core/fields.py:146
 msgid "Mongolia (MNG)"
-msgstr ""
+msgstr "Mongolia (MNG)"
 
 #: core/fields.py:147
 msgid "Montenegro (MNE)"
-msgstr ""
+msgstr "Montenegro (MNE)"
 
 #: core/fields.py:148
 msgid "Morocco (MAR)"
-msgstr ""
+msgstr "Morocco (MAR)"
 
 #: core/fields.py:149
 msgid "Mozambique (MOZ)"
-msgstr ""
+msgstr "Mozambique (MOZ)"
 
 #: core/fields.py:150
 msgid "Myanmar (MMR)"
-msgstr ""
+msgstr "Myanmar (MMR)"
 
 #: core/fields.py:151
 msgid "Namibia (NAM)"
-msgstr ""
+msgstr "Namibia (NAM)"
 
 #: core/fields.py:152
 msgid "Nepal (NPL)"
-msgstr ""
+msgstr "Nepal (NPL)"
 
 #: core/fields.py:153
 msgid "Netherlands (NLD)"
-msgstr ""
+msgstr "Netherlands (NLD)"
 
 #: core/fields.py:154
 msgid "New Zealand (NZL)"
-msgstr ""
+msgstr "New Zealand (NZL)"
 
 #: core/fields.py:155
 msgid "Nicaragua (NIC)"
-msgstr ""
+msgstr "Nicaragua (NIC)"
 
 #: core/fields.py:156
 msgid "Niger (NER)"
-msgstr ""
+msgstr "Niger (NER)"
 
 #: core/fields.py:157
 msgid "Nigeria (NGA)"
-msgstr ""
+msgstr "Nigeria (NGA)"
 
 #: core/fields.py:158
 msgid "Norway (NOR)"
-msgstr ""
+msgstr "Norway (NOR)"
 
 #: core/fields.py:159
 msgid "Occupied Palestinian Territory (PSE)"
-msgstr ""
+msgstr "Occupied Palestinian Territory (PSE)"
 
 #: core/fields.py:160
 msgid "Oman (OMN)"
-msgstr ""
+msgstr "Oman (OMN)"
 
 #: core/fields.py:161
 msgid "Pakistan (PAK)"
-msgstr ""
+msgstr "Pakistan (PAK)"
 
 #: core/fields.py:162
 msgid "Panama (PAN)"
-msgstr ""
+msgstr "Panama (PAN)"
 
 #: core/fields.py:163
 msgid "Papua New Guinea (PNG)"
-msgstr ""
+msgstr "Papua New Guinea (PNG)"
 
 #: core/fields.py:164
 msgid "Paraguay (PRY)"
-msgstr ""
+msgstr "Paraguay (PRY)"
 
 #: core/fields.py:165
 msgid "Peru (PER)"
-msgstr ""
+msgstr "Peru (PER)"
 
 #: core/fields.py:166
 msgid "Philippines (PHL)"
-msgstr ""
+msgstr "Philippines (PHL)"
 
 #: core/fields.py:167
 msgid "Poland (POL)"
-msgstr ""
+msgstr "Poland (POL)"
 
 #: core/fields.py:168
 msgid "Portugal (PRT)"
-msgstr ""
+msgstr "Portugal (PRT)"
 
 #: core/fields.py:169
 msgid "Qatar (QAT)"
-msgstr ""
+msgstr "Qatar (QAT)"
 
 #: core/fields.py:170
 msgid "Republic of Korea (KOR)"
-msgstr ""
+msgstr "Republic of Korea (KOR)"
 
 #: core/fields.py:171
 msgid "Republic of Moldova (MDA)"
-msgstr ""
+msgstr "Republic of Moldova (MDA)"
 
 #: core/fields.py:172
 msgid "Romania (ROU)"
-msgstr ""
+msgstr "Romania (ROU)"
 
 #: core/fields.py:173
 msgid "Russian Federation (RUS)"
-msgstr ""
+msgstr "Russian Federation (RUS)"
 
 #: core/fields.py:174
 msgid "Rwanda (RWA)"
-msgstr ""
+msgstr "Rwanda (RWA)"
 
 #: core/fields.py:175
 msgid "Saint Kitts and Nevis (KNA)"
-msgstr ""
+msgstr "Saint Kitts and Nevis (KNA)"
 
 #: core/fields.py:176
 msgid "Saint Lucia (LCA)"
-msgstr ""
+msgstr "Saint Lucia (LCA)"
 
 #: core/fields.py:177
 msgid "Saint Vincent and the Grenadines (VCT)"
-msgstr ""
+msgstr "Saint Vincent and the Grenadines (VCT)"
 
 #: core/fields.py:178
 msgid "Samoa (WSM)"
-msgstr ""
+msgstr "Samoa (WSM)"
 
 #: core/fields.py:179
 msgid "San Marino (SMR)"
-msgstr ""
+msgstr "San Marino (SMR)"
 
 #: core/fields.py:180
 msgid "Sao Tome and Principe (STP)"
-msgstr ""
+msgstr "Sao Tome and Principe (STP)"
 
 #: core/fields.py:181
 msgid "Saudi Arabia (SAU)"
-msgstr ""
+msgstr "Saudi Arabia (SAU)"
 
 #: core/fields.py:182
 msgid "Senegal (SEN)"
-msgstr ""
+msgstr "Senegal (SEN)"
 
 #: core/fields.py:183
 msgid "Serbia (SRB)"
-msgstr ""
+msgstr "Serbia (SRB)"
 
 #: core/fields.py:184
 msgid "Seychelles (SYC)"
-msgstr ""
+msgstr "Seychelles (SYC)"
 
 #: core/fields.py:185
 msgid "Sierra Leone (SLE)"
-msgstr ""
+msgstr "Sierra Leone (SLE)"
 
 #: core/fields.py:186
 msgid "Singapore (SGP)"
-msgstr ""
+msgstr "Singapore (SGP)"
 
 #: core/fields.py:187
 msgid "Slovakia (SVK)"
-msgstr ""
+msgstr "Slovakia (SVK)"
 
 #: core/fields.py:188
 msgid "Slovenia (SVN)"
-msgstr ""
+msgstr "Slovenia (SVN)"
 
 #: core/fields.py:189
 msgid "Solomon Islands (SLB)"
-msgstr ""
+msgstr "Solomon Islands (SLB)"
 
 #: core/fields.py:190
 msgid "South Africa (ZAF)"
-msgstr ""
+msgstr "South Africa (ZAF)"
 
 #: core/fields.py:191
 msgid "Spain (ESP)"
-msgstr ""
+msgstr "Spain (ESP)"
 
 #: core/fields.py:192
 msgid "Sri Lanka (LKA)"
-msgstr ""
+msgstr "Sri Lanka (LKA)"
 
 #: core/fields.py:193
 msgid "Sudan (SDN)"
-msgstr ""
+msgstr "Sudan (SDN)"
 
 #: core/fields.py:194
 msgid "Suriname (SUR)"
-msgstr ""
+msgstr "Suriname (SUR)"
 
 #: core/fields.py:195
 msgid "Swaziland (SWZ)"
-msgstr ""
+msgstr "Swaziland (SWZ)"
 
 #: core/fields.py:196
 msgid "Sweden (SWE)"
-msgstr ""
+msgstr "Sweden (SWE)"
 
 #: core/fields.py:197
 msgid "Switzerland (CHE)"
-msgstr ""
+msgstr "Switzerland (CHE)"
 
 #: core/fields.py:198
 msgid "Syrian Arab Republic (SYR)"
-msgstr ""
+msgstr "Syrian Arab Republic (SYR)"
 
 #: core/fields.py:199
 msgid "Tajikistan (TJK)"
-msgstr ""
+msgstr "Tajikistan (TJK)"
 
 #: core/fields.py:200
 msgid "Thailand (THA)"
-msgstr ""
+msgstr "Thailand (THA)"
 
 #: core/fields.py:201
 msgid "Timor-Leste (TLS)"
-msgstr ""
+msgstr "Timor-Leste (TLS)"
 
 #: core/fields.py:202
 msgid "Togo (TGO)"
-msgstr ""
+msgstr "Togo (TGO)"
 
 #: core/fields.py:203
 msgid "Tonga (TON)"
-msgstr ""
+msgstr "Tonga (TON)"
 
 #: core/fields.py:204
 msgid "Trinidad and Tobago (TTO)"
-msgstr ""
+msgstr "Trinidad and Tobago (TTO)"
 
 #: core/fields.py:205
 msgid "Tunisia (TUN)"
-msgstr ""
+msgstr "Tunisia (TUN)"
 
 #: core/fields.py:206
 msgid "Turkey (TUR)"
-msgstr ""
+msgstr "Turkey (TUR)"
 
 #: core/fields.py:207
 msgid "Uganda (UGA)"
-msgstr ""
+msgstr "Uganda (UGA)"
 
 #: core/fields.py:208
 msgid "Ukraine (UKR)"
-msgstr ""
+msgstr "Ukraine (UKR)"
 
 #: core/fields.py:209
 msgid "United Arab Emirates (ARE)"
-msgstr ""
+msgstr "United Arab Emirates (ARE)"
 
 #: core/fields.py:210
 msgid "United Kingdom (GBR)"
-msgstr ""
+msgstr "United Kingdom (GBR)"
 
 #: core/fields.py:211
 msgid "United Republic of Tanzania (TZA)"
-msgstr ""
+msgstr "United Republic of Tanzania (TZA)"
 
 #: core/fields.py:212
 msgid "United States of America (USA)"
-msgstr ""
+msgstr "United States of America (USA)"
 
 #: core/fields.py:213
 msgid "Uruguay (URY)"
-msgstr ""
+msgstr "Uruguay (URY)"
 
 #: core/fields.py:214
 msgid "Vanuatu (VUT)"
-msgstr ""
+msgstr "Vanuatu (VUT)"
 
 #: core/fields.py:215
 msgid "Venezuela (Bolivarian Republic of) (VEN)"
-msgstr ""
+msgstr "Venezuela (Bolivarian Republic of) (VEN)"
 
 #: core/fields.py:216
 msgid "Viet Nam (VNM)"
-msgstr ""
+msgstr "Viet Nam (VNM)"
 
 #: core/fields.py:217
 msgid "Yemen (YEM)"
-msgstr ""
+msgstr "Yemen (YEM)"
 
 #: core/fields.py:218
 msgid "Zambia (ZMB)"
-msgstr ""
+msgstr "Zambia (ZMB)"
 
 #: core/fields.py:219
 msgid "Zimbabwe (ZWE)"
-msgstr ""
+msgstr "Zimbabwe (ZWE)"
 
 #: core/models.py:42
 msgid "discrete"
-msgstr ""
+msgstr "discrete"
 
 #: core/models.py:42
 msgid "over one year"
-msgstr ""
+msgstr "over one year"
 
 #: core/models.py:61
 msgid "theme's image"
-msgstr ""
+msgstr "theme's image"
 
 #: core/models.py:103
 msgid "The spending value"
-msgstr ""
+msgstr "The spending value"
 
 #: core/models.py:103
-msgid ""
-"Insert round numbers without any space or separator. e.g.222109000.You can "
-"also use the scientific notation. e.g.222.109e6"
-msgstr ""
+msgid "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
+msgstr "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
 
 #: core/models.py:104
 msgid "Story title"
-msgstr ""
+msgstr "Story title"
 
 #: core/models.py:105
 msgid "Story description"
-msgstr ""
+msgstr "Story description"
 
 #: core/models.py:106
 msgid "Country"
-msgstr ""
+msgstr "Country"
 
 #: core/models.py:106
 msgid "Choose the country or zone where the money is spent"
-msgstr ""
+msgstr "Choose the country or zone where the money is spent"
 
 #: core/models.py:107
 msgid "Story's source URL"
-msgstr ""
+msgstr "Story's source URL"
 
 #: core/models.py:109
 msgid "Story type"
-msgstr ""
+msgstr "Story type"
 
 #: core/models.py:109
-msgid ""
-"The way you want that we compare this story. If this story's amount concerns "
-"a buget or a spending over one specific year, choose \"over one year\" (The "
-"amount will be cut into time equivalence)."
-msgstr ""
+msgid "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
+msgstr "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
 
 #: core/models.py:110
 msgid "status"
-msgstr ""
+msgstr "status"
 
 #: core/models.py:110
 msgid "pending"
-msgstr ""
+msgstr "pending"
 
 #: core/models.py:110
 msgid "published"
-msgstr ""
+msgstr "published"
 
 #: core/models.py:110
 msgid "refused"
-msgstr ""
+msgstr "refused"
 
 #: core/models.py:111
 msgid "Is a top story"
-msgstr ""
+msgstr "Is a top story"
 
 #: core/models.py:111
 msgid "Check if the story is a tabloid"
-msgstr ""
+msgstr "Check if the story is a tabloid"
 
 #: core/models.py:112
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 #: core/models.py:112
 msgid "Enter the start year of the spending"
-msgstr ""
+msgstr "Enter the start year of the spending"
 
 #: core/models.py:114
 msgid "Extra informations in json format"
-msgstr ""
+msgstr "Extra informations in json format"
 
 #: core/models.py:117
 msgid "The current value with the inflation"
-msgstr ""
+msgstr "The current value with the inflation"
 
 #: core/models.py:118
 msgid "Current value in USD"
-msgstr ""
+msgstr "Current value in USD"
 
 #: core/models.py:120
 msgid "Story language"
-msgstr ""
+msgstr "Story language"
 
 #: core/models.py:160
 msgid "Page title"
-msgstr ""
+msgstr "Page title"
 
 #: core/models.py:161
 msgid "Page slug"
-msgstr ""
+msgstr "Page slug"
 
 #: core/models.py:162
 msgid "Page content"
-msgstr ""
+msgstr "Page content"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
-msgstr ""
+msgstr "Page not found"
 
 #: templates/admin/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "We're sorry, but the requested page could not be found."
 
 #: templates/admin/500.html:6 templates/admin/app_index.html:7
 #: templates/admin/base.html:47 templates/admin/change_form.html:19
@@ -897,61 +887,59 @@ msgstr ""
 #: templates/registration/password_reset_done.html:6
 #: templates/registration/password_reset_form.html:6
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: templates/admin/500.html:7
 msgid "Server error"
-msgstr ""
+msgstr "Server error"
 
 #: templates/admin/500.html:11
 msgid "Server error (500)"
-msgstr ""
+msgstr "Server error (500)"
 
 #: templates/admin/500.html:14
 msgid "Server Error <em>(500)</em>"
-msgstr ""
+msgstr "Server Error <em>(500)</em>"
 
 #: templates/admin/500.html:15
-msgid ""
-"There's been an error. It's been reported to the site administrators via "
-"email and should be fixed shortly. Thanks for your patience."
-msgstr ""
+msgid "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
+msgstr "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
 
 #: templates/admin/actions.html:4
 msgid "Run the selected action"
-msgstr ""
+msgstr "Run the selected action"
 
 #: templates/admin/actions.html:4
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: templates/admin/actions.html:11
 msgid "Click here to select the objects across all pages"
-msgstr ""
+msgstr "Click here to select the objects across all pages"
 
 #: templates/admin/actions.html:11
 #, python-format
 msgid "Select all %(total_count)s %(module_name)s"
-msgstr ""
+msgstr "Select all %(total_count)s %(module_name)s"
 
 #: templates/admin/actions.html:13
 msgid "Clear selection"
-msgstr ""
+msgstr "Clear selection"
 
 #: templates/admin/app_index.html:10 templates/admin/index.html:21
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: templates/admin/base.html:28
 msgid "Welcome,"
-msgstr ""
+msgstr "Welcome,"
 
 #: templates/admin/base.html:33
 #: templates/registration/password_change_done.html:3
 #: templates/registration/password_change_form.html:4
 msgid "Documentation"
-msgstr ""
+msgstr "Documentation"
 
 #: templates/admin/base.html:36
 #: templates/admin/auth/user/change_password.html:17
@@ -959,35 +947,35 @@ msgstr ""
 #: templates/registration/password_change_done.html:3
 #: templates/registration/password_change_form.html:4
 msgid "Change password"
-msgstr ""
+msgstr "Change password"
 
 #: templates/admin/base.html:38
 #: templates/registration/password_change_done.html:3
 #: templates/registration/password_change_form.html:4
 msgid "Log out"
-msgstr ""
+msgstr "Log out"
 
 #: templates/admin/base_site.html:4
 msgid "ADMIN: OKF - Spending Stories"
-msgstr ""
+msgstr "ADMIN: OKF - Spending Stories"
 
 #: templates/admin/base_site.html:7
 msgid "OKF - Spending Stories"
-msgstr ""
+msgstr "OKF - Spending Stories"
 
 #: templates/admin/change_form.html:22 templates/admin/index.html:33
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: templates/admin/change_form.html:32 templates/admin/object_history.html:11
 msgid "History"
-msgstr ""
+msgstr "History"
 
 #: templates/admin/change_form.html:33
 #: templates/admin/edit_inline/stacked.html:9
 #: templates/admin/edit_inline/tabular.html:30
 msgid "View on site"
-msgstr ""
+msgstr "View on site"
 
 #: templates/admin/change_form.html:44 templates/admin/change_list.html:67
 #: templates/admin/login.html:17
@@ -995,282 +983,259 @@ msgstr ""
 #: templates/registration/password_change_form.html:20
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Please correct the error below."
+msgstr[1] "Please correct the errors below."
 
 #: templates/admin/change_list.html:58
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Add %(name)s"
 
 #: templates/admin/change_list.html:78
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: templates/admin/change_list_results.html:17
 msgid "Remove from sorting"
-msgstr ""
+msgstr "Remove from sorting"
 
 #: templates/admin/change_list_results.html:18
 #, python-format
 msgid "Sorting priority: %(priority_number)s"
-msgstr ""
+msgstr "Sorting priority: %(priority_number)s"
 
 #: templates/admin/change_list_results.html:19
 msgid "Toggle sorting"
-msgstr ""
+msgstr "Toggle sorting"
 
 #: templates/admin/delete_confirmation.html:11
 #: templates/admin/submit_line.html:4
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 #: templates/admin/delete_confirmation.html:18
 #, python-format
-msgid ""
-"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
-"related objects, but your account doesn't have permission to delete the "
-"following types of objects:"
-msgstr ""
+msgid "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgstr "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
 
 #: templates/admin/delete_confirmation.html:26
 #, python-format
-msgid ""
-"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
-"following protected related objects:"
-msgstr ""
+msgid "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
+msgstr "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
 
 #: templates/admin/delete_confirmation.html:34
 #, python-format
-msgid ""
-"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
-"All of the following related items will be deleted:"
-msgstr ""
+msgid "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
+msgstr "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
 
 #: templates/admin/delete_confirmation.html:39
 #: templates/admin/delete_selected_confirmation.html:44
 msgid "Yes, I'm sure"
-msgstr ""
+msgstr "Yes, I'm sure"
 
 #: templates/admin/delete_selected_confirmation.html:10
 msgid "Delete multiple objects"
-msgstr ""
+msgstr "Delete multiple objects"
 
 #: templates/admin/delete_selected_confirmation.html:17
 #, python-format
-msgid ""
-"Deleting the selected %(objects_name)s would result in deleting related "
-"objects, but your account doesn't have permission to delete the following "
-"types of objects:"
-msgstr ""
+msgid "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgstr "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
 
 #: templates/admin/delete_selected_confirmation.html:25
 #, python-format
-msgid ""
-"Deleting the selected %(objects_name)s would require deleting the following "
-"protected related objects:"
-msgstr ""
+msgid "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
+msgstr "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
 
 #: templates/admin/delete_selected_confirmation.html:33
 #, python-format
-msgid ""
-"Are you sure you want to delete the selected %(objects_name)s? All of the "
-"following objects and their related items will be deleted:"
-msgstr ""
+msgid "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
+msgstr "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
 
 #: templates/admin/filter.html:3
 #, python-format
 msgid " By %(filter_title)s "
-msgstr ""
+msgstr " By %(filter_title)s "
 
 #: templates/admin/index.html:20
 #, python-format
 msgid "Models in the %(name)s application"
-msgstr ""
+msgstr "Models in the %(name)s application"
 
 #: templates/admin/index.html:39
 msgid "Change"
-msgstr ""
+msgstr "Change"
 
 #: templates/admin/index.html:49
 msgid "You don't have permission to edit anything."
-msgstr ""
+msgstr "You don't have permission to edit anything."
 
 #: templates/admin/index.html:57
 msgid "Recent Actions"
-msgstr ""
+msgstr "Recent Actions"
 
 #: templates/admin/index.html:58
 msgid "My Actions"
-msgstr ""
+msgstr "My Actions"
 
 #: templates/admin/index.html:62
 msgid "None available"
-msgstr ""
+msgstr "None available"
 
 #: templates/admin/index.html:76
 msgid "Unknown content"
-msgstr ""
+msgstr "Unknown content"
 
 #: templates/admin/invalid_setup.html:12
-msgid ""
-"Something's wrong with your database installation. Make sure the appropriate "
-"database tables have been created, and make sure the database is readable by "
-"the appropriate user."
-msgstr ""
+msgid "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
+msgstr "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
 
 #: templates/admin/login.html:37
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
 #: templates/admin/login.html:44
 msgid "Forgotten your password or username?"
-msgstr ""
+msgstr "Forgotten your password or username?"
 
 #: templates/admin/login.html:48
 #: templates/registration/password_reset_complete.html:19
 msgid "Log in"
-msgstr ""
+msgstr "Log in"
 
 #: templates/admin/object_history.html:23
 msgid "Date/time"
-msgstr ""
+msgstr "Date/time"
 
 #: templates/admin/object_history.html:24
 msgid "User"
-msgstr ""
+msgstr "User"
 
 #: templates/admin/object_history.html:25
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: templates/admin/object_history.html:39
-msgid ""
-"This object doesn't have a change history. It probably wasn't added via this "
-"admin site."
-msgstr ""
+msgid "This object doesn't have a change history. It probably wasn't added via this admin site."
+msgstr "This object doesn't have a change history. It probably wasn't added via this admin site."
 
 #: templates/admin/pagination.html:10
 msgid "Show all"
-msgstr ""
+msgstr "Show all"
 
 #: templates/admin/pagination.html:11 templates/admin/submit_line.html:3
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: templates/admin/search_form.html:7
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 #: templates/admin/search_form.html:9
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(counter)s result"
+msgstr[1] "%(counter)s results"
 
 #: templates/admin/search_form.html:9
 #, python-format
 msgid "%(full_result_count)s total"
-msgstr ""
+msgstr "%(full_result_count)s total"
 
 #: templates/admin/submit_line.html:5
 msgid "Save as new"
-msgstr ""
+msgstr "Save as new"
 
 #: templates/admin/submit_line.html:6
 msgid "Save and add another"
-msgstr ""
+msgstr "Save and add another"
 
 #: templates/admin/submit_line.html:7
 msgid "Save and continue editing"
-msgstr ""
+msgstr "Save and continue editing"
 
 #: templates/admin/auth/user/add_form.html:6
-msgid ""
-"First, enter a username and password. Then, you'll be able to edit more user "
-"options."
-msgstr ""
+msgid "First, enter a username and password. Then, you'll be able to edit more user options."
+msgstr "First, enter a username and password. Then, you'll be able to edit more user options."
 
 #: templates/admin/auth/user/add_form.html:8
 msgid "Enter a username and password."
-msgstr ""
+msgstr "Enter a username and password."
 
 #: templates/admin/auth/user/change_password.html:31
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
-msgstr ""
+msgstr "Enter a new password for the user <strong>%(username)s</strong>."
 
 #: templates/admin/auth/user/change_password.html:38
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: templates/admin/auth/user/change_password.html:44
 #: templates/registration/password_change_form.html:42
 msgid "Password (again)"
-msgstr ""
+msgstr "Password (again)"
 
 #: templates/admin/auth/user/change_password.html:45
 msgid "Enter the same password as above, for verification."
-msgstr ""
+msgstr "Enter the same password as above, for verification."
 
 #: templates/admin/edit_inline/stacked.html:26
 #: templates/admin/edit_inline/tabular.html:76
 msgid "Remove"
-msgstr ""
+msgstr "Remove"
 
 #: templates/admin/edit_inline/stacked.html:27
 #: templates/admin/edit_inline/tabular.html:75
 #, python-format
 msgid "Add another %(verbose_name)s"
-msgstr ""
+msgstr "Add another %(verbose_name)s"
 
 #: templates/admin/edit_inline/tabular.html:17
 msgid "Delete?"
-msgstr ""
+msgstr "Delete?"
 
 #: templates/registration/logged_out.html:8
 msgid "Thanks for spending some quality time with the Web site today."
-msgstr ""
+msgstr "Thanks for spending some quality time with the Web site today."
 
 #: templates/registration/logged_out.html:10
 msgid "Log in again"
-msgstr ""
+msgstr "Log in again"
 
 #: templates/registration/password_change_done.html:7
 #: templates/registration/password_change_form.html:8
 #: templates/registration/password_change_form.html:12
 #: templates/registration/password_change_form.html:24
 msgid "Password change"
-msgstr ""
+msgstr "Password change"
 
 #: templates/registration/password_change_done.html:11
 #: templates/registration/password_change_done.html:15
 msgid "Password change successful"
-msgstr ""
+msgstr "Password change successful"
 
 #: templates/registration/password_change_done.html:17
 msgid "Your password was changed."
-msgstr ""
+msgstr "Your password was changed."
 
 #: templates/registration/password_change_form.html:26
-msgid ""
-"Please enter your old password, for security's sake, and then enter your new "
-"password twice so we can verify you typed it in correctly."
-msgstr ""
+msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgstr "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
 
 #: templates/registration/password_change_form.html:32
 msgid "Old password"
-msgstr ""
+msgstr "Old password"
 
 #: templates/registration/password_change_form.html:37
 msgid "New password"
-msgstr ""
+msgstr "New password"
 
 #: templates/registration/password_change_form.html:48
 #: templates/registration/password_reset_confirm.html:26
 msgid "Change my password"
-msgstr ""
+msgstr "Change my password"
 
 #: templates/registration/password_reset_complete.html:7
 #: templates/registration/password_reset_confirm.html:11
@@ -1279,94 +1244,85 @@ msgstr ""
 #: templates/registration/password_reset_form.html:11
 #: templates/registration/password_reset_form.html:15
 msgid "Password reset"
-msgstr ""
+msgstr "Password reset"
 
 #: templates/registration/password_reset_complete.html:11
 #: templates/registration/password_reset_complete.html:15
 msgid "Password reset complete"
-msgstr ""
+msgstr "Password reset complete"
 
 #: templates/registration/password_reset_complete.html:17
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "Your password has been set.  You may go ahead and log in now."
 
 #: templates/registration/password_reset_confirm.html:7
 msgid "Password reset confirmation"
-msgstr ""
+msgstr "Password reset confirmation"
 
 #: templates/registration/password_reset_confirm.html:17
 msgid "Enter new password"
-msgstr ""
+msgstr "Enter new password"
 
 #: templates/registration/password_reset_confirm.html:19
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr ""
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr "Please enter your new password twice so we can verify you typed it in correctly."
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "New password:"
-msgstr ""
+msgstr "New password:"
 
 #: templates/registration/password_reset_confirm.html:25
 msgid "Confirm password:"
-msgstr ""
+msgstr "Confirm password:"
 
 #: templates/registration/password_reset_confirm.html:31
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Password reset unsuccessful"
 
 #: templates/registration/password_reset_confirm.html:33
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
-msgstr ""
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
 
 #: templates/registration/password_reset_done.html:11
 #: templates/registration/password_reset_done.html:15
 msgid "Password reset successful"
-msgstr ""
+msgstr "Password reset successful"
 
 #: templates/registration/password_reset_done.html:17
-msgid ""
-"We've emailed you instructions for setting your password to the email "
-"address you submitted. You should be receiving it shortly."
-msgstr ""
+msgid "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
+msgstr "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
-msgid ""
-"You're receiving this email because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
+msgid "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
+msgstr "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Please go to the following page and choose a new password:"
 
 #: templates/registration/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
-msgstr ""
+msgstr "Your username, in case you've forgotten:"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thanks for using our site!"
-msgstr ""
+msgstr "Thanks for using our site!"
 
 #: templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr ""
+msgstr "The %(site_name)s team"
 
 #: templates/registration/password_reset_form.html:17
-msgid ""
-"Forgotten your password? Enter your email address below, and we'll email "
-"instructions for setting a new one."
-msgstr ""
+msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
 
 #: templates/registration/password_reset_form.html:21
 msgid "Email address:"
-msgstr ""
+msgstr "Email address:"
 
 #: templates/registration/password_reset_form.html:21
 msgid "Reset my password"
-msgstr ""
+msgstr "Reset my password"
+
