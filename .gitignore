@@ -6,3 +6,4 @@ staticfiles/
 *.log
 fabfile.py
 uploaded/
+crowdin.yaml
