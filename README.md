@@ -255,24 +255,24 @@ You have to choose a translation key. We use the following naming convention:
 > Note: the grunt task for translation key collection is handled by a grunt 
 task and therefor is really limited: it may not detect your translation keys 
 for many reasons because of its design. To avoid that follow these advises:
-
-1. Prefer filter notation over directive notation in your templates files:
-    ``` html
-    <!-- good: --> 
-    <a href="">[[ 'MY_TRADUCTION' | translate ]]</a>
-    <!-- not good: --> 
-    <a href="" translate>MY_TRADUCTION</a>
-    ```
-
-2. Avoid dynamic keys in your coffescript files and keep the dollar prefix
-    ``` coffee
-    # good 
-    my_string = $translate('GOOD_KEY_IS_GOOD')
-    # bad -> translate service is missing its dollar prefix, it will not detect this key
-    my_string = translate('GOOD_KEY')
-    # bad -> it's a dynamic key, scripts are not evaluated so it will not detect this key either
-    my_key = 'GOOD_KEY_SEEMS_GOOD'
-    my_string = $translate(my_key)
+>
+  1. Prefer filter notation over directive notation in your templates files:
+      ``` html
+      <!-- good: --> 
+      <a href="">[[ 'MY_TRADUCTION' | translate ]]</a>
+      <!-- not good: --> 
+      <a href="" translate>MY_TRADUCTION</a>
+      ```
+>  
+  2. Avoid dynamic keys in your coffescript files and keep the dollar prefix
+      ``` coffee
+      # good 
+      my_string = $translate('GOOD_KEY_IS_GOOD')
+      # bad -> translate service is missing its dollar prefix, it will not detect this key
+      my_string = translate('GOOD_KEY')
+      # bad -> it's a dynamic key, scripts are not evaluated so it will not detect this key either
+      my_key = 'GOOD_KEY_SEEMS_GOOD'
+      my_string = $translate(my_key)
 
 #### 2. Launch `python manage.py makemessages` from the `webapp` folder
 This will produce the collection of every translation keys contained in html, 
