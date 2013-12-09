@@ -236,21 +236,9 @@ The front-end translation system is composed of the following tools:
 
 This part covers the following topics: 
 
-- how to add a language
 - how to add/edit some translation
 - what is not fully translated for the moment
-
-### Add a language
-1. Edit the `webapp/settings.py`
-    Change the `LANGUAGES` variable value to add/remove a supported languages.
     
-2. Launch `python manage.py makemessages`
-
-3. Update the new generated locales files at 
-  - `/webapp/static/locales/<locale code>.json` for static application translations
-  - `/webapp/locale/<locale code>/LC_MESSAGES/django.po  for the django application translations
-
-4. Compile the new django messages with `python manage.py compilemessages`
 
 ### Add or edit translation
 
@@ -286,7 +274,18 @@ for many reasons because of its design. To avoid that follow these advises:
     my_key = 'GOOD_KEY_SEEMS_GOOD'
     my_string = $translate(my_key)
 
-2. Update the translation files to add the new keys.
+#### 2. Launch `python manage.py makemessages` from the `webapp` folder
+This will produce the collection of every translation keys contained in html, 
+coffee & python files.
+
+#### 3. Update the new generated locales files
+
+This files contains all the translation keys and their translation values, they're 
+located at:
+  - `/webapp/static/locales/<locale code>.json` for static application translations
+  - `/webapp/locale/<locale code>/LC_MESSAGES/django.po`  for the django application translations
+
+#### 4. Compile the new django messages with `python manage.py compilemessages` from the `webapp` folder
 
 ### What is not fully translated
 
