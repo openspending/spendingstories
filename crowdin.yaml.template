@@ -1,0 +1,17 @@
+project_identifier: # enter your project identifier here
+api_key: # enter your crowdin API key here, can be found in your project settings page
+base_path: # change the path to this project /home/jplusplus/okf-spending-stories
+
+# do not change this part (files):
+files:
+  -
+    source: '/webapp/locale/en_GB/LC_MESSAGES/django.po'
+    translation: '/webapp/locale/%locale_with_underscore%/LC_MESSAGES/django.po' #where translations live
+    languages_mapping:
+      two_letters_code:
+        # crowdin_language_code: local_name
+        'de': 'de_DE'
+        'fr': 'fr_FR'
+  -
+    source: '/webapp/static/locales/en_GB.json'
+    translation: '/webapp/static/locales/%locale_with_underscore%.json' #where translations live
