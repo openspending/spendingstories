@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 14:13+0000\n"
+"POT-Creation-Date: 2013-12-10 16:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,155 +149,6 @@ msgstr ""
 #: core/models.py:162
 msgid "Page content"
 msgstr ""
-
-#: currency/__init__.py:4
-#, fuzzy
-msgid "CUR_AED"
-msgstr "Australian dollar"
-
-#: currency/__init__.py:5
-msgid "CUR_ARS"
-msgstr "Argentine peso"
-
-#: currency/__init__.py:6
-msgid "CUR_AUD"
-msgstr "Australian dollar"
-
-#: currency/__init__.py:7
-msgid "CUR_BRL"
-msgstr "Brazilian real"
-
-#: currency/__init__.py:8
-msgid "CUR_CAD"
-msgstr "Canadian dollar"
-
-#: currency/__init__.py:9
-msgid "CUR_CHF"
-msgstr "Swiss franc"
-
-#: currency/__init__.py:10
-msgid "CUR_CLP"
-msgstr "Chilean peso"
-
-#: currency/__init__.py:11
-msgid "CUR_CNY"
-msgstr "Chinese yuan renminbi"
-
-#: currency/__init__.py:12
-msgid "CUR_COP"
-msgstr "Colombian peso"
-
-#: currency/__init__.py:13
-msgid "CUR_CZK"
-msgstr "Czech koruna"
-
-#: currency/__init__.py:14
-msgid "CUR_DKK"
-msgstr "Danish krone"
-
-#: currency/__init__.py:15
-msgid "CUR_DZD"
-msgstr "Algerian dinar"
-
-#: currency/__init__.py:16
-msgid "CUR_EGP"
-msgstr "Egyptian pound"
-
-#: currency/__init__.py:17
-msgid "CUR_EUR"
-msgstr "EU euro"
-
-#: currency/__init__.py:18
-msgid "CUR_GBP"
-msgstr "British pound"
-
-#: currency/__init__.py:19
-msgid "CUR_HKD"
-msgstr "Hong Kong SAR dollar"
-
-#: currency/__init__.py:20
-msgid "CUR_IDR"
-msgstr "Indonesian rupiah"
-
-#: currency/__init__.py:21
-msgid "CUR_ILS"
-msgstr "Israeli new shekel"
-
-#: currency/__init__.py:22
-msgid "CUR_INR"
-msgstr "Indian rupee"
-
-#: currency/__init__.py:23
-msgid "CUR_JPY"
-msgstr "Japanese yen"
-
-#: currency/__init__.py:24
-msgid "CUR_KRW"
-msgstr "South Korean won"
-
-#: currency/__init__.py:25
-msgid "CUR_MXN"
-msgstr "Mexican peso"
-
-#: currency/__init__.py:26
-msgid "CUR_MYR"
-msgstr "Malaysian ringgit"
-
-#: currency/__init__.py:27
-msgid "CUR_NOK"
-msgstr "Norwegian krone"
-
-#: currency/__init__.py:28
-msgid "CUR_NZD"
-msgstr "New Zealand dollar"
-
-#: currency/__init__.py:29
-msgid "CUR_PLN"
-msgstr "Polish zloty"
-
-#: currency/__init__.py:30
-msgid "CUR_RUB"
-msgstr "Russian ruble"
-
-#: currency/__init__.py:31
-msgid "CUR_SAR"
-msgstr "Saudi riyal"
-
-#: currency/__init__.py:32
-msgid "CUR_SEK"
-msgstr "Swedish krona"
-
-#: currency/__init__.py:33
-msgid "CUR_SGD"
-msgstr "Singapore dollar"
-
-#: currency/__init__.py:34
-msgid "CUR_THB"
-msgstr "Thai baht"
-
-#: currency/__init__.py:35
-msgid "CUR_TRY"
-msgstr "Turkish lira"
-
-#: currency/__init__.py:36
-msgid "CUR_TWD"
-msgstr "Taiwan New dollar"
-
-#: currency/__init__.py:37
-msgid "CUR_USD"
-msgstr "US dollar"
-
-#: currency/__init__.py:38
-msgid "CUR_VEF"
-msgstr "Venezuelan bolivar fuerte"
-
-#: currency/__init__.py:39
-msgid "CUR_VND"
-msgstr "Vietnamese dong"
-
-#: currency/__init__.py:40
-msgid "CUR_ZAR"
-msgstr "South African rand"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
@@ -760,6 +611,118 @@ msgstr ""
 #: templates/registration/password_reset_form.html:21
 msgid "Reset my password"
 msgstr ""
+
+#, fuzzy
+#~ msgid "CUR_AED"
+#~ msgstr "Australian dollar"
+
+#~ msgid "CUR_ARS"
+#~ msgstr "Argentine peso"
+
+#~ msgid "CUR_AUD"
+#~ msgstr "Australian dollar"
+
+#~ msgid "CUR_BRL"
+#~ msgstr "Brazilian real"
+
+#~ msgid "CUR_CAD"
+#~ msgstr "Canadian dollar"
+
+#~ msgid "CUR_CHF"
+#~ msgstr "Swiss franc"
+
+#~ msgid "CUR_CLP"
+#~ msgstr "Chilean peso"
+
+#~ msgid "CUR_CNY"
+#~ msgstr "Chinese yuan renminbi"
+
+#~ msgid "CUR_COP"
+#~ msgstr "Colombian peso"
+
+#~ msgid "CUR_CZK"
+#~ msgstr "Czech koruna"
+
+#~ msgid "CUR_DKK"
+#~ msgstr "Danish krone"
+
+#~ msgid "CUR_DZD"
+#~ msgstr "Algerian dinar"
+
+#~ msgid "CUR_EGP"
+#~ msgstr "Egyptian pound"
+
+#~ msgid "CUR_EUR"
+#~ msgstr "EU euro"
+
+#~ msgid "CUR_GBP"
+#~ msgstr "British pound"
+
+#~ msgid "CUR_HKD"
+#~ msgstr "Hong Kong SAR dollar"
+
+#~ msgid "CUR_IDR"
+#~ msgstr "Indonesian rupiah"
+
+#~ msgid "CUR_ILS"
+#~ msgstr "Israeli new shekel"
+
+#~ msgid "CUR_INR"
+#~ msgstr "Indian rupee"
+
+#~ msgid "CUR_JPY"
+#~ msgstr "Japanese yen"
+
+#~ msgid "CUR_KRW"
+#~ msgstr "South Korean won"
+
+#~ msgid "CUR_MXN"
+#~ msgstr "Mexican peso"
+
+#~ msgid "CUR_MYR"
+#~ msgstr "Malaysian ringgit"
+
+#~ msgid "CUR_NOK"
+#~ msgstr "Norwegian krone"
+
+#~ msgid "CUR_NZD"
+#~ msgstr "New Zealand dollar"
+
+#~ msgid "CUR_PLN"
+#~ msgstr "Polish zloty"
+
+#~ msgid "CUR_RUB"
+#~ msgstr "Russian ruble"
+
+#~ msgid "CUR_SAR"
+#~ msgstr "Saudi riyal"
+
+#~ msgid "CUR_SEK"
+#~ msgstr "Swedish krona"
+
+#~ msgid "CUR_SGD"
+#~ msgstr "Singapore dollar"
+
+#~ msgid "CUR_THB"
+#~ msgstr "Thai baht"
+
+#~ msgid "CUR_TRY"
+#~ msgstr "Turkish lira"
+
+#~ msgid "CUR_TWD"
+#~ msgstr "Taiwan New dollar"
+
+#~ msgid "CUR_USD"
+#~ msgstr "US dollar"
+
+#~ msgid "CUR_VEF"
+#~ msgstr "Venezuelan bolivar fuerte"
+
+#~ msgid "CUR_VND"
+#~ msgstr "Vietnamese dong"
+
+#~ msgid "CUR_ZAR"
+#~ msgstr "South African rand"
 
 #, fuzzy
 #~ msgid "CUR_%s"
