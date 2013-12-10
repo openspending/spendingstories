@@ -1,8 +1,8 @@
 ### 
 DO NOT INCLUDE, DELETE OR EXECUTE THIS FILE
 
-This file is designed to be read by the grunt 'makemessages' task to generate 
-all currencies & countries translation keys in the locales files
+This file is designed to be read by the grunt 'makemessages' task. This will 
+generate all currencies & countries translation keys in the locales files
 
 $translate('CURRENCY_AED')
 $translate('CURRENCY_AED_PLURAL')
