@@ -35,7 +35,7 @@ angular
                         converted = converted*_toCurrency.rate
                 pow = Math.pow 10, decimals
                 converted = (Math.round converted * pow) / pow
-                return Humanize.humanizeValue converted, _toCurrency.name, (converted > 1)
+                return Humanize.localizedValue converted, _toCurrency
             
         ]
     )
@@ -43,7 +43,7 @@ angular
             return (value, currency="USD") ->
                 return null unless angular.isNumber value
                 _currency = Currency.get(currency)
-                if _currency? then Humanize.humanizeValue value, _currency.name
+                if _currency? then Humanize.localizedValue value, _currency
 
         ]
     )    
@@ -128,5 +128,22 @@ angular
                 Humanize.humanizeEquivalence story,
                     currency: Currency.get(searchService.currency)
                     value:searchService.query_usd
+        ]
+    )
+    .filter("localizedCountryName", ['$translate', ($translate)->
+            return (country)->
+                return null unless country? # short fail 
+                iso_code = country.key or country.iso_code or null
+                i18n_country_key = "COUNTRY_#{iso_code}" if iso_code?
+                $translate i18n_country_key
+        ]
+    )
+    .filter("localizedCurrencyName", ['$translate', ($translate)->
+            return (currency)->
+                return null unless currency? # short fail 
+                iso_code = currency.key or currency.iso_code or null
+                i18n_country_key = "CURRENCY_#{iso_code}" if iso_code?
+                name = $translate i18n_country_key
+                name = name[0].toUpperCase() + name.substring(1)
         ]
     )

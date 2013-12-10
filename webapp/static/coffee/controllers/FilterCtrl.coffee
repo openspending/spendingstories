@@ -3,19 +3,16 @@
 # ────────────────────────────────────────────────────────────────────────────── 
 class FilterCtrl
     
-    @$inject: ['$scope', '$routeParams', '$location', 'Filters', 'Currency', 'Restangular', 'searchService']
+    @$inject: ['$scope', '$routeParams', '$location', 'Filters', 'Currency', 
+               'Restangular', 'searchService', 'languagesService']
     
-    constructor: (@scope, @routeParams, @location, @Filters, Currency, Restangular, Search)->
+    constructor: (@scope, @routeParams, @location, @Filters, Currency, @Restangular, Search, @languages)->
         # ──────────────────────────────────────────────────────────────────────
         # Scope variables bindings                       
         # ──────────────────────────────────────────────────────────────────────
         # Are the filters select lists visible
         @scope.filter_visible = false
-        Restangular.all('filters').getList().then (data)=>
-            @scope.currency_list = data.currency
-            @scope.country_list = data.country
-            @scope.theme_list = data.theme
-
+        
         @scope.search = Search
 
         @scope.filters = @Filters
@@ -51,6 +48,16 @@ class FilterCtrl
                 @scope.$watchCollection watch_string, @filter
             else
                 @scope.$watch watch_string, @filter
+
+        @scope.$watch =>
+                @languages.current
+            , @loadFilters
+
+    loadFilters: =>
+        @Restangular.all('filters').getList({lang: @languages.current }).then (data)=>
+            @scope.currency_list = data.currency
+            @scope.country_list = data.country
+            @scope.theme_list = data.theme
 
     relevanceFilter : (story) =>
         return no unless story? and _.isObject(story)

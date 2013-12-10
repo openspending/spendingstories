@@ -8,7 +8,7 @@
             <div class="col-sm-7">
                 <div ng-if="isVisible(filters.country)" class="filter col-sm-4 form-group">
                     <label class="control-label sr-only" for="input-country">[[ 'FILTERS_COUNTRY_LABEL' | translate ]]</label>
-                    <select ng-options="c.key as c.value for c in country_list"
+                    <select ng-options="c.key as (c|localizedCountryName) for c in country_list"
                             ng-disabled="!country_list.length"
                             id="input-country"
                             ng-model="filters.country.value"
@@ -20,7 +20,7 @@
                 </div>  
                 <div ng-if="isVisible(filters.currency)" class="filter col-sm-4 form-group">
                     <label class="control-label sr-only" for="input-currency">[[ 'FILTERS_CURRENCY_LABEL' | translate ]]</label>
-                    <select ng-options="c.key as c.value for c in currency_list"
+                    <select ng-options="c.key as (c|localizedCurrencyName) for c in currency_list"
                             ng-disabled="!currency_list.length"
                             id="input-currency"
                             ng-model="filters.currency.value"

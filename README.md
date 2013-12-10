@@ -237,49 +237,56 @@ The front-end translation system is composed of the following tools:
 
 This part covers the following topics: 
 
-- how to add a language
 - how to add/edit some translation
 - what is not fully translated for the moment
-
-### Add a language
-1. Edit the `webapp/settings.py`
-    Change the `LANGUAGES` variable value to add/remove a supported languages.
     
-    This will tel's angular-translate task to generate the files for each
-    languages when the `i18nextract:dev` task (or its alias: `makemessages`) is executed.
-
-    > Note: this task is automated by running `grunt watch`
-
-2.  Launch `py manage.py makemessages`
-
-3. Update the new generated locales files at 
-  - `/webapp/static/locales/<you locale>.json` for static application translations
-  - `/conf/locales/` for the django application translations
 
 ### Add or edit translation
 
-1. Add translation in the code/in the template files
-    You have to choose a translation key. We use the following naming convention:
-    - the key must be in uppercase and underscore (e.g `A_TRANSLATION_KEY`)
-    - the key describe what it translate and where.
-        - the first part of the key is the name of the script or the template containing the key. <br/>
-        Ex: a key in `contribute.html` will start by `CONTRIBUTE_`
-        - the last part is the description of the content, or the word if it can be described otherwise.<br/>
-        Ex: the translation key of the 'Compare' button contained in the `header.html` template will be `HEADER_COMPARE_BUTTON`
+#### 1. Add translation in the code/in the template files
 
-    > Note: for template translation prefer the filters over the directive
-    ``` html
-    <!-- good: --> 
-    <a href="">[[ 'MY_TRADUCTION' | translate ]]</a>
-    <!-- not good: --> 
-    <a href="" translate>MY_TRADUCTION</a>
-    ```
+You have to choose a translation key. We use the following naming convention:
+- the key must be in uppercase and underscore (e.g `A_TRANSLATION_KEY`)
+- the key describe what it translate and where.
+    - the first part of the key is the name of the script or the template containing the key. <br/>
+    Ex: a key in `contribute.html` will start by `CONTRIBUTE_`
+    - the last part is the description of the content, or the word if it can be described otherwise.<br/>
+    Ex: the translation key of the 'Compare' button contained in the `header.html` template will be `HEADER_COMPARE_BUTTON`
 
-2. Update the translation files to add the new keys. 
-    > Note: All new created key can be collected by running `grunt makemessages`. <br/>
-     This can also be automated by running `grunt watch` before doing some editions.
+> Note: the grunt task for translation key collection is handled by a grunt 
+task and therefor is really limited: it may not detect your translation keys 
+for many reasons because of its design. To avoid that follow these advises:
+>
+  1. Prefer filter notation over directive notation in your templates files:
+      ``` html
+      <!-- good: --> 
+      <a href="">[[ 'MY_TRADUCTION' | translate ]]</a>
+      <!-- not good: --> 
+      <a href="" translate>MY_TRADUCTION</a>
+      ```
+>  
+  2. Avoid dynamic keys in your coffescript files and keep the dollar prefix
+      ``` coffee
+      # good 
+      my_string = $translate('GOOD_KEY_IS_GOOD')
+      # bad -> translate service is missing its dollar prefix, it will not detect this key
+      my_string = translate('GOOD_KEY')
+      # bad -> it's a dynamic key, scripts are not evaluated so it will not detect this key either
+      my_key = 'GOOD_KEY_SEEMS_GOOD'
+      my_string = $translate(my_key)
 
-3. Edit your translations in the `webapp/static/locales/<language>.json` files.
+#### 2. Launch `python manage.py makemessages` from the `webapp` folder
+This will produce the collection of every translation keys contained in html, 
+coffee & python files.
+
+#### 3. Update the new generated locales files
+
+This files contains all the translation keys and their translation values, they're 
+located at:
+  - `/webapp/static/locales/<locale code>.json` for static application translations
+  - `/webapp/locale/<locale code>/LC_MESSAGES/django.po`  for the django application translations
+
+#### 4. Compile the new django messages with `python manage.py compilemessages` from the `webapp` folder
 
 ### What is not fully translated
 

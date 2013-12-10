@@ -163,10 +163,11 @@ class FiltersViewSet(viewsets.ViewSet):
             "country"  : [],
             "lang"     : []
         }
+        lang = request.QUERY_PARAMS.get('lang', 'en_GB')
         # currencies
         currencies = Currency.objects.values("iso_code", "name")
         for currency in currencies:
-            if Story.objects.public().filter(currency__iso_code=currency['iso_code']).count() > 0 :
+            if Story.objects.public().filter(lang=lang, currency__iso_code=currency['iso_code']).count() > 0 :
                 filters['currency'].append({
                         'key':currency['iso_code'], 
                         'value':currency['name']
@@ -174,14 +175,14 @@ class FiltersViewSet(viewsets.ViewSet):
         # themes
         themes = Theme.objects.values("slug", "title")
         for theme in themes:
-            if Story.objects.public().filter(themes__slug=theme['slug']).count() > 0 :
+            if Story.objects.public().filter(lang=lang, themes__slug=theme['slug']).count() > 0 :
                 filters['theme'].append({
                         'key':theme['slug'], 
                         'value':theme['title']
                 })
         # countries
         for country in webapp.core.fields.COUNTRIES:
-            if Story.objects.public().filter(country=country[0]).count() > 0 :
+            if Story.objects.public().filter(lang=lang, country=country[0]).count() > 0 :
                 filters['country'].append({
                         'key':country[0], 
                         'value':country[1]

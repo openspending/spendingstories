@@ -166,7 +166,17 @@ class HumanizeService
             union += "#{union_word} "
 
         "#{wording}#{union}#{suffix}"
-        
+    
+    localizedValue: (value, currency)=>
+        _ = @$translate
+        i18n_single_key = "CURRENCY_#{currency.iso_code}"
+        i18n_plural_key = i18n_single_key + '_PLURAL'
+        suffix = @pluralize
+            value: value
+            single: _(i18n_single_key)
+            plural: _(i18n_plural_key)
+
+        return @humanizeValue value, suffix, false
 
     humanizeEquivalence: (story, query)=>
         # used to get the equivalence wording between a story and the user query
