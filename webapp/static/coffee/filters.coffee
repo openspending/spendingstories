@@ -130,3 +130,20 @@ angular
                     value:searchService.query_usd
         ]
     )
+    .filter("localizedCountryName", ['$translate', ($translate)->
+            return (country)->
+                return null unless country? # short fail 
+                iso_code = country.key or country.iso_code or null
+                i18n_country_key = "COUNTRY_#{iso_code}" if iso_code?
+                $translate i18n_country_key
+        ]
+    )
+    .filter("localizedCurrencyName", ['$translate', ($translate)->
+            return (currency)->
+                return null unless currency? # short fail 
+                iso_code = currency.key or currency.iso_code or null
+                i18n_country_key = "CURRENCY_#{iso_code}" if iso_code?
+                name = $translate i18n_country_key
+                name = name[0].toUpperCase() + name.substring(1)
+        ]
+    )
