@@ -35,7 +35,7 @@ angular
                         converted = converted*_toCurrency.rate
                 pow = Math.pow 10, decimals
                 converted = (Math.round converted * pow) / pow
-                return Humanize.humanizeValue converted, _toCurrency.name, (converted > 1)
+                return Humanize.localizedValue converted, _toCurrency
             
         ]
     )
@@ -43,7 +43,7 @@ angular
             return (value, currency="USD") ->
                 return null unless angular.isNumber value
                 _currency = Currency.get(currency)
-                if _currency? then Humanize.humanizeValue value, _currency.name
+                if _currency? then Humanize.localizedValue value, _currency
 
         ]
     )    
