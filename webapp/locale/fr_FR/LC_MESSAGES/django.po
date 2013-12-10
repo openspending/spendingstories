@@ -1,9 +1,8 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: spending-stories\n"
+msgstr "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 14:13+0000\n"
-"PO-Revision-Date: 2013-12-06 06:49-0500\n"
+"POT-Creation-Date: 2013-12-10 16:03+0000\n"
+"PO-Revision-Date: 2013-12-10 11:08-0500\n"
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -19,7 +18,7 @@ msgstr "English"
 
 #: settings.py:74
 msgid "French"
-msgstr "Français"
+msgstr "French"
 
 #: settings.py:75
 msgid "German"
@@ -54,12 +53,8 @@ msgid "The spending value"
 msgstr "The spending value"
 
 #: core/models.py:103
-msgid ""
-"Insert round numbers without any space or separator. e.g.222109000.You can "
-"also use the scientific notation. e.g.222.109e6"
-msgstr ""
-"Insert round numbers without any space or separator. e.g.222109000.You can "
-"also use the scientific notation. e.g.222.109e6"
+msgid "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
+msgstr "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
 
 #: core/models.py:104
 msgid "Story title"
@@ -86,14 +81,8 @@ msgid "Story type"
 msgstr "Story type"
 
 #: core/models.py:109
-msgid ""
-"The way you want that we compare this story. If this story's amount concerns "
-"a buget or a spending over one specific year, choose \"over one year\" (The "
-"amount will be cut into time equivalence)."
-msgstr ""
-"The way you want that we compare this story. If this story's amount concerns "
-"a buget or a spending over one specific year, choose \"over one year\" (The "
-"amount will be cut into time equivalence)."
+msgid "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
+msgstr "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
 
 #: core/models.py:110
 msgid "status"
@@ -155,191 +144,6 @@ msgstr "Page slug"
 msgid "Page content"
 msgstr "Page content"
 
-#: currency/__init__.py:4
-#, fuzzy
-msgid "CUR_AED"
-msgstr "Dollar US"
-
-#: currency/__init__.py:5
-#, fuzzy
-msgid "CUR_ARS"
-msgstr "Dollar US"
-
-#: currency/__init__.py:6
-#, fuzzy
-msgid "CUR_AUD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:7
-#, fuzzy
-msgid "CUR_BRL"
-msgstr "Dollar US"
-
-#: currency/__init__.py:8
-#, fuzzy
-msgid "CUR_CAD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:9
-#, fuzzy
-msgid "CUR_CHF"
-msgstr "Dollar US"
-
-#: currency/__init__.py:10
-#, fuzzy
-msgid "CUR_CLP"
-msgstr "Dollar US"
-
-#: currency/__init__.py:11
-#, fuzzy
-msgid "CUR_CNY"
-msgstr "Dollar US"
-
-#: currency/__init__.py:12
-#, fuzzy
-msgid "CUR_COP"
-msgstr "Dollar US"
-
-#: currency/__init__.py:13
-#, fuzzy
-msgid "CUR_CZK"
-msgstr "Dollar US"
-
-#: currency/__init__.py:14
-#, fuzzy
-msgid "CUR_DKK"
-msgstr "Dollar US"
-
-#: currency/__init__.py:15
-#, fuzzy
-msgid "CUR_DZD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:16
-#, fuzzy
-msgid "CUR_EGP"
-msgstr "Dollar US"
-
-#: currency/__init__.py:17
-#, fuzzy
-msgid "CUR_EUR"
-msgstr "Dollar US"
-
-#: currency/__init__.py:18
-#, fuzzy
-msgid "CUR_GBP"
-msgstr "Dollar US"
-
-#: currency/__init__.py:19
-#, fuzzy
-msgid "CUR_HKD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:20
-#, fuzzy
-msgid "CUR_IDR"
-msgstr "Dollar US"
-
-#: currency/__init__.py:21
-#, fuzzy
-msgid "CUR_ILS"
-msgstr "Dollar US"
-
-#: currency/__init__.py:22
-#, fuzzy
-msgid "CUR_INR"
-msgstr "Dollar US"
-
-#: currency/__init__.py:23
-#, fuzzy
-msgid "CUR_JPY"
-msgstr "Dollar US"
-
-#: currency/__init__.py:24
-#, fuzzy
-msgid "CUR_KRW"
-msgstr "Dollar US"
-
-#: currency/__init__.py:25
-#, fuzzy
-msgid "CUR_MXN"
-msgstr "Dollar US"
-
-#: currency/__init__.py:26
-#, fuzzy
-msgid "CUR_MYR"
-msgstr "Dollar US"
-
-#: currency/__init__.py:27
-#, fuzzy
-msgid "CUR_NOK"
-msgstr "Dollar US"
-
-#: currency/__init__.py:28
-#, fuzzy
-msgid "CUR_NZD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:29
-#, fuzzy
-msgid "CUR_PLN"
-msgstr "Dollar US"
-
-#: currency/__init__.py:30
-#, fuzzy
-msgid "CUR_RUB"
-msgstr "Dollar US"
-
-#: currency/__init__.py:31
-#, fuzzy
-msgid "CUR_SAR"
-msgstr "Dollar US"
-
-#: currency/__init__.py:32
-#, fuzzy
-msgid "CUR_SEK"
-msgstr "Dollar US"
-
-#: currency/__init__.py:33
-#, fuzzy
-msgid "CUR_SGD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:34
-#, fuzzy
-msgid "CUR_THB"
-msgstr "Dollar US"
-
-#: currency/__init__.py:35
-#, fuzzy
-msgid "CUR_TRY"
-msgstr "Dollar US"
-
-#: currency/__init__.py:36
-#, fuzzy
-msgid "CUR_TWD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:37
-#, fuzzy
-msgid "CUR_USD"
-msgstr "Dollar US"
-
-#: currency/__init__.py:38
-#, fuzzy
-msgid "CUR_VEF"
-msgstr "Dollar US"
-
-#: currency/__init__.py:39
-#, fuzzy
-msgid "CUR_VND"
-msgstr "Dollar US"
-
-#: currency/__init__.py:40
-#, fuzzy
-msgid "CUR_ZAR"
-msgstr "Dollar US"
-
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
 msgstr "Page not found"
@@ -378,12 +182,8 @@ msgid "Server Error <em>(500)</em>"
 msgstr "Server Error <em>(500)</em>"
 
 #: templates/admin/500.html:15
-msgid ""
-"There's been an error. It's been reported to the site administrators via "
-"email and should be fixed shortly. Thanks for your patience."
-msgstr ""
-"There's been an error. It's been reported to the site administrators via "
-"email and should be fixed shortly. Thanks for your patience."
+msgid "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
+msgstr "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
 
 #: templates/admin/actions.html:4
 msgid "Run the selected action"
@@ -495,32 +295,18 @@ msgstr "Delete"
 
 #: templates/admin/delete_confirmation.html:18
 #, python-format
-msgid ""
-"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
-"related objects, but your account doesn't have permission to delete the "
-"following types of objects:"
-msgstr ""
-"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
-"related objects, but your account doesn't have permission to delete the "
-"following types of objects:"
+msgid "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgstr "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
 
 #: templates/admin/delete_confirmation.html:26
 #, python-format
-msgid ""
-"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
-"following protected related objects:"
-msgstr ""
-"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
-"following protected related objects:"
+msgid "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
+msgstr "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
 
 #: templates/admin/delete_confirmation.html:34
 #, python-format
-msgid ""
-"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
-"All of the following related items will be deleted:"
-msgstr ""
-"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
-"All of the following related items will be deleted:"
+msgid "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
+msgstr "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
 
 #: templates/admin/delete_confirmation.html:39
 #: templates/admin/delete_selected_confirmation.html:44
@@ -533,32 +319,18 @@ msgstr "Delete multiple objects"
 
 #: templates/admin/delete_selected_confirmation.html:17
 #, python-format
-msgid ""
-"Deleting the selected %(objects_name)s would result in deleting related "
-"objects, but your account doesn't have permission to delete the following "
-"types of objects:"
-msgstr ""
-"Deleting the selected %(objects_name)s would result in deleting related "
-"objects, but your account doesn't have permission to delete the following "
-"types of objects:"
+msgid "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgstr "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
 
 #: templates/admin/delete_selected_confirmation.html:25
 #, python-format
-msgid ""
-"Deleting the selected %(objects_name)s would require deleting the following "
-"protected related objects:"
-msgstr ""
-"Deleting the selected %(objects_name)s would require deleting the following "
-"protected related objects:"
+msgid "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
+msgstr "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
 
 #: templates/admin/delete_selected_confirmation.html:33
 #, python-format
-msgid ""
-"Are you sure you want to delete the selected %(objects_name)s? All of the "
-"following objects and their related items will be deleted:"
-msgstr ""
-"Are you sure you want to delete the selected %(objects_name)s? All of the "
-"following objects and their related items will be deleted:"
+msgid "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
+msgstr "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
 
 #: templates/admin/filter.html:3
 #, python-format
@@ -595,14 +367,8 @@ msgid "Unknown content"
 msgstr "Unknown content"
 
 #: templates/admin/invalid_setup.html:12
-msgid ""
-"Something's wrong with your database installation. Make sure the appropriate "
-"database tables have been created, and make sure the database is readable by "
-"the appropriate user."
-msgstr ""
-"Something's wrong with your database installation. Make sure the appropriate "
-"database tables have been created, and make sure the database is readable by "
-"the appropriate user."
+msgid "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
+msgstr "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
 
 #: templates/admin/login.html:37
 msgid "Password:"
@@ -630,12 +396,8 @@ msgid "Action"
 msgstr "Action"
 
 #: templates/admin/object_history.html:39
-msgid ""
-"This object doesn't have a change history. It probably wasn't added via this "
-"admin site."
-msgstr ""
-"This object doesn't have a change history. It probably wasn't added via this "
-"admin site."
+msgid "This object doesn't have a change history. It probably wasn't added via this admin site."
+msgstr "This object doesn't have a change history. It probably wasn't added via this admin site."
 
 #: templates/admin/pagination.html:10
 msgid "Show all"
@@ -674,12 +436,8 @@ msgid "Save and continue editing"
 msgstr "Save and continue editing"
 
 #: templates/admin/auth/user/add_form.html:6
-msgid ""
-"First, enter a username and password. Then, you'll be able to edit more user "
-"options."
-msgstr ""
-"First, enter a username and password. Then, you'll be able to edit more user "
-"options."
+msgid "First, enter a username and password. Then, you'll be able to edit more user options."
+msgstr "First, enter a username and password. Then, you'll be able to edit more user options."
 
 #: templates/admin/auth/user/add_form.html:8
 msgid "Enter a username and password."
@@ -743,12 +501,8 @@ msgid "Your password was changed."
 msgstr "Your password was changed."
 
 #: templates/registration/password_change_form.html:26
-msgid ""
-"Please enter your old password, for security's sake, and then enter your new "
-"password twice so we can verify you typed it in correctly."
-msgstr ""
-"Please enter your old password, for security's sake, and then enter your new "
-"password twice so we can verify you typed it in correctly."
+msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgstr "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
 
 #: templates/registration/password_change_form.html:32
 msgid "Old password"
@@ -790,12 +544,8 @@ msgid "Enter new password"
 msgstr "Enter new password"
 
 #: templates/registration/password_reset_confirm.html:19
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
+msgid "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr "Please enter your new password twice so we can verify you typed it in correctly."
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "New password:"
@@ -810,12 +560,8 @@ msgid "Password reset unsuccessful"
 msgstr "Password reset unsuccessful"
 
 #: templates/registration/password_reset_confirm.html:33
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
-msgstr ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
 
 #: templates/registration/password_reset_done.html:11
 #: templates/registration/password_reset_done.html:15
@@ -823,21 +569,13 @@ msgid "Password reset successful"
 msgstr "Password reset successful"
 
 #: templates/registration/password_reset_done.html:17
-msgid ""
-"We've emailed you instructions for setting your password to the email "
-"address you submitted. You should be receiving it shortly."
-msgstr ""
-"We've emailed you instructions for setting your password to the email "
-"address you submitted. You should be receiving it shortly."
+msgid "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
+msgstr "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
-msgid ""
-"You're receiving this email because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
-"You're receiving this email because you requested a password reset for your "
-"user account at %(site_name)s."
+msgid "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
+msgstr "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
@@ -857,12 +595,8 @@ msgid "The %(site_name)s team"
 msgstr "The %(site_name)s team"
 
 #: templates/registration/password_reset_form.html:17
-msgid ""
-"Forgotten your password? Enter your email address below, and we'll email "
-"instructions for setting a new one."
-msgstr ""
-"Forgotten your password? Enter your email address below, and we'll email "
-"instructions for setting a new one."
+msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
 
 #: templates/registration/password_reset_form.html:21
 msgid "Email address:"
@@ -872,542 +606,3 @@ msgstr "Email address:"
 msgid "Reset my password"
 msgstr "Reset my password"
 
-#~ msgid "Afghanistan (AFG)"
-#~ msgstr "Afghanistan (AFG)"
-
-#~ msgid "Albania (ALB)"
-#~ msgstr "Albania (ALB)"
-
-#~ msgid "Algeria (DZA)"
-#~ msgstr "Algeria (DZA)"
-
-#~ msgid "Angola (AGO)"
-#~ msgstr "Angola (AGO)"
-
-#~ msgid "Antigua and Barbuda (ATG)"
-#~ msgstr "Antigua and Barbuda (ATG)"
-
-#~ msgid "Argentina (ARG)"
-#~ msgstr "Argentina (ARG)"
-
-#~ msgid "Armenia (ARM)"
-#~ msgstr "Armenia (ARM)"
-
-#~ msgid "Aruba (ABW)"
-#~ msgstr "Aruba (ABW)"
-
-#~ msgid "Australia (AUS)"
-#~ msgstr "Australia (AUS)"
-
-#~ msgid "Austria (AUT)"
-#~ msgstr "Austria (AUT)"
-
-#~ msgid "Azerbaijan (AZE)"
-#~ msgstr "Azerbaijan (AZE)"
-
-#~ msgid "Bahamas (BHS)"
-#~ msgstr "Bahamas (BHS)"
-
-#~ msgid "Bahrain (BHR)"
-#~ msgstr "Bahrain (BHR)"
-
-#~ msgid "Bangladesh (BGD)"
-#~ msgstr "Bangladesh (BGD)"
-
-#~ msgid "Barbados (BRB)"
-#~ msgstr "Barbados (BRB)"
-
-#~ msgid "Belarus (BLR)"
-#~ msgstr "Belarus (BLR)"
-
-#~ msgid "Belgium (BEL)"
-#~ msgstr "Belgium (BEL)"
-
-#~ msgid "Belize (BLZ)"
-#~ msgstr "Belize (BLZ)"
-
-#~ msgid "Benin (BEN)"
-#~ msgstr "Benin (BEN)"
-
-#~ msgid "Bhutan (BTN)"
-#~ msgstr "Bhutan (BTN)"
-
-#~ msgid "Bolivia (BOL)"
-#~ msgstr "Bolivia (BOL)"
-
-#~ msgid "Bosnia and Herzegovina (BIH)"
-#~ msgstr "Bosnia and Herzegovina (BIH)"
-
-#~ msgid "Botswana (BWA)"
-#~ msgstr "Botswana (BWA)"
-
-#~ msgid "Brazil (BRA)"
-#~ msgstr "Brazil (BRA)"
-
-#~ msgid "Brunei Darussalam (BRN)"
-#~ msgstr "Brunei Darussalam (BRN)"
-
-#~ msgid "Bulgaria (BGR)"
-#~ msgstr "Bulgaria (BGR)"
-
-#~ msgid "Burkina Faso (BFA)"
-#~ msgstr "Burkina Faso (BFA)"
-
-#~ msgid "Burundi (BDI)"
-#~ msgstr "Burundi (BDI)"
-
-#~ msgid "Cambodia (KHM)"
-#~ msgstr "Cambodia (KHM)"
-
-#~ msgid "Cameroon (CMR)"
-#~ msgstr "Cameroon (CMR)"
-
-#~ msgid "Canada (CAN)"
-#~ msgstr "Canada (CAN)"
-
-#~ msgid "Cape Verde (CPV)"
-#~ msgstr "Cape Verde (CPV)"
-
-#~ msgid "Central African Republic (CAF)"
-#~ msgstr "Central African Republic (CAF)"
-
-#~ msgid "Chad (TCD)"
-#~ msgstr "Chad (TCD)"
-
-#~ msgid "Chile (CHL)"
-#~ msgstr "Chile (CHL)"
-
-#~ msgid "China (CHN)"
-#~ msgstr "China (CHN)"
-
-#~ msgid "China - Hong Kong (HKG)"
-#~ msgstr "China - Hong Kong (HKG)"
-
-#~ msgid "China - Macao (MAC)"
-#~ msgstr "China - Macao (MAC)"
-
-#~ msgid "Colombia (COL)"
-#~ msgstr "Colombia (COL)"
-
-#~ msgid "Comoros (COM)"
-#~ msgstr "Comoros (COM)"
-
-#~ msgid "Congo (COG)"
-#~ msgstr "Congo (COG)"
-
-#~ msgid "Costa Rica (CRI)"
-#~ msgstr "Costa Rica (CRI)"
-
-#~ msgid "Cote d'Ivoire (CIV)"
-#~ msgstr "Cote d'Ivoire (CIV)"
-
-#~ msgid "Croatia (HRV)"
-#~ msgstr "Croatia (HRV)"
-
-#~ msgid "Cyprus (CYP)"
-#~ msgstr "Cyprus (CYP)"
-
-#~ msgid "Czech Republic (CZE)"
-#~ msgstr "Czech Republic (CZE)"
-
-#~ msgid "Denmark (DNK)"
-#~ msgstr "Denmark (DNK)"
-
-#~ msgid "Djibouti (DJI)"
-#~ msgstr "Djibouti (DJI)"
-
-#~ msgid "Dominica (DMA)"
-#~ msgstr "Dominica (DMA)"
-
-#~ msgid "Dominican Republic (DOM)"
-#~ msgstr "Dominican Republic (DOM)"
-
-#~ msgid "Ecuador (ECU)"
-#~ msgstr "Ecuador (ECU)"
-
-#~ msgid "Egypt (EGY)"
-#~ msgstr "Egypt (EGY)"
-
-#~ msgid "El Salvador (SLV)"
-#~ msgstr "El Salvador (SLV)"
-
-#~ msgid "Equatorial Guinea (GNQ)"
-#~ msgstr "Equatorial Guinea (GNQ)"
-
-#~ msgid "Estonia (EST)"
-#~ msgstr "Estonia (EST)"
-
-#~ msgid "Ethiopia (ETH)"
-#~ msgstr "Ethiopia (ETH)"
-
-#~ msgid "Fiji (FJI)"
-#~ msgstr "Fiji (FJI)"
-
-#~ msgid "Finland (FIN)"
-#~ msgstr "Finland (FIN)"
-
-#~ msgid "France (FRA)"
-#~ msgstr "France (FRA)"
-
-#~ msgid "Gabon (GAB)"
-#~ msgstr "Gabon (GAB)"
-
-#~ msgid "Gambia (GMB)"
-#~ msgstr "Gambia (GMB)"
-
-#~ msgid "Georgia (GEO)"
-#~ msgstr "Georgia (GEO)"
-
-#~ msgid "Germany (DEU)"
-#~ msgstr "Germany (DEU)"
-
-#~ msgid "Ghana (GHA)"
-#~ msgstr "Ghana (GHA)"
-
-#~ msgid "Greece (GRC)"
-#~ msgstr "Greece (GRC)"
-
-#~ msgid "Grenada (GRD)"
-#~ msgstr "Grenada (GRD)"
-
-#~ msgid "Guatemala (GTM)"
-#~ msgstr "Guatemala (GTM)"
-
-#~ msgid "Guinea (GIN)"
-#~ msgstr "Guinea (GIN)"
-
-#~ msgid "Guinea-Bissau (GNB)"
-#~ msgstr "Guinea-Bissau (GNB)"
-
-#~ msgid "Guyana (GUY)"
-#~ msgstr "Guyana (GUY)"
-
-#~ msgid "Haiti (HTI)"
-#~ msgstr "Haiti (HTI)"
-
-#~ msgid "Honduras (HND)"
-#~ msgstr "Honduras (HND)"
-
-#~ msgid "Hungary (HUN)"
-#~ msgstr "Hungary (HUN)"
-
-#~ msgid "Iceland (ISL)"
-#~ msgstr "Iceland (ISL)"
-
-#~ msgid "India (IND)"
-#~ msgstr "India (IND)"
-
-#~ msgid "Indonesia (IDN)"
-#~ msgstr "Indonesia (IDN)"
-
-#~ msgid "Iran (IRN)"
-#~ msgstr "Iran (IRN)"
-
-#~ msgid "Iraq (IRQ)"
-#~ msgstr "Iraq (IRQ)"
-
-#~ msgid "Ireland (IRL)"
-#~ msgstr "Ireland (IRL)"
-
-#~ msgid "Israel (ISR)"
-#~ msgstr "Israel (ISR)"
-
-#~ msgid "Italy (ITA)"
-#~ msgstr "Italy (ITA)"
-
-#~ msgid "Jamaica (JAM)"
-#~ msgstr "Jamaica (JAM)"
-
-#~ msgid "Japan (JPN)"
-#~ msgstr "Japan (JPN)"
-
-#~ msgid "Jordan (JOR)"
-#~ msgstr "Jordan (JOR)"
-
-#~ msgid "Kazakhstan (KAZ)"
-#~ msgstr "Kazakhstan (KAZ)"
-
-#~ msgid "Kenya (KEN)"
-#~ msgstr "Kenya (KEN)"
-
-#~ msgid "Kuwait (KWT)"
-#~ msgstr "Kuwait (KWT)"
-
-#~ msgid "Kyrgyzstan (KGZ)"
-#~ msgstr "Kyrgyzstan (KGZ)"
-
-#~ msgid "Lao People's Democratic Republic (LAO)"
-#~ msgstr "Lao People's Democratic Republic (LAO)"
-
-#~ msgid "Latvia (LVA)"
-#~ msgstr "Latvia (LVA)"
-
-#~ msgid "Lebanon (LBN)"
-#~ msgstr "Lebanon (LBN)"
-
-#~ msgid "Lesotho (LSO)"
-#~ msgstr "Lesotho (LSO)"
-
-#~ msgid "Liberia (LBR)"
-#~ msgstr "Liberia (LBR)"
-
-#~ msgid "Libyan Arab Jamahiriya (LBY)"
-#~ msgstr "Libyan Arab Jamahiriya (LBY)"
-
-#~ msgid "Lithuania (LTU)"
-#~ msgstr "Lithuania (LTU)"
-
-#~ msgid "Luxembourg (LUX)"
-#~ msgstr "Luxembourg (LUX)"
-
-#~ msgid "Macedonia (MKD)"
-#~ msgstr "Macedonia (MKD)"
-
-#~ msgid "Madagascar (MDG)"
-#~ msgstr "Madagascar (MDG)"
-
-#~ msgid "Malawi (MWI)"
-#~ msgstr "Malawi (MWI)"
-
-#~ msgid "Malaysia (MYS)"
-#~ msgstr "Malaysia (MYS)"
-
-#~ msgid "Maldives (MDV)"
-#~ msgstr "Maldives (MDV)"
-
-#~ msgid "Mali (MLI)"
-#~ msgstr "Mali (MLI)"
-
-#~ msgid "Malta (MLT)"
-#~ msgstr "Malta (MLT)"
-
-#~ msgid "Mauritania (MRT)"
-#~ msgstr "Mauritania (MRT)"
-
-#~ msgid "Mauritius (MUS)"
-#~ msgstr "Mauritius (MUS)"
-
-#~ msgid "Mexico (MEX)"
-#~ msgstr "Mexico (MEX)"
-
-#~ msgid "Mongolia (MNG)"
-#~ msgstr "Mongolia (MNG)"
-
-#~ msgid "Montenegro (MNE)"
-#~ msgstr "Montenegro (MNE)"
-
-#~ msgid "Morocco (MAR)"
-#~ msgstr "Morocco (MAR)"
-
-#~ msgid "Mozambique (MOZ)"
-#~ msgstr "Mozambique (MOZ)"
-
-#~ msgid "Myanmar (MMR)"
-#~ msgstr "Myanmar (MMR)"
-
-#~ msgid "Namibia (NAM)"
-#~ msgstr "Namibia (NAM)"
-
-#~ msgid "Nepal (NPL)"
-#~ msgstr "Nepal (NPL)"
-
-#~ msgid "Netherlands (NLD)"
-#~ msgstr "Netherlands (NLD)"
-
-#~ msgid "New Zealand (NZL)"
-#~ msgstr "New Zealand (NZL)"
-
-#~ msgid "Nicaragua (NIC)"
-#~ msgstr "Nicaragua (NIC)"
-
-#~ msgid "Niger (NER)"
-#~ msgstr "Niger (NER)"
-
-#~ msgid "Nigeria (NGA)"
-#~ msgstr "Nigeria (NGA)"
-
-#~ msgid "Norway (NOR)"
-#~ msgstr "Norway (NOR)"
-
-#~ msgid "Occupied Palestinian Territory (PSE)"
-#~ msgstr "Occupied Palestinian Territory (PSE)"
-
-#~ msgid "Oman (OMN)"
-#~ msgstr "Oman (OMN)"
-
-#~ msgid "Pakistan (PAK)"
-#~ msgstr "Pakistan (PAK)"
-
-#~ msgid "Panama (PAN)"
-#~ msgstr "Panama (PAN)"
-
-#~ msgid "Papua New Guinea (PNG)"
-#~ msgstr "Papua New Guinea (PNG)"
-
-#~ msgid "Paraguay (PRY)"
-#~ msgstr "Paraguay (PRY)"
-
-#~ msgid "Peru (PER)"
-#~ msgstr "Peru (PER)"
-
-#~ msgid "Philippines (PHL)"
-#~ msgstr "Philippines (PHL)"
-
-#~ msgid "Poland (POL)"
-#~ msgstr "Poland (POL)"
-
-#~ msgid "Portugal (PRT)"
-#~ msgstr "Portugal (PRT)"
-
-#~ msgid "Qatar (QAT)"
-#~ msgstr "Qatar (QAT)"
-
-#~ msgid "Republic of Korea (KOR)"
-#~ msgstr "Republic of Korea (KOR)"
-
-#~ msgid "Republic of Moldova (MDA)"
-#~ msgstr "Republic of Moldova (MDA)"
-
-#~ msgid "Romania (ROU)"
-#~ msgstr "Romania (ROU)"
-
-#~ msgid "Russian Federation (RUS)"
-#~ msgstr "Russian Federation (RUS)"
-
-#~ msgid "Rwanda (RWA)"
-#~ msgstr "Rwanda (RWA)"
-
-#~ msgid "Saint Kitts and Nevis (KNA)"
-#~ msgstr "Saint Kitts and Nevis (KNA)"
-
-#~ msgid "Saint Lucia (LCA)"
-#~ msgstr "Saint Lucia (LCA)"
-
-#~ msgid "Saint Vincent and the Grenadines (VCT)"
-#~ msgstr "Saint Vincent and the Grenadines (VCT)"
-
-#~ msgid "Samoa (WSM)"
-#~ msgstr "Samoa (WSM)"
-
-#~ msgid "San Marino (SMR)"
-#~ msgstr "San Marino (SMR)"
-
-#~ msgid "Sao Tome and Principe (STP)"
-#~ msgstr "Sao Tome and Principe (STP)"
-
-#~ msgid "Saudi Arabia (SAU)"
-#~ msgstr "Saudi Arabia (SAU)"
-
-#~ msgid "Senegal (SEN)"
-#~ msgstr "Senegal (SEN)"
-
-#~ msgid "Serbia (SRB)"
-#~ msgstr "Serbia (SRB)"
-
-#~ msgid "Seychelles (SYC)"
-#~ msgstr "Seychelles (SYC)"
-
-#~ msgid "Sierra Leone (SLE)"
-#~ msgstr "Sierra Leone (SLE)"
-
-#~ msgid "Singapore (SGP)"
-#~ msgstr "Singapore (SGP)"
-
-#~ msgid "Slovakia (SVK)"
-#~ msgstr "Slovakia (SVK)"
-
-#~ msgid "Slovenia (SVN)"
-#~ msgstr "Slovenia (SVN)"
-
-#~ msgid "Solomon Islands (SLB)"
-#~ msgstr "Solomon Islands (SLB)"
-
-#~ msgid "South Africa (ZAF)"
-#~ msgstr "South Africa (ZAF)"
-
-#~ msgid "Spain (ESP)"
-#~ msgstr "Spain (ESP)"
-
-#~ msgid "Sri Lanka (LKA)"
-#~ msgstr "Sri Lanka (LKA)"
-
-#~ msgid "Sudan (SDN)"
-#~ msgstr "Sudan (SDN)"
-
-#~ msgid "Suriname (SUR)"
-#~ msgstr "Suriname (SUR)"
-
-#~ msgid "Swaziland (SWZ)"
-#~ msgstr "Swaziland (SWZ)"
-
-#~ msgid "Sweden (SWE)"
-#~ msgstr "Sweden (SWE)"
-
-#~ msgid "Switzerland (CHE)"
-#~ msgstr "Switzerland (CHE)"
-
-#~ msgid "Syrian Arab Republic (SYR)"
-#~ msgstr "Syrian Arab Republic (SYR)"
-
-#~ msgid "Tajikistan (TJK)"
-#~ msgstr "Tajikistan (TJK)"
-
-#~ msgid "Thailand (THA)"
-#~ msgstr "Thailand (THA)"
-
-#~ msgid "Timor-Leste (TLS)"
-#~ msgstr "Timor-Leste (TLS)"
-
-#~ msgid "Togo (TGO)"
-#~ msgstr "Togo (TGO)"
-
-#~ msgid "Tonga (TON)"
-#~ msgstr "Tonga (TON)"
-
-#~ msgid "Trinidad and Tobago (TTO)"
-#~ msgstr "Trinidad and Tobago (TTO)"
-
-#~ msgid "Tunisia (TUN)"
-#~ msgstr "Tunisia (TUN)"
-
-#~ msgid "Turkey (TUR)"
-#~ msgstr "Turkey (TUR)"
-
-#~ msgid "Uganda (UGA)"
-#~ msgstr "Uganda (UGA)"
-
-#~ msgid "Ukraine (UKR)"
-#~ msgstr "Ukraine (UKR)"
-
-#~ msgid "United Arab Emirates (ARE)"
-#~ msgstr "United Arab Emirates (ARE)"
-
-#~ msgid "United Kingdom (GBR)"
-#~ msgstr "United Kingdom (GBR)"
-
-#~ msgid "United Republic of Tanzania (TZA)"
-#~ msgstr "United Republic of Tanzania (TZA)"
-
-#~ msgid "United States of America (USA)"
-#~ msgstr "United States of America (USA)"
-
-#~ msgid "Uruguay (URY)"
-#~ msgstr "Uruguay (URY)"
-
-#~ msgid "Vanuatu (VUT)"
-#~ msgstr "Vanuatu (VUT)"
-
-#~ msgid "Venezuela (Bolivarian Republic of) (VEN)"
-#~ msgstr "Venezuela (Bolivarian Republic of) (VEN)"
-
-#~ msgid "Viet Nam (VNM)"
-#~ msgstr "Viet Nam (VNM)"
-
-#~ msgid "Yemen (YEM)"
-#~ msgstr "Yemen (YEM)"
-
-#~ msgid "Zambia (ZMB)"
-#~ msgstr "Zambia (ZMB)"
-
-#~ msgid "Zimbabwe (ZWE)"
-#~ msgstr "Zimbabwe (ZWE)"
