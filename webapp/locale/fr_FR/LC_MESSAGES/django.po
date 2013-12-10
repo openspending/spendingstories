@@ -1,7 +1,8 @@
 msgid ""
-msgstr "Project-Id-Version: spending-stories\n"
+msgstr ""
+"Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-05 15:55+0000\n"
+"POT-Creation-Date: 2013-12-10 10:22+0000\n"
 "PO-Revision-Date: 2013-12-06 06:49-0500\n"
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: French\n"
@@ -15,14 +16,6 @@ msgstr "Project-Id-Version: spending-stories\n"
 #: settings.py:73
 msgid "English"
 msgstr "English"
-
-#: settings.py:74
-msgid "French"
-msgstr "Français"
-
-#: settings.py:75
-msgid "German"
-msgstr "German"
 
 #: core/admin.py:51
 msgid "Mark selected contributions as published"
@@ -773,8 +766,12 @@ msgid "The spending value"
 msgstr "The spending value"
 
 #: core/models.py:103
-msgid "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
-msgstr "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
+msgid ""
+"Insert round numbers without any space or separator. e.g.222109000.You can "
+"also use the scientific notation. e.g.222.109e6"
+msgstr ""
+"Insert round numbers without any space or separator. e.g.222109000.You can "
+"also use the scientific notation. e.g.222.109e6"
 
 #: core/models.py:104
 msgid "Story title"
@@ -801,8 +798,14 @@ msgid "Story type"
 msgstr "Story type"
 
 #: core/models.py:109
-msgid "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
-msgstr "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
+msgid ""
+"The way you want that we compare this story. If this story's amount concerns "
+"a buget or a spending over one specific year, choose \"over one year\" (The "
+"amount will be cut into time equivalence)."
+msgstr ""
+"The way you want that we compare this story. If this story's amount concerns "
+"a buget or a spending over one specific year, choose \"over one year\" (The "
+"amount will be cut into time equivalence)."
 
 #: core/models.py:110
 msgid "status"
@@ -864,6 +867,154 @@ msgstr "Page slug"
 msgid "Page content"
 msgstr "Page content"
 
+#: currency/__init__.py:4
+msgid "CUR_AED"
+msgstr ""
+
+#: currency/__init__.py:5
+msgid "CUR_ARS"
+msgstr ""
+
+#: currency/__init__.py:6
+msgid "CUR_AUD"
+msgstr ""
+
+#: currency/__init__.py:7
+msgid "CUR_BRL"
+msgstr ""
+
+#: currency/__init__.py:8
+msgid "CUR_CAD"
+msgstr ""
+
+#: currency/__init__.py:9
+msgid "CUR_CHF"
+msgstr ""
+
+#: currency/__init__.py:10
+msgid "CUR_CLP"
+msgstr ""
+
+#: currency/__init__.py:11
+msgid "CUR_CNY"
+msgstr ""
+
+#: currency/__init__.py:12
+msgid "CUR_COP"
+msgstr ""
+
+#: currency/__init__.py:13
+msgid "CUR_CZK"
+msgstr ""
+
+#: currency/__init__.py:14
+msgid "CUR_DKK"
+msgstr ""
+
+#: currency/__init__.py:15
+msgid "CUR_DZD"
+msgstr ""
+
+#: currency/__init__.py:16
+msgid "CUR_EGP"
+msgstr ""
+
+#: currency/__init__.py:17
+msgid "CUR_EUR"
+msgstr ""
+
+#: currency/__init__.py:18
+msgid "CUR_GBP"
+msgstr ""
+
+#: currency/__init__.py:19
+msgid "CUR_HKD"
+msgstr ""
+
+#: currency/__init__.py:20
+msgid "CUR_IDR"
+msgstr ""
+
+#: currency/__init__.py:21
+msgid "CUR_ILS"
+msgstr ""
+
+#: currency/__init__.py:22
+msgid "CUR_INR"
+msgstr ""
+
+#: currency/__init__.py:23
+msgid "CUR_JPY"
+msgstr ""
+
+#: currency/__init__.py:24
+msgid "CUR_KRW"
+msgstr ""
+
+#: currency/__init__.py:25
+msgid "CUR_MXN"
+msgstr ""
+
+#: currency/__init__.py:26
+msgid "CUR_MYR"
+msgstr ""
+
+#: currency/__init__.py:27
+msgid "CUR_NOK"
+msgstr ""
+
+#: currency/__init__.py:28
+msgid "CUR_NZD"
+msgstr ""
+
+#: currency/__init__.py:29
+msgid "CUR_PLN"
+msgstr ""
+
+#: currency/__init__.py:30
+msgid "CUR_RUB"
+msgstr ""
+
+#: currency/__init__.py:31
+msgid "CUR_SAR"
+msgstr ""
+
+#: currency/__init__.py:32
+msgid "CUR_SEK"
+msgstr ""
+
+#: currency/__init__.py:33
+msgid "CUR_SGD"
+msgstr ""
+
+#: currency/__init__.py:34
+msgid "CUR_THB"
+msgstr ""
+
+#: currency/__init__.py:35
+msgid "CUR_TRY"
+msgstr ""
+
+#: currency/__init__.py:36
+msgid "CUR_TWD"
+msgstr ""
+
+#: currency/__init__.py:37
+msgid "CUR_USD"
+msgstr ""
+
+#: currency/__init__.py:38
+msgid "CUR_VEF"
+msgstr ""
+
+#: currency/__init__.py:39
+msgid "CUR_VND"
+msgstr ""
+
+#: currency/__init__.py:40
+msgid "CUR_ZAR"
+msgstr ""
+
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
 msgstr "Page not found"
@@ -902,8 +1053,12 @@ msgid "Server Error <em>(500)</em>"
 msgstr "Server Error <em>(500)</em>"
 
 #: templates/admin/500.html:15
-msgid "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
-msgstr "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
+msgid ""
+"There's been an error. It's been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+"There's been an error. It's been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
 
 #: templates/admin/actions.html:4
 msgid "Run the selected action"
@@ -1015,18 +1170,32 @@ msgstr "Delete"
 
 #: templates/admin/delete_confirmation.html:18
 #, python-format
-msgid "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
-msgstr "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
 
 #: templates/admin/delete_confirmation.html:26
 #, python-format
-msgid "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
-msgstr "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
 
 #: templates/admin/delete_confirmation.html:34
 #, python-format
-msgid "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
-msgstr "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
 
 #: templates/admin/delete_confirmation.html:39
 #: templates/admin/delete_selected_confirmation.html:44
@@ -1039,18 +1208,32 @@ msgstr "Delete multiple objects"
 
 #: templates/admin/delete_selected_confirmation.html:17
 #, python-format
-msgid "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
-msgstr "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
 
 #: templates/admin/delete_selected_confirmation.html:25
 #, python-format
-msgid "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
-msgstr "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
 
 #: templates/admin/delete_selected_confirmation.html:33
 #, python-format
-msgid "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
-msgstr "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
 
 #: templates/admin/filter.html:3
 #, python-format
@@ -1087,8 +1270,14 @@ msgid "Unknown content"
 msgstr "Unknown content"
 
 #: templates/admin/invalid_setup.html:12
-msgid "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
-msgstr "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
 
 #: templates/admin/login.html:37
 msgid "Password:"
@@ -1116,8 +1305,12 @@ msgid "Action"
 msgstr "Action"
 
 #: templates/admin/object_history.html:39
-msgid "This object doesn't have a change history. It probably wasn't added via this admin site."
-msgstr "This object doesn't have a change history. It probably wasn't added via this admin site."
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
 
 #: templates/admin/pagination.html:10
 msgid "Show all"
@@ -1156,8 +1349,12 @@ msgid "Save and continue editing"
 msgstr "Save and continue editing"
 
 #: templates/admin/auth/user/add_form.html:6
-msgid "First, enter a username and password. Then, you'll be able to edit more user options."
-msgstr "First, enter a username and password. Then, you'll be able to edit more user options."
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
 
 #: templates/admin/auth/user/add_form.html:8
 msgid "Enter a username and password."
@@ -1221,8 +1418,12 @@ msgid "Your password was changed."
 msgstr "Your password was changed."
 
 #: templates/registration/password_change_form.html:26
-msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
-msgstr "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
 
 #: templates/registration/password_change_form.html:32
 msgid "Old password"
@@ -1264,8 +1465,12 @@ msgid "Enter new password"
 msgstr "Enter new password"
 
 #: templates/registration/password_reset_confirm.html:19
-msgid "Please enter your new password twice so we can verify you typed it in correctly."
-msgstr "Please enter your new password twice so we can verify you typed it in correctly."
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "New password:"
@@ -1280,8 +1485,12 @@ msgid "Password reset unsuccessful"
 msgstr "Password reset unsuccessful"
 
 #: templates/registration/password_reset_confirm.html:33
-msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
 
 #: templates/registration/password_reset_done.html:11
 #: templates/registration/password_reset_done.html:15
@@ -1289,13 +1498,21 @@ msgid "Password reset successful"
 msgstr "Password reset successful"
 
 #: templates/registration/password_reset_done.html:17
-msgid "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
-msgstr "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
+msgid ""
+"We've emailed you instructions for setting your password to the email "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+"We've emailed you instructions for setting your password to the email "
+"address you submitted. You should be receiving it shortly."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
-msgid "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
-msgstr "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
@@ -1315,8 +1532,12 @@ msgid "The %(site_name)s team"
 msgstr "The %(site_name)s team"
 
 #: templates/registration/password_reset_form.html:17
-msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
-msgstr "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
 
 #: templates/registration/password_reset_form.html:21
 msgid "Email address:"
@@ -1326,3 +1547,8 @@ msgstr "Email address:"
 msgid "Reset my password"
 msgstr "Reset my password"
 
+#~ msgid "French"
+#~ msgstr "Français"
+
+#~ msgid "German"
+#~ msgstr "German"
