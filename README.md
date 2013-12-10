@@ -2,6 +2,7 @@
 
 2013, Journalism++  
 GNU General Public License
+[![Build Status](https://travis-ci.org/jplusplus/1trillioneuros.png?branch=master)](https://travis-ci.org/jplusplus/1trillioneuros)
 
 [![Build Status](https://travis-ci.org/jplusplus/okf-spending-stories.png?branch=master)](https://travis-ci.org/jplusplus/okf-spending-stories)
 

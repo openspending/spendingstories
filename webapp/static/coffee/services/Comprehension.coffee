@@ -124,7 +124,7 @@ class Comprehension
             _.extend elem,
                 index : @getTermPosition term
                 term : term
-        if results[0].type is TYPES.number
+        if results[0]? and results[0].type is TYPES.number
             return _.first results
         else
             _.filter results, (result) -> result.type is TYPES.currency
