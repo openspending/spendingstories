@@ -4,22 +4,11 @@ class LanguageCtrl
     
     constructor: (@scope, @location, @languages)->
 
-        @scope.languages      = @languages
-        @scope.changeLanguage = @changeLanguage
-        @init_url_lang        = @location.search()['lang']
+        @scope.languages = @languages
+        @changeLanguage @location.search()['lang'] 
 
         # additional watchings
-        @scope.$watch 'languages.current', @currentLangChanged, yes
-        @scope.$watch =>
-            # when supportLanguages is loaded from JSON we update scope.languages
-                @languages.list
-            , =>
-                if @init_url_lang?
-                    @changeLanguage(@init_url_lang)
-                    delete @init_url_lang
-                else
-                    @changeLanguage()
-
+        @scope.$watch 'languages.current', @currentLangChanged
         @scope.$watch =>
                 @location.search()['lang']
             , (val)=>
@@ -28,8 +17,7 @@ class LanguageCtrl
                     @changeLanguage val
 
     changeLanguage: (lang)=>
-        return if !lang?
-        @languages.setCurrent lang 
+        @scope.languages.setCurrent lang
 
     currentLangChanged: (lang)=>
         return if !lang?
