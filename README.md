@@ -289,7 +289,7 @@ located at:
 
 ### What is not fully translated
 
-1. **User query**
+##### User query
 
   User query comprehension works only in French & English for the moment.
   The way we understand the amounts and currencies entered by user is based on a fuzzy search. 
@@ -302,9 +302,6 @@ located at:
   Fuzzy search can work but the search data set (the data that will be used to perform the search) have to be build
   by an algorithm because of the tremendous amount of numbers. 
 
-2.  **Currencies' names**
-
-  All currencies' names are not translated, this is why you can see some "12 millards de US dollars"
 
 ## Update stories with last currencies and cpi
 It's important to note that the conversion rates & the consumer price indexes we use 
