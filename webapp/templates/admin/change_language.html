@@ -1,0 +1,18 @@
+{% load i18n %}
+/ {% trans 'Change language' %}
+<form id='language_switcher' action="/i18n/setlang/" method="post" style="display: inline;">
+  <div style="display: inline;">
+    <select id='select_lang' name="language" onchange='javascript:submit_form()' >
+      {% for lang in LANGUAGES %}
+        <option value="{{ lang.0 }}"{% if LANG == lang.0 %} selected="selected" {% endif %}>{{ lang.1 }}</option>
+      {% endfor %}
+    </select>
+    {% csrf_token %}
+  </div>
+</form>
+<script> 
+  var submit_form = function(){
+    var form = document.getElementById('language_switcher');
+    form.submit();
+  }
+</script>
