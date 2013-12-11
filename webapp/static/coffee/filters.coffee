@@ -147,3 +147,12 @@ angular
                 name = name[0].toUpperCase() + name.substring(1)
         ]
     )
+    .filter("localizedLanguageName", ['$translate', ($translate)->
+            return (lang)->
+                return null unless lang? # short fail
+                code = lang.value or lang.code or null
+                i18n_country_key = "LANGUAGE_#{code.toUpperCase()}" if code?
+                name = $translate i18n_country_key
+                name = name[0].toUpperCase() + name.substring(1)
+        ]
+    )
