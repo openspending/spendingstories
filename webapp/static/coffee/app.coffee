@@ -60,6 +60,7 @@ angular
                     .when('/contribute/',
                         controller: 'contributeCtrl'
                         templateUrl: "./partial/contribute.html"
+                        reloadOnSearch: false
                     )
                     .when('/about',
                         controller: 'staticPageCtrl'
