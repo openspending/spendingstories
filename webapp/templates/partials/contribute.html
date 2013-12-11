@@ -37,7 +37,7 @@
 			<label class="control-label" for="input-currency">
 				[['CONTRIBUTE_CURRENCY_LABEL' | translate ]]
 			</label>
-			<select ng-options="c.iso_code as c.name for c in currencies"
+			<select ng-options="c.iso_code as (c|localizedCurrencyName) for c in currencies"
 					id="input-currency" 
 					ng-model="story.currency"
 			        selectpicker
@@ -56,9 +56,9 @@
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
 		<div class="form-group">
 			<label class="control-label" for="input-lang" translate>CONTRIBUTE_STORY_LANG_LABEL</label>
-			<select ng-options="c.code as c.name for c in languages" 					
+			<select ng-options="l.code as (l|localizedLanguageName) for l in languages" 					
 					id="input-lang"
-					ng-model="story.lang" 
+					ng-model="story.lang"
 			        selectpicker
 					required></select>	
 			<p class="help-block" translate>
@@ -78,7 +78,7 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-country" translate>CONTRIBUTE_STORY_COUNTRY_LABEL</label>	
-			<select ng-options="c.iso_code as c.name for c in countries" 					
+			<select ng-options="c.iso_code as (c|localizedCountryName) for c in countries" 					
 					id="input-country" 
 					ng-model="story.country" 
 			        selectpicker
