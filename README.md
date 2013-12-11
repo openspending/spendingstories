@@ -294,7 +294,7 @@ located at:
 User query comprehension works only in French & English for the moment.
 The way we understand the amounts and currencies entered by user is based on a fuzzy search. 
 This means all terms that will be recognized have to be entered in an array. 
-If you look at the [getSearchSetData](https://github.com/jplusplus/okf-spending-stories/blob/master/webapp/static/coffee/services/Comprehension.coffee#L129)  method in the `Comprehension`
+If you look at the [getSearchSetData](https://github.com/jplusplus/okf-spending-stories/blob/master/webapp/static/coffee/services/Comprehension.coffee#L140)  method in the `Comprehension`
 service you can see all translated term in our array. <br/>
 
 This way of doing cannot work with German for instance because a lot of numbers are constructed with
