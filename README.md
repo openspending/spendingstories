@@ -238,6 +238,7 @@ The front-end translation system is composed of the following tools:
 This part covers the following topics: 
 
 - how to add/edit some translation
+- add a supported language
 - what is not fully translated for the moment
     
 
@@ -281,12 +282,24 @@ coffee & python files.
 
 #### 3. Update the new generated locales files
 
-This files contains all the translation keys and their translation values, they're 
-located at:
+This files contains all the translation keys and their translation values, they're located at:
   - `/webapp/static/locales/<locale code>.json` for static application translations
   - `/webapp/locale/<locale code>/LC_MESSAGES/django.po`  for the django application translations
 
 #### 4. Compile the new django messages with `python manage.py compilemessages` from the `webapp` folder
+
+### Add a language
+
+If you want to support a new language in your Spending Stories instance you must change django's settings.
+You must update the `webapp/settings.py` file and look for the `LANGUAGES` variable. This is where we store
+the list of supported languages, by default we only support english language. 
+
+```python
+LANGUAGES = (
+  ('en_GB', _('English')),
+  # add your new language here
+)
+```
 
 ### What is not fully translated
 
