@@ -2,7 +2,7 @@ msgid ""
 msgstr "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-10 16:03+0000\n"
-"PO-Revision-Date: 2013-12-11 07:20-0500\n"
+"PO-Revision-Date: 2013-12-12 08:59-0500\n"
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -14,27 +14,27 @@ msgstr "Project-Id-Version: spending-stories\n"
 
 #: settings.py:73
 msgid "English"
-msgstr "English"
+msgstr "Engels"
 
 #: settings.py:74
 msgid "French"
-msgstr "French"
+msgstr "Frans"
 
 #: settings.py:75
 msgid "German"
-msgstr "German"
+msgstr "Duits"
 
 #: core/admin.py:51
 msgid "Mark selected contributions as published"
-msgstr "Mark selected contributions as published"
+msgstr "Markeer de geselecteerde bijdragen als gepubliceerd"
 
 #: core/admin.py:55
 msgid "Mark selected contributions as refused"
-msgstr "Mark selected contributions as refused"
+msgstr "Markeer de geselecteerde bijdragen als geweigerd"
 
 #: core/admin.py:59
 msgid "Mark selected contributions as pending"
-msgstr "Mark selected contributions as pending"
+msgstr "Markeer de geselecteerde bijdragen als in behandeling"
 
 #: core/models.py:42
 msgid "discrete"
@@ -42,19 +42,19 @@ msgstr "discrete"
 
 #: core/models.py:42
 msgid "over one year"
-msgstr "over one year"
+msgstr "Langer dan één jaar"
 
 #: core/models.py:61
 msgid "theme's image"
-msgstr "theme's image"
+msgstr "Afbeelding van het thema"
 
 #: core/models.py:103
 msgid "The spending value"
-msgstr "The spending value"
+msgstr "Het uitgegeven bedrag"
 
 #: core/models.py:103
 msgid "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
-msgstr "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
+msgstr "Voer ronde getallen in zonder spatie of scheidingsteken. Bijv. 222109000. Je kunt ook de wetenschappelijke notatie gebruiken, bijv. 222.109e6"
 
 #: core/models.py:104
 msgid "Story title"
