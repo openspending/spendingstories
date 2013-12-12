@@ -71,8 +71,6 @@ LANGUAGE_CODE = 'en_GB'
 
 LANGUAGES = (
     ('en_GB', _("English")),
-    ('fr_FR', _("French")),
-    ('de_DE', _("German")),
 )
 
 SITE_ID = 1
