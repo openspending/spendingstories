@@ -12,6 +12,6 @@ install:
   - python manage.py syncdb --noinput
 # command to run tests
 script: 
-  - coverage run --source=webapp ./manage.py test
+  - coverage run --source=webapp ./manage.py test --settings webapp.settings_tests
 after_success:
   - coveralls 
