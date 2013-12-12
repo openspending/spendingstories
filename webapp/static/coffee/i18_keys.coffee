@@ -261,5 +261,8 @@ $translate('COUNTRY_YEM')
 $translate('COUNTRY_ZMB')
 $translate('COUNTRY_ZWE')
 
+$translate('LANGUAGE_FR_FR')
+$translate('LANGUAGE_EN_GB')
+$translate('LANGUAGE_DE_DE')
 
 ### 

@@ -71,8 +71,6 @@ LANGUAGE_CODE = 'en_GB'
 
 LANGUAGES = (
     ('en_GB', _("English")),
-    ('fr_FR', _("French")),
-    ('de_DE', _("German")),
 )
 
 SITE_ID = 1
@@ -136,12 +134,13 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'webapp.middlewares.AngularCSRFRename',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -161,8 +160,12 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     "django.core.context_processors.debug",
+    'django.core.context_processors.i18n',
     "django.core.context_processors.media",
     'django.core.context_processors.static',
+    # custom i18n lang
+    "webapp.context_processors.i18n",
+
 )
 
 INSTALLED_APPS = (

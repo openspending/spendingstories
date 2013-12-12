@@ -1,4 +1,4 @@
-angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($timeout, $location) ->
+angular.module('stories').directive 'selectpicker', ['$timeout','$location', '$translate', ($timeout, $location, $translate) ->
   
   # This is stolen from Angular...
   NG_OPTIONS_REGEXP = /^\s*(.*?)(?:\s+as\s+(.*?))?(?:\s+group\s+by\s+(.*))?\s+for\s+(?:([\$\w][\$\w\d]*)|(?:\(\s*([\$\w][\$\w\d]*)\s*,\s*([\$\w][\$\w\d]*)\s*\)))\s+in\s+(.*)$/
@@ -54,7 +54,14 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
           , true
         )
       scope.$watch(
-        ()->
+        ->
+          $translate.uses()
+        , ->
+          stopLoading()
+          element.selectpicker "refresh"
+      )
+      scope.$watch(
+        ->
           attr.title
         , (newVal, oldVal)->
           stopLoading()
@@ -62,7 +69,7 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', ($t
         , true
       )
       scope.$watch(
-        ()->
+        ->
           $location.path()
         ,(newVal, oldVal)->
             # this is a custom command to programmaticaly close (not hide!) the 

@@ -2,7 +2,7 @@ msgid ""
 msgstr "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-10 16:03+0000\n"
-"PO-Revision-Date: 2013-12-10 11:08-0500\n"
+"PO-Revision-Date: 2013-12-12 09:48-0500\n"
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -14,27 +14,27 @@ msgstr "Project-Id-Version: spending-stories\n"
 
 #: settings.py:73
 msgid "English"
-msgstr "English"
+msgstr "Anglais"
 
 #: settings.py:74
 msgid "French"
-msgstr "French"
+msgstr "Français"
 
 #: settings.py:75
 msgid "German"
-msgstr "German"
+msgstr "Allemand"
 
 #: core/admin.py:51
 msgid "Mark selected contributions as published"
-msgstr "Mark selected contributions as published"
+msgstr "Marquer les contributions sélectionnées comme publiées"
 
 #: core/admin.py:55
 msgid "Mark selected contributions as refused"
-msgstr "Mark selected contributions as refused"
+msgstr "Marquer les contributions sélectionnées comme refusées"
 
 #: core/admin.py:59
 msgid "Mark selected contributions as pending"
-msgstr "Mark selected contributions as pending"
+msgstr "Marquer les contributions sélectionnées comme étant en attentes"
 
 #: core/models.py:42
 msgid "discrete"
@@ -42,7 +42,7 @@ msgstr "discrete"
 
 #: core/models.py:42
 msgid "over one year"
-msgstr "over one year"
+msgstr "sur plus d'un an"
 
 #: core/models.py:61
 msgid "theme's image"
@@ -54,31 +54,31 @@ msgstr "The spending value"
 
 #: core/models.py:103
 msgid "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
-msgstr "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
+msgstr "Insérer des nombres ronds sans espaces ou séparateur. e.g. 2222109000. Vous pouvez aussi utiliser la notation scientifique. e.g. 222.109e6"
 
 #: core/models.py:104
 msgid "Story title"
-msgstr "Story title"
+msgstr "Titre de l'histoire"
 
 #: core/models.py:105
 msgid "Story description"
-msgstr "Story description"
+msgstr "Description de l'histoire"
 
 #: core/models.py:106
 msgid "Country"
-msgstr "Country"
+msgstr "Pays"
 
 #: core/models.py:106
 msgid "Choose the country or zone where the money is spent"
-msgstr "Choose the country or zone where the money is spent"
+msgstr "Choisissez le pays ou la zone où la monnaie est utilisée"
 
 #: core/models.py:107
 msgid "Story's source URL"
-msgstr "Story's source URL"
+msgstr "Source de l'histoire (URL)"
 
 #: core/models.py:109
 msgid "Story type"
-msgstr "Story type"
+msgstr "Type d'histoire"
 
 #: core/models.py:109
 msgid "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
@@ -86,71 +86,71 @@ msgstr "The way you want that we compare this story. If this story's amount conc
 
 #: core/models.py:110
 msgid "status"
-msgstr "status"
+msgstr "statut"
 
 #: core/models.py:110
 msgid "pending"
-msgstr "pending"
+msgstr "en attente"
 
 #: core/models.py:110
 msgid "published"
-msgstr "published"
+msgstr "publiée"
 
 #: core/models.py:110
 msgid "refused"
-msgstr "refused"
+msgstr "refusée"
 
 #: core/models.py:111
 msgid "Is a top story"
-msgstr "Is a top story"
+msgstr "Est une histoire marquante"
 
 #: core/models.py:111
 msgid "Check if the story is a tabloid"
-msgstr "Check if the story is a tabloid"
+msgstr "Cochez si l'histoire est un tabloïd"
 
 #: core/models.py:112
 msgid "Year"
-msgstr "Year"
+msgstr "Année"
 
 #: core/models.py:112
 msgid "Enter the start year of the spending"
-msgstr "Enter the start year of the spending"
+msgstr "Entrez l'année départ de la dépense"
 
 #: core/models.py:114
 msgid "Extra informations in json format"
-msgstr "Extra informations in json format"
+msgstr "Informations additionnelles au format Json"
 
 #: core/models.py:117
 msgid "The current value with the inflation"
-msgstr "The current value with the inflation"
+msgstr "La valeur actuelle ajustée avec l'inflation"
 
 #: core/models.py:118
 msgid "Current value in USD"
-msgstr "Current value in USD"
+msgstr "Valeur actuelle en dollars US"
 
 #: core/models.py:120
 msgid "Story language"
-msgstr "Story language"
+msgstr "Langue de l'histoire"
 
 #: core/models.py:160
 msgid "Page title"
-msgstr "Page title"
+msgstr "Tire de la page"
 
 #: core/models.py:161
 msgid "Page slug"
-msgstr "Page slug"
+msgstr "Slug de la page"
 
 #: core/models.py:162
 msgid "Page content"
-msgstr "Page content"
+msgstr "Contenu de la page"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
-msgstr "Page not found"
+msgstr "Page non trouvée"
 
 #: templates/admin/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr "We're sorry, but the requested page could not be found."
+msgstr "Nous sommes désolés, mais la page demandée est introuvable."
 
 #: templates/admin/500.html:6 templates/admin/app_index.html:7
 #: templates/admin/base.html:47 templates/admin/change_form.html:19
@@ -167,19 +167,19 @@ msgstr "We're sorry, but the requested page could not be found."
 #: templates/registration/password_reset_done.html:6
 #: templates/registration/password_reset_form.html:6
 msgid "Home"
-msgstr "Home"
+msgstr "Accueil"
 
 #: templates/admin/500.html:7
 msgid "Server error"
-msgstr "Server error"
+msgstr "Erreur du serveur"
 
 #: templates/admin/500.html:11
 msgid "Server error (500)"
-msgstr "Server error (500)"
+msgstr "Erreur du serveur (500)"
 
 #: templates/admin/500.html:14
 msgid "Server Error <em>(500)</em>"
-msgstr "Server Error <em>(500)</em>"
+msgstr "Erreur du serveur <em>(500)</em>"
 
 #: templates/admin/500.html:15
 msgid "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
@@ -187,7 +187,7 @@ msgstr "There's been an error. It's been reported to the site administrators via
 
 #: templates/admin/actions.html:4
 msgid "Run the selected action"
-msgstr "Run the selected action"
+msgstr "Exécuter l'action sélectionnée"
 
 #: templates/admin/actions.html:4
 msgid "Go"
@@ -227,13 +227,13 @@ msgstr "Documentation"
 #: templates/registration/password_change_done.html:3
 #: templates/registration/password_change_form.html:4
 msgid "Change password"
-msgstr "Change password"
+msgstr "Changer de mot de passe"
 
 #: templates/admin/base.html:38
 #: templates/registration/password_change_done.html:3
 #: templates/registration/password_change_form.html:4
 msgid "Log out"
-msgstr "Log out"
+msgstr "Fermer la session"
 
 #: templates/admin/base_site.html:4
 msgid "ADMIN: OKF - Spending Stories"
@@ -245,7 +245,7 @@ msgstr "OKF - Spending Stories"
 
 #: templates/admin/change_form.html:22 templates/admin/index.html:33
 msgid "Add"
-msgstr "Add"
+msgstr "Ajouter"
 
 #: templates/admin/change_form.html:32 templates/admin/object_history.html:11
 msgid "History"
@@ -474,7 +474,7 @@ msgstr "Add another %(verbose_name)s"
 
 #: templates/admin/edit_inline/tabular.html:17
 msgid "Delete?"
-msgstr "Delete?"
+msgstr "Supprimer ?"
 
 #: templates/registration/logged_out.html:8
 msgid "Thanks for spending some quality time with the Web site today."
