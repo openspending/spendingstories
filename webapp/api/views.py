@@ -163,7 +163,7 @@ class FiltersViewSet(viewsets.ViewSet):
             "country"  : [],
             "lang"     : []
         }
-        lang = request.QUERY_PARAMS.get('lang', 'en_GB')
+        lang = request.QUERY_PARAMS.get('lang', settings.LANGUAGE_CODE)
         # currencies
         currencies = Currency.objects.values("iso_code", "name")
         for currency in currencies:
