@@ -54,6 +54,9 @@
 	</fieldset>
 
 	<fieldset class="step" ng-disabled="loading" ng-show="step == 1" ng-form="stepForm1">
+		<div class="breadcrumb">
+			<strong>[[story.value|humanizeValue:story.currency]]</strong> <span translate>CONTRIBUTE_AMOUNT_IS</span>
+		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-lang" translate>CONTRIBUTE_STORY_LANG_LABEL</label>
 			<select ng-options="l.code as (l|localizedLanguageName) for l in languages" 					
@@ -64,9 +67,6 @@
 			<p class="help-block" translate>
 				CONTRIBUTE_STORY_LANG_HELP_BLOCK
 			</p>
-		</div>
-		<div class="breadcrumb">
-			<strong>[[story.value|humanizeValue:story.currency]]</strong> <span translate>CONTRIBUTE_AMOUNT_IS</span>
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="input-title" translate>CONTRIBUTE_STORY_TITLE_LABEL</label>
