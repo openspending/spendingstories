@@ -242,12 +242,12 @@ msgid "Log out"
 msgstr ""
 
 #: templates/admin/base_site.html:4
-msgid "ADMIN: OKF - Spending Stories"
+msgid "ADMIN: One Trillion Euros"
 msgstr ""
 
 #: templates/admin/base_site.html:7
 msgid "OKF - Spending Stories"
-msgstr ""
+msgstr "One Trillion Euros"
 
 #: templates/admin/change_form.html:22 templates/admin/index.html:33
 msgid "Add"

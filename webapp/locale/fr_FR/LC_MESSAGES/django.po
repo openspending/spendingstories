@@ -237,11 +237,11 @@ msgstr "Fermer la session"
 
 #: templates/admin/base_site.html:4
 msgid "ADMIN: OKF - Spending Stories"
-msgstr "ADMIN: OKF - Spending Stories"
+msgstr "ADMIN: Mille Milliards d'Euros"
 
 #: templates/admin/base_site.html:7
 msgid "OKF - Spending Stories"
-msgstr "OKF - Spending Stories"
+msgstr "Mille Milliards d'Euros"
 
 #: templates/admin/change_form.html:22 templates/admin/index.html:33
 msgid "Add"
