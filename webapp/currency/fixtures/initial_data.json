@@ -1,1 +1,382 @@
-[{"pk": "AED", "model": "currency.currency", "fields": {"symbol": "", "priority": 3, "rate": 3.672883, "name": "UAE dirham"}}, {"pk": "ARS", "model": "currency.currency", "fields": {"symbol": "$", "priority": 3, "rate": 5.858413, "name": "Argentine peso"}}, {"pk": "AUD", "model": "currency.currency", "fields": {"symbol": "$", "priority": 2, "rate": 1.039744, "name": "Australian dollar"}}, {"pk": "BRL", "model": "currency.currency", "fields": {"symbol": "R$", "priority": 3, "rate": 2.180686, "name": "Brazilian real"}}, {"pk": "CAD", "model": "currency.currency", "fields": {"symbol": "$", "priority": 2, "rate": 1.0358, "name": "Canadian dollar"}}, {"pk": "CHF", "model": "currency.currency", "fields": {"symbol": "CHF", "priority": 2, "rate": 0.893905, "name": "Swiss franc"}}, {"pk": "CLP", "model": "currency.currency", "fields": {"symbol": "$", "priority": 3, "rate": 502.424747, "name": "Chilean peso"}}, {"pk": "CNY", "model": "currency.currency", "fields": {"symbol": "\u00a5", "priority": 3, "rate": 6.094341, "name": "Chinese yuan renminbi"}}, {"pk": "COP", "model": "currency.currency", "fields": {"symbol": "$", "priority": 3, "rate": 1880.999825, "name": "Colombian peso"}}, {"pk": "CZK", "model": "currency.currency", "fields": {"symbol": "K\u010d", "priority": 3, "rate": 18.757152, "name": "Czech koruna"}}, {"pk": "DKK", "model": "currency.currency", "fields": {"symbol": "kr", "priority": 3, "rate": 5.41999, "name": "Danish krone"}}, {"pk": "DZD", "model": "currency.currency", "fields": {"symbol": "\u062f\u062c", "priority": 3, "rate": 81.612238, "name": "Algerian dinar"}}, {"pk": "EGP", "model": "currency.currency", "fields": {"symbol": "\u00a3", "priority": 3, "rate": 6.89007, "name": "Egyptian pound"}}, {"pk": "EUR", "model": "currency.currency", "fields": {"symbol": "\u20ac", "priority": 1, "rate": 0.726063, "name": "EU euro"}}, {"pk": "GBP", "model": "currency.currency", "fields": {"symbol": "\u00a3", "priority": 1, "rate": 0.618646, "name": "British pound"}}, {"pk": "HKD", "model": "currency.currency", "fields": {"symbol": "$", "priority": 2, "rate": 7.75278, "name": "Hong Kong SAR dollar"}}, {"pk": "IDR", "model": "currency.currency", "fields": {"symbol": "Rp", "priority": 3, "rate": 11180.063775, "name": "Indonesian rupiah"}}, {"pk": "ILS", "model": "currency.currency", "fields": {"symbol": "\u20aa", "priority": 3, "rate": 3.518949, "name": "Israeli new shekel"}}, {"pk": "INR", "model": "currency.currency", "fields": {"symbol": "\u20b9", "priority": 2, "rate": 61.507765, "name": "Indian rupee"}}, {"pk": "JPY", "model": "currency.currency", "fields": {"symbol": "\u00a5", "priority": 1, "rate": 97.469959, "name": "Japanese yen"}}, {"pk": "KRW", "model": "currency.currency", "fields": {"symbol": "\u20a9", "priority": 2, "rate": 1058.29153, "name": "South Korean won"}}, {"pk": "MXN", "model": "currency.currency", "fields": {"symbol": "$", "priority": 2, "rate": 12.952478, "name": "Mexican peso"}}, {"pk": "MYR", "model": "currency.currency", "fields": {"symbol": "RM", "priority": 3, "rate": 3.167958, "name": "Malaysian ringgit"}}, {"pk": "NOK", "model": "currency.currency", "fields": {"symbol": "kr", "priority": 2, "rate": 5.914869, "name": "Norwegian krone"}}, {"pk": "NZD", "model": "currency.currency", "fields": {"symbol": "$", "priority": 2, "rate": 1.194095, "name": "New Zealand dollar"}}, {"pk": "PLN", "model": "currency.currency", "fields": {"symbol": "z\u0142", "priority": 3, "rate": 3.035862, "name": "Polish zloty"}}, {"pk": "RUB", "model": "currency.currency", "fields": {"symbol": "\u0440\u0443\u0431", "priority": 3, "rate": 31.788809, "name": "Russian ruble"}}, {"pk": "SAR", "model": "currency.currency", "fields": {"symbol": "\ufdfc", "priority": 3, "rate": 3.750351, "name": "Saudi riyal"}}, {"pk": "SEK", "model": "currency.currency", "fields": {"symbol": "kr", "priority": 2, "rate": 6.379843, "name": "Swedish krona"}}, {"pk": "SGD", "model": "currency.currency", "fields": {"symbol": "$", "priority": 2, "rate": 1.239258, "name": "Singapore dollar"}}, {"pk": "THB", "model": "currency.currency", "fields": {"symbol": "\u0e3f", "priority": 3, "rate": 31.161549, "name": "Thai baht"}}, {"pk": "TRY", "model": "currency.currency", "fields": {"symbol": "\\u20BA", "priority": 3, "rate": 1.974705, "name": "Turkish lira"}}, {"pk": "TWD", "model": "currency.currency", "fields": {"symbol": "NT$", "priority": 3, "rate": 29.390997, "name": "Taiwan New dollar"}}, {"pk": "USD", "model": "currency.currency", "fields": {"symbol": "$", "priority": 1, "rate": 1.0, "name": "US dollar"}}, {"pk": "VEF", "model": "currency.currency", "fields": {"symbol": "Bs", "priority": 3, "rate": 6.294065, "name": "Venezuelan bolivar fuerte"}}, {"pk": "VND", "model": "currency.currency", "fields": {"symbol": "\u20ab", "priority": 3, "rate": 21142.311425, "name": "Vietnamese dong"}}, {"pk": "ZAR", "model": "currency.currency", "fields": {"symbol": "R", "priority": 3, "rate": 9.790015, "name": "South African rand"}}]
+[
+    {
+        "fields": {
+            "name": "UAE dirham",
+            "priority": 3,
+            "rate": 3.67286,
+            "symbol": ""
+        },
+        "model": "currency.currency",
+        "pk": "AED"
+    },
+    {
+        "fields": {
+            "name": "Argentine peso",
+            "priority": 3,
+            "rate": 6.2976049999999999,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "ARS"
+    },
+    {
+        "fields": {
+            "name": "Australian dollar",
+            "priority": 2,
+            "rate": 1.1177619999999999,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "AUD"
+    },
+    {
+        "fields": {
+            "name": "Brazilian real",
+            "priority": 3,
+            "rate": 2.322044,
+            "symbol": "R$"
+        },
+        "model": "currency.currency",
+        "pk": "BRL"
+    },
+    {
+        "fields": {
+            "name": "Bitcoin",
+            "priority": 3,
+            "rate": 0.0012714530999999999,
+            "symbol": "\u0243"
+        },
+        "model": "currency.currency",
+        "pk": "BTC"
+    },
+    {
+        "fields": {
+            "name": "Canadian dollar",
+            "priority": 2,
+            "rate": 1.0588979999999999,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "CAD"
+    },
+    {
+        "fields": {
+            "name": "Swiss franc",
+            "priority": 2,
+            "rate": 0.88778400000000002,
+            "symbol": "CHF"
+        },
+        "model": "currency.currency",
+        "pk": "CHF"
+    },
+    {
+        "fields": {
+            "name": "Chilean peso",
+            "priority": 3,
+            "rate": 528.25399800000002,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "CLP"
+    },
+    {
+        "fields": {
+            "name": "Chinese yuan renminbi",
+            "priority": 3,
+            "rate": 6.0804039999999997,
+            "symbol": "\u00a5"
+        },
+        "model": "currency.currency",
+        "pk": "CNY"
+    },
+    {
+        "fields": {
+            "name": "Colombian peso",
+            "priority": 3,
+            "rate": 1933.8833500000001,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "COP"
+    },
+    {
+        "fields": {
+            "name": "Czech koruna",
+            "priority": 3,
+            "rate": 20.04392,
+            "symbol": "K\u010d"
+        },
+        "model": "currency.currency",
+        "pk": "CZK"
+    },
+    {
+        "fields": {
+            "name": "Danish krone",
+            "priority": 3,
+            "rate": 5.4222390000000003,
+            "symbol": "kr"
+        },
+        "model": "currency.currency",
+        "pk": "DKK"
+    },
+    {
+        "fields": {
+            "name": "Algerian dinar",
+            "priority": 3,
+            "rate": 78.255739000000005,
+            "symbol": "\u062f\u062c"
+        },
+        "model": "currency.currency",
+        "pk": "DZD"
+    },
+    {
+        "fields": {
+            "name": "Egyptian pound",
+            "priority": 3,
+            "rate": 6.885345,
+            "symbol": "\u00a3"
+        },
+        "model": "currency.currency",
+        "pk": "EGP"
+    },
+    {
+        "fields": {
+            "name": "EU euro",
+            "priority": 1,
+            "rate": 0.72646599999999995,
+            "symbol": "\u20ac"
+        },
+        "model": "currency.currency",
+        "pk": "EUR"
+    },
+    {
+        "fields": {
+            "name": "British pound",
+            "priority": 1,
+            "rate": 0.61326499999999995,
+            "symbol": "\u00a3"
+        },
+        "model": "currency.currency",
+        "pk": "GBP"
+    },
+    {
+        "fields": {
+            "name": "Hong Kong SAR dollar",
+            "priority": 2,
+            "rate": 7.7534020000000003,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "HKD"
+    },
+    {
+        "fields": {
+            "name": "Indonesian rupiah",
+            "priority": 3,
+            "rate": 12076.4,
+            "symbol": "Rp"
+        },
+        "model": "currency.currency",
+        "pk": "IDR"
+    },
+    {
+        "fields": {
+            "name": "Israeli new shekel",
+            "priority": 3,
+            "rate": 3.5030739999999998,
+            "symbol": "\u20aa"
+        },
+        "model": "currency.currency",
+        "pk": "ILS"
+    },
+    {
+        "fields": {
+            "name": "Indian rupee",
+            "priority": 2,
+            "rate": 61.804960000000001,
+            "symbol": "\u20b9"
+        },
+        "model": "currency.currency",
+        "pk": "INR"
+    },
+    {
+        "fields": {
+            "name": "Japanese yen",
+            "priority": 1,
+            "rate": 103.0621,
+            "symbol": "\u00a5"
+        },
+        "model": "currency.currency",
+        "pk": "JPY"
+    },
+    {
+        "fields": {
+            "name": "South Korean won",
+            "priority": 2,
+            "rate": 1052.653335,
+            "symbol": "\u20a9"
+        },
+        "model": "currency.currency",
+        "pk": "KRW"
+    },
+    {
+        "fields": {
+            "name": "Mexican peso",
+            "priority": 2,
+            "rate": 12.91675,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "MXN"
+    },
+    {
+        "fields": {
+            "name": "Malaysian ringgit",
+            "priority": 3,
+            "rate": 3.2397300000000002,
+            "symbol": "RM"
+        },
+        "model": "currency.currency",
+        "pk": "MYR"
+    },
+    {
+        "fields": {
+            "name": "Norwegian krone",
+            "priority": 2,
+            "rate": 6.1508279999999997,
+            "symbol": "kr"
+        },
+        "model": "currency.currency",
+        "pk": "NOK"
+    },
+    {
+        "fields": {
+            "name": "New Zealand dollar",
+            "priority": 2,
+            "rate": 1.2094640000000001,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "NZD"
+    },
+    {
+        "fields": {
+            "name": "Polish zloty",
+            "priority": 3,
+            "rate": 3.0349789999999999,
+            "symbol": "z\u0142"
+        },
+        "model": "currency.currency",
+        "pk": "PLN"
+    },
+    {
+        "fields": {
+            "name": "Russian ruble",
+            "priority": 3,
+            "rate": 32.896000000000001,
+            "symbol": "\u0440\u0443\u0431"
+        },
+        "model": "currency.currency",
+        "pk": "RUB"
+    },
+    {
+        "fields": {
+            "name": "Saudi riyal",
+            "priority": 3,
+            "rate": 3.7504900000000001,
+            "symbol": "\ufdfc"
+        },
+        "model": "currency.currency",
+        "pk": "SAR"
+    },
+    {
+        "fields": {
+            "name": "Swedish krona",
+            "priority": 2,
+            "rate": 6.56494,
+            "symbol": "kr"
+        },
+        "model": "currency.currency",
+        "pk": "SEK"
+    },
+    {
+        "fields": {
+            "name": "Singapore dollar",
+            "priority": 2,
+            "rate": 1.255671,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "SGD"
+    },
+    {
+        "fields": {
+            "name": "Thai baht",
+            "priority": 3,
+            "rate": 32.035400000000003,
+            "symbol": "\u0e3f"
+        },
+        "model": "currency.currency",
+        "pk": "THB"
+    },
+    {
+        "fields": {
+            "name": "Turkish lira",
+            "priority": 3,
+            "rate": 2.0325799999999998,
+            "symbol": "\\u20BA"
+        },
+        "model": "currency.currency",
+        "pk": "TRY"
+    },
+    {
+        "fields": {
+            "name": "Taiwan New dollar",
+            "priority": 3,
+            "rate": 29.650580000000001,
+            "symbol": "NT$"
+        },
+        "model": "currency.currency",
+        "pk": "TWD"
+    },
+    {
+        "fields": {
+            "name": "US dollar",
+            "priority": 1,
+            "rate": 1.0,
+            "symbol": "$"
+        },
+        "model": "currency.currency",
+        "pk": "USD"
+    },
+    {
+        "fields": {
+            "name": "Venezuelan bolivar fuerte",
+            "priority": 3,
+            "rate": 6.2910000000000004,
+            "symbol": "Bs"
+        },
+        "model": "currency.currency",
+        "pk": "VEF"
+    },
+    {
+        "fields": {
+            "name": "Vietnamese dong",
+            "priority": 3,
+            "rate": 21094.0,
+            "symbol": "\u20ab"
+        },
+        "model": "currency.currency",
+        "pk": "VND"
+    },
+    {
+        "fields": {
+            "name": "South African rand",
+            "priority": 3,
+            "rate": 10.31204,
+            "symbol": "R"
+        },
+        "model": "currency.currency",
+        "pk": "ZAR"
+    }
+]
