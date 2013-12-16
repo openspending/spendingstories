@@ -31,7 +31,8 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', '$t
 
       # Init selectpicker on the next loop so ng-options can populate the select
       $timeout ->
-        options = _.extend(options, {title: attr.title }) if attr.title? # little trick to get the title translation work
+        title   = if attr.title? attr.title else $translate('BOOTSRAP_SELECT_EMPTY')
+        options = _.extend(options, {title: title }) # little trick to get the title translation work
         element.selectpicker options
 
       # Watch the collection in ngOptions and update selectpicker when it changes.  This works with promises!
@@ -46,36 +47,24 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', '$t
           element.selectpicker "refresh"
         , true)
 
-      if attr.ngModel
-        scope.$watch("#{attr.ngModel}", 
-          (newVal, oldVal)->
-            stopLoading()
-            element.selectpicker "refresh"
-          , true
-        )
-      scope.$watch(
-        ->
-          $translate.uses()
-        , ->
-          stopLoading()
-          element.selectpicker "refresh"
-      )
-      scope.$watch(
-        ->
-          attr.title
-        , (newVal, oldVal)->
-          stopLoading()
-          element.selectpicker "refresh", {title: newVal}
-        , true
-      )
-      scope.$watch(
-        ->
-          $location.path()
-        ,(newVal, oldVal)->
-            # this is a custom command to programmaticaly close (not hide!) the 
-            # opened dropdown 
-            element.selectpicker "close"
+      refresh = ->
+        stopLoading()
+        _title = attr.title or $translate('BOOTSRAP_SELECT_EMPTY')
+        element.selectpicker "refresh", title: _title
 
-      )
+      close = ->
+        element.selectpicker "close"
 
+      if attr.ngModel?
+        scope.$watch "#{ attr.ngModel }", refresh
+
+      if attr.title?
+        scope.$watch "#{ attr.title   }", refresh
+
+      scope.$watch -> 
+          $translate.uses() 
+        , refresh
+      scope.$watch -> 
+          $location.path()  
+        , close
 ]
