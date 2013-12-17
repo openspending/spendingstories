@@ -62,7 +62,7 @@ class Command(BaseCommand):
 		# save in fixtures
 		if options.get("update_fixtures", False):
 			with open(FIXTURES_PATH, 'w') as f:
-				print 'coucou'
+				print 'file %s saved' % (FIXTURES_PATH)
 				management.call_command('dumpdata', 'currency', indent=4, stdout=f)
 
 # EOF
