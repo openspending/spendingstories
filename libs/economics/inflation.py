@@ -35,7 +35,7 @@ class Inflation(object):
         """
         
         # Create a new data source from the source
-        self.data = source(country=country)
+        self.data = type(source) is type and source(country=country) or source
 
         # Set reference and country based on parameters
         self.reference = reference
