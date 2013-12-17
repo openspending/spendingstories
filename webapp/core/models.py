@@ -117,7 +117,7 @@ class Story(models.Model):
     current_value       = models.FloatField(_('The current value with the inflation'), editable=False)
     current_value_usd   = models.FloatField(_('Current value in USD'), editable=False)
     inflation_last_year = models.IntegerField(max_length=4, editable=False)
-    lang                = models.CharField(_('Story language'), max_length=5, choices=settings.LANGUAGES, default='en_GB')
+    lang                = models.CharField(_('Story language'), max_length=5, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE)
     # managers
     objects             = StoryManager()
 

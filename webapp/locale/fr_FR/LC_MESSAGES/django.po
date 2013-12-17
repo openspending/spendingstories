@@ -2,7 +2,7 @@ msgid ""
 msgstr "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-10 16:03+0000\n"
-"PO-Revision-Date: 2013-12-12 09:48-0500\n"
+"PO-Revision-Date: 2013-12-16 11:20-0500\n"
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -46,11 +46,11 @@ msgstr "sur plus d'un an"
 
 #: core/models.py:61
 msgid "theme's image"
-msgstr "theme's image"
+msgstr "image du thème"
 
 #: core/models.py:103
 msgid "The spending value"
-msgstr "The spending value"
+msgstr "Montant"
 
 #: core/models.py:103
 msgid "Insert round numbers without any space or separator. e.g.222109000.You can also use the scientific notation. e.g.222.109e6"
@@ -82,7 +82,7 @@ msgstr "Type d'histoire"
 
 #: core/models.py:109
 msgid "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
-msgstr "The way you want that we compare this story. If this story's amount concerns a buget or a spending over one specific year, choose \"over one year\" (The amount will be cut into time equivalence)."
+msgstr "Si le montant de cette histoire concerne un budget ou une dépense sur une année précise, choisissez « sur un an » (le montant sera ainsi découpé en équivalence de temps : jours, semaines, mois etc)."
 
 #: core/models.py:110
 msgid "status"
@@ -183,7 +183,7 @@ msgstr "Erreur du serveur <em>(500)</em>"
 
 #: templates/admin/500.html:15
 msgid "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
-msgstr "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience."
+msgstr "Une erreur est survenue. Les administrateurs du site ont été informés par e-mail et règleront le problème au plus vite. Merci pour votre patience."
 
 #: templates/admin/actions.html:4
 msgid "Run the selected action"
@@ -191,20 +191,20 @@ msgstr "Exécuter l'action sélectionnée"
 
 #: templates/admin/actions.html:4
 msgid "Go"
-msgstr "Go"
+msgstr "Ok"
 
 #: templates/admin/actions.html:11
 msgid "Click here to select the objects across all pages"
-msgstr "Click here to select the objects across all pages"
+msgstr "Cliquez ici pour sélectionner tous les objets"
 
 #: templates/admin/actions.html:11
 #, python-format
 msgid "Select all %(total_count)s %(module_name)s"
-msgstr "Select all %(total_count)s %(module_name)s"
+msgstr "Sélectionnez tous %(total_count)s %(module_name)s"
 
 #: templates/admin/actions.html:13
 msgid "Clear selection"
-msgstr "Clear selection"
+msgstr "Effacer la sélection"
 
 #: templates/admin/app_index.html:10 templates/admin/index.html:21
 #, python-format
@@ -213,7 +213,7 @@ msgstr "%(name)s"
 
 #: templates/admin/base.html:28
 msgid "Welcome,"
-msgstr "Welcome,"
+msgstr "Bienvenue,"
 
 #: templates/admin/base.html:33
 #: templates/registration/password_change_done.html:3
@@ -249,13 +249,13 @@ msgstr "Ajouter"
 
 #: templates/admin/change_form.html:32 templates/admin/object_history.html:11
 msgid "History"
-msgstr "History"
+msgstr "Histoire"
 
 #: templates/admin/change_form.html:33
 #: templates/admin/edit_inline/stacked.html:9
 #: templates/admin/edit_inline/tabular.html:30
 msgid "View on site"
-msgstr "View on site"
+msgstr "Voir sur le site"
 
 #: templates/admin/change_form.html:44 templates/admin/change_list.html:67
 #: templates/admin/login.html:17
@@ -263,133 +263,133 @@ msgstr "View on site"
 #: templates/registration/password_change_form.html:20
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] "Please correct the error below."
-msgstr[1] "Please correct the errors below."
+msgstr[0] "Veuillez corriger l'erreur ci-dessous."
+msgstr[1] "Veuillez corriger les erreurs ci-dessous."
 
 #: templates/admin/change_list.html:58
 #, python-format
 msgid "Add %(name)s"
-msgstr "Add %(name)s"
+msgstr "Ajouter %(name)s"
 
 #: templates/admin/change_list.html:78
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtrer"
 
 #: templates/admin/change_list_results.html:17
 msgid "Remove from sorting"
-msgstr "Remove from sorting"
+msgstr "Retirer de la sélection"
 
 #: templates/admin/change_list_results.html:18
 #, python-format
 msgid "Sorting priority: %(priority_number)s"
-msgstr "Sorting priority: %(priority_number)s"
+msgstr "Priorité d'affichage : %(priority_number)s"
 
 #: templates/admin/change_list_results.html:19
 msgid "Toggle sorting"
-msgstr "Toggle sorting"
+msgstr "Activer/désactiver le tri"
 
 #: templates/admin/delete_confirmation.html:11
 #: templates/admin/submit_line.html:4
 msgid "Delete"
-msgstr "Delete"
+msgstr "Supprimer"
 
 #: templates/admin/delete_confirmation.html:18
 #, python-format
 msgid "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
-msgstr "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgstr "Supprimer le %(object_name)s '%(escaped_object)s entrainerait la suppression d'objets connexes, mais votre compte n'est pas autorisé à supprimer les types d'objets suivants :"
 
 #: templates/admin/delete_confirmation.html:26
 #, python-format
 msgid "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
-msgstr "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the following protected related objects:"
+msgstr "Pour supprimer le%(object_name)s '%(escaped_object)s', il faudrait supprimer les objets connexes protégés suivants :"
 
 #: templates/admin/delete_confirmation.html:34
 #, python-format
 msgid "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
-msgstr "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? All of the following related items will be deleted:"
+msgstr "Êtes-vous sûr de que vouloir supprimer le  %(object_name)s \"%(escaped_object)s\" ? Tous les items connexes suivants seront supprimés aussi :"
 
 #: templates/admin/delete_confirmation.html:39
 #: templates/admin/delete_selected_confirmation.html:44
 msgid "Yes, I'm sure"
-msgstr "Yes, I'm sure"
+msgstr "Oui, je suis sûr"
 
 #: templates/admin/delete_selected_confirmation.html:10
 msgid "Delete multiple objects"
-msgstr "Delete multiple objects"
+msgstr "Supprimer plusieurs objets"
 
 #: templates/admin/delete_selected_confirmation.html:17
 #, python-format
 msgid "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
-msgstr "Deleting the selected %(objects_name)s would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:"
+msgstr "Supprimer %(objects_name)s sélectionnés entrainerait la suppression d'objets connexes, mais votre compte n'est pas autorisé à supprimer les types d'objets suivants :"
 
 #: templates/admin/delete_selected_confirmation.html:25
 #, python-format
 msgid "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
-msgstr "Deleting the selected %(objects_name)s would require deleting the following protected related objects:"
+msgstr "Pour supprimer %(objects_name)s', il faudrait également supprimer les objets connexes protégés suivants :"
 
 #: templates/admin/delete_selected_confirmation.html:33
 #, python-format
 msgid "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
-msgstr "Are you sure you want to delete the selected %(objects_name)s? All of the following objects and their related items will be deleted:"
+msgstr "Êtes-vous sûr de que vouloir supprimer les %(objects_name)s sélectionnés ? Tous les objets suivants et leurs éléments associés seront supprimées :"
 
 #: templates/admin/filter.html:3
 #, python-format
 msgid " By %(filter_title)s "
-msgstr " By %(filter_title)s "
+msgstr " Par %(filter_title)s "
 
 #: templates/admin/index.html:20
 #, python-format
 msgid "Models in the %(name)s application"
-msgstr "Models in the %(name)s application"
+msgstr "Modèles dans l'application %(name)s"
 
 #: templates/admin/index.html:39
 msgid "Change"
-msgstr "Change"
+msgstr "Changer"
 
 #: templates/admin/index.html:49
 msgid "You don't have permission to edit anything."
-msgstr "You don't have permission to edit anything."
+msgstr "Vous n'avez pas l'autorisation de modifier des éléments."
 
 #: templates/admin/index.html:57
 msgid "Recent Actions"
-msgstr "Recent Actions"
+msgstr "Actions récentes"
 
 #: templates/admin/index.html:58
 msgid "My Actions"
-msgstr "My Actions"
+msgstr "Mes actions"
 
 #: templates/admin/index.html:62
 msgid "None available"
-msgstr "None available"
+msgstr "Non disponible"
 
 #: templates/admin/index.html:76
 msgid "Unknown content"
-msgstr "Unknown content"
+msgstr "Contenu inconnu"
 
 #: templates/admin/invalid_setup.html:12
 msgid "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
-msgstr "Something's wrong with your database installation. Make sure the appropriate database tables have been created, and make sure the database is readable by the appropriate user."
+msgstr "Quelque chose ne fonctionne pas avec votre installation de base de données. Assurez-vous que les bonnes tables de base de données ont été créés et assurez-vous que la base de données est lisible par l'utilisateur concerné."
 
 #: templates/admin/login.html:37
 msgid "Password:"
-msgstr "Password:"
+msgstr "Mot de passe :"
 
 #: templates/admin/login.html:44
 msgid "Forgotten your password or username?"
-msgstr "Forgotten your password or username?"
+msgstr "Vous avez oublié votre mot de passe ou nom d'utilisateur ?"
 
 #: templates/admin/login.html:48
 #: templates/registration/password_reset_complete.html:19
 msgid "Log in"
-msgstr "Log in"
+msgstr "Ouvrir une session"
 
 #: templates/admin/object_history.html:23
 msgid "Date/time"
-msgstr "Date/time"
+msgstr "Date/heure"
 
 #: templates/admin/object_history.html:24
 msgid "User"
-msgstr "User"
+msgstr "Utilisateur"
 
 #: templates/admin/object_history.html:25
 msgid "Action"
@@ -397,26 +397,26 @@ msgstr "Action"
 
 #: templates/admin/object_history.html:39
 msgid "This object doesn't have a change history. It probably wasn't added via this admin site."
-msgstr "This object doesn't have a change history. It probably wasn't added via this admin site."
+msgstr "Cet objet n'a pas d'historique. Il n'a probablement pas été ajouté via cette administration."
 
 #: templates/admin/pagination.html:10
 msgid "Show all"
-msgstr "Show all"
+msgstr "Afficher tout"
 
 #: templates/admin/pagination.html:11 templates/admin/submit_line.html:3
 msgid "Save"
-msgstr "Save"
+msgstr "Enregistrer"
 
 #: templates/admin/search_form.html:7
 msgid "Search"
-msgstr "Search"
+msgstr "Rechercher"
 
 #: templates/admin/search_form.html:9
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
-msgstr[0] "%(counter)s result"
-msgstr[1] "%(counter)s results"
+msgstr[0] "%(counter)s resultat"
+msgstr[1] "%(counter)s resultats"
 
 #: templates/admin/search_form.html:9
 #, python-format
@@ -425,52 +425,52 @@ msgstr "%(full_result_count)s total"
 
 #: templates/admin/submit_line.html:5
 msgid "Save as new"
-msgstr "Save as new"
+msgstr "Enregistrer en tant que nouveau"
 
 #: templates/admin/submit_line.html:6
 msgid "Save and add another"
-msgstr "Save and add another"
+msgstr "Enregistrer et ajouter"
 
 #: templates/admin/submit_line.html:7
 msgid "Save and continue editing"
-msgstr "Save and continue editing"
+msgstr "Enregistrer et continuer l'édition"
 
 #: templates/admin/auth/user/add_form.html:6
 msgid "First, enter a username and password. Then, you'll be able to edit more user options."
-msgstr "First, enter a username and password. Then, you'll be able to edit more user options."
+msgstr "Tout d'abord, entrez un nom d'utilisateur et un mot de passe."
 
 #: templates/admin/auth/user/add_form.html:8
 msgid "Enter a username and password."
-msgstr "Enter a username and password."
+msgstr "Entrez un nom d'utilisateur et un mot de passe."
 
 #: templates/admin/auth/user/change_password.html:31
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
-msgstr "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr "Entrez un nouveau mot de passe pour l'utilisateur <strong>%(username)s</strong>."
 
 #: templates/admin/auth/user/change_password.html:38
 msgid "Password"
-msgstr "Password"
+msgstr "Mot de passe"
 
 #: templates/admin/auth/user/change_password.html:44
 #: templates/registration/password_change_form.html:42
 msgid "Password (again)"
-msgstr "Password (again)"
+msgstr "Mot de passe (encore)"
 
 #: templates/admin/auth/user/change_password.html:45
 msgid "Enter the same password as above, for verification."
-msgstr "Enter the same password as above, for verification."
+msgstr "Entrez le même mot de passe qu'au-dessus pour vérification."
 
 #: templates/admin/edit_inline/stacked.html:26
 #: templates/admin/edit_inline/tabular.html:76
 msgid "Remove"
-msgstr "Remove"
+msgstr "Supprimer"
 
 #: templates/admin/edit_inline/stacked.html:27
 #: templates/admin/edit_inline/tabular.html:75
 #, python-format
 msgid "Add another %(verbose_name)s"
-msgstr "Add another %(verbose_name)s"
+msgstr "Ajouter un autre %(verbose_name)s"
 
 #: templates/admin/edit_inline/tabular.html:17
 msgid "Delete?"
@@ -478,44 +478,44 @@ msgstr "Supprimer ?"
 
 #: templates/registration/logged_out.html:8
 msgid "Thanks for spending some quality time with the Web site today."
-msgstr "Thanks for spending some quality time with the Web site today."
+msgstr "Merci d'avoir passé du temps sur le site aujourd'hui."
 
 #: templates/registration/logged_out.html:10
 msgid "Log in again"
-msgstr "Log in again"
+msgstr "Connectez-vous à nouveau"
 
 #: templates/registration/password_change_done.html:7
 #: templates/registration/password_change_form.html:8
 #: templates/registration/password_change_form.html:12
 #: templates/registration/password_change_form.html:24
 msgid "Password change"
-msgstr "Password change"
+msgstr "Changement de mot de passe"
 
 #: templates/registration/password_change_done.html:11
 #: templates/registration/password_change_done.html:15
 msgid "Password change successful"
-msgstr "Password change successful"
+msgstr "Changement de mot de passe réussi"
 
 #: templates/registration/password_change_done.html:17
 msgid "Your password was changed."
-msgstr "Your password was changed."
+msgstr "Votre mot de passe a été modifié."
 
 #: templates/registration/password_change_form.html:26
 msgid "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
-msgstr "Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgstr "Entrez votre ancien mot de passe puis entrez votre nouveau mot de passe."
 
 #: templates/registration/password_change_form.html:32
 msgid "Old password"
-msgstr "Old password"
+msgstr "Ancien mot de passe"
 
 #: templates/registration/password_change_form.html:37
 msgid "New password"
-msgstr "New password"
+msgstr "Nouveau mot de passe"
 
 #: templates/registration/password_change_form.html:48
 #: templates/registration/password_reset_confirm.html:26
 msgid "Change my password"
-msgstr "Change my password"
+msgstr "Changer mon mot de passe"
 
 #: templates/registration/password_reset_complete.html:7
 #: templates/registration/password_reset_confirm.html:11
@@ -524,85 +524,85 @@ msgstr "Change my password"
 #: templates/registration/password_reset_form.html:11
 #: templates/registration/password_reset_form.html:15
 msgid "Password reset"
-msgstr "Password reset"
+msgstr "Réinitialisation de mot de passe"
 
 #: templates/registration/password_reset_complete.html:11
 #: templates/registration/password_reset_complete.html:15
 msgid "Password reset complete"
-msgstr "Password reset complete"
+msgstr "Mot de passe réinitialisé"
 
 #: templates/registration/password_reset_complete.html:17
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Your password has been set.  You may go ahead and log in now."
+msgstr "Votre mot de passe a été défini. Vous pouvez maintenant continuer et ouvrir une session."
 
 #: templates/registration/password_reset_confirm.html:7
 msgid "Password reset confirmation"
-msgstr "Password reset confirmation"
+msgstr "Mot de passe réinitialisé"
 
 #: templates/registration/password_reset_confirm.html:17
 msgid "Enter new password"
-msgstr "Enter new password"
+msgstr "Entrez le nouveau mot de passe"
 
 #: templates/registration/password_reset_confirm.html:19
 msgid "Please enter your new password twice so we can verify you typed it in correctly."
-msgstr "Please enter your new password twice so we can verify you typed it in correctly."
+msgstr "S'il vous plaît entrer votre nouveau mot de passe deux fois."
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "New password:"
-msgstr "New password:"
+msgstr "Nouveau mot de passe :"
 
 #: templates/registration/password_reset_confirm.html:25
 msgid "Confirm password:"
-msgstr "Confirm password:"
+msgstr "Confirmez le mot de passe :"
 
 #: templates/registration/password_reset_confirm.html:31
 msgid "Password reset unsuccessful"
-msgstr "Password reset unsuccessful"
+msgstr "Echec de la réinitialisation de mot de passe"
 
 #: templates/registration/password_reset_confirm.html:33
 msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
+msgstr "Le lien de réinitialisation de mot de passe est incorrect, peut-être car il a déjà été utilisé. S'il vous plaît réitérer votre demande."
 
 #: templates/registration/password_reset_done.html:11
 #: templates/registration/password_reset_done.html:15
 msgid "Password reset successful"
-msgstr "Password reset successful"
+msgstr "Mot de passe réinitialisé"
 
 #: templates/registration/password_reset_done.html:17
 msgid "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
-msgstr "We've emailed you instructions for setting your password to the email address you submitted. You should be receiving it shortly."
+msgstr "Nous vous avons vous envoyé des instructions par e-mail pour la configuration de votre mot de passe."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
 msgid "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
-msgstr "You're receiving this email because you requested a password reset for your user account at %(site_name)s."
+msgstr "Vous recevez cet e-mail car vous avez demandé la réinitialisation de votre mot de passe sur %(site_name)s."
 
 #: templates/registration/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr "Please go to the following page and choose a new password:"
+msgstr "Rendez-vous sur la page suivante et choisissez un nouveau mot de passe :"
 
 #: templates/registration/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
-msgstr "Your username, in case you've forgotten:"
+msgstr "Votre nom d'utilisateur, au cas où vous l'aurez oublié :"
 
 #: templates/registration/password_reset_email.html:10
 msgid "Thanks for using our site!"
-msgstr "Thanks for using our site!"
+msgstr "Merci d'utiliser notre site !"
 
 #: templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr "The %(site_name)s team"
+msgstr "L'équipe de %(site_name)s ."
 
 #: templates/registration/password_reset_form.html:17
 msgid "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
-msgstr "Forgotten your password? Enter your email address below, and we'll email instructions for setting a new one."
+msgstr "Vous avez oublié votre mot de passe ? Entrez votre adresse e-mail ci-dessous et nous vous enverrons des instructions pour en choisir un nouveau."
 
 #: templates/registration/password_reset_form.html:21
 msgid "Email address:"
-msgstr "Email address:"
+msgstr "Adresse e-mail :"
 
 #: templates/registration/password_reset_form.html:21
 msgid "Reset my password"
-msgstr "Reset my password"
+msgstr "Réinitialiser mon mot de passe"
 
