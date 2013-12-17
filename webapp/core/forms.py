@@ -55,7 +55,7 @@ class StoryForm(forms.ModelForm):
 		year  = self.cleaned_data['year']
 		years = sorted(AVAILABLE_YEAR_PER_COUNTRY[self.cleaned_data['country']])
 		if not year in years and year != datetime.date.today().year:
-			raise forms.ValidationError("For this country, are available: %s" % years)
+			raise forms.ValidationError("This year is not available to compute the inflated value. Dates available: %s" % years)
 		return year
 
 # -----------------------------------------------------------------------------
