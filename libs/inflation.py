@@ -27,19 +27,26 @@
 
 from economics import Inflation, CPI
 import datetime
-import os
 
 # -----------------------------------------------------------------------------
 #
 #    INFLATION
 #
 # -----------------------------------------------------------------------------
-# Load in memory the datapackage on launching, pretty faster
-CPI       = CPI(datapackage=os.path.join((os.path.dirname(os.path.realpath(__file__))), "..", "data/cpi/"))
-INFLATION = Inflation(CPI)
+CPI                       = CPI()
+INFLATION                 = Inflation()
 INFLATION_REFERENCE_RETRY = 5
 
 def get_inflation(amount, year, country):
+	"""
+	Get the inflated amount for the given year and country.
+	Try to use the most recent date to compute the inflated amount.
+
+	: param amount  : int
+	: param year    : int
+	: param country : ISO code, str
+	: returns       : tuple((inflated_amount, most_recent_year_reference))
+	"""
 	def closest_ajustment_reference_date():
 	    cpi_closest = CPI.closest(
 	        country = country,
