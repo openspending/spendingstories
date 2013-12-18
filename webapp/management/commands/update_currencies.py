@@ -58,8 +58,8 @@ class Command(BaseCommand):
 			story.save()
 
 	def handle(self, *args, **options):
-		assert len(args) == 1
-		rates = requests.get(OER_API_BASE_URL % args[0]).json()['rates']
+		assert settings.OER_API_KEY, "API key `OER_API_KEY` should be defined in settings"
+		rates = requests.get(OER_API_BASE_URL % settings.OER_API_KEY).json()['rates']
 		counter = 0
 		for currency in Currency.objects.all():
 			new_rate = rates[currency.iso_code]
@@ -73,7 +73,7 @@ class Command(BaseCommand):
 		# save in fixtures
 		if options.get("update_fixtures", False):
 			with open(FIXTURES_PATH, 'w') as f:
-				print 'file %s saved' % (FIXTURES_PATH)
+				self.stdout.write('file %s saved' % (FIXTURES_PATH))
 				management.call_command('dumpdata', 'currency', indent=4, stdout=f)
 
 # EOF
