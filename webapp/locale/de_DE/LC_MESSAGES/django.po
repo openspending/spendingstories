@@ -2,8 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-12-16 17:12+0000\n"
 "PO-Revision-Date: 2013-12-16 11:20-0500\n"
+=======
+"POT-Creation-Date: 2013-12-18 14:22+0000\n"
+"PO-Revision-Date: 2013-12-18 09:30-0500\n"
+>>>>>>> master
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -17,13 +22,13 @@ msgstr ""
 msgid "English"
 msgstr "Englisch"
 
+<<<<<<< HEAD
 #: settings.py:74 settings_tests.py:7
+=======
+#: settings_tests.py:7
+>>>>>>> master
 msgid "French"
 msgstr "Französisch"
-
-#: settings.py:75
-msgid "German"
-msgstr "Deutsch"
 
 #: core/admin.py:51
 msgid "Mark selected contributions as published"
@@ -283,9 +288,14 @@ msgstr[0] "Please correct the error below."
 msgstr[1] "Please correct the errors below."
 
 #: templates/admin/change_language.html:2
+<<<<<<< HEAD
 #, fuzzy
 msgid "Change language"
 msgstr "Sprache der Geschichte"
+=======
+msgid "Change language"
+msgstr "Change language"
+>>>>>>> master
 
 #: templates/admin/change_list.html:58
 #, python-format

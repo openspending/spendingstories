@@ -79,6 +79,8 @@
     "CURRENCY_VND_PLURAL": "Vietnamese dongs",
     "CURRENCY_ZAR": "South African rand",
     "CURRENCY_ZAR_PLURAL": "South African rands",
+    "CURRENCY_BTC": "Bitcoin",
+    "CURRENCY_BTC_PLURAL": "Bitcoins",
     "COUNTRY_AFG": "Afghanistan",
     "COUNTRY_ALB": "Albania",
     "COUNTRY_DZA": "Algeria",

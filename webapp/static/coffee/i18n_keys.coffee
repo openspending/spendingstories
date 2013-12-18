@@ -78,7 +78,8 @@ $translate('CURRENCY_VND')
 $translate('CURRENCY_VND_PLURAL')
 $translate('CURRENCY_ZAR')
 $translate('CURRENCY_ZAR_PLURAL')
-
+$translate('CURRENCY_BTC')
+$translate('CURRENCY_BTC_PLURAL')
 
 $translate('COUNTRY_AFG')
 $translate('COUNTRY_ALB')

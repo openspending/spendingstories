@@ -8,7 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-12-16 17:12+0000\n"
+=======
+"POT-Creation-Date: 2013-12-18 14:22+0000\n"
+>>>>>>> master
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +26,12 @@ msgstr ""
 msgid "English"
 msgstr ""
 
+<<<<<<< HEAD
 #: settings.py:74 settings_tests.py:7
+=======
+#: settings_tests.py:7
+>>>>>>> master
 msgid "French"
-msgstr ""
-
-#: settings.py:75
-msgid "German"
 msgstr ""
 
 #: core/admin.py:51

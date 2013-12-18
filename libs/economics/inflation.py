@@ -16,26 +16,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# This is a modified version of economics.inflation module. 
-# The __init__ method has been modified to accept an instance of CPI instead 
-# of the class. Therefor this method doesn't handle CPI instanciation anymore. 
-
 import datetime
 import collections
-# import economics
+import economics
+
+InflationResult = collections.namedtuple('Inflation', 'factor value')
 
 class Inflation(object):
     """
     Object to provide simple inflation computational functions
     """
 
-    def __init__(self, source=None, reference=None):
+    def __init__(self, source=economics.CPI, reference=None, country=None):
         """
-        Create a new Inflation instance using a CPI instance. 
+        Create a new Inflation instance using the CPI class. Optional
+        parameters are source which defaults to economics.CPI class, 
+        reference date (datetime.date), country (name or code).
         """
         
         # Create a new data source from the source
-        self.data = source
+        self.data = type(source) is type and source(country=country) or source
 
         # Set reference and country based on parameters
         self.reference = reference
@@ -45,9 +45,9 @@ class Inflation(object):
         Helper function to compute the inflation/deflation based on a value and
         a reference value
         """
-        return collections.namedtuple('Inflation', 'factor value')\
-            ._make((value / float(reference_value),
-                    (value - reference_value) / float(reference_value)))
+        return InflationResult(
+            factor=value / float(reference_value),
+            value=(value - reference_value) / float(reference_value))
 
     def get(self, target=datetime.date.today(), reference=None, country=None):
         """

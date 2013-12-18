@@ -27,21 +27,55 @@
 
 from economics import Inflation, CPI
 import datetime
-import os
 
 # -----------------------------------------------------------------------------
 #
 #    INFLATION
 #
 # -----------------------------------------------------------------------------
-# Load in memory the datapackage on launching, pretty faster
-CPI       = CPI(datapackage=os.path.join((os.path.dirname(os.path.realpath(__file__))), "..", "data/cpi/"))
-INFLATION = Inflation(CPI)
 INFLATION_REFERENCE_RETRY = 5
+CACHED_SOURCE_TIMEOUT = 1 # days
+CACHED_SOURCE = None
+CACHED_YEARS = None
+
+def get_data():
+	global CACHED_SOURCE
+	# if cache exists and is less than 1 day
+	if CACHED_SOURCE and (datetime.datetime.now() - CACHED_SOURCE[1]).days < CACHED_SOURCE_TIMEOUT :
+		cpi = CACHED_SOURCE[0]
+	else:
+		cpi           = CPI()
+		CACHED_SOURCE = (cpi, datetime.datetime.now())
+	return cpi.data
+
+def available_years():
+	years = {}
+	for key, value in get_data().items():
+		years[key] = sorted(map(lambda _:_.year, value))
+	return years
 
 def get_inflation(amount, year, country):
+	"""
+	Get the inflated amount for the given year and country.
+	Try to use the most recent date to compute the inflated amount.
+
+	: param amount  : int
+	: param year    : int
+	: param country : ISO code, str
+	: returns       : tuple((inflated_amount, most_recent_year_reference))
+	"""
+	global CACHED_SOURCE
+	# if cache exists and is less than 1 day
+	if CACHED_SOURCE and (datetime.datetime.now() - CACHED_SOURCE[1]).days < CACHED_SOURCE_TIMEOUT :
+		cpi = CACHED_SOURCE[0]
+	else:
+		cpi           = CPI()
+		CACHED_SOURCE = (cpi, datetime.datetime.now())
+
+	inflation     = Inflation(source=cpi)
+
 	def closest_ajustment_reference_date():
-	    cpi_closest = CPI.closest(
+	    cpi_closest = cpi.closest(
 	        country = country,
 	        date    = datetime.date.today(),
 	        limit   = datetime.timedelta(366*5))
@@ -50,10 +84,14 @@ def get_inflation(amount, year, country):
 	for i in range(INFLATION_REFERENCE_RETRY):
 		reference_date = closest_ajustment_reference_date()
 		try:
-			return (INFLATION.inflate(amount, reference_date, datetime.date(_year, 1, 1), country),
+			return (inflation.inflate(amount, reference_date, datetime.date(_year, 1, 1), country),
 				reference_date.year )
 		except KeyError:
 			_year = _year - 1
 	raise Exception("no date found for inflation. Asked for %s and tested up to %s (%s)" % (year, _year + 1, country))
+
+if __name__ == "__main__":
+	print get_inflation(200, 2009, 'fra')
+	print get_inflation(200, 2009, 'fra')
 
 # EOF
