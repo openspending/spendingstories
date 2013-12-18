@@ -56,10 +56,14 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', '$t
         element.selectpicker "close"
 
       if attr.ngModel?
-        scope.$watch "#{ attr.ngModel }", refresh
+        scope.$watch ->
+            attr.ngModel
+          , refresh
 
       if attr.title?
-        scope.$watch "#{ attr.title   }", refresh
+        scope.$watch ->
+            attr.title
+          , refresh
 
       scope.$watch -> 
           $translate.uses() 
