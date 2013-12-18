@@ -12,6 +12,6 @@ install:
 	. `pwd`/.env ; python manage.py syncdb && python manage.py migrate
 
 test:
-	. `pwd`/.env ; python manage.py test
+	. `pwd`/.env ; python manage.py test --settings webapp.settings_tests
 
 # EOF
