@@ -36,6 +36,23 @@ import datetime
 INFLATION_REFERENCE_RETRY = 5
 CACHED_SOURCE_TIMEOUT = 1 # days
 CACHED_SOURCE = None
+CACHED_YEARS = None
+
+def get_data():
+	global CACHED_SOURCE
+	# if cache exists and is less than 1 day
+	if CACHED_SOURCE and (datetime.datetime.now() - CACHED_SOURCE[1]).days < CACHED_SOURCE_TIMEOUT :
+		cpi = CACHED_SOURCE[0]
+	else:
+		cpi           = CPI()
+		CACHED_SOURCE = (cpi, datetime.datetime.now())
+	return cpi.data
+
+def available_years():
+	years = {}
+	for key, value in get_data().items():
+		years[key] = sorted(map(lambda _:_.year, value))
+	return years
 
 def get_inflation(amount, year, country):
 	"""

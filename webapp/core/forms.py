@@ -28,35 +28,31 @@
 from django import forms
 from webapp.core.models import Story
 from webapp.currency.models import Currency
-import json
-import os
-from django.conf import settings
 import datetime
 import widgets
 import fields
 from redactor.widgets import RedactorEditor
-
-AVAILABLE_YEAR_PER_COUNTRY = json.load(file(os.path.join(settings.ROOT_PATH, 'data/years_available_per_country.json')))
+import inflation
 
 class StoryForm(forms.ModelForm):
 
-	country  = forms.CharField(
-		widget      = widgets.SelectAutoComplete(choices = fields.COUNTRIES))
-	currency = forms.ModelChoiceField(
-		widget      = widgets.SelectAutoComplete(choices = fields.COUNTRIES),
-		queryset    = Currency.objects.all(),
-		empty_label = "(currency)")
+    country  = forms.CharField(
+        widget      = widgets.SelectAutoComplete(choices = fields.COUNTRIES))
+    currency = forms.ModelChoiceField(
+        widget      = widgets.SelectAutoComplete(choices = fields.COUNTRIES),
+        queryset    = Currency.objects.all(),
+        empty_label = "(currency)")
 
-	class Meta:
-		model = Story
-		verbose_name_plural = "stories"
+    class Meta:
+        model = Story
+        verbose_name_plural = "stories"
 
-	def clean_year(self):
-		year  = self.cleaned_data['year']
-		years = sorted(AVAILABLE_YEAR_PER_COUNTRY[self.cleaned_data['country']])
-		if not year in years and year != datetime.date.today().year:
-			raise forms.ValidationError("This year is not available to compute the inflated value. Dates available: %s" % years)
-		return year
+    def clean_year(self):
+        year  = self.cleaned_data['year']
+        years = sorted(inflation.available_years()[self.cleaned_data['country']])
+        if not year in years and year != datetime.date.today().year:
+            raise forms.ValidationError("This year is not available to compute the inflated value. Dates available: %s" % years)
+        return year
 
 # -----------------------------------------------------------------------------
 #
@@ -64,8 +60,8 @@ class StoryForm(forms.ModelForm):
 #
 # -----------------------------------------------------------------------------
 class PageForm(forms.ModelForm):
-	title   = forms.CharField()
-	slug    = forms.CharField()
-	content = forms.CharField(widget=RedactorEditor(allow_file_upload=False,allow_image_upload=False))
+    title   = forms.CharField()
+    slug    = forms.CharField()
+    content = forms.CharField(widget=RedactorEditor(allow_file_upload=False,allow_image_upload=False))
 
 # EOF
