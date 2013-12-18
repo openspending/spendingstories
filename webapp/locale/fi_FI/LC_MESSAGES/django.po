@@ -1,8 +1,8 @@
 msgid ""
 msgstr "Project-Id-Version: spending-stories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 16:03+0000\n"
-"PO-Revision-Date: 2013-12-18 09:18-0500\n"
+"POT-Creation-Date: 2013-12-18 14:22+0000\n"
+"PO-Revision-Date: 2013-12-18 09:30-0500\n"
 "Last-Translator: edou4rd <edou4rd@gmail.com>\n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -12,17 +12,13 @@ msgstr "Project-Id-Version: spending-stories\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: crowdin.net\n"
 
-#: settings.py:73
+#: settings.py:73 settings_tests.py:6
 msgid "English"
 msgstr "English"
 
-#: settings.py:74
+#: settings_tests.py:7
 msgid "French"
 msgstr "French"
-
-#: settings.py:75
-msgid "German"
-msgstr "German"
 
 #: core/admin.py:51
 msgid "Mark selected contributions as published"
@@ -153,7 +149,7 @@ msgid "We're sorry, but the requested page could not be found."
 msgstr "We're sorry, but the requested page could not be found."
 
 #: templates/admin/500.html:6 templates/admin/app_index.html:7
-#: templates/admin/base.html:47 templates/admin/change_form.html:19
+#: templates/admin/base.html:48 templates/admin/change_form.html:19
 #: templates/admin/change_list.html:41
 #: templates/admin/delete_confirmation.html:7
 #: templates/admin/delete_selected_confirmation.html:7
@@ -265,6 +261,10 @@ msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Please correct the error below."
 msgstr[1] "Please correct the errors below."
+
+#: templates/admin/change_language.html:2
+msgid "Change language"
+msgstr "Change language"
 
 #: templates/admin/change_list.html:58
 #, python-format
