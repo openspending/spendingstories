@@ -5,7 +5,7 @@
     "fields": {
         "symbol": "", 
         "priority": 3, 
-        "rate": 3.672848, 
+        "rate": 3.672868, 
         "name": "UAE dirham"
     }
 },
@@ -15,7 +15,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 3, 
-        "rate": 6.323184, 
+        "rate": 6.364699, 
         "name": "Argentine peso"
     }
 },
@@ -25,7 +25,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 2, 
-        "rate": 1.123161, 
+        "rate": 1.125088, 
         "name": "Australian dollar"
     }
 },
@@ -35,7 +35,7 @@
     "fields": {
         "symbol": "R$", 
         "priority": 3, 
-        "rate": 2.32161, 
+        "rate": 2.327341, 
         "name": "Brazilian real"
     }
 },
@@ -45,7 +45,7 @@
     "fields": {
         "symbol": "\u0243", 
         "priority": 3, 
-        "rate": 0.0014625254, 
+        "rate": 0.0018292227, 
         "name": "Bitcoin"
     }
 },
@@ -55,7 +55,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 2, 
-        "rate": 1.059964, 
+        "rate": 1.064406, 
         "name": "Canadian dollar"
     }
 },
@@ -65,7 +65,7 @@
     "fields": {
         "symbol": "CHF", 
         "priority": 2, 
-        "rate": 0.885404, 
+        "rate": 0.887513, 
         "name": "Swiss franc"
     }
 },
@@ -75,7 +75,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 3, 
-        "rate": 527.198498, 
+        "rate": 528.158201, 
         "name": "Chilean peso"
     }
 },
@@ -85,7 +85,7 @@
     "fields": {
         "symbol": "\u00a5", 
         "priority": 3, 
-        "rate": 6.087683, 
+        "rate": 6.096097, 
         "name": "Chinese yuan renminbi"
     }
 },
@@ -95,7 +95,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 3, 
-        "rate": 1940.506667, 
+        "rate": 1939.783333, 
         "name": "Colombian peso"
     }
 },
@@ -105,7 +105,7 @@
     "fields": {
         "symbol": "K\u010d", 
         "priority": 3, 
-        "rate": 20.09003, 
+        "rate": 20.0776, 
         "name": "Czech koruna"
     }
 },
@@ -115,7 +115,7 @@
     "fields": {
         "symbol": "kr", 
         "priority": 3, 
-        "rate": 5.418568, 
+        "rate": 5.42033, 
         "name": "Danish krone"
     }
 },
@@ -125,7 +125,7 @@
     "fields": {
         "symbol": "\u062f\u062c", 
         "priority": 3, 
-        "rate": 78.169059, 
+        "rate": 78.26902, 
         "name": "Algerian dinar"
     }
 },
@@ -135,7 +135,7 @@
     "fields": {
         "symbol": "\u00a3", 
         "priority": 3, 
-        "rate": 6.885423, 
+        "rate": 6.893924, 
         "name": "Egyptian pound"
     }
 },
@@ -145,7 +145,7 @@
     "fields": {
         "symbol": "\u20ac", 
         "priority": 1, 
-        "rate": 0.726188, 
+        "rate": 0.726406, 
         "name": "EU euro"
     }
 },
@@ -155,7 +155,7 @@
     "fields": {
         "symbol": "\u00a3", 
         "priority": 1, 
-        "rate": 0.614617, 
+        "rate": 0.608754, 
         "name": "British pound"
     }
 },
@@ -165,7 +165,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 2, 
-        "rate": 7.752845, 
+        "rate": 7.752657, 
         "name": "Hong Kong SAR dollar"
     }
 },
@@ -175,7 +175,7 @@
     "fields": {
         "symbol": "Rp", 
         "priority": 3, 
-        "rate": 12074.4, 
+        "rate": 12099.683333, 
         "name": "Indonesian rupiah"
     }
 },
@@ -185,7 +185,7 @@
     "fields": {
         "symbol": "\u20aa", 
         "priority": 3, 
-        "rate": 3.507094, 
+        "rate": 3.506196, 
         "name": "Israeli new shekel"
     }
 },
@@ -195,7 +195,7 @@
     "fields": {
         "symbol": "\u20b9", 
         "priority": 2, 
-        "rate": 61.98839, 
+        "rate": 61.90439, 
         "name": "Indian rupee"
     }
 },
@@ -205,7 +205,7 @@
     "fields": {
         "symbol": "\u00a5", 
         "priority": 1, 
-        "rate": 102.6859, 
+        "rate": 103.348901, 
         "name": "Japanese yen"
     }
 },
@@ -215,7 +215,7 @@
     "fields": {
         "symbol": "\u20a9", 
         "priority": 2, 
-        "rate": 1051.646683, 
+        "rate": 1051.584984, 
         "name": "South Korean won"
     }
 },
@@ -225,7 +225,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 2, 
-        "rate": 12.9497, 
+        "rate": 12.89708, 
         "name": "Mexican peso"
     }
 },
@@ -235,7 +235,7 @@
     "fields": {
         "symbol": "RM", 
         "priority": 3, 
-        "rate": 3.244828, 
+        "rate": 3.252436, 
         "name": "Malaysian ringgit"
     }
 },
@@ -245,7 +245,7 @@
     "fields": {
         "symbol": "kr", 
         "priority": 2, 
-        "rate": 6.119704, 
+        "rate": 6.115802, 
         "name": "Norwegian krone"
     }
 },
@@ -255,7 +255,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 2, 
-        "rate": 1.208859, 
+        "rate": 1.212875, 
         "name": "New Zealand dollar"
     }
 },
@@ -265,7 +265,7 @@
     "fields": {
         "symbol": "z\u0142", 
         "priority": 3, 
-        "rate": 3.035873, 
+        "rate": 3.033922, 
         "name": "Polish zloty"
     }
 },
@@ -275,7 +275,7 @@
     "fields": {
         "symbol": "\u0440\u0443\u0431", 
         "priority": 3, 
-        "rate": 32.9538, 
+        "rate": 32.861, 
         "name": "Russian ruble"
     }
 },
@@ -285,7 +285,7 @@
     "fields": {
         "symbol": "\ufdfc", 
         "priority": 3, 
-        "rate": 3.750261, 
+        "rate": 3.750101, 
         "name": "Saudi riyal"
     }
 },
@@ -295,7 +295,7 @@
     "fields": {
         "symbol": "kr", 
         "priority": 2, 
-        "rate": 6.555567, 
+        "rate": 6.541003, 
         "name": "Swedish krona"
     }
 },
@@ -305,7 +305,7 @@
     "fields": {
         "symbol": "$", 
         "priority": 2, 
-        "rate": 1.257272, 
+        "rate": 1.257705, 
         "name": "Singapore dollar"
     }
 },
@@ -315,7 +315,7 @@
     "fields": {
         "symbol": "\u0e3f", 
         "priority": 3, 
-        "rate": 32.09095, 
+        "rate": 32.20511, 
         "name": "Thai baht"
     }
 },
@@ -325,7 +325,7 @@
     "fields": {
         "symbol": "\\u20BA", 
         "priority": 3, 
-        "rate": 2.036012, 
+        "rate": 2.042994, 
         "name": "Turkish lira"
     }
 },
@@ -335,7 +335,7 @@
     "fields": {
         "symbol": "NT$", 
         "priority": 3, 
-        "rate": 29.65566, 
+        "rate": 29.68523, 
         "name": "Taiwan New dollar"
     }
 },
@@ -355,7 +355,7 @@
     "fields": {
         "symbol": "Bs", 
         "priority": 3, 
-        "rate": 6.293045, 
+        "rate": 6.291331, 
         "name": "Venezuelan bolivar fuerte"
     }
 },
@@ -365,7 +365,7 @@
     "fields": {
         "symbol": "\u20ab", 
         "priority": 3, 
-        "rate": 21107.45, 
+        "rate": 21106.333333, 
         "name": "Vietnamese dong"
     }
 },
@@ -375,7 +375,7 @@
     "fields": {
         "symbol": "R", 
         "priority": 3, 
-        "rate": 10.3347, 
+        "rate": 10.2817, 
         "name": "South African rand"
     }
 }
