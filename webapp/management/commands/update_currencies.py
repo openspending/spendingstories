@@ -27,6 +27,7 @@
 
 from django.core.management.base import BaseCommand
 from webapp.currency.models import Currency
+from webapp.core.models import Story
 import requests
 import os
 from django.conf import settings
@@ -38,15 +39,23 @@ OER_API_BASE_URL = "http://openexchangerates.org/api/latest.json?app_id=%s"
 FIXTURES_PATH    = ROOT_PATH + '/webapp/currency/fixtures/initial_data.json'
 
 class Command(BaseCommand):
-	args = 'api_key'
+	"""
+	Use the key in the settings file (OER_API_KEY)
+	--update_fixtures to update the initial_data.json file
+	"""
 	help = 'Update the currencies rate change'
 	option_list = BaseCommand.option_list + (
-        make_option('--update_fixtures',
-            action  = 'store_true',
-            dest    = 'update_fixtures',
-            default = False,
-            help    = 'Update the fixture file (%s)' % (FIXTURES_PATH)),
-        )
+		make_option('--update_fixtures',
+			action  = 'store_true',
+			dest    = 'update_fixtures',
+			default = False,
+			help    = 'Update the fixture file (%s)' % (FIXTURES_PATH)),
+		)
+
+	def recompute_stories(self):
+		for story in Story.objects.all():
+			story.set_current_value()
+			story.save()
 
 	def handle(self, *args, **options):
 		assert len(args) == 1
@@ -59,6 +68,8 @@ class Command(BaseCommand):
 				currency.save()
 				counter += 1
 		self.stdout.write('%s currencies updated' % (counter))
+		self.recompute_stories()
+		self.stdout.write('stories updated')
 		# save in fixtures
 		if options.get("update_fixtures", False):
 			with open(FIXTURES_PATH, 'w') as f:
