@@ -133,26 +133,36 @@ angular
     .filter("localizedCountryName", ['$translate', ($translate)->
             return (country)->
                 return null unless country? # short fail 
-                iso_code = country.key or country.iso_code or null
-                i18n_country_key = "COUNTRY_#{iso_code}" if iso_code?
-                $translate i18n_country_key
+                c_name = country.value or country.name
+                c_iso_code = country.key or country.iso_code or null
+                i18n_key = "COUNTRY_#{c_iso_code}" if c_iso_code?
+                localized = $translate(i18n_key)
+                if localized is i18n_key
+                    localized = c_name
+                localized
         ]
     )
     .filter("localizedCurrencyName", ['$translate', ($translate)->
             return (currency)->
                 return null unless currency? # short fail 
-                iso_code = currency.key or currency.iso_code or null
-                i18n_country_key = "CURRENCY_#{iso_code}" if iso_code?
-                name = $translate i18n_country_key
-                name = name[0].toUpperCase() + name.substring(1)
+                c_name = currency.value or currency.name
+                c_iso_code = currency.key or currency.iso_code or null
+                i18n_key = "CURRENCY_#{c_iso_code}" if c_iso_code?
+                localized = $translate(i18n_key)
+                if localized is i18n_key
+                    localized = c_name
+                localized[0].toUpperCase() + localized.substring(1)
         ]
     )
     .filter("localizedLanguageName", ['$translate', ($translate)->
             return (lang)->
                 return null unless lang? # short fail
-                code = lang.value or lang.code or null
-                i18n_country_key = "LANGUAGE_#{code.toUpperCase()}" if code?
-                name = $translate i18n_country_key
-                name = name[0].toUpperCase() + name.substring(1)
+                l_name = lang.value or lang.name
+                l_code = lang.key or lang.code or null
+                i18n_key = "LANGUAGE_#{l_code.toUpperCase()}" if l_code?
+                localized = $translate(i18n_key)
+                if localized is i18n_key
+                    localized = l_name
+                localized[0].toUpperCase() + localized.substring(1)
         ]
     )

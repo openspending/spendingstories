@@ -170,11 +170,20 @@ class HumanizeService
     localizedValue: (value, currency)=>
         _ = @$translate
         i18n_single_key = "CURRENCY_#{currency.iso_code}"
+        single_name = _(i18n_single_key)
+        if single_name is i18n_single_key
+            single_name = currency.name
+
+
         i18n_plural_key = i18n_single_key + '_PLURAL'
+        plural_name = _(i18n_plural_key)
+        if plural_name is i18n_plural_key
+            plural_name = undefined 
+
         suffix = @pluralize
             value: value
-            single: _(i18n_single_key)
-            plural: _(i18n_plural_key)
+            single: single_name
+            plural: plural_name
 
         return @humanizeValue value, suffix, false
 
