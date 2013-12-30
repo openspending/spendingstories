@@ -74,7 +74,7 @@ pip install -r requirements_core.txt
 
 __b. Install compilers for *Less* and *CoffeeScript*__
 
-If you don't have already nodejs installed:
+If you don't already have nodejs installed:
 
 ```bash
 sudo apt-get update
@@ -155,7 +155,7 @@ Dependency:
 
 Please see the [documentation](https://docs.djangoproject.com/en/1.5/howto/deployment/wsgi/modwsgi/) about the deployement with mod_wsgi.
 
-This is a apache configuration which loads the virtualenv : 
+This is an Apache configuration that loads the virtualenv : 
 
 ```apacheconf
 WSGIScriptAlias / /<PATH_TO_PROJECT>/webapp/wsgi.py
@@ -187,9 +187,9 @@ __Spending Stories__ is built with [Django](https://www.djangoproject.com/), a P
 
 It's composed of :
 
-* a Web application
+* a web application
 * an API (Available end-points listed on the page `http://<domain_name>/api`)
-* some scripts to update data (with a new inflation by example)  
+* some scripts to update data (such as CPI data)  
 
 
 HTML pages are located in `webapp/templates`  
@@ -231,8 +231,8 @@ string that come from the django application (the server) of this project.
 
 The front-end translation system is composed of the following tools:
 
-- [angular-translate](http://pascalprecht.github.io/angular-translate/), make angular application translation easy.  
-- [jplusplus/grunt-angular-translate](https://github.com/jplusplus/grunt-angular-translate) , a fork of [grunt-angular-translate](https://github.com/firehist/grunt-angular-translate). Automate the update of locales. 
+- [angular-translate](http://pascalprecht.github.io/angular-translate/), makes Angular application translation easy.  
+- [jplusplus/grunt-angular-translate](https://github.com/jplusplus/grunt-angular-translate) , a fork of [grunt-angular-translate](https://github.com/firehist/grunt-angular-translate). Automates the updates of locales. 
 
 This part covers the following topics: 
 
@@ -247,15 +247,15 @@ This part covers the following topics:
 
 You have to choose a translation key. We use the following naming convention:
 - the key must be in uppercase and underscore (e.g `A_TRANSLATION_KEY`)
-- the key describe what it translate and where.
+- the key describes what it translates and where.
     - the first part of the key is the name of the script or the template containing the key. <br/>
     Ex: a key in `contribute.html` will start by `CONTRIBUTE_`
     - the last part is the description of the content, or the word if it can be described otherwise.<br/>
     Ex: the translation key of the 'Compare' button contained in the `header.html` template will be `HEADER_COMPARE_BUTTON`
 
-> Note: the grunt task for translation key collection is handled by a grunt 
-task and therefor is really limited: it may not detect your translation keys 
-for many reasons because of its design. To avoid that follow these advises:
+> Note: the task for translation key collection is handled by a grunt 
+task and therefore is really limited: it may not detect your translation keys 
+for many reasons because of its design. To avoid that, here's some advice:
 >
   1. Prefer filter notation over directive notation in your templates files:
       ``` html
@@ -283,15 +283,15 @@ coffee & python files.
 
 This files contains all the translation keys and their translation values, they're located at:
   - `/webapp/static/locales/<locale code>.json` for static application translations
-  - `/webapp/locale/<locale code>/LC_MESSAGES/django.po`  for the django application translations
+  - `/webapp/locale/<locale code>/LC_MESSAGES/django.po`  for the Django application translations
 
-#### 4. Compile the new django messages with `python manage.py compilemessages` from the `webapp` folder
+#### 4. Compile the new Django messages with `python manage.py compilemessages` from the `webapp` folder
 
 ### Add a language
 
-If you want to support a new language in your Spending Stories instance you must change django's settings.
+If you want to support a new language in your Spending Stories instance you must change Django's settings.
 You must update the `webapp/settings.py` file and look for the `LANGUAGES` variable. This is where we store
-the list of supported languages, by default we only support english language. 
+the list of supported languages, by default we only support English. 
 
 ```python
 LANGUAGES = (
@@ -310,12 +310,11 @@ This means all terms that will be recognized have to be entered in an array.
 If you look at the [getSearchSetData](https://github.com/jplusplus/okf-spending-stories/blob/master/webapp/static/coffee/services/Comprehension.coffee#L140)  method in the `Comprehension`
 service you can see all translated term in our array. <br/>
 
-This way of doing cannot work with German for instance because a lot of numbers are constructed with
-others. 
-Fuzzy search can work but the search data set (the data that will be used to perform the search) have to be build
-by an algorithm because of the tremendous amount of numbers. 
+This way of doing cannot work with German for instance because of the way most numbers are constructed. 
+Fuzzy search can work but the search data set (the data that will be used to perform the search) has to be built
+by an algorithm because of the tremendous amount of numbers.
 
-## Update stories with last currencies and cpi
+## Update stories with last currencies and CPI
 It's important to note that the conversion rates & the consumer price indexes we use 
 to deal with [inflation][wiki-inflation] need to be refreshed by hand: 
 
