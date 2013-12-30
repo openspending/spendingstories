@@ -315,16 +315,13 @@ Fuzzy search can work but the search data set (the data that will be used to per
 by an algorithm because of the tremendous amount of numbers.
 
 ## Update stories with last currencies and CPI
+
 It's important to note that the conversion rates & the consumer price indexes we use 
 to deal with [inflation][wiki-inflation] need to be refreshed by hand: 
 
 ```bash
-./scripts/update_cpi.py
-./scripts/update_currencies.py <api key from https://openexchangerates.org/signup/free>
-./scripts/recompute_stories.py
+python manage.py update_currencies
 ```
-
-and restart the application in order to reload the new dataset.
 
 [wiki-stories]:http://github.com/jplusplus/okf-spending-stories/wiki/About-this-project#stories
 [wiki-inflation]:http://github.com/jplusplus/okf-spending-stories/wiki/About-this-project#inflation
