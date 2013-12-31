@@ -30,6 +30,7 @@ from webapp.currency.models import Currency
 from webapp.core.models import Story
 import requests
 import os
+import sys
 from django.conf import settings
 from django.core import management
 from optparse import make_option
@@ -58,8 +59,19 @@ class Command(BaseCommand):
 			story.save()
 
 	def handle(self, *args, **options):
-		assert len(args) == 1
-		rates = requests.get(OER_API_BASE_URL % args[0]).json()['rates']
+		try:
+			api_key = args[0]
+		except IndexError:
+			try:
+				api_key = settings.OER_API_KEY
+			except AttributeError:
+				api_key = None
+		assert api_key, "API key `OER_API_KEY` should be defined in settings or given as argument. (http://openexchangerates.org)"
+		rates = requests.get(OER_API_BASE_URL % api_key).json()
+		if 'description' in rates:
+			self.stdout.write(rates['description'])
+			sys.exit(1)
+		rates= rates['rates']
 		counter = 0
 		for currency in Currency.objects.all():
 			new_rate = rates[currency.iso_code]
@@ -73,7 +85,7 @@ class Command(BaseCommand):
 		# save in fixtures
 		if options.get("update_fixtures", False):
 			with open(FIXTURES_PATH, 'w') as f:
-				print 'file %s saved' % (FIXTURES_PATH)
+				self.stdout.write('file %s saved' % (FIXTURES_PATH))
 				management.call_command('dumpdata', 'currency', indent=4, stdout=f)
 
 # EOF

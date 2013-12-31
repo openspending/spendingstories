@@ -66,8 +66,6 @@ angular.module('stories')
                     rulerRate = Currency.get(scope.rulerCurrency).rate
                     # if rulerRate is defined we set it to the scope otherwise we set it like USD
                     scope.rulerRate = if rulerRate? then rulerRate else 1
-                # No ruler rate
-                scope.rulerRate = 1
                 # Filter dataset if we received a filter
                 filter  = scope.filter()
                 # Filter is a function
@@ -79,8 +77,7 @@ angular.module('stories')
                 # Order dataset to avoid caothic stacking
                 dataset = _.sortBy dataset, "current_value_usd"
                 dataset = _.map dataset, (story)->
-                    story.converted_current_value = story.current_value_usd / scope.rulerRate
-                    return story
+                    _.extend story, converted_current_value: story.current_value_usd * scope.rulerRate
 
                 # Bounds values (using sorted list)            
                 min = Math.min dataset[0].converted_current_value, rulerValue 

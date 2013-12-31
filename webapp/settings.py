@@ -253,6 +253,9 @@ REDACTOR_OPTIONS = {
     'lang': 'en'
 }
 
+# key for openexchangerates.org api, used by the update_currencies command
+OER_API_KEY = os.environ.get('OER_API_KEY')
+
 # Load heroku settings if HEROKU=true in a environment variable
 if os.environ.get('HEROKU', None):
     try:

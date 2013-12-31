@@ -9,10 +9,8 @@ class SearchService
         # ──────────────────────────────────────────────────────────────────────
         # Constructor and instance's scope variables declaration 
         # ──────────────────────────────────────────────────────────────────────
-        searchParams = @getURLParams()
         # Filter parameters accepted in URL, will produce filtering of stories 
         @accepted_filters = ['onlySticky', 'themes', 'country', 'currency', 'title', 'lang']
-
 
         @extra_fields = 
             ### 
@@ -39,12 +37,19 @@ class SearchService
         @query_usd = null
         # stories results will be holded in this attribute
         @results   = null
+        
+        init = =>
+            @updateQuery @getURLParams(), ()=>
+                @updateStories @getURLParams()
 
+
+        @rootScope.$watch =>
+                Currency.get(@getURLParams().c)
+            , init
         # ──────────────────────────────────────────────────────────────────────
         # First initialization of instance attributes
         # ──────────────────────────────────────────────────────────────────────
-        @updateQuery searchParams, () =>
-            @updateStories searchParams
+        init()
 
         # ──────────────────────────────────────────────────────────────────────
         # Watchers
