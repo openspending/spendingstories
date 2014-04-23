@@ -55,10 +55,9 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', '$t
       close = ->
         element.selectpicker "close"
 
-      if attr.ngModel?
-        scope.$watch ->
-            attr.ngModel
-          , refresh
+      scope.$watch ->
+          scope.$eval(attr.ngModel)
+        , refresh
 
       if attr.title?
         scope.$watch ->
