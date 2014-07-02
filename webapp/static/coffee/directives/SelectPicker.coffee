@@ -31,7 +31,7 @@ angular.module('stories').directive 'selectpicker', ['$timeout','$location', '$t
 
       # Init selectpicker on the next loop so ng-options can populate the select
       $timeout ->
-        title   = if attr.title? attr.title else $translate('BOOTSRAP_SELECT_EMPTY')
+        title   = if attr.title? then attr.title else $translate('BOOTSRAP_SELECT_EMPTY')
         options = _.extend(options, {title: title }) # little trick to get the title translation work
         element.selectpicker options
 
