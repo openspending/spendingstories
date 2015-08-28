@@ -11,17 +11,17 @@
 # Last mod : 07-Aug-2013
 # -----------------------------------------------------------------------------
 # This file is part of Spending Stories.
-# 
+#
 #     Spending Stories is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
 #     the Free Software Foundation, either version 3 of the License, or
 #     (at your option) any later version.
-# 
+#
 #     Spending Stories is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #     GNU General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU General Public License
 #     along with Spending Stories.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -31,7 +31,7 @@ Heroku environment variables needed:
 	AWS_ACCESS_KEY_ID:       <AWS_KEY>
 	AWS_SECRET_ACCESS_KEY:   <AWS_PWD>
 	AWS_STORAGE_BUCKET_NAME: <BUCKET_NAME>
-	BUILDPACK_URL:           git://github.com/vied12/heroku-buildpack-django.git
+	BUILDPACK_URL:           https://github.com/ddollar/heroku-buildpack-multi.git
 	HEROKU:                  True
 	PATH:                    bin:node_modules/.bin:/app/bin:/usr/local/bin:/usr/bin:/bin
 	PYTHONPATH:              webapp/:libs/
